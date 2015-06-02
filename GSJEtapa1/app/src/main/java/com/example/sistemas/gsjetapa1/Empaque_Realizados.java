@@ -135,10 +135,9 @@ public class Empaque_Realizados extends Activity implements AdapterView.OnItemCl
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //Variables.setLote_pendiente(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        //Variables.setFromSearch(true);
-        //Variables.setLoteTexturizador(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        // Variables.setLopen(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
+
+        Variables.setFromEmpaque(true);
+        Variables.setLoteEmpaque(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
         finish();startActivity(new Intent(Empaque_Realizados.this, Empaque.class));
     }
     @Override
