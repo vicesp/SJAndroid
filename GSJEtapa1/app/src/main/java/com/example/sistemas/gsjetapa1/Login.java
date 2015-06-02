@@ -72,6 +72,7 @@ public class Login extends Activity {
                 }
                 else if(tipoUsuario==5)
                 {
+                    Variables.setFromSearch(false);
                     finish();startActivity(new Intent(Login.this, Texturizador.class));
                 }
                 else if(tipoUsuario==6)
@@ -88,11 +89,11 @@ public class Login extends Activity {
                     finish();startActivity(new Intent(Login.this, Configuracion.class));
 
                 }
-                else if(tipoUsuario==9)
+                else if (tipoUsuario==9)
                 {
-                    finish();startActivity(new Intent(Login.this, Texturizador_Edit.class));
-
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
+
 
                 else {Alerta();}
 

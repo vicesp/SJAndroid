@@ -309,10 +309,10 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="70dp"
-        android:text="GUARDAR"
+        android:layout_height="wrap_content"
+        android:text=""
         android:textSize="25dp"
-        android:background="@drawable/red_button"
+        android:background="@drawable/guarda"
         android:id="@+id/btnSavePT"
         android:layout_alignTop="@+id/tvcentro"
         android:layout_alignParentRight="true"

@@ -7,13 +7,21 @@
 
     <string name="Alerta_Contrasena">Usuario y/o Constraseña Incorrecta</string>
     <string name="Alerta_Guardado">La información se guardó exitosamente</string>
+    <string name="Alerta_Actualizado">La información se actualizó exitosamente</string>
 
-    <string name="Alerta_NoGuardado">Ocurrio un error en gurdado, intente nuevamente</string>
+    <string name="Alerta_NoGuardado">Ocurrio un error en guardado, intente nuevamente</string>
+    <string name="Alerta_NoActualizado">Ocurrio un error al actualizar, intente nuevamente</string>
 
     <string name="Alerta_PT_campoVacio">Seleccione un Código de PT</string>
 
     <string name="Alerta_Cerrar_sec_Cuajado">Desea finalizar sesión del día</string>
 
     <string name="ip_vacia">Ingrese la nueva IP del servidor</string>
+    <string name="title_activity_texturizador__switch">Texturizador_Switch</string>
+    <string name="title_activity_texturizador__realizados">Texturizador_Realizados</string>
+    <string name="title_activity_registro__productos">Registro_Productos</string>
+    <string name="title_activity_empaque__realizados">Empaque_Realizados</string>
+    <string name="title_activity_administrador">Administrador</string>
+    <string name="title_activity_empaque__edit">Empaque_Edit</string>
 
 </resources>

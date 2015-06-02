@@ -43,7 +43,7 @@ import DTO.fecha_Caducidad;
 
 public class Empaque extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private String [] maquina_usar;
+    private String [] maquina_usar,listaProductos;
     private String maquina_usar_select;
     private Spinner spMaquinaUsar;
     private TextView Fecha,codigo_prod,nombre_pt,lote_empaque,tvLote_fondo,tvLote_tapa,tvLote_funda,tvP_entregadas,caducidad;
@@ -75,8 +75,6 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         con=new consultas();
 
         f_caducidad=new fecha_Caducidad();
-
-        Variables.setIp_servidor(con.DAOSelecConfigIP());
 
 
         //******************    Text Viewes    ****************//
@@ -302,9 +300,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                 ,lote_funda.getText().toString(),observaciones.getText().toString(),piezas_emp.getText().toString(),piezas_calidad.getText().toString());
 
                 if(exitoso){
-                    GuardaEmpaqueSync task = new GuardaEmpaqueSync();
-                    task.execute();
-
+                    limpia_campos();
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
                 }
                 else{
@@ -324,10 +320,9 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
                 AlertDialog.Builder myDialog = new AlertDialog.Builder(Empaque.this);
 
-                Nombre_PT=getResources().getStringArray(R.array.nombre_PT);
-
+                Nombre_PT=getProductosArray(con.DAOGetTodosProductos());
+                //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
                 final EditText editText = new EditText(Empaque.this);
-
                 final ListView listview=new ListView(Empaque.this);
                 editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
                 array_sort=new ArrayList<String> (Arrays.asList(Nombre_PT));
@@ -478,12 +473,14 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
+
+
+            /*Para tabla cuajado*/
             request.addProperty("lote_origen", lote_origen.getText().toString());
             request.addProperty("FechaH", ""+FechaH.Hoy_hora());
             request.addProperty("codigo_prod", codigo_prod.getText().toString());
             request.addProperty("nombre_pt", nombre_pt.getText().toString());
             request.addProperty("lote_empaque", lote_empaque.getText().toString());
-            request.addProperty("caducidad", caducidad.getText().toString());
             request.addProperty("tvP_entregadas", tvP_entregadas.getText().toString());
             request.addProperty("p_reproceso", p_reproceso.getText().toString());
             request.addProperty("temp", temp.getText().toString());
@@ -560,7 +557,6 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             if (success)
             {
                 Toast.makeText(Empaque.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
-                limpia_campos();
 
 
             }
@@ -568,7 +564,6 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             else
             {
                 Toast.makeText(Empaque.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
-                limpia_campos();
             }
         }}
 
@@ -696,4 +691,14 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         observaciones.setText("");
     }
 
+
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
+    }
 }
