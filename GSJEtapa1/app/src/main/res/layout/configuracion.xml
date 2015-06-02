@@ -1,0 +1,251 @@
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">
+
+
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="                 "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView"
+
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_toStartOf="@+id/tvptLote"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha        "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+
+            android:layout_below="@+id/imageView"
+            android:layout_toLeftOf="@+id/tvptFecha"
+            android:layout_toStartOf="@+id/tvptFecha" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="        "
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvptLote"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+            android:layout_toLeftOf="@+id/editText"
+            android:layout_alignLeft="@+id/textView19"
+            android:layout_alignStart="@+id/textView19" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+
+        android:id="@+id/tvptFecha"
+            android:layout_below="@+id/imageView"
+            android:layout_alignRight="@+id/btnSaveConfig"
+            android:layout_alignEnd="@+id/btnSaveConfig" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="22dp"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvptFecha"
+        android:layout_alignStart="@+id/tvptFecha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CONFIGURACIÓN IP"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="32dp"
+        android:id="@+id/textView19"
+        android:layout_below="@+id/textView18"
+        android:layout_centerHorizontal="true" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="260dp"
+        android:background="@drawable/plantilla_pt"
+        android:id="@+id/relativeLayout2"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  IP SERVIDOR SQL  "
+            android:textColor="#98002E"
+            android:textSize="30dp"
+            android:id="@+id/textView141"
+            android:background="@android:color/white"
+            android:layout_marginLeft="53dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="53dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    "
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvptnumeroviaj"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   "
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvptKilTotObt"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="IP Actual"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView201"
+            android:layout_marginTop="35dp"
+            android:layout_below="@+id/textView141"
+            android:layout_alignLeft="@+id/textView141"
+            android:layout_alignStart="@+id/textView141" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etConfIPActual"
+            android:editable="false"
+            android:layout_alignTop="@+id/textView201"
+            android:layout_toRightOf="@+id/textView201"
+            android:layout_marginLeft="73dp"
+            android:layout_marginStart="73dp"
+            android:layout_alignRight="@+id/textView203"
+            android:layout_alignEnd="@+id/textView203" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nueva IP"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView202"
+            android:layout_below="@+id/etConfIPActual"
+            android:layout_alignLeft="@+id/textView201"
+            android:layout_alignStart="@+id/textView201"
+            android:layout_marginTop="31dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/etConfNuevaIP"
+            android:layout_alignBottom="@+id/textView202"
+            android:layout_alignLeft="@+id/etConfIPActual"
+            android:layout_alignStart="@+id/etConfIPActual"
+            android:layout_alignRight="@+id/etConfIPActual"
+            android:layout_alignEnd="@+id/etConfIPActual" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:visibility="invisible"
+            android:id="@+id/textView203"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/tvptnumeroviaj"
+            android:layout_toEndOf="@+id/tvptnumeroviaj" />
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="GUARDAR"
+        android:textSize="25dp"
+        android:background="@drawable/red_button"
+        android:id="@+id/btnSaveConfig"
+        android:layout_alignBaseline="@+id/tvcentro"
+        android:layout_alignBottom="@+id/tvcentro"
+        android:layout_alignRight="@+id/relativeLayout2"
+        android:layout_alignEnd="@+id/relativeLayout2" />
+
+
+</RelativeLayout>
+

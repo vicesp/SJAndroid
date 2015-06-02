@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GSJ Etapa 1</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="Alerta_Contrasena">Usuario y/o Constraseña Incorrecta</string>
+    <string name="Alerta_Guardado">La información se guardó exitosamente</string>
+
+    <string name="Alerta_NoGuardado">Ocurrio un error en gurdado, intente nuevamente</string>
+
+    <string name="Alerta_PT_campoVacio">Seleccione un Código de PT</string>
+
+    <string name="Alerta_Cerrar_sec_Cuajado">Desea finalizar sesión del día</string>
+
+    <string name="ip_vacia">Ingrese la nueva IP del servidor</string>
+
+</resources>

@@ -1,0 +1,1593 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">-->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_height="2200dp"
+        android:id="@+id/rlcuajo">
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Línea           "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_toStartOf="@+id/tvNumLinea"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de fundida"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/tvcentro"
+        android:layout_toEndOf="@+id/tvcentro" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Utilizó más de una tina"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView5"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Familia       "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1         "
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvNumLinea"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_toLeftOf="@+id/editText"
+        android:layout_marginRight="40dp"
+        android:layout_toStartOf="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvNumFundida"
+        android:layout_alignLeft="@+id/tvNumLinea"
+        android:layout_alignStart="@+id/tvNumLinea"
+        android:layout_alignTop="@+id/textView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvFechaFun"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10115"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvLoteFundido"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/tvFechaFun"
+        android:layout_alignStart="@+id/tvFechaFun" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spSilo"
+        android:visibility="invisible"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_toLeftOf="@+id/tvcentro"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_alignLeft="@+id/tvNumFundida"
+        android:layout_alignStart="@+id/tvNumFundida" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/spFamiliaFundido"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_alignLeft="@+id/tvLoteFundido"
+        android:layout_alignStart="@+id/tvLoteFundido"
+        android:spinnerMode="dialog"
+        android:background="#E6E6E6"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/spSilo"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CUAJADA"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView11"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CJ01 Cuajada (Kg.)"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/rlCuajadaAdd"
+        android:layout_toLeftOf="@+id/etSA01Fun"
+        android:layout_toStartOf="@+id/etSA01Fun" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CJ01.1 Cuajada\nprensada (Kg.)"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView13"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    Lote   "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView14"
+        android:layout_alignBottom="@+id/etCj01Fun"
+        android:layout_toRightOf="@+id/etCj01Fun"
+        android:layout_toEndOf="@+id/etCj01Fun" />
+
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView4"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/textView13"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FUNDIDO-ADITIVOS"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView16"
+        android:layout_alignTop="@+id/imageView4"
+        android:layout_centerHorizontal="true" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO DE PRODUCCIÓN"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="22dp"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvFechaFun"
+        android:layout_alignStart="@+id/tvFechaFun" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FUNDIDO"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="35dp"
+        android:id="@+id/textView19"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+        <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCj01Fun"
+        android:layout_above="@+id/textView13"
+        android:layout_toRightOf="@+id/textView12"
+            android:layout_toStartOf="@+id/textView50"
+            android:layout_alignRight="@+id/tvNumLinea"
+            android:layout_alignEnd="@+id/tvNumLinea" />
+
+        <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etLo1Cj01Fun"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toStartOf="@+id/spFamiliaFundido"
+        android:layout_alignRight="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6" />
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="540dp"
+            android:background="@drawable/plantilla_marco"
+            android:id="@+id/lyAditivos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/imageView4">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Aditivos  "
+                android:textColor="#98002E"
+                android:textSize="30dp"
+
+                android:id="@+id/textView32"
+                android:background="@android:color/white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP005-Citrato de            \nSodio (Kg.)              "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView33"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/editText12"
+                android:layout_alignLeft="@+id/textView32"
+                android:layout_alignStart="@+id/textView32" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP015-Diacetilo (mlt.)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView34"
+                android:layout_marginTop="35dp"
+                android:layout_below="@+id/textView33"
+                android:layout_alignLeft="@+id/textView33"
+                android:layout_alignStart="@+id/textView33" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAd1"
+                android:layout_alignTop="@+id/textView33"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_toStartOf="@+id/textView35"
+                android:layout_alignRight="@+id/editText12"
+                android:layout_alignEnd="@+id/editText12" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText12"
+                android:visibility="invisible"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lote        "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView35"
+                android:layout_marginLeft="108dp"
+                android:layout_marginStart="108dp"
+                android:layout_alignBottom="@+id/etAd1"
+                android:layout_toRightOf="@+id/editText12"
+                android:layout_toEndOf="@+id/editText12" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAd2"
+                android:layout_alignTop="@+id/textView34"
+                android:layout_alignRight="@+id/etAd1"
+                android:layout_alignEnd="@+id/etAd1"
+                android:layout_alignLeft="@+id/etAd1"
+                android:layout_alignStart="@+id/etAd1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lote"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView36"
+                android:layout_alignTop="@+id/etAd2"
+                android:layout_alignLeft="@+id/textView35"
+                android:layout_alignStart="@+id/textView35" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="S0101-Bactofin (mlt.)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView37"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/etAd2"
+                android:layout_alignLeft="@+id/textView34"
+                android:layout_alignStart="@+id/textView34" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAd3"
+                android:layout_alignTop="@+id/textView37"
+                android:layout_alignRight="@+id/etAd2"
+                android:layout_alignEnd="@+id/etAd2"
+                android:layout_alignLeft="@+id/etAd2"
+                android:layout_alignStart="@+id/etAd2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lote"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView38"
+                android:layout_alignBottom="@+id/textView37"
+                android:layout_alignLeft="@+id/textView36"
+                android:layout_alignStart="@+id/textView36" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP007-Bioxido de\nTitanio (Kg.)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView39"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/etAd3"
+                android:layout_alignLeft="@+id/textView37"
+                android:layout_alignStart="@+id/textView37" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAd4"
+                android:layout_alignTop="@+id/textView39"
+                android:layout_alignRight="@+id/etAd3"
+                android:layout_alignEnd="@+id/etAd3"
+                android:layout_alignLeft="@+id/etAd3"
+                android:layout_alignStart="@+id/etAd3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLo1"
+                android:layout_alignTop="@+id/textView35"
+                android:layout_toLeftOf="@+id/textView45"
+                android:layout_toRightOf="@+id/textView35"
+                android:layout_toEndOf="@+id/textView35" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dd"
+                android:visibility="invisible"
+                android:id="@+id/textView45"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLo2"
+                android:layout_above="@+id/textView37"
+                android:layout_alignLeft="@+id/etLo1"
+                android:layout_alignStart="@+id/etLo1"
+                android:layout_alignRight="@+id/etLo1"
+                android:layout_alignEnd="@+id/etLo1" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLo3"
+                android:layout_above="@+id/textView39"
+                android:layout_toLeftOf="@+id/textView45"
+                android:layout_alignLeft="@+id/etLo2"
+                android:layout_alignStart="@+id/etLo2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lote"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView78"
+                android:layout_alignBottom="@+id/etAd4"
+                android:layout_alignLeft="@+id/textView38"
+                android:layout_alignStart="@+id/textView38" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etLo4"
+                android:layout_alignBottom="@+id/textView78"
+                android:layout_alignLeft="@+id/etLo3"
+                android:layout_alignStart="@+id/etLo3"
+                android:layout_alignRight="@+id/etLo3"
+                android:layout_alignEnd="@+id/etLo3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tipo Texturizador"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView139"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/textView39"
+                android:layout_alignLeft="@+id/textView39"
+                android:layout_alignStart="@+id/textView39" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/spTipoTexturizador"
+                android:background="#E6E6E6"
+                android:layout_alignTop="@+id/textView139"
+                android:layout_alignLeft="@+id/etAd4"
+                android:layout_alignStart="@+id/etAd4"
+                android:layout_alignRight="@+id/etLo4"
+                android:layout_alignEnd="@+id/etLo4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lote"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView170"
+                android:layout_below="@+id/spTipoTexturizador"
+                android:layout_alignLeft="@+id/textView139"
+                android:layout_alignStart="@+id/textView139" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etfLoteTextu"
+                android:layout_alignTop="@+id/textView170"
+                android:layout_alignLeft="@+id/spTipoTexturizador"
+                android:layout_alignStart="@+id/spTipoTexturizador"
+                android:layout_alignRight="@+id/etAd4"
+                android:layout_alignEnd="@+id/etAd4" />
+
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView9"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/lyAditivos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/lyAditivos"
+            android:layout_alignEnd="@+id/lyAditivos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MATERIA PRIMA"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView50"
+            android:layout_alignTop="@+id/imageView9"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SA01-Suero de\nleche (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView51"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/imageView9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView52"
+            android:layout_alignTop="@+id/textView51"
+            android:layout_toRightOf="@+id/textView16"
+            android:layout_toEndOf="@+id/textView16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MP024-Grasa\nVegetal F-38 (Kg.)   "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView53"
+            android:layout_below="@+id/textView51"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView54"
+            android:layout_alignTop="@+id/etMP024Fun"
+            android:layout_alignLeft="@+id/textView52"
+            android:layout_alignStart="@+id/textView52" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etLoteMP1"
+            android:layout_alignBottom="@+id/textView52"
+            android:layout_toRightOf="@+id/textView72"
+            android:layout_toEndOf="@+id/textView72" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etMP024Fun"
+            android:layout_alignTop="@+id/textView53"
+            android:layout_alignLeft="@+id/etSA01Fun"
+            android:layout_alignStart="@+id/etSA01Fun"
+            android:layout_alignRight="@+id/etSA01Fun"
+            android:layout_alignEnd="@+id/etSA01Fun" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etLoteMP2"
+            android:layout_alignTop="@+id/textView54"
+            android:layout_alignLeft="@+id/etLoteMP1"
+            android:layout_alignStart="@+id/etLoteMP1" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etSA01Fun"
+            android:layout_alignTop="@+id/textView51"
+            android:layout_toLeftOf="@+id/tvcentro"
+            android:layout_toEndOf="@+id/textView53"
+            android:layout_toRightOf="@+id/textView53" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etPastaCuajada"
+            android:layout_toRightOf="@+id/tvNumLinea"
+            android:layout_alignRight="@+id/etMP024Fun"
+            android:layout_alignEnd="@+id/etMP024Fun" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etkilosPendiCuajada"
+            android:layout_alignLeft="@+id/etPastaCuajada"
+            android:layout_alignStart="@+id/etPastaCuajada"
+            android:layout_alignRight="@+id/etPastaCuajada"
+            android:layout_alignEnd="@+id/etPastaCuajada" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swTinaFundido"
+            android:layout_alignTop="@+id/spSilo"
+            android:layout_alignLeft="@+id/spSilo"
+            android:layout_alignStart="@+id/spSilo"
+            android:checked="false" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH Pasta  "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView65"
+            android:layout_above="@+id/textView13"
+            android:layout_alignLeft="@+id/spFamiliaFundido"
+            android:layout_alignStart="@+id/spFamiliaFundido" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etPhCj01Fun"
+            android:layout_alignRight="@+id/spFamiliaFundido"
+            android:layout_alignEnd="@+id/spFamiliaFundido"
+            android:layout_toEndOf="@+id/textView65"
+            android:layout_alignBottom="@+id/textView65"
+            android:layout_toRightOf="@+id/textView65" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    Lote   "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView66"
+            android:layout_alignTop="@+id/textView13"
+            android:layout_alignLeft="@+id/textView14"
+            android:layout_alignStart="@+id/textView14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH Pasta"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView67"
+            android:layout_alignTop="@+id/textView66"
+            android:layout_alignLeft="@+id/textView65"
+            android:layout_alignStart="@+id/textView65" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etCj011Fun"
+            android:layout_alignTop="@+id/textView66"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_toStartOf="@+id/textView66"
+            android:layout_toLeftOf="@+id/textView66" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/etLo1Cj011Fun"
+            android:layout_alignTop="@+id/textView66"
+            android:layout_alignLeft="@+id/etLo1Cj01Fun"
+            android:layout_alignStart="@+id/etLo1Cj01Fun"
+            android:layout_alignRight="@+id/etLo1Cj01Fun"
+            android:layout_alignEnd="@+id/etLo1Cj01Fun" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etPhCj011Fun"
+            android:layout_alignTop="@+id/textView67"
+            android:layout_alignLeft="@+id/etPhCj01Fun"
+            android:layout_alignStart="@+id/etPhCj01Fun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de crema\n"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView68"
+            android:layout_alignTop="@+id/textView76"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/spTipoCrema"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_alignTop="@+id/etLoteMP3"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/etMP024Fun"
+            android:layout_alignLeft="@+id/etLoteCremaFun"
+            android:layout_alignStart="@+id/etLoteCremaFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Familia reproceso"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView69"
+            android:layout_marginTop="87dp"
+            android:layout_below="@+id/etAguaFun"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cantidad de  \ncrema (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView72"
+            android:layout_alignTop="@+id/etLoteCremaFun"
+            android:layout_alignLeft="@+id/textView54"
+            android:layout_alignStart="@+id/textView54" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etCantiCremaFun"
+            android:layout_alignTop="@+id/textView72"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/textView72"
+            android:layout_toEndOf="@+id/textView72" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/spFamiliaReproceso"
+            android:spinnerMode="dialog"
+            android:layout_alignTop="@+id/textView69"
+            android:layout_alignLeft="@+id/spTipoCrema"
+            android:layout_alignStart="@+id/spTipoCrema"
+            android:layout_alignRight="@+id/spTipoCrema"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_alignEnd="@+id/spTipoCrema" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reproceso\n(Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView70"
+            android:layout_alignTop="@+id/etLoteFamiRepFun"
+            android:layout_alignLeft="@+id/textView72"
+            android:layout_alignStart="@+id/textView72" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etCantiFamiRepFun"
+            android:layout_alignTop="@+id/textView70"
+            android:layout_toEndOf="@+id/textView72"
+            android:layout_toRightOf="@+id/textView72" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView71"
+            android:layout_below="@+id/spFamiliaReproceso"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:id="@+id/etLoteFamiRepFun"
+            android:layout_alignTop="@+id/textView71"
+            android:layout_alignRight="@+id/etLoteCremaFun"
+            android:layout_alignEnd="@+id/etLoteCremaFun"
+            android:layout_alignLeft="@+id/etLoteCremaFun"
+            android:layout_alignStart="@+id/etLoteCremaFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperatura final\n°C"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView73"
+            android:layout_marginTop="63dp"
+            android:layout_below="@+id/imageView12"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Peso total\nde entrada  "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView74"
+            android:layout_alignTop="@+id/textView73"
+            android:layout_toRightOf="@+id/textView47"
+            android:layout_toEndOf="@+id/textView47" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etPesoTotalFun"
+            android:layout_alignTop="@+id/textView74"
+            android:layout_alignLeft="@+id/etCantiFamiRepFun"
+            android:layout_alignStart="@+id/etCantiFamiRepFun" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:id="@+id/etTempFinFun"
+            android:layout_alignTop="@+id/textView74"
+            android:layout_alignLeft="@+id/etLoteFamiRepFun"
+            android:layout_alignStart="@+id/etLoteFamiRepFun"
+            android:layout_alignRight="@+id/etLoteFamiRepFun"
+            android:layout_alignEnd="@+id/etLoteFamiRepFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MP078-Queso\nCotija (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:visibility="invisible"
+            android:id="@+id/textView9"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView53"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView10"
+            android:layout_below="@+id/spTipoCrema"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:ems="10"
+            android:id="@+id/etLoteCremaFun"
+            android:layout_alignTop="@+id/textView10"
+            android:layout_toRightOf="@+id/textView53"
+            android:layout_toLeftOf="@+id/editText"
+            android:layout_toStartOf="@+id/editText" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView12"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/textView70"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="40dp"
+            android:layout_alignRight="@+id/imageView9"
+            android:layout_alignEnd="@+id/imageView9" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEDICIONES"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView47"
+            android:layout_alignTop="@+id/imageView12"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etMP078Fun"
+            android:layout_alignTop="@+id/textView9"
+            android:layout_alignLeft="@+id/spTipoCrema"
+            android:layout_alignStart="@+id/spTipoCrema"
+            android:layout_toLeftOf="@+id/tvcentro"
+            android:layout_toStartOf="@+id/tvcentro" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CJ02-Cuajada\nManchego (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:visibility="invisible"
+            android:id="@+id/textView49"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agua (Lt.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:visibility="invisible"
+            android:id="@+id/textView75"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView49"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:visibility="invisible"
+            android:id="@+id/textView76"
+            android:layout_alignBaseline="@+id/etMP078Fun"
+            android:layout_alignBottom="@+id/etMP078Fun"
+            android:layout_alignLeft="@+id/textView54"
+            android:layout_alignStart="@+id/textView54" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etLoteMP3"
+            android:layout_alignTop="@+id/textView76"
+            android:layout_toEndOf="@+id/tvFechaFun"
+            android:layout_alignLeft="@+id/etLoteMP2"
+            android:layout_alignStart="@+id/etLoteMP2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:visibility="invisible"
+            android:id="@+id/textView77"
+            android:layout_alignTop="@+id/textView49"
+            android:layout_alignLeft="@+id/textView76"
+            android:layout_alignStart="@+id/textView76" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etCj02Fun"
+            android:layout_alignTop="@+id/textView77"
+            android:layout_alignLeft="@+id/etLoteFamiRepFun"
+            android:layout_alignStart="@+id/etLoteFamiRepFun"
+            android:layout_toLeftOf="@+id/spTipoCrema"
+            android:layout_toStartOf="@+id/spTipoCrema" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etLoteMP4"
+            android:layout_alignTop="@+id/textView77"
+            android:layout_toEndOf="@+id/textView74"
+            android:layout_alignLeft="@+id/etLoteMP3"
+            android:layout_alignStart="@+id/etLoteMP3" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:visibility="invisible"
+            android:id="@+id/etAguaFun"
+            android:layout_alignBottom="@+id/textView75"
+            android:layout_toRightOf="@+id/textView12"
+            android:layout_alignRight="@+id/etCj02Fun"
+            android:layout_alignEnd="@+id/etCj02Fun" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="GUARDAR"
+            android:textSize="25dp"
+            android:layout_marginTop="69dp"
+            android:background="@drawable/red_button"
+            android:id="@+id/btnGuardaFundido"
+            android:layout_below="@+id/textView74"
+            android:layout_alignRight="@+id/imageView12"
+            android:layout_alignEnd="@+id/imageView12" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Calcular Peso"
+            android:id="@+id/btnCalculaPeso"
+            android:layout_below="@+id/imageView12"
+            android:layout_alignLeft="@+id/tvFPesoTotal"
+            android:layout_alignStart="@+id/tvFPesoTotal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.0"
+            android:textColor="#98002E"
+            android:textSize="35dp"
+            android:id="@+id/tvFPesoTotal"
+            android:layout_alignBottom="@+id/etPesoTotalFun"
+            android:layout_alignRight="@+id/imageView12"
+            android:layout_alignEnd="@+id/imageView12"
+            android:layout_toRightOf="@+id/textView74"
+            android:layout_toEndOf="@+id/textView74" />
+
+        <RelativeLayout
+            android:layout_width="100dp"
+            android:layout_height="2dp"
+            android:layout_below="@+id/textView11"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/rlCuajadaAdd"
+            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignEnd="@+id/imageView3">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="CJ01 Cuajada (Kg.)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView55"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="25dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Lote    "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView56"
+                android:layout_alignTop="@+id/textView55"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etCj01Fun1"
+                android:layout_alignTop="@+id/textView56"
+                android:layout_toRightOf="@+id/textView55"
+                android:layout_toLeftOf="@+id/textView56"
+                android:layout_toStartOf="@+id/textView56" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         pH Pasta  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView57"
+                android:layout_marginRight="82dp"
+                android:layout_marginEnd="69dp"
+                android:layout_alignTop="@+id/etLo1Cj01Fun1"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/etLo1Cj01Fun1"
+                android:layout_alignTop="@+id/textView56"
+                android:layout_toRightOf="@+id/textView56"
+                android:layout_toLeftOf="@+id/textView57"
+                android:layout_toStartOf="@+id/textView57" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                android:text="CJ01 Cuajada (Kg.)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView58"
+                android:layout_below="@+id/etCj01Fun1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="25dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etCj01Fun2"
+                android:layout_alignBottom="@+id/textView58"
+                android:layout_alignLeft="@+id/etCj01Fun1"
+                android:layout_alignStart="@+id/etCj01Fun1"
+                android:layout_alignRight="@+id/etCj01Fun1"
+                android:layout_alignEnd="@+id/etCj01Fun1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Lote    "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView59"
+                android:layout_alignBottom="@+id/textView58"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/etLo1Cj01Fun2"
+                android:layout_alignBottom="@+id/etCj01Fun2"
+                android:layout_toRightOf="@+id/textView59"
+                android:layout_alignRight="@+id/etLo1Cj01Fun1"
+                android:layout_alignEnd="@+id/etLo1Cj01Fun1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         pH Pasta  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView60"
+                android:layout_alignBottom="@+id/textView59"
+                android:layout_alignLeft="@+id/textView57"
+                android:layout_alignStart="@+id/textView57" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etPhCj01Fun2"
+                android:layout_alignBottom="@+id/etLo1Cj01Fun2"
+                android:layout_toRightOf="@+id/textView60"
+                android:layout_toEndOf="@+id/textView60" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etPhCj01Fun1"
+                android:layout_alignTop="@+id/textView57"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_toRightOf="@+id/textView60"
+                android:layout_toEndOf="@+id/textView60" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/spTipoCj1"
+                android:background="#E6E6E6"
+                android:layout_alignBottom="@+id/etCj01Fun1"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:spinnerMode="dropdown"
+                android:layout_toStartOf="@+id/textView198"
+                android:layout_toLeftOf="@+id/textView198" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/spTipoCj2"
+                android:background="#E6E6E6"
+                android:layout_alignBottom="@+id/etCj01Fun2"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignRight="@+id/spTipoCj1"
+                android:layout_alignEnd="@+id/spTipoCj1" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="8dp"
+                android:id="@+id/spTipoCj3"
+                android:background="#E6E6E6"
+                android:layout_below="@+id/textView58"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@+id/etCj01Fun2"
+                android:spinnerMode="dropdown"
+                android:layout_alignRight="@+id/spTipoCj2"
+                android:layout_alignEnd="@+id/spTipoCj2" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etCj01Fun3"
+                android:layout_alignBottom="@+id/spTipoCj3"
+                android:layout_alignLeft="@+id/etCj01Fun2"
+                android:layout_alignStart="@+id/etCj01Fun2"
+                android:layout_toLeftOf="@+id/textView59"
+                android:layout_toStartOf="@+id/textView59" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Lote    "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView17"
+                android:layout_alignBottom="@+id/etCj01Fun3"
+                android:layout_toRightOf="@+id/etCj01Fun3"
+                android:layout_toEndOf="@+id/etCj01Fun3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:ems="10"
+                android:id="@+id/etLo1Cj01Fun3"
+                android:layout_alignBottom="@+id/textView17"
+                android:layout_alignLeft="@+id/etLo1Cj01Fun2"
+                android:layout_alignStart="@+id/etLo1Cj01Fun2"
+                android:layout_toLeftOf="@+id/textView60"
+                android:layout_toStartOf="@+id/textView60" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="         pH Pasta  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView20"
+                android:layout_alignBottom="@+id/etLo1Cj01Fun3"
+                android:layout_alignRight="@+id/textView60"
+                android:layout_alignEnd="@+id/textView60" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etPhCj01Fun3"
+                android:layout_alignBottom="@+id/textView20"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignLeft="@+id/etPhCj01Fun2"
+                android:layout_alignStart="@+id/etPhCj01Fun2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="                                "
+                android:id="@+id/textView197"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" (Kg.)  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView198"
+                android:layout_alignTop="@+id/textView55"
+                android:layout_toLeftOf="@+id/etCj01Fun1"
+                android:layout_toStartOf="@+id/etCj01Fun1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" (Kg.)  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView199"
+                android:layout_alignTop="@+id/etCj01Fun2"
+                android:layout_toLeftOf="@+id/etCj01Fun2"
+                android:layout_toStartOf="@+id/etCj01Fun2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" (Kg.)  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView200"
+                android:layout_alignTop="@+id/etCj01Fun3"
+                android:layout_toLeftOf="@+id/etCj01Fun3"
+                android:layout_toStartOf="@+id/etCj01Fun3" />
+
+        </RelativeLayout>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnAddCuaj"
+            android:src="@drawable/add3"
+            android:layout_below="@+id/spFamiliaFundido"
+            android:layout_alignRight="@+id/spFamiliaFundido"
+            android:layout_alignEnd="@+id/spFamiliaFundido" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tipo de crema"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView62"
+            android:layout_below="@+id/textView49"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_marginTop="5dp"
+            android:id="@+id/spTipoCrema2"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_below="@+id/textView72"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignLeft="@+id/etAguaFun"
+            android:layout_alignStart="@+id/etAguaFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/textView63"
+            android:layout_below="@+id/textView75"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/etLoteCrem2"
+            android:layout_alignTop="@+id/textView63"
+            android:layout_alignLeft="@+id/etAguaFun"
+            android:layout_alignStart="@+id/etAguaFun"
+            android:layout_alignRight="@+id/etLoteCremaFun"
+            android:layout_alignEnd="@+id/etLoteCremaFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cantidad de  \ncrema (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView64"
+            android:layout_alignTop="@+id/etLoteCrem2"
+            android:layout_alignLeft="@+id/textView72"
+            android:layout_alignStart="@+id/textView72" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etCantidCremaFun2"
+            android:layout_alignTop="@+id/textView64"
+            android:layout_alignRight="@+id/spTipoCrema2"
+            android:layout_alignEnd="@+id/spTipoCrema2"
+            android:layout_alignLeft="@+id/etLoteMP4"
+            android:layout_alignStart="@+id/etLoteMP4" />
+
+        <WebView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/webView"
+            android:visibility="invisible"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/imageView3"
+            android:layout_alignRight="@+id/textView51"
+            android:layout_alignEnd="@+id/textView51" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

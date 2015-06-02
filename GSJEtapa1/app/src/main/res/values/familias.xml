@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="nombre_familia_cuajado">
+
+        <item>CJ01-Cuajada 0</item>
+        <item>CJ01.1 - Cuajada 0 (Prensada)</item>
+        <item>CJ02 - Cuajada Prensado - Manchego</item>
+        <item>CJ02.1 - Cuajada Prensado - Gouda </item>
+        <item>CJ02.2 - Cuajada Prensado - Adobera</item>
+        <item>CJ03 - Cuajada STI</item>
+        <item>CJ04 - Cuajada Cheedar</item>
+        <item>CJ05 - Cuajada Leche Cabra</item>
+        <item>CJ06 - Cuajada Tres Leches</item>
+        <item>CJ07 - Cuajada Leche Borrega</item>
+    </string-array>
+
+    <string-array name="nombre_familia_fundido">
+
+        <item>FN01-Oaxaca Natural</item>
+        <item>FN02-Oaxaca Regular</item>
+        <item>FN03-Oaxaca Bajo en Grasa</item>
+        <item>FN04-Oaxaca Extendido</item>
+        <item>FN05-Asadero Natural</item>
+        <item>FN06-Asadero Regular</item>
+        <item>FN07-Pizza Cheese</item>
+        <item>FN08-Mozzarella Fresco</item>
+        <item>FN09-Crazy Cheese</item>
+    </string-array>
+
+    <string-array name="tipo_crema">
+
+        <item>CR01-Crema 40%</item>
+        <item>CR01.1-Crema 70%</item>
+        <item>CR01.3-Crema 70% Lipolisada</item>
+
+    </string-array>
+
+    <string-array name="tipo_cuajada">
+
+        <item></item>
+        <item>CJ01 Cuajada</item>
+        <item>CJ01.1 Prensada</item>
+
+
+    </string-array>
+
+    <string-array name="tipo_crema2">
+
+        <item> </item>
+        <item>CR01-Crema 40%</item>
+        <item>CR01.1-Crema 70%</item>
+        <item>CR01.3-Crema 70% Lipolisada</item>
+
+    </string-array>
+
+    <string-array name="nombre_familia_reproceso">
+
+        <item> </item>
+        <item>FN01-Oaxaca Natural</item>
+        <item>FN02-Oaxaca Regular</item>
+        <item>FN03-Oaxaca Bajo en Grasa</item>
+        <item>FN04-Oaxaca Extendido</item>
+        <item>FN05-Asadero Natural</item>
+        <item>FN06-Asadero Regular</item>
+        <item>FN07-Pizza Cheese</item>
+        <item>FN08-Mozzarella Fresco</item>
+        <item>FN09-Crazy Cheese</item>
+        <item>CJ02-Cuajada Prensado-Manchego</item>
+        <item>Varios</item>
+    </string-array>
+
+    <string-array name="nombre_familia_texturizador">
+    <item>TX001-Unidad 1</item>
+    <item>TX002-Unidad 2</item>
+    <item>TX003-Unidad 3</item>
+    <item>TX004-Unidad 4</item>
+    <item>TX005-Unidad 5</item>
+    <item>Especial</item>
+    </string-array>
+
+    <string-array name="nombre_familia_texturizador_Fundido">
+        <item>TX001-Unidad 1</item>
+        <item>TX002-Unidad 2</item>
+        <item>TX003-Unidad 3</item>
+        <item>TX004-Unidad 4</item>
+        <item>TX005-Unidad 5</item>
+
+    </string-array>
+
+    <string-array name="maquina_usar">
+
+        <item>ULMA Optima</item>
+        <item>ULMA Mini</item>
+        <item>ULTRAVAC</item>
+
+    </string-array>
+
+
+    <string-array name="nombre_PT">
+    <item>AA01-Asadero Hill Country 500  24</item>
+    <item>AD01-Adobera Quesos Finos Mexicanos 3 Kg 6</item>
+    <item>AS01-Asadero HEB 500 grs 24</item>
+    <item>AS02-Asadero HEB 3 kgs 6</item>
+    <item>AS04-Asadero SJ 1 kg 12</item>
+    <item>AS06-Asadero SJ DP 1.3 kgs 16</item>
+    <item>AS07-Asadero SJ 400 grs 24</item>
+    <item>AS08-Asadero Light SJ 400 grs 24</item>
+    <item>AS09-Asadero Light SJ DP 1 kg 18</item>
+    <item>AS11-Asadero SJ 400 grs 12</item>
+    <item>AS12-Asadero Light SJ 400 grs 12</item>
+    <item>AS14-Asadero El Cuatro 500 grs 30</item>
+    <item>AS16-Asadero SJ DP 800 grs 9</item>
+    <item>AS17-Asadero SJ 400 grs 8   </item>
+    <item>AS18-Asadero Light SJ  400 grs</item>
+    <item>AS20-Asadero SJ Bafar DP 800 grs 9</item>
+    <item>AS21-Asadero SJ DP 400 grs 18</item>
+    <item>CC01-Chintas SJ 1 kg 5</item>
+    <item>CF01-Crema Vegetal Hill Country 250 mls 40</item>
+    <item>AR01-Asadero Ranchero SJ 600 grs</item>
+    <item>AR02-Asadero Ranchero TP SJ 1.8 kgs</item>
+    <item>AR03-Asadero Ranchero TP SJ 430 GRS</item>
+        <item>CC02-Chintas al Ajillo San Jacinto 250gr 8</item>
+        <item>CC03-Chintas Naturales San Jacinto 250gr 8</item>
+        <item>CC04-Chintas Cavero San Jacinto 250gr 8</item>
+    <item>CF02-Crema Vegetal Hill Country 450 mls 24</item>
+    <item>CF03-Crema Vegetal 3 KG</item>
+    <item>CH01-Chihuahua SJ 500 grs 24</item>
+    <item>CH03-Chihuahua Barra SJ Granel</item>
+    <item>CH04-Chihuahua SJ 500 grs 12</item>
+    <item>CH06-Atequeso 400 grs 21</item>
+    <item>CR03-Crema a Granel 4 kg</item>
+    <item>CV00-Cavero Sin Marca 500 grs </item>
+    <item>CV01-Cavero SJ 500 grs 18</item>
+    <item>CV04-Cavero SJ Parma 500 grs 18</item>
+    <item>CV05-Cavero Barra Delicata 3 kg</item>
+    <item>CV06-Cavero Sin Marca 200 grs</item>
+    <item>CV07-Cavero SJ 400 grs 8</item>
+    <item>CV08-Cavero SJ 800 grs </item>
+    <item>FC03-Fundido Champiñones SJ 400 grs 20</item>
+    <item>FC05-Fundido Champiñones SJ 430 grs8</item>
+    <item>FR02-Fundido Rajas SJ 400 grs 20</item>
+    <item>FR03-Fundido Rajas SJ 430 grs 8</item>
+    <item>MF01-Mozzarella Fresca 430 grs</item>
+    <item>MF02-Mozzarella Fresca 2 x 125 g</item>
+    <item>MF03-Mozzarella Fresca125 grs</item>
+        <item>MF04-Mozzarella Fresca San Jacinto 10 x 125 grs</item>
+    <item>MG02-Manchego 400 grs 8</item>
+    <item>MZ03-Mozzarella Pimiento Carranco 400 grs</item>
+    <item>MZ04-Mozzarella Pimiento SJ 400 grs 24</item>
+    <item>MZ05-Mozzarella Epazote Andanzas 500 grs 36</item>
+    <item>MZ06-Mozzarella Pimiento Andanzas 500 grs 36</item>
+    <item>MZ07-Mozzarella Pimiento SJ 400 grs 12</item>
+    <item>MZ09-Mozzarella Pimiento SJ Parma 400 grs 36</item>
+    <item>MZ10-Mozzarella Reducido Grasa SJ Parma 400 grs 36</item>
+    <item>MZ11-Mozzarella Epazote SJ Parma 400 grs 36</item>
+    <item>MZ13-Mozzarella Epazote SJ 400 grs 24</item>
+    <item>MZ14-Mozzarella Epazote SJ 400 grs 12</item>
+    <item>MZ15-Mozzarella Epazote Andanzas 500 grs 12</item>
+    <item>MZ16-Mozzarella Pimiento Andanzas 500 grs 12</item>
+    <item>MZ17-Mozzarella Epazote SJ 400 grs 8</item>
+    <item>MZ18-Mozzarella Pimiento SJ 400 grs 8.</item>
+    <item>MZ20-Puro Mozzarella San Jacinto 2.27 kg</item>
+    <item>MZ21-Barra Mozzarella 2.27 kg</item>
+        <item>MZ22-Trenza Mozzarella Pimiento MonteCampo 908gr</item>
+    <item>OA02-Oaxaca Hill Country 500 grs 24</item>
+    <item>OL01-Oaxaca Light HEB 500 grs 36</item>
+    <item>OL02-Oaxaca Light Lyncott 400 grs 24</item>
+    <item>OL03-Oaxaca Light HEB 3 kgs 4</item>
+    <item>OX01-Oaxaca SJ 400 grs 24</item>
+    <item>OX03-Oaxaca Lyncott 400 grs 36</item>
+    <item>OX04-Oaxaca Carranco 400 grs 24</item>
+    <item>OX05-Oaxaca Lyncott 3 kgs 4</item>
+    <item>OX06-Oaxaca HEB 500 grs 24</item>
+    <item>OX07-Oaxaca Bafar 3 kgs 4</item>
+    <item>OX08-Oaxaca Carranco 3 kgs</item>
+    <item>OX11-Oaxaca SJ 400 grs 12</item>
+    <item>OX12-Oaxaca HEB 3 kgs 4</item>
+    <item>OX13-Oaxaca Sabori Barrilito 3 kgs 6</item>
+    <item>OX14-Oaxaca Sabori 500 grs 30</item>
+    <item>OX16-Oaxaca El Cuatro 400 grs 24</item>
+    <item>OX17-Oaxaca Cortijo del Queso 1 kg 16</item>
+    <item>OX18-Oaxaca Lenguas Delicata 400 grs 25</item>
+    <item>OX19-Oaxaca tira 1 Kg B</item>
+    <item>OX20-Oaxaca tira 5 Kg B</item>
+    <item>OX21-Oaxaca caracol 1 Kg B</item>
+    <item>OX23-Oaxaca SJ  400 grs 8</item>
+    <item>OX25-Oaxaca Sabori 400 grs</item>
+    <item>OX25-Oaxaca Sabori 400 grs 30</item>
+    <item>OX26-Oaxaca Natural Quesos Finos Mexicanos 3 kgs 6</item>
+    <item>OX27-Oaxaca 3 kg 4</item>
+    <item>OX28-Oaxaca San Jacinto ® 1 kg 9</item>
+    <item>OX29-Oaxaca Natural 0.2</item>
+    <item>OX30-Oaxaca Natural 0.4</item>
+    <item>PA03-Panela Asada  Oregano SJ 400 grs 12</item>
+    <item>PA04-Panela Asada SJ 400 grs 24</item>
+    <item>PA05-Panela Asada  Oregano SJ 400 grs 24</item>
+    <item>PA07-Panela Asada SJ 400 grs 12</item>
+    <item>PA08-Panela Asada SJ 400 grs 8</item>
+    <item>PA09-Panela Asada  Oregano SJ 400 grs 8</item>
+    <item>QA03-Queso de Cabra </item>
+    <item>QA04-Queso Tres Leches</item>
+    <item>QR01-Manchego SJ 3 kg 3</item>
+    <item>QR02-Manchego  Mozzarella SJ 3 kg 3</item>
+    <item>QR03-Mozzarela SJ 3 kg 3</item>
+    <item>QR04-Mezcla Quesos Rallados</item>
+    <item>RE03-Requeson SJ 450 grs 12</item>
+    <item>RE04-Requeson SJ 450 grs 8</item>
+    <item>RJ01-Rollos de Jamon Serrano SJ 340 grs 20</item>
+    <item>RJ02-Rollos Jamon Serrano Carranco 340 grs 20</item>
+    <item>RJ05-Rollo de Jamon Serrano Cinta de Oro</item>
+    <item>RJ07-Rollos Jamon Serrano SJ Parma 340 grs 20</item>
+    <item>RJ09-Rollos Jamon Serrano Sj 340 grs 8</item>
+    <item>YO03-Yogurt Guayaba Cajeta 454 grs 24</item>
+    <item>YO04-Yogurt Pay de Queso con Moras Sonata 500 grs 24</item>
+
+
+
+
+    </string-array>
+
+
+</resources>

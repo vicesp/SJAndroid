@@ -1,0 +1,1276 @@
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+
+<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">-->
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_height="2160dp"
+        android:id="@+id/rlcuajo">
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de equipo"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_toStartOf="@+id/editText"
+        android:layout_alignRight="@+id/textView5"
+        android:layout_alignEnd="@+id/textView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Número de tina"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/tvcentro"
+        android:layout_toEndOf="@+id/tvcentro" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/editText"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Silo              "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView5"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Familia"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView6"
+        android:layout_alignTop="@+id/textView5"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvNumequipo"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginLeft="66dp"
+        android:layout_marginStart="66dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvNumTina"
+        android:layout_above="@+id/textView5"
+        android:layout_alignLeft="@+id/tvNumequipo"
+        android:layout_alignStart="@+id/tvNumequipo" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvFechaCuaj"
+        android:layout_alignTop="@+id/textView3"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6"
+        android:layout_marginLeft="60dp"
+        android:layout_marginStart="60dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10402015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvLoteCuajado"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/tvFechaCuaj"
+        android:layout_alignStart="@+id/tvFechaCuaj" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/spSilo"
+        android:background="#E6E6E6"
+        android:spinnerMode="dropdown"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_toLeftOf="@+id/tvcentro"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_alignLeft="@+id/tvNumTina"
+        android:layout_alignStart="@+id/tvNumTina" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:id="@+id/spFamilia"
+        android:background="#E6E6E6"
+        android:layout_alignTop="@+id/textView6"
+        android:layout_alignLeft="@+id/tvLoteCuajado"
+        android:layout_alignStart="@+id/tvLoteCuajado"
+        android:spinnerMode="dialog"
+        android:layout_alignRight="@+id/imageView3"
+        android:layout_alignEnd="@+id/imageView3" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView3"
+        android:layout_below="@+id/spSilo"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LECHE"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView11"
+        android:layout_alignBottom="@+id/imageView3"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leche en silo (Lts.)"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView12"
+        android:layout_below="@+id/imageView3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pH"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView13"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="% Grasa leche del silo      "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView14"
+        android:layout_alignTop="@+id/textView12"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="% Proteína leche del silo"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView15"
+        android:layout_alignBottom="@+id/textView13"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO DE PRODUCCIÓN"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="22dp"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvFechaCuaj"
+        android:layout_alignStart="@+id/tvFechaCuaj" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CUAJADO"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="35dp"
+        android:id="@+id/textView19"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_alignRight="@+id/textView50"
+        android:layout_alignEnd="@+id/textView50" />
+
+        <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView5"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/etpHLecheCuajado"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignRight="@+id/etpHPastaCoagulacion"
+        android:layout_alignEnd="@+id/etpHPastaCoagulacion" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MATERIA PRIMA"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView21"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_centerHorizontal="true" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leche en tina (Lts.)"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView22"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/imageView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="% Grasa leche en tina"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView23"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_toRightOf="@+id/spSilo"
+        android:layout_toEndOf="@+id/spSilo" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etLecheCuajado"
+        android:layout_alignTop="@+id/textView12"
+        android:layout_toRightOf="@+id/textView22"
+        android:layout_toStartOf="@+id/textView11"
+        android:layout_toLeftOf="@+id/textView11" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etpHLecheCuajado"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_toRightOf="@+id/textView22"
+        android:layout_alignRight="@+id/etLecheCuajado"
+        android:layout_alignEnd="@+id/etLecheCuajado" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etGrasaLecheCuaj"
+        android:layout_alignBottom="@+id/textView14"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etProteinaLecheCuajado"
+        android:layout_alignTop="@+id/etpHLecheCuajado"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+        <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etLecheTinaCuajado"
+        android:layout_alignTop="@+id/textView22"
+            android:layout_toRightOf="@+id/textView22"
+            android:layout_alignRight="@+id/etpHLecheCuajado"
+            android:layout_alignEnd="@+id/etpHLecheCuajado" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="% Proteína en tina"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView24"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView22"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etProteinaTinaCuajado"
+        android:layout_alignTop="@+id/textView24"
+        android:layout_alignLeft="@+id/etLecheTinaCuajado"
+        android:layout_alignStart="@+id/etLecheTinaCuajado"
+        android:layout_alignRight="@+id/etLecheTinaCuajado"
+        android:layout_alignEnd="@+id/etLecheTinaCuajado" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etGrasaTinaCuajado"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/textView14"
+        android:layout_toEndOf="@+id/textView14" />
+
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="1030dp"
+            android:background="@drawable/plantilla_marco_cuajado"
+            android:id="@+id/lyAditivos"
+            android:layout_below="@+id/etProteinaTinaCuajado"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  Aditivos  "
+                android:textColor="#98002E"
+                android:textSize="30dp"
+
+                android:id="@+id/textView32"
+                android:background="@android:color/white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP001-Cuajo (Lts)                "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView33"
+                android:layout_marginTop="25dp"
+                android:layout_below="@+id/editText12"
+                android:layout_alignLeft="@+id/textView32"
+                android:layout_alignStart="@+id/textView32" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP002 - Ácido Cítrico\n(Kgs)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView34"
+                android:layout_marginTop="105dp"
+                android:layout_below="@+id/textView33"
+                android:layout_alignLeft="@+id/textView33"
+                android:layout_alignStart="@+id/textView33" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado1"
+                android:layout_alignTop="@+id/textView33"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_toStartOf="@+id/textView36"
+                android:layout_toLeftOf="@+id/textView36" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText12"
+                android:visibility="invisible"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView35"
+                android:layout_marginLeft="76dp"
+                android:layout_marginStart="76dp"
+                android:layout_alignTop="@+id/etAditiCuajado1"
+                android:layout_toRightOf="@+id/editText12"
+                android:layout_toEndOf="@+id/editText12" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado3"
+                android:layout_alignTop="@+id/textView34"
+                android:layout_alignRight="@+id/etAditiCuajado1"
+                android:layout_alignEnd="@+id/etAditiCuajado1"
+                android:layout_alignLeft="@+id/etAditiCuajado1"
+                android:layout_alignStart="@+id/etAditiCuajado1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView36"
+                android:layout_alignBottom="@+id/etAditiCuajado3"
+                android:layout_alignLeft="@+id/textView35"
+                android:layout_alignStart="@+id/textView35" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP011-Yieldmax (Lts)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView37"
+                android:layout_marginTop="90dp"
+                android:layout_below="@+id/etAditiCuajado3"
+                android:layout_alignLeft="@+id/textView34"
+                android:layout_alignStart="@+id/textView34" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado5"
+                android:layout_alignTop="@+id/textView37"
+                android:layout_alignRight="@+id/etAditiCuajado3"
+                android:layout_alignEnd="@+id/etAditiCuajado3"
+                android:layout_alignLeft="@+id/etAditiCuajado3"
+                android:layout_alignStart="@+id/etAditiCuajado3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView38"
+                android:layout_alignBottom="@+id/textView37"
+                android:layout_alignLeft="@+id/textView36"
+                android:layout_alignStart="@+id/textView36" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CR01-Crema al 40%"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView39"
+                android:layout_marginTop="65dp"
+                android:layout_below="@+id/etAditiCuajado5"
+                android:layout_alignLeft="@+id/textView37"
+                android:layout_alignStart="@+id/textView37" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado7"
+                android:layout_alignTop="@+id/textView39"
+                android:layout_alignRight="@+id/etAditiCuajado5"
+                android:layout_alignEnd="@+id/etAditiCuajado5"
+                android:layout_alignLeft="@+id/etAditiCuajado5"
+                android:layout_alignStart="@+id/etAditiCuajado5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView40"
+                android:layout_alignBottom="@+id/etAditiCuajado7"
+                android:layout_toRightOf="@+id/etAditiCuajado7"
+                android:layout_toEndOf="@+id/etAditiCuajado7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP062-Cultivo\nGouda DC-260"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView41"
+                android:layout_below="@+id/textView40"
+                android:layout_alignLeft="@+id/textView39"
+                android:layout_alignStart="@+id/textView39"
+                android:layout_marginTop="95dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView42"
+                android:layout_alignTop="@+id/textView41"
+                android:layout_alignLeft="@+id/textView40"
+                android:layout_alignStart="@+id/textView40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP071-Cultivo \nLyofast M0.30 N"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView43"
+                android:layout_below="@+id/textView41"
+                android:layout_alignLeft="@+id/textView41"
+                android:layout_alignStart="@+id/textView41"
+                android:layout_marginTop="95dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView44"
+                android:layout_alignTop="@+id/textView43"
+                android:layout_alignLeft="@+id/textView42"
+                android:layout_alignStart="@+id/textView42" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote"
+                android:layout_alignBottom="@+id/textView35"
+                android:layout_toRightOf="@+id/textView35"
+                android:layout_toLeftOf="@+id/textView45"
+                android:layout_toStartOf="@+id/textView45" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dd"
+                android:visibility="invisible"
+                android:id="@+id/textView45"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote3"
+                android:layout_above="@+id/textView37"
+                android:layout_alignLeft="@+id/etLote"
+                android:layout_alignStart="@+id/etLote"
+                android:layout_alignRight="@+id/etLote"
+                android:layout_alignEnd="@+id/etLote" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote5"
+                android:layout_alignBottom="@+id/textView38"
+                android:layout_toRightOf="@+id/textView38"
+                android:layout_alignRight="@+id/etLote3"
+                android:layout_alignEnd="@+id/etLote3" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote7"
+                android:layout_above="@+id/textView41"
+                android:layout_toRightOf="@+id/textView38"
+                android:layout_alignRight="@+id/etLote5"
+                android:layout_alignEnd="@+id/etLote5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LE04-Leche de Borrega"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView46"
+                android:layout_marginTop="75dp"
+                android:layout_below="@+id/textView43"
+                android:layout_alignLeft="@+id/textView43"
+                android:layout_alignStart="@+id/textView43" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView48"
+                android:layout_alignTop="@+id/textView46"
+                android:layout_alignLeft="@+id/textView44"
+                android:layout_alignStart="@+id/textView44" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado9"
+                android:layout_alignTop="@+id/textView42"
+                android:layout_alignLeft="@+id/etAditiCuajado7"
+                android:layout_alignStart="@+id/etAditiCuajado7"
+                android:layout_alignRight="@+id/etAditiCuajado7"
+                android:layout_alignEnd="@+id/etAditiCuajado7" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote9"
+                android:layout_alignBottom="@+id/etAditiCuajado9"
+                android:layout_alignLeft="@+id/etLote7"
+                android:layout_alignStart="@+id/etLote7"
+                android:layout_alignRight="@+id/etLote7"
+                android:layout_alignEnd="@+id/etLote7" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado11"
+                android:layout_alignTop="@+id/textView44"
+                android:layout_alignLeft="@+id/etAditiCuajado9"
+                android:layout_alignStart="@+id/etAditiCuajado9"
+                android:layout_alignRight="@+id/etAditiCuajado9"
+                android:layout_alignEnd="@+id/etAditiCuajado9" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote11"
+                android:layout_alignBottom="@+id/textView44"
+                android:layout_alignLeft="@+id/etLote9"
+                android:layout_alignStart="@+id/etLote9"
+                android:layout_alignRight="@+id/etLote9"
+                android:layout_alignEnd="@+id/etLote9" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado13"
+                android:layout_alignTop="@+id/textView48"
+                android:layout_alignLeft="@+id/etAditiCuajado11"
+                android:layout_alignStart="@+id/etAditiCuajado11"
+                android:layout_alignRight="@+id/etAditiCuajado11"
+                android:layout_alignEnd="@+id/etAditiCuajado11" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote12"
+                android:layout_alignBottom="@+id/textView48"
+                android:layout_alignLeft="@+id/etLote11"
+                android:layout_alignStart="@+id/etLote11"
+                android:layout_alignRight="@+id/etLote11"
+                android:layout_alignEnd="@+id/etLote11" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP003-Cloruro de\nCalcio (Kgs)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView79"
+                android:layout_below="@+id/etAditiCuajado1"
+                android:layout_marginTop="15dp"
+                android:layout_alignLeft="@+id/textView33"
+                android:layout_alignStart="@+id/textView33" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado2"
+                android:layout_alignTop="@+id/textView79"
+                android:layout_alignLeft="@+id/etAditiCuajado1"
+                android:layout_alignStart="@+id/etAditiCuajado1"
+                android:layout_alignRight="@+id/etAditiCuajado1"
+                android:layout_alignEnd="@+id/etAditiCuajado1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP006-Sal Común (Kgs)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="37dp"
+                android:id="@+id/textView80"
+                android:layout_below="@+id/etAditiCuajado3"
+                android:layout_alignLeft="@+id/textView34"
+                android:layout_alignStart="@+id/textView34" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP021-TAE Antibac RD  "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/textView81"
+                android:layout_below="@+id/etAditiCuajado5"
+                android:layout_alignLeft="@+id/textView37"
+                android:layout_alignStart="@+id/textView37" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP025-Monoesterato\nde Glicerilo (Kgs)"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/textView82"
+                android:layout_below="@+id/etAditiCuajado7"
+                android:layout_alignLeft="@+id/textView39"
+                android:layout_alignStart="@+id/textView39" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP070-Cultivo\nFD-DVCSTI-14"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/textView83"
+                android:layout_below="@+id/textView41"
+                android:layout_alignLeft="@+id/textView41"
+                android:layout_alignStart="@+id/textView41" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MP072-Lipasa"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:id="@+id/textView84"
+                android:layout_below="@+id/textView43"
+                android:layout_alignLeft="@+id/textView43"
+                android:layout_alignStart="@+id/textView43" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LE03-Leche de Cabra"
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:layout_marginTop="25dp"
+                android:id="@+id/textView85"
+                android:layout_below="@+id/textView46"
+                android:layout_alignLeft="@+id/textView46"
+                android:layout_alignStart="@+id/textView46" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado4"
+                android:layout_alignTop="@+id/textView80"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_toLeftOf="@+id/textView36"
+                android:layout_toStartOf="@+id/textView36" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView87"
+                android:layout_alignBottom="@+id/etAditiCuajado2"
+                android:layout_toRightOf="@+id/etAditiCuajado2"
+                android:layout_toEndOf="@+id/etAditiCuajado2" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote2"
+                android:layout_alignBottom="@+id/textView87"
+                android:layout_toRightOf="@+id/textView87"
+                android:layout_alignRight="@+id/etLote"
+                android:layout_alignEnd="@+id/etLote" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView88"
+                android:layout_alignBottom="@+id/etAditiCuajado4"
+                android:layout_toRightOf="@+id/etAditiCuajado4"
+                android:layout_toEndOf="@+id/etAditiCuajado4" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote4"
+                android:layout_alignTop="@+id/etAditiCuajado4"
+                android:layout_toRightOf="@+id/textView88"
+                android:layout_alignRight="@+id/etLote5"
+                android:layout_alignEnd="@+id/etLote5" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado6"
+                android:layout_alignTop="@+id/textView81"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_toLeftOf="@+id/textView40"
+                android:layout_toStartOf="@+id/textView40" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView89"
+                android:layout_alignBottom="@+id/etAditiCuajado6"
+                android:layout_toRightOf="@+id/etAditiCuajado6"
+                android:layout_toEndOf="@+id/etAditiCuajado6" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado8"
+                android:layout_alignTop="@+id/textView82"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_alignRight="@+id/etAditiCuajado7"
+                android:layout_alignEnd="@+id/etAditiCuajado7" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado10"
+                android:layout_alignTop="@+id/textView83"
+                android:layout_alignLeft="@+id/etAditiCuajado11"
+                android:layout_alignStart="@+id/etAditiCuajado11"
+                android:layout_alignRight="@+id/etAditiCuajado9"
+                android:layout_alignEnd="@+id/etAditiCuajado9" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado12"
+                android:layout_alignBaseline="@+id/textView92"
+                android:layout_alignBottom="@+id/textView92"
+                android:layout_toLeftOf="@+id/textView48"
+                android:layout_alignLeft="@+id/etAditiCuajado13"
+                android:layout_alignStart="@+id/etAditiCuajado13" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/etAditiCuajado14"
+                android:layout_alignTop="@+id/textView85"
+                android:layout_toRightOf="@+id/textView33"
+                android:layout_toLeftOf="@+id/textView48"
+                android:layout_toStartOf="@+id/textView48" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote6"
+                android:layout_toRightOf="@+id/textView89"
+                android:layout_alignBottom="@+id/textView81"
+                android:layout_alignRight="@+id/etLote5"
+                android:layout_alignEnd="@+id/etLote5" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView90"
+                android:layout_alignBottom="@+id/etAditiCuajado8"
+                android:layout_toRightOf="@+id/etAditiCuajado8"
+                android:layout_toEndOf="@+id/etAditiCuajado8" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote8"
+                android:layout_alignBottom="@+id/textView90"
+                android:layout_toRightOf="@+id/textView90"
+                android:layout_alignRight="@+id/etLote7"
+                android:layout_alignEnd="@+id/etLote7" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView91"
+                android:layout_alignBottom="@+id/etAditiCuajado10"
+                android:layout_toRightOf="@+id/etAditiCuajado10"
+                android:layout_toEndOf="@+id/etAditiCuajado10" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote10"
+                android:layout_alignBottom="@+id/etAditiCuajado10"
+                android:layout_alignRight="@+id/etLote11"
+                android:layout_alignEnd="@+id/etLote11"
+                android:layout_toRightOf="@+id/textView91"
+                android:layout_toEndOf="@+id/textView91" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView92"
+                android:layout_alignBottom="@+id/textView84"
+                android:layout_toRightOf="@+id/etAditiCuajado12"
+                android:layout_toEndOf="@+id/etAditiCuajado12" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote1000"
+                android:layout_alignBottom="@+id/textView92"
+                android:layout_toRightOf="@+id/textView92"
+                android:layout_alignRight="@+id/etLote12"
+                android:layout_alignEnd="@+id/etLote12" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="     Lote      "
+                android:textColor="@android:color/black"
+                android:textSize="25dp"
+                android:id="@+id/textView93"
+                android:layout_alignBottom="@+id/textView85"
+                android:layout_toRightOf="@+id/etAditiCuajado14"
+                android:layout_toEndOf="@+id/etAditiCuajado14" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:id="@+id/etLote13"
+                android:layout_alignBottom="@+id/etAditiCuajado14"
+                android:layout_toRightOf="@+id/textView93"
+                android:layout_alignRight="@+id/etLote12"
+                android:layout_alignEnd="@+id/etLote12" /><![CDATA[
+
+
+
+            EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText66"
+                android:layout_below="@+id/textView79"
+                android:layout_toRightOf="@+id/textView36"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+
+        ]]>
+        </RelativeLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView9"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/lyAditivos"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/lyAditivos"
+            android:layout_alignEnd="@+id/lyAditivos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COAGULACIÓN"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView50"
+            android:layout_alignTop="@+id/imageView9"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperatura °C\nde Adición de cuajo"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView51"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/imageView9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH Pasta"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView52"
+            android:layout_alignTop="@+id/textView51"
+            android:layout_toRightOf="@+id/tvcentro"
+            android:layout_toEndOf="@+id/tvcentro" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora de adición\nde cuajo"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView53"
+            android:layout_below="@+id/textView51"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Temperatura°C\nde Cocido"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView54"
+            android:layout_alignTop="@+id/etHoraAdiciCoagulacion"
+            android:layout_alignLeft="@+id/textView52"
+            android:layout_alignStart="@+id/textView52" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etpHPastaCoagulacion"
+            android:layout_alignBottom="@+id/textView52"
+            android:layout_toRightOf="@+id/tvFechaCuaj" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/etHoraAdiciCoagulacion"
+            android:layout_alignTop="@+id/textView53"
+            android:layout_alignRight="@+id/spSilo"
+            android:layout_alignEnd="@+id/spSilo"
+            android:layout_alignLeft="@+id/textView21"
+            android:layout_alignStart="@+id/textView21" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editText29"
+            android:layout_alignTop="@+id/textView54"
+            android:layout_alignLeft="@+id/etpHPastaCoagulacion"
+            android:layout_alignStart="@+id/etpHPastaCoagulacion" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="numberDecimal"
+            android:id="@+id/etTempCuajado1"
+            android:layout_alignTop="@+id/etpHPastaCoagulacion"
+            android:layout_alignRight="@+id/spSilo"
+            android:layout_alignEnd="@+id/spSilo"
+            android:layout_alignLeft="@+id/etHoraAdiciCoagulacion"
+            android:layout_alignStart="@+id/etHoraAdiciCoagulacion" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:text="GUARDAR"
+            android:textSize="25dp"
+            android:layout_marginTop="62dp"
+            android:id="@+id/btnGuardaCuajo1"
+            android:background="@drawable/red_button"
+            android:layout_below="@+id/textView54"
+            android:layout_toRightOf="@+id/textView54"
+            android:layout_toEndOf="@+id/textView54" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/btnCRegresar"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
+
+
+    </RelativeLayout>
+
+
+</ScrollView>

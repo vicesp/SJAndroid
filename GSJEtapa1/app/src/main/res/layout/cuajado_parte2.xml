@@ -1,0 +1,497 @@
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">
+
+
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote            "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:visibility="invisible"
+        android:id="@+id/textView"
+
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+        android:text="Fecha        "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+
+            android:layout_below="@+id/imageView"
+            android:layout_toRightOf="@+id/editText"
+            android:layout_toEndOf="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+
+        android:id="@+id/tvCfechapend"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+        TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO DE PRODUCCIÓN"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="22dp"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvCfechapend"
+        android:layout_alignStart="@+id/tvCfechapend" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CUAJADO PENDIENTES"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="32dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView19"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView18"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textView194"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/etCltsSuero"
+        android:layout_alignEnd="@+id/etCltsSuero" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DESUERADO"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView182"
+        android:layout_alignBottom="@+id/imageView18"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hora inicio Desuerado   "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView183"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView18"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:ems="10"
+        android:id="@+id/etChoraIniDes"
+        android:layout_alignTop="@+id/textView183"
+        android:layout_toRightOf="@+id/textView183"
+        android:layout_toLeftOf="@+id/tvcentro"
+        android:layout_toStartOf="@+id/tvcentro" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    Litros de suero           "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView184"
+        android:layout_alignBottom="@+id/textView183"
+        android:layout_toRightOf="@+id/etChoraIniDes"
+        android:layout_toEndOf="@+id/etChoraIniDes" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:enabled="false"
+        android:textColor="#98002E"
+        android:id="@+id/etCltsSuero"
+        android:layout_alignBottom="@+id/textView184"
+        android:layout_toRightOf="@+id/textView184"
+        android:layout_toEndOf="@+id/textView184" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pH"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView185"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/etChoraIniDes"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCphDesupen"
+        android:layout_alignTop="@+id/textView185"
+        android:layout_alignLeft="@+id/etChoraIniDes"
+        android:layout_alignStart="@+id/etChoraIniDes"
+        android:layout_alignRight="@+id/etChoraIniDes"
+        android:layout_alignEnd="@+id/etChoraIniDes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    Sólidos totales"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView186"
+        android:layout_alignBottom="@+id/etCphDesupen"
+        android:layout_toRightOf="@+id/etCphDesupen"
+        android:layout_toEndOf="@+id/etCphDesupen" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCsolitot"
+        android:layout_alignBottom="@+id/textView186"
+        android:layout_toEndOf="@+id/textView184"
+        android:layout_toRightOf="@+id/textView184" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView19"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/etCphDesupen"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/etCsolitot"
+        android:layout_alignEnd="@+id/etCsolitot" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CUAJADA"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView187"
+        android:layout_alignBottom="@+id/imageView19"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Es Prensado?"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView188"
+        android:layout_below="@+id/imageView19"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:checked="false"
+        android:layout_alignBottom="@+id/textView188"
+        android:layout_toRightOf="@+id/textView188"
+        android:layout_toEndOf="@+id/textView188" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pasta obtenida"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView189"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/textView188"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCpastobt"
+        android:layout_alignBaseline="@+id/textView189"
+        android:layout_alignBottom="@+id/textView189"
+        android:layout_alignLeft="@+id/etCphDesupen"
+        android:layout_alignStart="@+id/etCphDesupen"
+        android:layout_toLeftOf="@+id/textView186"
+        android:layout_toStartOf="@+id/textView186" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    Número de moldes"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView190"
+        android:layout_alignBottom="@+id/etCpastobt"
+        android:layout_toRightOf="@+id/etCpastobt"
+        android:layout_toEndOf="@+id/etCpastobt" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/etCnumermorl"
+        android:layout_alignBaseline="@+id/textView190"
+        android:layout_alignBottom="@+id/textView190"
+        android:layout_toEndOf="@+id/textView184"
+        android:layout_toRightOf="@+id/textView184" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Kilos pendientes"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textView191"
+        android:layout_below="@+id/etCpastobt"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCkilpendient"
+        android:layout_alignBottom="@+id/textView191"
+        android:layout_toRightOf="@+id/textView183"
+        android:layout_toLeftOf="@+id/textView190"
+        android:layout_toStartOf="@+id/textView190" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="70dp"
+        android:text="GUARDAR"
+        android:textSize="25dp"
+        android:id="@+id/btnCGuardapendi"
+        android:background="@drawable/red_button"
+        android:layout_below="@+id/etCporceHumedad"
+        android:layout_toRightOf="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19"
+        android:layout_marginTop="21dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote     "
+        android:layout_marginTop="7dp"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView192"
+        android:layout_alignTop="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:text="10402015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvCLotePendiente"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/textView192"
+        android:layout_toEndOf="@+id/textView192" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:id="@+id/btnRegCuajPen"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/textView"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView11"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/tvCfechapend"
+        android:layout_alignEnd="@+id/tvCfechapend" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREMA"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView193"
+        android:layout_alignTop="@+id/imageView11"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crema estandarizada\n(Kg.)"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView194"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/imageView11"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCPcremaKilos"
+        android:layout_alignTop="@+id/textView194"
+        android:layout_toLeftOf="@+id/tvcentro"
+        android:layout_alignLeft="@+id/etChoraIniDes"
+        android:layout_alignStart="@+id/etChoraIniDes" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="  % de grasa"
+        android:textColor="@android:color/black"
+        android:textSize="23dp"
+        android:id="@+id/textView195"
+        android:layout_alignBottom="@+id/etCPcremaKilos"
+        android:layout_toRightOf="@+id/tvcentro"
+        android:layout_toEndOf="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCPporGrasa"
+        android:layout_alignBottom="@+id/textView195"
+        android:layout_alignRight="@+id/imageView11"
+        android:layout_alignEnd="@+id/imageView11"
+        android:layout_toRightOf="@+id/textView184"
+        android:layout_toEndOf="@+id/textView184" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="    % Humedad"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView196"
+        android:layout_alignBottom="@+id/etCkilpendient"
+        android:layout_alignLeft="@+id/textView190"
+        android:layout_alignStart="@+id/textView190" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/etCporceHumedad"
+        android:layout_alignBottom="@+id/textView196"
+        android:layout_alignLeft="@+id/etCnumermorl"
+        android:layout_alignStart="@+id/etCnumermorl" />
+
+
+</RelativeLayout>
+
