@@ -17,7 +17,7 @@ import config.DataBaseHelper;
 public class consultas {
     protected SQLiteDatabase db;
     protected Cursor cursor;
-    public String[] lote, descripcion;
+    public String[] lote,producto,empaque;
 
     DataBaseHelper myDbHelper = new DataBaseHelper(Variables.getContextoGral());
     /****************   Principio Conexion Base de datos       *************/
@@ -111,10 +111,6 @@ public class consultas {
 
     }
     /****************    Consulta para ELIMINAR Cuajado      *************/
-
-
-
-
 
     public boolean DAOC_elimina_registro(String lote){
         cursor=null;
@@ -316,7 +312,7 @@ public class consultas {
         }
     }
 
-    /****************    Consulta para Empaque     *************/
+    /****************    Consulta para empaque     *************/
     public boolean DAOEmpaque(String lote_origen, String fecha,String cod_prod,String prod_terminado,String lote,String piezas_almacen,String piezas_reproceso,
                                       String temp_pt,String hora_inicio_pt,String cod_prod_restos, String lote_restos,
                                       String cantidad_restos,String maquina_usar,String vacio_ulma,String gas_ulma,
@@ -366,6 +362,152 @@ public class consultas {
             return false;
         }
     }
+
+    /*************** Obtener tods productos empaque     *************/
+
+    public ArrayList<consultas> DAOGetTodosProductos()
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0" + "", null);
+        ArrayList<consultas> productosArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+
+                consultas lista = new consultas();
+                lista.producto=new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+
+                    lista.producto[x]=cursor.getString(cursor.getColumnIndex("codigo_producto"))+"-"+cursor.getString(cursor.getColumnIndex("nombre_producto"));
+                    cursor.moveToNext();
+                }
+
+                productosArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return productosArray;
+    }
+
+    /*************** Obtener producto empaque     *************/
+    public String[] DAOGetProdcuto(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+
+        cursor = db.rawQuery("SELECT nombre_producto, caducidad, eliminado FROM cat_productos WHERE codigo_producto = '"+codigo+"' AND eliminado = 0;", null);
+        ArrayList<consultas> productosArray = new ArrayList<consultas>();
+        consultas lista = new consultas();
+        lista.producto=new String[3];
+
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+
+                lista.producto[0]=cursor.getString(cursor.getColumnIndex("nombre_producto"));
+                lista.producto[1]=cursor.getString(cursor.getColumnIndex("caducidad"));
+                lista.producto[2]=cursor.getString(cursor.getColumnIndex("eliminado"));
+
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return lista.producto;
+    }
+
+    /*********** Actualizar Productos **************/
+    public boolean DAOActualizarProductos(String codigo, String nombre, String caducidad, int eliminar) {
+        boolean check = false;
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+        try{
+
+
+                db.execSQL("UPDATE cat_productos SET codigo_producto = '"+codigo+"', nombre_producto = '"+nombre+"', caducidad = '"+caducidad+"', eliminado = "+eliminar+" WHERE codigo_producto ='"+codigo+"';");
+
+
+            check= true;
+        }
+        catch(Exception e)
+        {
+            check = false;
+        }
+        return check;
+    }
+
+    /*********** Obtener Caducidad Productos **************/
+    public int DAOGetCaducidadProductos(String codigo)
+    {int intCaducidad = 0;
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT caducidad " + "FROM cat_productos " + "WHERE codigo_producto = '" + codigo + "'", null);
+        
+        if (cursor.moveToNext()) {
+            intCaducidad = cursor.getInt(cursor.getColumnIndex("caducidad"));
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return intCaducidad;
+
+
+    }
+
+    /*********** Guardar Nuevo Producto **************/
+
+    public boolean DAOGuardarProducto(String codigo, String descripcion, String caducidad)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        try {
+
+            db.execSQL("INSERT INTO cat_productos(codigo_producto, nombre_producto, caducidad, eliminado) VALUES ('" + codigo + "','" + descripcion + "','" + caducidad + "', 0)" );
+        return true;
+        }
+        catch(Exception e){
+
+        return false;
+    }
+    }
+
+    /****************    Consulta para Llenar la lista de lotes Empaque_Realizdo    *************/
+    public ArrayList<consultas> DAOListaEmpaqueRealizado(String fecha){
+
+
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM empaque WHERE fecha ='" +
+                fecha + "'", null);
+                /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+
 
     /****************    Consulta para Fundido     *************/
     public boolean DAOFundido(String lote, String linea,String fecha,String num_fundida,String familia,String cj01,String lote_cj01,
@@ -605,12 +747,12 @@ public class consultas {
             if  (cursor.moveToFirst()) {
                 consultas lista = new consultas();
 
-                lista.descripcion=new String[cursor.getCount()];
+                lista.producto=new String[cursor.getCount()];
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
 
-                    lista.descripcion[x]=cursor.getString(cursor.getColumnIndex("descripcion"));
+                    lista.producto[x]=cursor.getString(cursor.getColumnIndex("descripcion"));
                     cursor.moveToNext();
                 }
 

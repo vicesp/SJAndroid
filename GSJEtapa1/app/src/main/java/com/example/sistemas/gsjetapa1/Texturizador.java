@@ -5,7 +5,9 @@ package com.example.sistemas.gsjetapa1;
  */
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -29,6 +31,7 @@ import java.util.Calendar;
 import DAO.consultas;
 import DTO.Dia_Juliano;
 import DTO.Fecha_Hoy;
+import DTO.Variables;
 
 
 public class Texturizador extends ActionBarActivity {
@@ -41,13 +44,15 @@ public class Texturizador extends ActionBarActivity {
     private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
     private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
     private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,kilos_tot;
-    private Button Guardar;
+    private Button Guardar,Regresar;
     private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
     private ColorStateList color;
     private static ArrayAdapter adapter;
+    protected Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +62,7 @@ public class Texturizador extends ActionBarActivity {
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var= new Variables();
 
 
 
@@ -69,8 +75,6 @@ public class Texturizador extends ActionBarActivity {
         //fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
         numero_conse=con.DAOTextu_consecutivo(FechaH.Hoy());
         numero_conse+=1;
-        Lote.setText(numero_conse+DiaJ.Dame_dia_J_y_anio());
-
 
         tvtm1=(TextView)findViewById(R.id.tvtm1);
         tvtm2=(TextView)findViewById(R.id.tvtm2);
@@ -173,7 +177,6 @@ public class Texturizador extends ActionBarActivity {
         });
 
         sw3=(Switch)findViewById(R.id.swt3);
-        sw3=(Switch)findViewById(R.id.swt3);
         lote3.setEnabled(false);
         sw3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -191,7 +194,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw4=(Switch)findViewById(R.id.swt4);
+
         sw4=(Switch)findViewById(R.id.swt4);
         lote4.setEnabled(false);
         sw4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -210,7 +213,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw5=(Switch)findViewById(R.id.swt5);
+
         sw5=(Switch)findViewById(R.id.swt5);
         lote5.setEnabled(false);
         sw5.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -229,7 +232,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw6=(Switch)findViewById(R.id.swt6);
+
         sw6=(Switch)findViewById(R.id.swt6);
         lote6.setEnabled(false);
         sw6.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -248,7 +251,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw7=(Switch)findViewById(R.id.swt7);
+
         sw7=(Switch)findViewById(R.id.swt7);
         lote7.setEnabled(false);
         sw7.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -267,7 +270,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw8=(Switch)findViewById(R.id.swt8);
+
         sw8=(Switch)findViewById(R.id.swt8);
         lote8.setEnabled(false);
         sw8.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -286,7 +289,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw9=(Switch)findViewById(R.id.swt9);
+
         sw9=(Switch)findViewById(R.id.swt9);
         lote9.setEnabled(false);
         sw9.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -305,7 +308,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw10=(Switch)findViewById(R.id.swt10);
+
         sw10=(Switch)findViewById(R.id.swt10);
         lote10.setEnabled(false);
         sw10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -324,7 +327,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw11=(Switch)findViewById(R.id.swt11);
+
         sw11=(Switch)findViewById(R.id.swt11);
         lote11.setEnabled(false);
         sw11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -343,7 +346,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw12=(Switch)findViewById(R.id.swt12);
+
         sw12=(Switch)findViewById(R.id.swt12);
         lote12.setEnabled(false);
         sw12.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -362,7 +365,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw13=(Switch)findViewById(R.id.swt13);
+
         sw13=(Switch)findViewById(R.id.swt13);
         lote13.setEnabled(false);
         sw13.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -381,7 +384,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw14=(Switch)findViewById(R.id.swt14);
+
         sw14=(Switch)findViewById(R.id.swt14);
         lote14.setEnabled(false);
         sw14.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -400,7 +403,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw15=(Switch)findViewById(R.id.swt15);
+
         sw15=(Switch)findViewById(R.id.swt15);
         lote15.setEnabled(false);
         sw15.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -419,7 +422,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw16=(Switch)findViewById(R.id.swt16);
+
         sw16=(Switch)findViewById(R.id.swt16);
         lote16.setEnabled(false);
         sw16.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -438,7 +441,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw17=(Switch)findViewById(R.id.swt17);
+
         sw17=(Switch)findViewById(R.id.swt17);
         lote17.setEnabled(false);
         sw17.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -457,7 +460,7 @@ public class Texturizador extends ActionBarActivity {
 
             }
         });
-        sw18=(Switch)findViewById(R.id.swt18);
+
         sw18=(Switch)findViewById(R.id.swt18);
         lote18.setEnabled(false);
         sw18.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -495,177 +498,65 @@ public class Texturizador extends ActionBarActivity {
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
                 texturizador_select = familia[position];
                 Log.i("posssss", "textu" + position);
-
+                System.out.print("sdfg" + position);
 
                 if (position == 0) {
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(false, true, true, true, true, false, true, false, false, true, false, true, false, false, false, false, false, false);
-
-                    cambia_color_textos(getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac)
-
-
-                    );
-
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool1");
+                    cambia_switch("valBool1");
+                    setSwitches("valBool1");
                     actualizarValores("valor1");
+
                 }
 
                 else if (position == 1) {
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(false, true, true, true, true, false, true, true, true, true, true, false, false, false, false, false, false, false);
-
-                    cambia_color_textos(getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac)
-                    );
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool2");
+                    cambia_switch("valBool2");
+                    setSwitches("valBool2");
                     actualizarValores("valor2");
+
                 }
 
                 else if (position == 2) {
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(false, true, true, true, true, false, true, true, true, true, true, false, false, true, true, false, false, false);
-
-                    cambia_color_textos(getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac)
-                    );
-
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool3");
+                    cambia_switch("valBool3");
+                    setSwitches("valBool3");
                     actualizarValores("valor3");
+
                 }
 
                 else if (position == 3) {
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(true, true, true, true, true, true, true, false, false, true, false, true, false, false, false, false, false, false);
-
-                    cambia_color_textos(getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac)
-                    );
-
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool4");
+                    setSwitches("valBool4");
+                    cambia_switch("valBool4");
                     actualizarValores("valor4");
                 }
                 else if (position == 4) {
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(false, true, true, true, true, false, true, true, true, true, false, true, false, false, false, false, false, false);
-
-                    cambia_color_textos(getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac),
-                            getResources().getColor(R.color.desac)
-                    );
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool5");
+                    setSwitches("valBool5");
+                    cambia_switch("valBool5");
                     actualizarValores("valor5");
+
+
                 }
                 else if (position == 5) {  //Personalizado
                     switch_false();
-                   // lote_texto_vacio();
-
-                    cambia_switch(true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true);
-
-                    cambia_color_textos(getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act),
-                            getResources().getColor(R.color.act)
-                    );
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool6");
+                    setSwitches("valBool6");
+                    cambia_switch("valBool6");
                     actualizarValores("valor6");
+
+
                 }
 
 
@@ -681,53 +572,84 @@ public class Texturizador extends ActionBarActivity {
 
 
         //******************    Boton    ****************//
+        Regresar=(Button)findViewById(R.id.btnRegPendiLista);
+        Regresar.setOnClickListener(new View.OnClickListener() {
+            @Override
+        public void onClick(View v){
+                startActivity(new Intent(Texturizador.this, Texturizador_Realizados.class));
+            }
+
+        });
+
+
         Guardar=(Button)findViewById(R.id.btntSave);
         Guardar.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                boolean exitoso=con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select,tvtm1.getText().toString(),lote1.getText().toString(),
-                        tvtm2.getText().toString(),lote2.getText().toString(),tvtm3.getText().toString(),lote3.getText().toString(),tvtm4.getText().toString(),lote4.getText().toString(),tvtm5.getText().toString(),lote5.getText().toString(),tvtm6.getText().toString(),lote6.getText().toString(),
-                        tvtm7.getText().toString(),lote7.getText().toString(),tvtm8.getText().toString(),lote8.getText().toString(),tvtm9.getText().toString(),lote9.getText().toString(),tvtm10.getText().toString(),lote10.getText().toString(),tvtm11.getText().toString(),lote11.getText().toString(),
-                        tvtm12.getText().toString(),lote12.getText().toString(),tvtm13.getText().toString(),lote13.getText().toString(),tvtm14.getText().toString(),lote14.getText().toString(),tvtm15.getText().toString(),lote15.getText().toString(),tvtm16.getText().toString(),lote16.getText().toString(),
-                        tvtm17.getText().toString(),lote17.getText().toString(),tvtm18.getText().toString(),lote18.getText().toString(),kilos_tot.getText().toString(),numero_conse);
+                boolean exitoso = false;
+                boolean exitosoActualizado = false;
 
+                if (var.isFromSearch()) {
 
-                if(exitoso){
-                    Alerta(getResources().getString(R.string.Alerta_Guardado));
-
-                    //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
-                    numero_conse=con.DAOTextu_consecutivo(FechaH.Hoy());
-                    numero_conse+=1;
-                    Lote.setText(numero_conse+DiaJ.Dame_dia_J_y_anio());
-
+                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
+                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
                 }
-                else{
-                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+
+                else {
+                     exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
+                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
+
+                }
+                    if (exitoso) {
+                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+
+                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                        numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
+                        numero_conse += 1;
+                        Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
+                    }
+                    else if (exitosoActualizado) {
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+
+                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                    }
+                    else if(!exitosoActualizado)
+                    {
+                    Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                    }
+                else {
+                Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
 
             }
         });
 
-
-
-
+        if(var.isFromSearch())
+        {
+            llenarValoresBusqueda(var.getLoteTexturizador());
+        }
+        else {
+            Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
+        }
 
     }
 
+
     public void llena_Texturizador(final ArrayList<consultas> genArray)
     {
-
         for(final consultas con: genArray)
         {
-
-            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.descripcion);
-
-            familia= con.descripcion;
-
+            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.producto);
+            familia= con.producto;
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spFamiliaTextu.setAdapter(adapter);
@@ -775,74 +697,156 @@ public class Texturizador extends ActionBarActivity {
 
     }
 
-    public void cambia_color_textos(int tv1,int tv2,int tv3,int tv4,int tv5,int tv6,int tv7,int tv8,
-                                    int tv9,int tv10,int tv11,int tv12,int tv13,int tv14,int tv15,int tv16,int tv17,int tv18){
+    public void cambia_color_textos(String columna){
 
-        tvtx1.setTextColor(tv1);
-        tvtx2.setTextColor(tv2);
-        tvtx3.setTextColor(tv3);
-        tvtx4.setTextColor(tv4);
-        tvtx5.setTextColor(tv5);
-        tvtx6.setTextColor(tv6);
-        tvtx7.setTextColor(tv7);
-        tvtx8.setTextColor(tv8);
-        tvtx9.setTextColor(tv9);
-        tvtx10.setTextColor(tv10);
-        tvtx11.setTextColor(tv11);
-        tvtx12.setTextColor(tv12);
-        tvtx13.setTextColor(tv13);
-        tvtx14.setTextColor(tv14);
-        tvtx15.setTextColor(tv15);
-        tvtx16.setTextColor(tv16);
-        tvtx17.setTextColor(tv17);
-        tvtx18.setTextColor(tv18);
-
+        if(con.DAOSwitchBool(columna,Integer.toString(1))) {
+            tvtx1.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx1.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"2")) {
+            tvtx2.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx2.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"3")) {
+            tvtx3.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx3.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"4")) {
+            tvtx4.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx4.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"5")) {
+            tvtx5.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx5.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"6")) {
+            tvtx6.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx6.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"7")) {
+            tvtx7.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx7.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"8")) {
+            tvtx8.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx8.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"9")) {
+            tvtx9.setTextColor(getResources().getColor(R.color.act));
+        }else
+        {
+            tvtx9.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"10")) {
+            tvtx10.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx10.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"11")) {
+            tvtx11.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx11.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"12")) {
+            tvtx12.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx12.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"13")) {
+            tvtx13.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx13.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"14")) {
+            tvtx14.setTextColor(getResources().getColor(R.color.act));
+        }
+        else {
+            tvtx14.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"15")) {
+            tvtx15.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx15.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"16")) {
+            tvtx16.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx16.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"17")) {
+            tvtx17.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx17.setTextColor(getResources().getColor(R.color.desac));
+        }
+        if(con.DAOSwitchBool(columna,"18")) {
+            tvtx18.setTextColor(getResources().getColor(R.color.act));
+        }
+        else
+        {
+            tvtx18.setTextColor(getResources().getColor(R.color.desac));
+        }
     }
 
-    public void cambia_switch(boolean swTex1,boolean swTex2,boolean swTex3,boolean swTex4,boolean swTex5,
-                              boolean swTex6,boolean swTex7,boolean swTex8,boolean swTex9,boolean swTex10,
-                              boolean swTex11,boolean swTex12,boolean swTex13,boolean swTex14,boolean swTex15,boolean swTex16,boolean swTex17,boolean swTex18){
-        sw1.setEnabled(swTex1);
-        if (!swTex1){lote1.setText("");}
-        sw2.setEnabled(swTex2);
-        if (!swTex2){lote2.setText("");}
-        sw3.setEnabled(swTex3);
-        if (!swTex3){lote3.setText("");}
-        sw4.setEnabled(swTex4);
-        if (!swTex4){lote4.setText("");}
-        sw5.setEnabled(swTex5);
-        if (!swTex5){lote5.setText("");}
-        sw6.setEnabled(swTex6);
-        if (!swTex6){lote6.setText("");}
-        sw7.setEnabled(swTex7);
-        if (!swTex7){lote7.setText("");}
-        sw8.setEnabled(swTex8);
-        if (!swTex8){lote8.setText("");}
-        sw9.setEnabled(swTex9);
-        if (!swTex9){lote9.setText("");}
-        sw10.setEnabled(swTex10);
-        if (!swTex10){lote10.setText("");}
-        sw11.setEnabled(swTex11);
-        if (!swTex11){lote11.setText("");}
-        sw12.setEnabled(swTex12);
-        if (!swTex12){lote12.setText("");}
-        sw13.setEnabled(swTex13);
-        if (!swTex13){lote13.setText("");}
-        sw14.setEnabled(swTex14);
-        if (!swTex14){lote14.setText("");}
-        sw15.setEnabled(swTex15);
-        if (!swTex15){lote15.setText("");}
-        sw16.setEnabled(swTex16);
-        if (!swTex16){lote16.setText("");}
-        sw17.setEnabled(swTex17);
-        if (!swTex17){lote17.setText("");}
-        sw18.setEnabled(swTex18);
-        if (!swTex18){lote18.setText("");}
+    public void cambia_switch(String columna){
+        sw1.setEnabled(con.DAOSwitchBool(columna, "1"));
+        sw2.setEnabled(con.DAOSwitchBool(columna, "2"));
+        sw3.setEnabled(con.DAOSwitchBool(columna, "3"));
+        sw4.setEnabled(con.DAOSwitchBool(columna, "4"));
+        sw5.setEnabled(con.DAOSwitchBool(columna, "5"));
+        sw6.setEnabled(con.DAOSwitchBool(columna, "6"));
+        sw7.setEnabled(con.DAOSwitchBool(columna, "7"));
+        sw8.setEnabled(con.DAOSwitchBool(columna, "8"));
+        sw9.setEnabled(con.DAOSwitchBool(columna, "9"));
+        sw10.setEnabled(con.DAOSwitchBool(columna, "10"));
+        sw11.setEnabled(con.DAOSwitchBool(columna, "11"));
+        sw12.setEnabled(con.DAOSwitchBool(columna, "12"));
+        sw13.setEnabled(con.DAOSwitchBool(columna, "13"));
+        sw14.setEnabled(con.DAOSwitchBool(columna, "14"));
+        sw15.setEnabled(con.DAOSwitchBool(columna, "15"));
+        sw16.setEnabled(con.DAOSwitchBool(columna, "16"));
+        sw17.setEnabled(con.DAOSwitchBool(columna, "17"));
+        sw18.setEnabled(con.DAOSwitchBool(columna, "18"));
     }
-
     public void cambia_texto_cantidad(String tv1,String tv2,String tv3,String tv4,String tv5,String tv6,String tv7,String tv8,
                                       String tv9,String tv10,String tv11,String tv12,String tv13,String tv14,String tv15,String tv16,String tv17,String tv18){
-
         tvtm1.setText(tv1);
         tvtm2.setText(tv2);
         tvtm3.setText(tv3);
@@ -861,10 +865,7 @@ public class Texturizador extends ActionBarActivity {
         tvtm16.setText(tv16);
         tvtm17.setText(tv17);
         tvtm18.setText(tv18);
-
-
     }
-
     public void switch_false(){
         sw1.setChecked(false);
         sw2.setChecked(false);
@@ -885,51 +886,187 @@ public class Texturizador extends ActionBarActivity {
         sw17.setChecked(false);
         sw18.setChecked(false);
     }
-
     public void lote_texto_vacio(){
-        lote1.setText("");
-        lote2.setText("");
-        lote3.setText("");
-        lote4.setText("");
-        lote5.setText("");
-        lote6.setText("");
-        lote7.setText("");
-        lote8.setText("");
-        lote9.setText("");
-        lote10.setText("");
-        lote11.setText("");
-        lote12.setText("");
-        lote13.setText("");
-        lote14.setText("");
-        lote15.setText("");
-        lote16.setText("");
-        lote17.setText("");
-        lote18.setText("");
-
+        if (!var.isFromSearch()) {
+            lote1.setText("");
+            lote2.setText("");
+            lote3.setText("");
+            lote4.setText("");
+            lote5.setText("");
+            lote6.setText("");
+            lote7.setText("");
+            lote8.setText("");
+            lote9.setText("");
+            lote10.setText("");
+            lote11.setText("");
+            lote12.setText("");
+            lote13.setText("");
+            lote14.setText("");
+            lote15.setText("");
+            lote16.setText("");
+            lote17.setText("");
+            lote18.setText("");
+        }
     }
-
     public void actualizarValores(String columna)
     {
+        if(sw1.isEnabled()) {
+            tvtm1.setText(con.DAOValoresActuales(columna, "1"));
+        }
+        else {
+            tvtm1.setText("");
+        }
+        if(sw2.isEnabled()) {
+            tvtm2.setText(con.DAOValoresActuales(columna, "2"));
+        }
+        else {
+            tvtm2.setText("");
+        }
+        if(sw3.isEnabled()) {
+            tvtm3.setText(con.DAOValoresActuales(columna, "3"));
+        }
+        else {
+            tvtm3.setText("");
+        }
+        if(sw4.isEnabled()) {
+            tvtm4.setText(con.DAOValoresActuales(columna, "4"));
+        }
+        else {
+            tvtm4.setText("");
+        }
+        if(sw5.isEnabled()) {
+            tvtm5.setText(con.DAOValoresActuales(columna, "5"));
+        }
+        else {
+            tvtm5.setText("");
+        }
+        if(sw6.isEnabled()) {
+            tvtm6.setText(con.DAOValoresActuales(columna, "6"));
+        }
+        else {
+            tvtm6.setText("");
+        }
+        if(sw7.isEnabled()) {
+            tvtm7.setText(con.DAOValoresActuales(columna, "7"));
+        }
+        else {
+            tvtm7.setText("");
+        }
+        if(sw8.isEnabled()) {
+            tvtm8.setText(con.DAOValoresActuales(columna, "8"));
+        }
+        else {
+            tvtm8.setText("");
+        }
+        if(sw9.isEnabled()) {
+            tvtm9.setText(con.DAOValoresActuales(columna, "9"));
+        }
+        else {
+            tvtm9.setText("");
+        }
+        if(sw10.isEnabled()) {
+            tvtm10.setText(con.DAOValoresActuales(columna, "10"));
+        }
+        else {
+            tvtm10.setText("");
+        }
+        if(sw11.isEnabled()) {
+            tvtm11.setText(con.DAOValoresActuales(columna, "11"));
+        }
+        else {
+            tvtm11.setText("");
+        }
+        if(sw12.isEnabled()) {
+            tvtm12.setText(con.DAOValoresActuales(columna, "12"));
+        }
+        else {
+            tvtm12.setText("");
+        }
+        if(sw13.isEnabled()) {
+            tvtm13.setText(con.DAOValoresActuales(columna, "13"));
+        }
+        else {
+            tvtm13.setText("");
+        }
+        if(sw14.isEnabled()) {
+            tvtm14.setText(con.DAOValoresActuales(columna, "14"));
+        }
+        else {
+            tvtm14.setText("");
+        }
+        if(sw15.isEnabled()) {
+            tvtm15.setText(con.DAOValoresActuales(columna, "15"));
+        }
+        else {
+            tvtm15.setText("");
+        }
+        if(sw16.isEnabled()) {
+            tvtm16.setText(con.DAOValoresActuales(columna, "16"));
+        }
+        else {
+            tvtm16.setText("");
+        }
+        if(sw17.isEnabled()) {
+            tvtm17.setText(con.DAOValoresActuales(columna, "17"));
+        }
+        else {
+            tvtm17.setText("");
+        }
+        if(sw18.isEnabled()) {
+            tvtm18.setText(con.DAOValoresActuales(columna, "18"));
+        }
+        else {
+            tvtm18.setText("");
+        }
+    }
+    public void setSwitches(String columna)
+    {
+        sw1.setChecked(con.DAOSwitchBool(columna,"1"));
+        sw2.setChecked(con.DAOSwitchBool(columna,"2"));
+        sw3.setChecked(con.DAOSwitchBool(columna,"3"));
+        sw4.setChecked(con.DAOSwitchBool(columna,"4"));
+        sw5.setChecked(con.DAOSwitchBool(columna,"5"));
+        sw6.setChecked(con.DAOSwitchBool(columna,"6"));
+        sw7.setChecked(con.DAOSwitchBool(columna,"7"));
+        sw8.setChecked(con.DAOSwitchBool(columna,"8"));
+        sw9.setChecked(con.DAOSwitchBool(columna,"9"));
+        sw10.setChecked(con.DAOSwitchBool(columna,"10"));
+        sw11.setChecked(con.DAOSwitchBool(columna,"11"));
+        sw12.setChecked(con.DAOSwitchBool(columna,"12"));
+        sw13.setChecked(con.DAOSwitchBool(columna,"13"));
+        sw14.setChecked(con.DAOSwitchBool(columna,"14"));
+        sw15.setChecked(con.DAOSwitchBool(columna,"15"));
+        sw16.setChecked(con.DAOSwitchBool(columna,"16"));
+        sw17.setChecked(con.DAOSwitchBool(columna,"17"));
+        sw18.setChecked(con.DAOSwitchBool(columna,"18"));
+}
+    public void llenarValoresBusqueda(String lote)
+    {
+        cursor = con.DAOLLenarTexturizador(lote);
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
 
+        lote1.setText(cursor.getString(cursor.getColumnIndex("lote_mp002")));
+        lote2.setText(cursor.getString(cursor.getColumnIndex("lote_mp003")));
+        lote3.setText(cursor.getString(cursor.getColumnIndex("lote_mp004")));
+        lote4.setText(cursor.getString(cursor.getColumnIndex("lote_mp005")));
+        lote5.setText(cursor.getString(cursor.getColumnIndex("lote_mp006")));
+        lote6.setText(cursor.getString(cursor.getColumnIndex("lote_mp007")));
+        lote7.setText(cursor.getString(cursor.getColumnIndex("lote_mp008")));
+        lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp009")));
+        lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp010")));
+        lote10.setText(cursor.getString(cursor.getColumnIndex("lote_mp021")));
+        lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
+        lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp026")));
+        lote13.setText(cursor.getString(cursor.getColumnIndex("lote_mp027")));
+        lote14.setText(cursor.getString(cursor.getColumnIndex("lote_mp028")));
+        lote15.setText(cursor.getString(cursor.getColumnIndex("lote_mp031")));
+        lote16.setText(cursor.getString(cursor.getColumnIndex("lote_mp012")));
+        lote17.setText(cursor.getString(cursor.getColumnIndex("lote_mp013")));
+        lote18.setText(cursor.getString(cursor.getColumnIndex("lote_mp014")));
+        kilos_tot.setText(cursor.getString(cursor.getColumnIndex("kilos_totales")));
 
-        tvtm1.setText(con.DAOValoresActuales(columna,"1"));
-        tvtm2.setText(con.DAOValoresActuales(columna,"2"));
-        tvtm3.setText(con.DAOValoresActuales(columna,"3"));
-        tvtm4.setText(con.DAOValoresActuales(columna,"4"));
-        tvtm5.setText(con.DAOValoresActuales(columna,"5"));
-        tvtm6.setText(con.DAOValoresActuales(columna,"6"));
-        tvtm7.setText(con.DAOValoresActuales(columna,"7"));
-        tvtm8.setText(con.DAOValoresActuales(columna,"8"));
-        tvtm9.setText(con.DAOValoresActuales(columna,"9"));
-        tvtm10.setText(con.DAOValoresActuales(columna,"10"));
-        tvtm11.setText(con.DAOValoresActuales(columna,"11"));
-        tvtm12.setText(con.DAOValoresActuales(columna,"12"));
-        tvtm13.setText(con.DAOValoresActuales(columna,"13"));
-        tvtm14.setText(con.DAOValoresActuales(columna,"14"));
-        tvtm15.setText(con.DAOValoresActuales(columna,"15"));
-        tvtm16.setText(con.DAOValoresActuales(columna,"16"));
-        tvtm17.setText(con.DAOValoresActuales(columna,"17"));
-        tvtm18.setText(con.DAOValoresActuales(columna, "18"));
+        Lote.setText(lote);
+        Guardar.setText("ACTUALIZAR");
 
     }
 }

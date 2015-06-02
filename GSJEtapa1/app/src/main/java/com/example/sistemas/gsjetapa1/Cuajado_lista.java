@@ -121,8 +121,9 @@ public class Cuajado_lista extends Activity implements AdapterView.OnItemClickLi
 
     private void setupSearchView() {
         Buscador.setIconifiedByDefault(false);
-        Buscador.setOnQueryTextListener((SearchView.OnQueryTextListener) this);
+        Buscador.setOnQueryTextListener(this);
         Buscador.setSubmitButtonEnabled(false);
 
     }
+
 }

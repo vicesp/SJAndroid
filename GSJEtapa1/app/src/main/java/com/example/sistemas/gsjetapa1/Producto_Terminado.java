@@ -10,13 +10,10 @@ import java.util.Arrays;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -26,18 +23,10 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
 import DTO.Fecha_Hoy;
-import DTO.Variables;
 
 public class Producto_Terminado extends Activity implements OnClickListener, OnItemClickListener{
 
@@ -63,8 +52,6 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
-
-        Variables.setIp_servidor(con.DAOSelecConfigIP());
 
         //******************    Text View    ****************//
 
@@ -240,10 +227,6 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
                             NumPiezas.getText().toString(), tot_kil_obt.getText().toString(), num_fundida.getText().toString());
 
                     if (exitoso) {
-
-                        GuardaProductoTeminadoSync taskPT=new GuardaProductoTeminadoSync();
-                        taskPT.execute();
-
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
                         num_viaj_consecutivo = con.DAOPT_numero_viaje(FechaH.Hoy());
                         num_viaj_consecutivo += 1;
@@ -341,113 +324,6 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
 
     @Override
     public void onClick(View v) {
-
-    }
-
-    public class GuardaProductoTeminadoSync extends AsyncTask<String, Void, Boolean>
-
-    {
-        private final ProgressDialog dialog = new ProgressDialog(Producto_Terminado.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            this.dialog.setMessage("Enviando datos...");
-            this.dialog.show();
-        }
-
-        protected Boolean doInBackground(final String... args)
-
-        {
-
-            final String NAMESPACE = "http://serv_gsj.net/";
-            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
-            final String URL="http://"+ Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertaPT";
-            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-            final int time=20000,time2=190000;
-
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-
-            request.addProperty("lote", LotePT.getText().toString());
-            request.addProperty("fecha", FechaH.Hoy_hora());
-            request.addProperty("codigo_pt", codigo_pt.getText().toString());
-            request.addProperty("num_viaje", numero_viaje.getText().toString());
-            request.addProperty("num_piezas", NumPiezas.getText().toString());
-            request.addProperty("kilos", tot_kil_obt.getText().toString());
-            request.addProperty("numero_fundida", num_fundida.getText().toString());
-
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.dotNet = true;
-            envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL,time);
-
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-
-                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
-                String mensaje = resultado_xml.toString();
-                if(mensaje.contentEquals("true")){
-                    //transporte.getConnection().disconnect();
-
-                    //transporte.getServiceConnection().disconnect();
-
-                    //transporte.reset();
-                    return true;
-                }
-                else{
-                    // transporte.getConnection().disconnect();
-                    //transporte.getServiceConnection().disconnect();
-                    //transporte.reset();
-                    return false;
-                }
-
-
-            }
-            catch (Exception e)
-            {
-                Log.i("Error", "Error de Sincronizacion:  " + e);
-
-                return false;
-
-            }
-
-
-        }
-
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
-                this.dialog.dismiss();
-            }
-
-            if (success)
-            {
-                Toast.makeText(Producto_Terminado.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
-                limpia_campos();
-
-
-            }
-
-            else
-            {
-                Toast.makeText(Producto_Terminado.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
-            }
-        }}
-
-
-
-
-    public void limpia_campos(){
-        num_fundida.setText("");
-        codigo_pt.setText("");
-        LotePT.setText("");
-        NumPiezas.setText("");
-        tot_kil_obt.setText("");
 
     }
 

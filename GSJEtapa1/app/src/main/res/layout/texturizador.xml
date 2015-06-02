@@ -1274,14 +1274,26 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:text="GUARDAR"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="25dp"
-            android:background="@drawable/red_button"
+            android:background="@drawable/guarda"
             android:id="@+id/btntSave"
             android:layout_alignBottom="@+id/ettKilosTot"
             android:layout_alignRight="@+id/textView18"
             android:layout_alignEnd="@+id/textView18" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/btnRegPendiLista"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/textView"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
+
 
 
     </RelativeLayout>

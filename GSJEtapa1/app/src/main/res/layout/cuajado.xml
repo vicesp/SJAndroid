@@ -476,7 +476,7 @@
                 android:textSize="25dp"
                 android:id="@+id/textView33"
                 android:layout_marginTop="25dp"
-                android:layout_below="@+id/editText12"
+                android:layout_below="@+id/valNuevo9"
                 android:layout_alignLeft="@+id/textView32"
                 android:layout_alignStart="@+id/textView32" />
 
@@ -506,7 +506,7 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText12"
+                android:id="@+id/valNuevo9"
                 android:visibility="invisible"
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
@@ -521,8 +521,8 @@
                 android:layout_marginLeft="76dp"
                 android:layout_marginStart="76dp"
                 android:layout_alignTop="@+id/etAditiCuajado1"
-                android:layout_toRightOf="@+id/editText12"
-                android:layout_toEndOf="@+id/editText12" />
+                android:layout_toRightOf="@+id/valNuevo9"
+                android:layout_toEndOf="@+id/valNuevo9" />
 
             <EditText
                 android:layout_width="wrap_content"
@@ -1247,12 +1247,12 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:text="GUARDAR"
+            android:layout_height="wrap_content"
+            android:text=""
             android:textSize="25dp"
             android:layout_marginTop="62dp"
             android:id="@+id/btnGuardaCuajo1"
-            android:background="@drawable/red_button"
+            android:background="@drawable/guarda"
             android:layout_below="@+id/textView54"
             android:layout_toRightOf="@+id/textView54"
             android:layout_toEndOf="@+id/textView54" />

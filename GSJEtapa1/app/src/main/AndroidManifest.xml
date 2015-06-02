@@ -2,9 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sistemas.gsjetapa1" >
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -12,30 +11,69 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-
             android:name=".Login"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Cuajado" android:screenOrientation="portrait"/>
-        <activity android:name=".Cuajado_sel_tina" android:screenOrientation="portrait"/>
-        <activity android:name=".Fundido" android:screenOrientation="portrait" />
-        <activity android:name=".Producto_Terminado" android:screenOrientation="portrait" />
-        <activity android:name=".Texturizador" android:screenOrientation="portrait" />
-        <activity android:name=".Empaque" android:screenOrientation="portrait" />
-        <activity android:name=".Exportar" android:screenOrientation="portrait" />
-        <activity android:name=".Configuracion" android:screenOrientation="portrait" />
-        <activity android:name=".Cuajado_lista" android:screenOrientation="portrait" />
-        <activity android:name=".Cuajado_parte2" android:screenOrientation="portrait" />
-        <activity android:name=".Texturizador_Edit" android:screenOrientation="portrait" />
-
-
+        <activity
+            android:name=".Cuajado"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cuajado_sel_tina"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Fundido"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Producto_Terminado"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Texturizador"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Empaque"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Exportar"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Configuracion"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cuajado_lista"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Cuajado_parte2"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Texturizador_Edit"
+            android:label="@string/title_activity_texturizador__switch" >
+        </activity>
+        <activity
+            android:name=".Texturizador_Realizados"
+            android:label="@string/title_activity_texturizador__realizados" >
+        </activity>
+        <activity
+            android:name=".Registro_Productos"
+            android:label="@string/title_activity_registro__productos" >
+        </activity>
+        <activity
+            android:name=".Empaque_Realizados"
+            android:label="@string/title_activity_empaque__realizados" >
+        </activity>
+        <activity
+            android:name=".Administrador"
+            android:label="@string/title_activity_administrador" >
+        </activity>
+        <activity
+            android:name=".Empaque_Edit"
+            android:label="@string/title_activity_empaque__edit" >
+        </activity>
     </application>
 
 </manifest>

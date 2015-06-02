@@ -120,9 +120,6 @@
     <item>AR01-Asadero Ranchero SJ 600 grs</item>
     <item>AR02-Asadero Ranchero TP SJ 1.8 kgs</item>
     <item>AR03-Asadero Ranchero TP SJ 430 GRS</item>
-        <item>CC02-Chintas al Ajillo San Jacinto 250gr 8</item>
-        <item>CC03-Chintas Naturales San Jacinto 250gr 8</item>
-        <item>CC04-Chintas Cavero San Jacinto 250gr 8</item>
     <item>CF02-Crema Vegetal Hill Country 450 mls 24</item>
     <item>CF03-Crema Vegetal 3 KG</item>
     <item>CH01-Chihuahua SJ 500 grs 24</item>
@@ -144,7 +141,6 @@
     <item>MF01-Mozzarella Fresca 430 grs</item>
     <item>MF02-Mozzarella Fresca 2 x 125 g</item>
     <item>MF03-Mozzarella Fresca125 grs</item>
-        <item>MF04-Mozzarella Fresca San Jacinto 10 x 125 grs</item>
     <item>MG02-Manchego 400 grs 8</item>
     <item>MZ03-Mozzarella Pimiento Carranco 400 grs</item>
     <item>MZ04-Mozzarella Pimiento SJ 400 grs 24</item>
@@ -162,7 +158,6 @@
     <item>MZ18-Mozzarella Pimiento SJ 400 grs 8.</item>
     <item>MZ20-Puro Mozzarella San Jacinto 2.27 kg</item>
     <item>MZ21-Barra Mozzarella 2.27 kg</item>
-        <item>MZ22-Trenza Mozzarella Pimiento MonteCampo 908gr</item>
     <item>OA02-Oaxaca Hill Country 500 grs 24</item>
     <item>OL01-Oaxaca Light HEB 500 grs 36</item>
     <item>OL02-Oaxaca Light Lyncott 400 grs 24</item>
@@ -213,10 +208,6 @@
     <item>RJ09-Rollos Jamon Serrano Sj 340 grs 8</item>
     <item>YO03-Yogurt Guayaba Cajeta 454 grs 24</item>
     <item>YO04-Yogurt Pay de Queso con Moras Sonata 500 grs 24</item>
-
-
-
-
     </string-array>
 
 

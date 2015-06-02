@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.AdapterView;
@@ -712,19 +713,19 @@ public class Fundido extends ActionBarActivity {
                         break;
                     case 1:
                         AddCuajada.setImageResource(R.drawable.add3);
-                        ResizeAnimation res1 = new ResizeAnimation(rlAddtina, params.width, params.height, params.WRAP_CONTENT, 75);
+                        ResizeAnimation res1 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 75);
                         rlAddtina.startAnimation(res1);
                         bandera=2;
                         break;
                     case 2:
                         AddCuajada.setImageResource(R.drawable.add3);
-                        ResizeAnimation res2 = new ResizeAnimation(rlAddtina, params.width, params.height, params.WRAP_CONTENT, 125);
+                        ResizeAnimation res2 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 125);
                         rlAddtina.startAnimation(res2);
                         bandera=3;
                         break;
                     case 3:
                         AddCuajada.setImageResource(R.drawable.menos);
-                        ResizeAnimation res3 = new ResizeAnimation(rlAddtina, params.width, params.height, params.WRAP_CONTENT, 200);
+                        ResizeAnimation res3 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 200);
                         rlAddtina.startAnimation(res3);
                         bandera=0;
                         break;
@@ -1189,20 +1190,13 @@ public class Fundido extends ActionBarActivity {
 
                 SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
                 String mensaje = resultado_xml.toString();
-                if(mensaje.contentEquals("true")){
-                    //transporte.getConnection().disconnect();
-
-                    //transporte.getServiceConnection().disconnect();
-
-                    //transporte.reset();
-                   return true;
-                }
-                else{
-                   // transporte.getConnection().disconnect();
-                    //transporte.getServiceConnection().disconnect();
-                    //transporte.reset();
-                    return false;
-                }
+                //transporte.getConnection().disconnect();
+//transporte.getServiceConnection().disconnect();
+//transporte.reset();
+// transporte.getConnection().disconnect();
+//transporte.getServiceConnection().disconnect();
+//transporte.reset();
+                return mensaje.contentEquals("true");
 
 
             }

@@ -636,8 +636,8 @@ public class Texturizador_Edit extends ActionBarActivity {
     {
         for(final consultas con: genArray)
         {
-            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.descripcion);
-            familia= con.descripcion;
+            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.producto);
+            familia= con.producto;
         }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spFamiliaTextu.setAdapter(adapter);

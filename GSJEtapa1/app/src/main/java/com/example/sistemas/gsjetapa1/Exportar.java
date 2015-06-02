@@ -55,6 +55,7 @@ public class Exportar extends ActionBarActivity {
 
         Variables.setExportar(Exportar.this);
         AC=new AlertCalendar();
+
         FechaH=new Fecha_Hoy();
 
         fecha=(TextView)findViewById(R.id.tvExpFecha);
@@ -155,6 +156,8 @@ public class Exportar extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
 
 }

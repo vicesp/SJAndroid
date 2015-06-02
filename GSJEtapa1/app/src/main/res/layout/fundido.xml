@@ -4,17 +4,17 @@
     android:layout_height="fill_parent"
     >
 
-<!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@android:color/white"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".Cuajado"
-    android:id="@+id/principal"
-    style="@style/Base.TextAppearance.AppCompat.Headline">-->
+    <!--<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".Cuajado"
+        android:id="@+id/principal"
+        style="@style/Base.TextAppearance.AppCompat.Headline">-->
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -28,318 +28,318 @@
 
 
 
-    <TextView android:text="cc" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:visibility="invisible"
-        android:id="@+id/tvcentro" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:layout_marginTop="85dp"
-        android:text="CC"
-        android:visibility="invisible"
-        android:layout_marginRight="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Línea           "
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView"
-        android:layout_alignTop="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_above="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/log_primero"
-        android:layout_above="@+id/textView"
-        android:layout_toStartOf="@+id/tvNumLinea"
-        android:layout_alignRight="@+id/textView"
-        android:layout_alignEnd="@+id/textView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Número de fundida"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fecha"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView3"
-        android:layout_below="@+id/imageView"
-        android:layout_toRightOf="@+id/tvcentro"
-        android:layout_toEndOf="@+id/tvcentro" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lote"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView4"
-        android:layout_below="@+id/editText"
-        android:layout_alignLeft="@+id/textView3"
-        android:layout_alignStart="@+id/textView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Utilizó más de una tina"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView5"
-        android:layout_marginTop="8dp"
-        android:layout_below="@+id/textView2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Familia       "
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView6"
-        android:layout_alignTop="@+id/textView5"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_alignStart="@+id/textView4" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1         "
-        android:textColor="#98002E"
-        android:textSize="25dp"
-        android:id="@+id/tvNumLinea"
-        android:layout_alignBaseline="@+id/editText"
-        android:layout_alignBottom="@+id/editText"
-        android:layout_toLeftOf="@+id/editText"
-        android:layout_marginRight="40dp"
-        android:layout_toStartOf="@+id/editText" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1"
-        android:textColor="#98002E"
-        android:textSize="25dp"
-        android:id="@+id/tvNumFundida"
-        android:layout_alignLeft="@+id/tvNumLinea"
-        android:layout_alignStart="@+id/tvNumLinea"
-        android:layout_alignTop="@+id/textView2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="19/02/2015"
-        android:textColor="#98002E"
-        android:textSize="25dp"
-        android:id="@+id/tvFechaFun"
-        android:layout_alignTop="@+id/textView3"
-        android:layout_toRightOf="@+id/textView6"
-        android:layout_toEndOf="@+id/textView6"
-        android:layout_marginLeft="60dp"
-        android:layout_marginStart="60dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="10115"
-        android:textColor="#98002E"
-        android:textSize="25dp"
-        android:id="@+id/tvLoteFundido"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/tvFechaFun"
-        android:layout_alignStart="@+id/tvFechaFun" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spSilo"
-        android:visibility="invisible"
-        android:spinnerMode="dropdown"
-        android:layout_alignTop="@+id/textView6"
-        android:layout_toLeftOf="@+id/tvcentro"
-        android:layout_toEndOf="@+id/textView"
-        android:layout_alignLeft="@+id/tvNumFundida"
-        android:layout_alignStart="@+id/tvNumFundida" />
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:id="@+id/spFamiliaFundido"
-        android:layout_alignTop="@+id/textView6"
-        android:layout_alignLeft="@+id/tvLoteFundido"
-        android:layout_alignStart="@+id/tvLoteFundido"
-        android:spinnerMode="dialog"
-        android:background="#E6E6E6"
-        android:layout_alignRight="@+id/imageView3"
-        android:layout_alignEnd="@+id/imageView3" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageView3"
-        android:layout_below="@+id/spSilo"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CUAJADA"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView11"
-        android:layout_alignBottom="@+id/imageView3"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CJ01 Cuajada (Kg.)"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView12"
-        android:layout_below="@+id/rlCuajadaAdd"
-        android:layout_toLeftOf="@+id/etSA01Fun"
-        android:layout_toStartOf="@+id/etSA01Fun" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CJ01.1 Cuajada\nprensada (Kg.)"
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView13"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/textView12"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="    Lote   "
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/textView14"
-        android:layout_alignBottom="@+id/etCj01Fun"
-        android:layout_toRightOf="@+id/etCj01Fun"
-        android:layout_toEndOf="@+id/etCj01Fun" />
-
-        <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageView4"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/textView13"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FUNDIDO-ADITIVOS"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView16"
-        android:layout_alignTop="@+id/imageView4"
-        android:layout_centerHorizontal="true" />
-
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REGISTRO DE PRODUCCIÓN"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="22dp"
-        android:id="@+id/textView18"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/tvFechaFun"
-        android:layout_alignStart="@+id/tvFechaFun" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="FUNDIDO"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="35dp"
-        android:id="@+id/textView19"
-        android:layout_alignBottom="@+id/textView18"
-        android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11" />
+        <TextView android:text="cc" android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"
+            android:id="@+id/tvcentro" />
 
         <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/etCj01Fun"
-        android:layout_above="@+id/textView13"
-        android:layout_toRightOf="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:layout_marginTop="85dp"
+            android:text="CC"
+            android:visibility="invisible"
+            android:layout_marginRight="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Línea           "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView"
+            android:layout_alignTop="@+id/editText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_above="@+id/textView"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/log_primero"
+            android:layout_above="@+id/textView"
+            android:layout_toStartOf="@+id/tvNumLinea"
+            android:layout_alignRight="@+id/textView"
+            android:layout_alignEnd="@+id/textView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de fundida"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView2"
+            android:layout_below="@+id/editText"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fecha"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/imageView"
+            android:layout_toRightOf="@+id/tvcentro"
+            android:layout_toEndOf="@+id/tvcentro" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView4"
+            android:layout_below="@+id/editText"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignStart="@+id/textView3" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Utilizó más de una tina"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView5"
+            android:layout_marginTop="8dp"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Familia       "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView6"
+            android:layout_alignTop="@+id/textView5"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1         "
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvNumLinea"
+            android:layout_alignBaseline="@+id/editText"
+            android:layout_alignBottom="@+id/editText"
+            android:layout_toLeftOf="@+id/editText"
+            android:layout_marginRight="40dp"
+            android:layout_toStartOf="@+id/editText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvNumFundida"
+            android:layout_alignLeft="@+id/tvNumLinea"
+            android:layout_alignStart="@+id/tvNumLinea"
+            android:layout_alignTop="@+id/textView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="19/02/2015"
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvFechaFun"
+            android:layout_alignTop="@+id/textView3"
+            android:layout_toRightOf="@+id/textView6"
+            android:layout_toEndOf="@+id/textView6"
+            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10115"
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/tvLoteFundido"
+            android:layout_alignTop="@+id/textView4"
+            android:layout_alignLeft="@+id/tvFechaFun"
+            android:layout_alignStart="@+id/tvFechaFun" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spSilo"
+            android:visibility="invisible"
+            android:spinnerMode="dropdown"
+            android:layout_alignTop="@+id/textView6"
+            android:layout_toLeftOf="@+id/tvcentro"
+            android:layout_toEndOf="@+id/textView"
+            android:layout_alignLeft="@+id/tvNumFundida"
+            android:layout_alignStart="@+id/tvNumFundida" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:id="@+id/spFamiliaFundido"
+            android:layout_alignTop="@+id/textView6"
+            android:layout_alignLeft="@+id/tvLoteFundido"
+            android:layout_alignStart="@+id/tvLoteFundido"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignEnd="@+id/imageView3" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView3"
+            android:layout_below="@+id/spSilo"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUAJADA"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView11"
+            android:layout_alignBottom="@+id/imageView3"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CJ01 Cuajada (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView12"
+            android:layout_below="@+id/rlCuajadaAdd"
+            android:layout_toLeftOf="@+id/etSA01Fun"
+            android:layout_toStartOf="@+id/etSA01Fun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CJ01.1 Cuajada\nprensada (Kg.)"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView13"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView12"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="    Lote   "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView14"
+            android:layout_alignBottom="@+id/etCj01Fun"
+            android:layout_toRightOf="@+id/etCj01Fun"
+            android:layout_toEndOf="@+id/etCj01Fun" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView4"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/textView13"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FUNDIDO-ADITIVOS"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView16"
+            android:layout_alignTop="@+id/imageView4"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REGISTRO DE PRODUCCIÓN"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="22dp"
+            android:id="@+id/textView18"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/tvFechaFun"
+            android:layout_alignStart="@+id/tvFechaFun" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FUNDIDO"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="35dp"
+            android:id="@+id/textView19"
+            android:layout_alignBottom="@+id/textView18"
+            android:layout_alignLeft="@+id/textView11"
+            android:layout_alignStart="@+id/textView11" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/etCj01Fun"
+            android:layout_above="@+id/textView13"
+            android:layout_toRightOf="@+id/textView12"
             android:layout_toStartOf="@+id/textView50"
             android:layout_alignRight="@+id/tvNumLinea"
             android:layout_alignEnd="@+id/tvNumLinea" />
 
         <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/etLo1Cj01Fun"
-        android:layout_alignBottom="@+id/textView14"
-        android:layout_toRightOf="@+id/textView14"
-        android:layout_toStartOf="@+id/spFamiliaFundido"
-        android:layout_alignRight="@+id/textView6"
-        android:layout_alignEnd="@+id/textView6" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/etLo1Cj01Fun"
+            android:layout_alignBottom="@+id/textView14"
+            android:layout_toRightOf="@+id/textView14"
+            android:layout_toStartOf="@+id/spFamiliaFundido"
+            android:layout_alignRight="@+id/textView6"
+            android:layout_alignEnd="@+id/textView6" />
 
 
         <RelativeLayout
@@ -1176,11 +1176,10 @@
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:text="GUARDAR"
-            android:textSize="25dp"
+            android:layout_height="wrap_content"
+
             android:layout_marginTop="69dp"
-            android:background="@drawable/red_button"
+            android:background="@drawable/guarda"
             android:id="@+id/btnGuardaFundido"
             android:layout_below="@+id/textView74"
             android:layout_alignRight="@+id/imageView12"

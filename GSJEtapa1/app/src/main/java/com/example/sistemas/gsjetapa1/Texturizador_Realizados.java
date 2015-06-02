@@ -5,6 +5,8 @@ package com.example.sistemas.gsjetapa1;
  */
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -187,4 +189,5 @@ public class Texturizador_Realizados extends Activity implements AdapterView.OnI
         String hoyConFormato = df.format(fechaSeleccionada);
         return  hoyConFormato;
     }
+
 }
