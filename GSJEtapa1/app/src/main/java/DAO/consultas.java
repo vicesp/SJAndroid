@@ -507,6 +507,41 @@ public class consultas {
         db.close();
         return empaqueArray;
     }
+    /****************    Consulta para Llenar EMPAQUE si se viene de realizados    *************/
+    public Cursor DAOLLenarEmpaque(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT lote_origen, fecha, cod_prod, prod_terminado, lote, piezas_almacen, piezas_reproceso" +
+                    ", temp_pt, hora_inicio_pt, cod_prod_restos, lote_restos, cantidad_restos, maquina_usar, vacio_ulma, gas_ulma" +
+                    ", temp_ulma, temp_sellado_ulma, oxigeno_ulma, vacio_ultra, temp_ultra, hora_fin_ultra, lote_fondo, lote_tapa " +
+                    ", lote_funda, observaciones, piezas_empacadas, piezas_calidad " +
+                    "FROM texturizador WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
 
 
     /****************    Consulta para Fundido     *************/

@@ -61,8 +61,8 @@ public class Empaque_Realizados extends Activity implements AdapterView.OnItemCl
 
 
         /*********** Text Views **************/
-        Fecha = (TextView) findViewById(R.id.editText);
-        Fecha.setText("Fecha de hoy: "+ FechaH.Hoy());
+        Fecha = (TextView) findViewById(R.id.fechaText1);
+        Fecha.setText( FechaH.Hoy());
 
 
         /*********** List Views ***************/
@@ -85,7 +85,7 @@ public class Empaque_Realizados extends Activity implements AdapterView.OnItemCl
             @Override
             public void onClick(View v) {
                 finish();
-                startActivity(new Intent(Empaque_Realizados.this, Texturizador_Edit.class));
+                startActivity(new Intent(Empaque_Realizados.this, Administrador.class));
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.sistemas.gsjetapa1;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -62,8 +63,11 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
 
     private static fecha_Caducidad f_caducidad;
+
+    protected Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +77,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var = new Variables();
 
         f_caducidad=new fecha_Caducidad();
 
@@ -376,6 +381,14 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             }
         });
 
+
+        if(var.isFromEmpaque())
+        {
+            llenarValoresBusqueda(var.getLoteEmpaque());
+        }
+        else {
+
+        }
 
 
     }
@@ -700,5 +713,37 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             listaProductos = con.producto;
         }
         return listaProductos;
+    }
+
+    public void llenarValoresBusqueda(String lote)
+    {
+        cursor = con.DAOLLenarEmpaque(lote);
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+
+        lote_origen.setText(cursor.getString(cursor.getColumnIndex("lote_origen")));
+        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("cod_prod")));
+        //.setText(cursor.getString(cursor.getColumnIndex("lote_mp004")));
+        hora_inicioPT.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")));
+        cod_restos.setText(cursor.getString(cursor.getColumnIndex("cod_prod_restos")));
+        lote_restos.setText(cursor.getString(cursor.getColumnIndex("lote_restos")));
+        cantidad_restos.setText(cursor.getString(cursor.getColumnIndex("cantidad_restos")));
+        //maquina_usar.setText(cursor.getString(cursor.getColumnIndex("maquina_usar")));
+        vacio_ulma.setText(cursor.getString(cursor.getColumnIndex("vacio_ulma")));
+        gas_ulma.setText(cursor.getString(cursor.getColumnIndex("gas_ulma")));
+        temp_sellado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")));
+        oxigeno_ulma.setText(cursor.getString(cursor.getColumnIndex("oxigeno_ulma")));
+        vacio_ultravac.setText(cursor.getString(cursor.getColumnIndex("vacio_ultra")));
+        temp_ultravac.setText(cursor.getString(cursor.getColumnIndex("temp_ultra")));
+        hora_fin_ultravac.setText(cursor.getString(cursor.getColumnIndex("hora_fin_ultra")));
+        lote_fondo.setText(cursor.getString(cursor.getColumnIndex("lote_fondo")));
+        lote_tapa.setText(cursor.getString(cursor.getColumnIndex("lote_tapa")));
+        lote_funda.setText(cursor.getString(cursor.getColumnIndex("lote_funda")));
+        observaciones.setText(cursor.getString(cursor.getColumnIndex("observaciones")));
+        piezas_emp.setText(cursor.getString(cursor.getColumnIndex("piezas_empacadas")));
+        piezas_calidad.setText(cursor.getString(cursor.getColumnIndex("piezas_calidad")));
+
+
+        Guardar.setText("ACTUALIZAR");
+
     }
 }

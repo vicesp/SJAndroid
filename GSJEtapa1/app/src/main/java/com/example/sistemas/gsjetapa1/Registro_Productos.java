@@ -61,7 +61,7 @@ AlertaInicial("Que desea hacer?");
 
                 if (isEdit) {
 
-                    if (con.DAOActualizarProductos(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0)) {
+                    if (con.DAOActualizarProductos(codigoProducto.getText().toString().toUpperCase(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0)) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
                         vaciarCampos();
 
