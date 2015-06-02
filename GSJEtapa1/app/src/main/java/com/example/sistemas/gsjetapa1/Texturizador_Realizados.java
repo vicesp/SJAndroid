@@ -63,8 +63,8 @@ public class Texturizador_Realizados extends Activity implements AdapterView.OnI
 
 
         /*********** Text Views **************/
-        Fecha = (TextView) findViewById(R.id.editText);
-        Fecha.setText("Fecha de hoy: "+ FechaH.Hoy());
+        Fecha = (TextView) findViewById(R.id.fechaText1);
+        Fecha.setText(FechaH.Hoy());
 
 
         /*********** List Views ***************/
