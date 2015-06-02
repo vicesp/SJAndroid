@@ -111,7 +111,11 @@ public class consultas {
 
     }
     /****************    Consulta para ELIMINAR Cuajado      *************/
-//Saludos
+
+
+
+
+
     public boolean DAOC_elimina_registro(String lote){
         cursor=null;
 
