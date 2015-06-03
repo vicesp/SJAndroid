@@ -14,8 +14,8 @@ public class Variables {
     private static String equipo_tina;
     private static boolean tinaA;
     private static boolean pendiente_tina_A;
-    private static boolean fromSearch, fromEmpaque;
-    public static String loteTexturizador,loteEmpaque;
+    private static boolean fromSearch, fromEmpaque, fromCuajado;
+    public static String loteTexturizador,loteEmpaque, loteCuajado;
 
 
 
@@ -34,7 +34,13 @@ public class Variables {
         Variables.loteEmpaque = loteEmpaque;
     }
 
+    public static String getLoteCuajado() {
+        return loteCuajado;
+    }
 
+    public static void setLoteCuajado(String loteCuajado) {
+        Variables.loteCuajado = loteCuajado;
+    }
 
 
     public static String getIp_servidor() {
@@ -166,6 +172,16 @@ public class Variables {
     {
 
         Variables.fromEmpaque=fromEmpaque;
+    }
+
+    public static boolean isFromCuajado()
+    {
+        return fromCuajado;
+
+    }
+    public static void setFromCuajado(boolean fromCuajado)
+    {
+        Variables.fromCuajado=fromCuajado;
     }
 
     public static boolean isPendiente_tina_A() {
