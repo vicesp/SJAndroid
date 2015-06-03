@@ -68,10 +68,14 @@ public class Cuajado extends ActionBarActivity {
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
 
     DataBaseHelper myDbHelper = new DataBaseHelper(Variables.getContextoGral());
     protected SQLiteDatabase db;
     protected Cursor cursor;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,6 +86,7 @@ public class Cuajado extends ActionBarActivity {
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var = new Variables();
 
         Variables.setIp_servidor(con.DAOSelecConfigIP());
 
@@ -603,6 +608,18 @@ public class Cuajado extends ActionBarActivity {
 
         //******************    Fin Buttons   ****************//
 
+
+        if (var.isFromCuajado())
+        {
+            llenarValoresBusqueda(var.getLoteCuajado());
+
+        }
+        else
+        {
+
+
+        }
+
     }
 
 
@@ -898,6 +915,59 @@ public class Cuajado extends ActionBarActivity {
                 Toast.makeText(Cuajado.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
             }
         }}
+
+    public void llenarValoresBusqueda(String lote)
+    {
+
+        //ote_origen.setEnabled(false);
+        //btn_listviewdialog.setVisibility(View.INVISIBLE);
+
+        cursor = con.DAOLLenarCuajado(lote);
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        lecheSilo.setText(cursor.getString(cursor.getColumnIndex("leche_silo")));
+        phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
+        grasaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porcen_grasa_leche")));
+        proteinaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porce_proteina")));
+        //caducidad.setText(f_caducidad.Dame_caducidad(codigo_prod.getText().toString()));
+        lecheTina.setText(cursor.getString(cursor.getColumnIndex("leche_tina")));
+        grasaLecheTina.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_leche_tina")));
+        proteinaTina.setText(cursor.getString(cursor.getColumnIndex("porce_prot_tina")));
+        /*.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")));
+
+        if (cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Optima")) {
+            spMaquinaUsar.setSelection(0);
+        }
+        else if(cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Mini"))
+        {
+            spMaquinaUsar.setSelection(1);
+        }
+        else{
+            spMaquinaUsar.setSelection(2);
+        }
+
+
+
+        cod_restos.setText(cursor.getString(cursor.getColumnIndex("cod_prod_restos")));
+        lote_restos.setText(cursor.getString(cursor.getColumnIndex("lote_restos")));
+        cantidad_restos.setText(cursor.getString(cursor.getColumnIndex("cantidad_restos")));
+        vacio_ulma.setText(cursor.getString(cursor.getColumnIndex("vacio_ulma")));
+        gas_ulma.setText(cursor.getString(cursor.getColumnIndex("gas_ulma")));
+        temp_sellado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")));
+        oxigeno_ulma.setText(cursor.getString(cursor.getColumnIndex("oxigeno_ulma")));
+        vacio_ultravac.setText(cursor.getString(cursor.getColumnIndex("vacio_ultra")));
+        temp_ultravac.setText(cursor.getString(cursor.getColumnIndex("temp_ultra")));
+        hora_fin_ultravac.setText(cursor.getString(cursor.getColumnIndex("hora_fin_ultra")));
+        lote_fondo.setText(cursor.getString(cursor.getColumnIndex("lote_fondo")));
+        lote_tapa.setText(cursor.getString(cursor.getColumnIndex("lote_tapa")));
+        lote_funda.setText(cursor.getString(cursor.getColumnIndex("lote_funda")));
+        observaciones.setText(cursor.getString(cursor.getColumnIndex("observaciones")));
+        piezas_emp.setText(cursor.getString(cursor.getColumnIndex("piezas_empacadas")));
+        piezas_calidad.setText(cursor.getString(cursor.getColumnIndex("piezas_calidad")));*/
+
+
+
+
+    }
 
 
 }

@@ -497,8 +497,6 @@ public class Texturizador extends ActionBarActivity {
 
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
                 texturizador_select = familia[position];
-                Log.i("posssss", "textu" + position);
-                System.out.print("sdfg" + position);
 
                 if (position == 0) {
                     switch_false();

@@ -5,32 +5,46 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import DAO.consultas;
 import DTO.Fecha_Hoy;
 import DTO.Variables;
 
 
-public class Registro_Productos extends ActionBarActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener, SearchView.OnQueryTextListener {
+public class Registro_Productos extends ActionBarActivity implements AdapterView.OnItemClickListener,AdapterView.OnItemSelectedListener, SearchView.OnQueryTextListener, View.OnClickListener {
 
     private static Fecha_Hoy FechaH;
     private static consultas con;
 
     private Boolean isEdit = true;
 
-    private Button Guardar, Eliminar;
+    private Button Eliminar, desplegarProductos,backButton;
+    private ImageButton Guardar;
     private TextView Fecha, indicadorText;
     private EditText codigoProducto, descProducto, diasCaducidad;
-    SearchView Buscador;
+
+    private String[] Nombre_PT,listaProductos;
+    private ArrayList<String> array_sort;
+    int textlength=0;
+    private AlertDialog myalertDialog=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +55,13 @@ AlertaInicial("Que desea hacer?");
         con = new consultas();
 
         /***********  Button   *************/
-        Guardar = (Button)findViewById(R.id.btnSavePT);
+        Guardar = (ImageButton)findViewById(R.id.btnSavePT);
         Guardar.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
                 if (isEdit) {
 
-                    if (con.DAOActualizarProductos(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0)) {
+                    if (con.DAOActualizarProductos(codigoProducto.getText().toString().toUpperCase(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0)) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
                         vaciarCampos();
 
@@ -57,15 +71,12 @@ AlertaInicial("Que desea hacer?");
                     }
 
 
-                }
-                else
-                {
+                } else {
                     if (con.DAOGuardarProducto(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString())) {
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
                         vaciarCampos();
 
-                    }
-                    else {
+                    } else {
                         Alerta(getResources().getString(R.string.Alerta_NoGuardado));
 
                     }
@@ -94,6 +105,84 @@ AlertaInicial("Que desea hacer?");
 
         });
 
+
+        desplegarProductos=(Button)findViewById(R.id.btntBuscar);
+        desplegarProductos.setOnClickListener(this);
+        desplegarProductos.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder myDialog = new AlertDialog.Builder(Registro_Productos.this);
+
+                Nombre_PT=getProductosArray(con.DAOGetTodosProductos());
+                //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+                final EditText editText = new EditText(Registro_Productos.this);
+                final ListView listview=new ListView(Registro_Productos.this);
+                editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+                array_sort=new ArrayList<String> (Arrays.asList(Nombre_PT));
+                LinearLayout layout = new LinearLayout(Registro_Productos.this);
+                layout.setOrientation(LinearLayout.VERTICAL);
+                layout.addView(editText);
+                layout.addView(listview);
+                myDialog.setView(layout);
+                CustomAlertAdapter arrayAdapter=new CustomAlertAdapter(Registro_Productos.this, array_sort);
+                listview.setAdapter(arrayAdapter);
+
+                listview.setOnItemClickListener(Registro_Productos.this);
+                editText.addTextChangedListener(new TextWatcher()
+                {
+                    public void afterTextChanged(Editable s){
+
+                    }
+                    public void beforeTextChanged(CharSequence s,
+                                                  int start, int count, int after){
+
+                    }
+                    public void onTextChanged(CharSequence s, int start, int before, int count)
+                    {
+                        editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        textlength = editText.getText().length();
+                        array_sort.clear();
+                        for (int i = 0; i < Nombre_PT.length; i++)
+                        {
+                            if (textlength <= Nombre_PT[i].length())
+                            {
+
+                                if(Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim()))
+                                {
+                                    array_sort.add(Nombre_PT[i]);
+                                }
+                            }
+                        }
+                        listview.setAdapter(new CustomAlertAdapter(Registro_Productos.this, array_sort));
+                    }
+                });
+                myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+
+                myalertDialog=myDialog.show();
+
+            }
+        });
+
+
+        backButton = (Button)findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                finish();startActivity(new Intent(Registro_Productos.this, Administrador.class));
+
+            }
+                                      });
+
+
         /***********  TextViews   *************/
         Fecha = (TextView)findViewById(R.id.tvptFecha);
         Fecha.setText(FechaH.Hoy());
@@ -105,9 +194,7 @@ AlertaInicial("Que desea hacer?");
         descProducto=(EditText)findViewById(R.id.editText5);
         diasCaducidad=(EditText)findViewById(R.id.editText6);
 
-        /***********  SearchView   ************/
-        Buscador=(SearchView)findViewById(R.id.searchCodigo);
-        setupSearchView();
+
 
     }
     @Override
@@ -126,23 +213,18 @@ AlertaInicial("Que desea hacer?");
     }
 
     @Override
-    public boolean onQueryTextChange(String newText) {
-        if (TextUtils.isEmpty(newText)) {
-            //listConsultas.clearTextFilter();
-        } else {
-            codigoProducto.setText(newText.toUpperCase());
-            descProducto.setText(con.DAOGetProdcuto(newText.toUpperCase())[0]);
-            diasCaducidad.setText(con.DAOGetProdcuto(newText.toUpperCase())[1]);
-        }
-        return false;
+    public boolean onQueryTextChange(String newText) {return false;
     }
+
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        //Variables.setLote_pendiente(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        Variables.setFromSearch(true);
-        Variables.setLoteTexturizador(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        // Variables.setLopen(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        finish();startActivity(new Intent(Registro_Productos.this, Texturizador.class));
+    public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
+        myalertDialog.dismiss();
+        String strName=array_sort.get(position);
+        codigoProducto.setText(strName.substring(0, 4));
+        descProducto.setText(con.DAOGetProdcuto(strName.substring(0, 4))[0]);
+        diasCaducidad.setText(con.DAOGetProdcuto(strName.substring(0, 4))[1]);
+        //longi_origen=lote_origen.getText().length();
+        //lote_origen.getText().toString().substring()
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -164,6 +246,10 @@ AlertaInicial("Que desea hacer?");
 
         return super.onOptionsItemSelected(item);
     }
+    @Override
+    public void onClick(View v) {
+
+    }
 
 
     public void Alerta(String mensaje){
@@ -173,9 +259,9 @@ AlertaInicial("Que desea hacer?");
 
         alertDialogBuilder.setMessage(mensaje);
 
-        alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog,int id) {
+            public void onClick(DialogInterface dialog, int id) {
 
             }
 
@@ -190,7 +276,7 @@ AlertaInicial("Que desea hacer?");
         diasCaducidad.setText("");
         descProducto.setText("");
         codigoProducto.setText("");
-        Buscador.setQuery("",true);
+
 
     }
 
@@ -207,6 +293,8 @@ AlertaInicial("Que desea hacer?");
 
                 indicadorText.setText("Editar producto existente");
 
+
+
                 isEdit = true;
 
             }
@@ -217,9 +305,11 @@ AlertaInicial("Que desea hacer?");
 
             public void onClick(DialogInterface dialog, int id) {
                 indicadorText.setText("Agregar Producto Nuevo");
-                Buscador.setVisibility(View.INVISIBLE);
+                desplegarProductos.setVisibility(View.INVISIBLE);
+                desplegarProductos.setEnabled(false);
+                Guardar.setImageResource(R.drawable.guarda);
                 Eliminar.setVisibility(View.INVISIBLE);
-                isEdit=false;
+                isEdit = false;
 
             }
 
@@ -230,11 +320,14 @@ AlertaInicial("Que desea hacer?");
 
     }
 
-    private void setupSearchView() {
-            Buscador.setIconifiedByDefault(false);
-            Buscador.setOnQueryTextListener(this);
-            Buscador.setSubmitButtonEnabled(false);
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
 
+            listaProductos = con.producto;
+        }
+        return listaProductos;
     }
 
 }

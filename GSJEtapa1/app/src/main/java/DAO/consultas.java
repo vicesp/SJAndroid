@@ -362,6 +362,54 @@ public class consultas {
             return false;
         }
     }
+    /****************    Consulta para actualizar empaque     *************/
+    public boolean DAOActualizarEmpaque(String lote_origen, String fecha,String cod_prod,String prod_terminado,String lote,String piezas_almacen,String piezas_reproceso,
+                              String temp_pt,String hora_inicio_pt,String cod_prod_restos, String lote_restos,
+                              String cantidad_restos,String maquina_usar,String vacio_ulma,String gas_ulma,
+                              String temp_ulma,String temp_sellado_ulma,String oxigeno_ulma,String vacio_ultra,
+                              String temp_ultra, String hora_fin_ultra, String lote_fondo, String lote_tapa, String lote_funda, String observaciones,
+                              String piezas_empacadas, String piezas_calidad){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE empaque SET" +
+                            " fecha = '" + fecha + "', "+
+                            " cod_prod = '" + cod_prod + "', "+
+                            " prod_terminado = '" + prod_terminado + "', "+
+                            " lote = '" + lote + "', "+
+                            " piezas_almacen = '" + piezas_almacen + "', "+
+                            " piezas_reproceso = '" + piezas_reproceso + "', "+
+                            " temp_pt = '" + temp_pt + "', "+
+                            " hora_inicio_pt = '" + hora_inicio_pt + "', "+
+                            " lote_restos = '" + lote_restos + "', "+
+                            " cantidad_restos = '" + cantidad_restos + "', "+
+                            " maquina_usar = '" + maquina_usar + "', "+
+                            " vacio_ulma = '" + vacio_ulma + "', "+
+                            " gas_ulma = '" + gas_ulma + "', "+
+                            " temp_ulma = '" + temp_ulma + "', "+
+                            " temp_sellado_ulma = '" + temp_sellado_ulma + "', "+
+                            " oxigeno_ulma = '" + oxigeno_ulma + "', "+
+                            " temp_ultra = '" + temp_ultra + "', "+
+                            " hora_fin_ultra = '" + hora_fin_ultra + "', "+
+                            " lote_fondo = '" + lote_fondo + "', "+
+                            " lote_tapa = '" + lote_tapa + "', "+
+                            " lote_funda = '" + lote_funda + "', "+
+                            " observaciones = '" + observaciones + "', "+
+                            " piezas_empacadas = '" + piezas_empacadas + "', "+
+                            " piezas_calidad = '" + piezas_calidad + "', "+
+                            " vacio_ultra = '" + vacio_ultra + "', "+
+                            " cod_prod_restos = '" + cod_prod_restos + "', "+
+                            " lote_origen = '" + lote_origen + "' WHERE lote = '"+lote+"';"
+            );
+
+
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
 
     /*************** Obtener tods productos empaque     *************/
 
@@ -485,6 +533,7 @@ public class consultas {
         cursor = db.rawQuery("SELECT lote " +
                 "FROM empaque WHERE fecha ='" +
                 fecha + "'", null);
+        Log.i("",fecha);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -506,6 +555,41 @@ public class consultas {
         myDbHelper.close();
         db.close();
         return empaqueArray;
+    }
+    /****************    Consulta para Llenar EMPAQUE si se viene de realizados    *************/
+    public Cursor DAOLLenarEmpaque(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT lote_origen, fecha, cod_prod, prod_terminado, lote, piezas_almacen, piezas_reproceso" +
+                    ", temp_pt, hora_inicio_pt, cod_prod_restos, lote_restos, cantidad_restos, maquina_usar, vacio_ulma, gas_ulma" +
+                    ", temp_ulma, temp_sellado_ulma, oxigeno_ulma, vacio_ultra, temp_ultra, hora_fin_ultra, lote_fondo, lote_tapa " +
+                    ", lote_funda, observaciones, piezas_empacadas, piezas_calidad " +
+                    "FROM empaque WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
     }
 
 

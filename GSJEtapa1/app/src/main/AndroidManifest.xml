@@ -52,27 +52,28 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Texturizador_Edit"
-            android:label="@string/title_activity_texturizador__switch" >
+            android:label="@string/title_activity_texturizador__switch"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Texturizador_Realizados"
-            android:label="@string/title_activity_texturizador__realizados" >
+            android:label="@string/title_activity_texturizador__realizados"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Registro_Productos"
-            android:label="@string/title_activity_registro__productos" >
+            android:label="@string/title_activity_registro__productos"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Empaque_Realizados"
-            android:label="@string/title_activity_empaque__realizados" >
+            android:label="@string/title_activity_empaque__realizados"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Administrador"
-            android:label="@string/title_activity_administrador" >
-        </activity>
-        <activity
-            android:name=".Empaque_Edit"
-            android:label="@string/title_activity_empaque__edit" >
+            android:label="@string/title_activity_administrador"
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
