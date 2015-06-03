@@ -297,7 +297,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                boolean exitoso=con.DAOEmpaque(lote_origen.getText().toString(),FechaH.Hoy_hora(),codigo_prod.getText().toString(),nombre_pt.getText().toString()
+                boolean exitoso=con.DAOEmpaque(lote_origen.getText().toString(),FechaH.Hoy(),codigo_prod.getText().toString(),nombre_pt.getText().toString()
                         ,lote_empaque.getText().toString(),tvP_entregadas.getText().toString(),p_reproceso.getText().toString(),temp.getText().toString(),hora_inicioPT.getText().toString()
                 ,cod_restos.getText().toString(),lote_restos.getText().toString(),cantidad_restos.getText().toString(),maquina_usar_select,vacio_ulma.getText().toString()
                 ,gas_ulma.getText().toString(),temp_formado_ulma.getText().toString(),temp_sellado_ulma.getText().toString(),oxigeno_ulma.getText().toString()
@@ -719,10 +719,16 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
     {
         cursor = con.DAOLLenarEmpaque(lote);
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
-
         lote_origen.setText(cursor.getString(cursor.getColumnIndex("lote_origen")));
         codigo_prod.setText(cursor.getString(cursor.getColumnIndex("cod_prod")));
-        //.setText(cursor.getString(cursor.getColumnIndex("lote_mp004")));
+        nombre_pt.setText(cursor.getString(cursor.getColumnIndex("prod_terminado")));
+        lote_empaque.setText(cursor.getString(cursor.getColumnIndex("lote")));
+        caducidad.setText(f_caducidad.Dame_caducidad(codigo_prod.getText().toString()));
+
+        p_reproceso.setText(cursor.getString(cursor.getColumnIndex("piezas_reproceso")));
+        temp.setText(cursor.getString(cursor.getColumnIndex("temp_pt")));
+        temp_formado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_ulma")));
+
         hora_inicioPT.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")));
         cod_restos.setText(cursor.getString(cursor.getColumnIndex("cod_prod_restos")));
         lote_restos.setText(cursor.getString(cursor.getColumnIndex("lote_restos")));

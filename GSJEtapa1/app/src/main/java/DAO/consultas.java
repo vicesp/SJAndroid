@@ -517,7 +517,7 @@ public class consultas {
                     ", temp_pt, hora_inicio_pt, cod_prod_restos, lote_restos, cantidad_restos, maquina_usar, vacio_ulma, gas_ulma" +
                     ", temp_ulma, temp_sellado_ulma, oxigeno_ulma, vacio_ultra, temp_ultra, hora_fin_ultra, lote_fondo, lote_tapa " +
                     ", lote_funda, observaciones, piezas_empacadas, piezas_calidad " +
-                    "FROM texturizador WHERE lote ='" +
+                    "FROM empaque WHERE lote ='" +
                     lote + "'", null);
             if (cursor.moveToPosition(0)) {
 
