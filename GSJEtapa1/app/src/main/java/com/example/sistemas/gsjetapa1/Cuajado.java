@@ -932,37 +932,11 @@ public class Cuajado extends ActionBarActivity {
         lecheTina.setText(cursor.getString(cursor.getColumnIndex("leche_tina")));
         grasaLecheTina.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_leche_tina")));
         proteinaTina.setText(cursor.getString(cursor.getColumnIndex("porce_prot_tina")));
-        /*.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")));
+        tempCoagulacion.setText(cursor.getString(cursor.getColumnIndex("temp_adi_cuajo")));
+        horaAdicionCuajo.setText(cursor.getString(cursor.getColumnIndex("hora_adi_cuajo")));
+        tempCocido.setText(cursor.getString(cursor.getColumnIndex("temp_cocido")));
+        phPasta.setText(cursor.getString(cursor.getColumnIndex("ph_pasta_coag")));
 
-        if (cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Optima")) {
-            spMaquinaUsar.setSelection(0);
-        }
-        else if(cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Mini"))
-        {
-            spMaquinaUsar.setSelection(1);
-        }
-        else{
-            spMaquinaUsar.setSelection(2);
-        }
-
-
-
-        cod_restos.setText(cursor.getString(cursor.getColumnIndex("cod_prod_restos")));
-        lote_restos.setText(cursor.getString(cursor.getColumnIndex("lote_restos")));
-        cantidad_restos.setText(cursor.getString(cursor.getColumnIndex("cantidad_restos")));
-        vacio_ulma.setText(cursor.getString(cursor.getColumnIndex("vacio_ulma")));
-        gas_ulma.setText(cursor.getString(cursor.getColumnIndex("gas_ulma")));
-        temp_sellado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")));
-        oxigeno_ulma.setText(cursor.getString(cursor.getColumnIndex("oxigeno_ulma")));
-        vacio_ultravac.setText(cursor.getString(cursor.getColumnIndex("vacio_ultra")));
-        temp_ultravac.setText(cursor.getString(cursor.getColumnIndex("temp_ultra")));
-        hora_fin_ultravac.setText(cursor.getString(cursor.getColumnIndex("hora_fin_ultra")));
-        lote_fondo.setText(cursor.getString(cursor.getColumnIndex("lote_fondo")));
-        lote_tapa.setText(cursor.getString(cursor.getColumnIndex("lote_tapa")));
-        lote_funda.setText(cursor.getString(cursor.getColumnIndex("lote_funda")));
-        observaciones.setText(cursor.getString(cursor.getColumnIndex("observaciones")));
-        piezas_emp.setText(cursor.getString(cursor.getColumnIndex("piezas_empacadas")));
-        piezas_calidad.setText(cursor.getString(cursor.getColumnIndex("piezas_calidad")));*/
 
 
 
