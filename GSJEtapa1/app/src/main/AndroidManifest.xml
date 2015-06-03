@@ -70,10 +70,6 @@
             android:name=".Administrador"
             android:label="@string/title_activity_administrador" >
         </activity>
-        <activity
-            android:name=".Empaque_Edit"
-            android:label="@string/title_activity_empaque__edit" >
-        </activity>
     </application>
 
 </manifest>
