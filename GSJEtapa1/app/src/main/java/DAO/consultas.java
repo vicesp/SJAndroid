@@ -17,7 +17,7 @@ import config.DataBaseHelper;
 public class consultas {
     protected SQLiteDatabase db;
     protected Cursor cursor;
-    public String[] lote,producto,empaque;
+    public String[] lote,producto,empaque, cuajado;
 
     DataBaseHelper myDbHelper = new DataBaseHelper(Variables.getContextoGral());
     /****************   Principio Conexion Base de datos       *************/
@@ -1426,6 +1426,74 @@ public class consultas {
         myDbHelper.close();
         db.close();
         return pacientesArray;
+    }
+
+    /****************    Consulta para Llenar la lista de lotes Cuajado_Realizados    *************/
+    public ArrayList<consultas> DAOListaCuajadoRealizado(String fecha){
+
+
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM cuajado WHERE fecha ='" +
+                fecha + "'", null);
+
+                /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.cuajado = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.cuajado[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para Llenar Cuajado si se viene de realizados    *************/
+    public Cursor DAOLLenarCuajado(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha, fecha, lote, silo, num_equipo, num_tina, familia" +
+                    ", leche_silo, ph_leche, porcen_grasa_leche, porce_proteina, leche_tina, porce_grasa_leche_tina, porce_prot_tina, crema_kilos" +
+                    ", porce_grasa_crema, temp_adi_cuajo, ph_pasta_coag, hora_adi_cuajo, temp_cocido, estatus_guardado, estatus_pendiente, hora_inicio_desuerado " +
+                    ", litros_suero, ph_desuerado, solidos_totales, pasta_obtenida, numero_moldes, kilos_pendientes, porcentaje_humedad " +
+                    "FROM cuajado WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
     }
 
 

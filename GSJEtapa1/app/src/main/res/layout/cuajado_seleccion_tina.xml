@@ -316,7 +316,7 @@
         android:textSize="25dp"
         android:layout_marginTop="111dp"
         android:id="@+id/btnPendientes"
-        android:background="@drawable/guarda"
+        android:background="@drawable/red_button"
         android:layout_below="@+id/relativeLayout5"
         android:layout_centerHorizontal="true" />
 
