@@ -611,7 +611,8 @@ public class Cuajado extends ActionBarActivity {
 
         if (var.isFromCuajado())
         {
-            llenarValoresBusqueda(var.getLoteCuajado());
+            llenarValoresBusquedaCuajado(var.getLoteCuajado());
+            llenarValoresBusquedaCuajadoAditivos(var.getLoteCuajado());
 
         }
         else
@@ -916,7 +917,7 @@ public class Cuajado extends ActionBarActivity {
             }
         }}
 
-    public void llenarValoresBusqueda(String lote)
+    public void llenarValoresBusquedaCuajado(String lote)
     {
 
         //ote_origen.setEnabled(false);
@@ -928,7 +929,6 @@ public class Cuajado extends ActionBarActivity {
         phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
         grasaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porcen_grasa_leche")));
         proteinaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porce_proteina")));
-        //caducidad.setText(f_caducidad.Dame_caducidad(codigo_prod.getText().toString()));
         lecheTina.setText(cursor.getString(cursor.getColumnIndex("leche_tina")));
         grasaLecheTina.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_leche_tina")));
         proteinaTina.setText(cursor.getString(cursor.getColumnIndex("porce_prot_tina")));
@@ -937,7 +937,102 @@ public class Cuajado extends ActionBarActivity {
         tempCocido.setText(cursor.getString(cursor.getColumnIndex("temp_cocido")));
         phPasta.setText(cursor.getString(cursor.getColumnIndex("ph_pasta_coag")));
 
+        NumEquipo.setText(cursor.getString(cursor.getColumnIndex("num_equipo")));
+        NumTina.setText(cursor.getString(cursor.getColumnIndex("num_tina")));
+        Lote.setText(lote);
 
+        if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
+        {
+            spSilo.setSelection(0);
+        }
+
+        else if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
+        {
+            spSilo.setSelection(1);
+        }
+
+        else
+        {
+            spSilo.setSelection(2);
+        }
+
+
+        if(familia_cuajado[0].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(0);
+        }
+        else if(familia_cuajado[1].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(1);
+        }
+        else if(familia_cuajado[2].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(2);
+        }
+        else if(familia_cuajado[3].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(3);
+        }
+        else if(familia_cuajado[4].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(4);
+        }
+        else if(familia_cuajado[5].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(5);
+        }
+        else if(familia_cuajado[6].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(6);
+        }
+        else if(familia_cuajado[7].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(7);
+        }
+        else if(familia_cuajado[8].equals(cursor.getColumnIndex("familia")))
+        {
+            spFamiliaCuaj.setSelection(8);
+        }
+        else
+        {
+            spFamiliaCuaj.setSelection(9);
+        }
+
+    }
+
+    public void llenarValoresBusquedaCuajadoAditivos(String lote)
+    {
+
+        cursor = con.DAOLLenarCuajadoAditivos(lote);
+        adi1.setText(cursor.getString(cursor.getColumnIndex("mp001")));
+        adi2.setText(cursor.getString(cursor.getColumnIndex("mp003")));
+        adi3.setText(cursor.getString(cursor.getColumnIndex("mp002")));
+        adi4.setText(cursor.getString(cursor.getColumnIndex("mp006")));
+        adi5.setText(cursor.getString(cursor.getColumnIndex("mp011")));
+        adi6.setText(cursor.getString(cursor.getColumnIndex("mp021")));
+        adi7.setText(cursor.getString(cursor.getColumnIndex("cr01")));
+        adi8.setText(cursor.getString(cursor.getColumnIndex("mp025")));
+        adi9.setText(cursor.getString(cursor.getColumnIndex("mp062")));
+        adi10.setText(cursor.getString(cursor.getColumnIndex("mp070")));
+        adi11.setText(cursor.getString(cursor.getColumnIndex("mp071")));
+        adi12.setText(cursor.getString(cursor.getColumnIndex("mp072")));
+        adi13.setText(cursor.getString(cursor.getColumnIndex("le04")));
+        adi14.setText(cursor.getString(cursor.getColumnIndex("le03")));
+
+        lote1.setText(cursor.getString(cursor.getColumnIndex("lote_mp001")));
+        lote2.setText(cursor.getString(cursor.getColumnIndex("lote_mp003")));
+        lote3.setText(cursor.getString(cursor.getColumnIndex("lote_mp002")));
+        lote4.setText(cursor.getString(cursor.getColumnIndex("lote_mp006")));
+        lote5.setText(cursor.getString(cursor.getColumnIndex("lote_mp011")));
+        lote6.setText(cursor.getString(cursor.getColumnIndex("lote_mp021")));
+        lote7.setText(cursor.getString(cursor.getColumnIndex("lote_cr01")));
+        lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
+        lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp062")));
+        lote10.setText(cursor.getString(cursor.getColumnIndex("lote_mp070")));
+        lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp071")));
+        lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp072")));
+        lote13.setText(cursor.getString(cursor.getColumnIndex("lote_le04")));
+        lote14.setText(cursor.getString(cursor.getColumnIndex("lote_le03")));
 
 
 

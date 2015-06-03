@@ -1496,6 +1496,42 @@ public class consultas {
         }
     }
 
+    /****************    Consulta para Cuajado Aditivos si viene de realizados      *************/
+    public Cursor DAOLLenarCuajadoAditivos(String lote){
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT lote_cuajado, mp001, mp003, mp002, mp006, mp011, mp021" +
+                    ", cr01, mp025, mp062, mp070, mp071, mp072, le04, le03" +
+                    ", lote_mp001, lote_mp003, lote_mp002, lote_mp006, lote_mp011, lote_mp021, lote_cr01, lote_mp025, lote_mp062 " +
+                    ", lote_mp070, lote_mp071, lote_mp072, lote_le04, lote_le03, estatus_guardado " +
+                    "FROM cuajado_aditivos WHERE lote_cuajado ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+
 
     /****************    Consulta para Configuracion IP      *************/
     public boolean DAOConfigIP(String ip_actual,String fecha){
