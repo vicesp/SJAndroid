@@ -297,19 +297,36 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
             public void onClick(View v) {
                 // TODO Auto-generated method stub
 
-                boolean exitoso=con.DAOEmpaque(lote_origen.getText().toString(),FechaH.Hoy(),codigo_prod.getText().toString(),nombre_pt.getText().toString()
-                        ,lote_empaque.getText().toString(),tvP_entregadas.getText().toString(),p_reproceso.getText().toString(),temp.getText().toString(),hora_inicioPT.getText().toString()
-                ,cod_restos.getText().toString(),lote_restos.getText().toString(),cantidad_restos.getText().toString(),maquina_usar_select,vacio_ulma.getText().toString()
-                ,gas_ulma.getText().toString(),temp_formado_ulma.getText().toString(),temp_sellado_ulma.getText().toString(),oxigeno_ulma.getText().toString()
-                ,vacio_ulma.getText().toString(),temp_ultravac.getText().toString(),hora_fin_ultravac.getText().toString(),lote_fondo.getText().toString(),lote_tapa.getText().toString()
-                ,lote_funda.getText().toString(),observaciones.getText().toString(),piezas_emp.getText().toString(),piezas_calidad.getText().toString());
-
-                if(exitoso){
-                    limpia_campos();
-                    Alerta(getResources().getString(R.string.Alerta_Guardado));
+                if (var.isFromEmpaque()) {
+                    boolean exitoso = con.DAOActualizarEmpaque(lote_origen.getText().toString(), FechaH.Hoy(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
+                            , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
+                            , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()
+                            , gas_ulma.getText().toString(), temp_formado_ulma.getText().toString(), temp_sellado_ulma.getText().toString(), oxigeno_ulma.getText().toString()
+                            , vacio_ultravac.getText().toString(), temp_ultravac.getText().toString(), hora_fin_ultravac.getText().toString(), lote_fondo.getText().toString(), lote_tapa.getText().toString()
+                            , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString());
+                    if(exitoso){
+                        limpia_campos();
+                        var.setFromEmpaque(false);
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                    }
+                    else{
+                        Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                    }
                 }
-                else{
-                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                else {
+                    boolean exitoso = con.DAOEmpaque(lote_origen.getText().toString(), FechaH.Hoy(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
+                            , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
+                            , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()
+                            , gas_ulma.getText().toString(), temp_formado_ulma.getText().toString(), temp_sellado_ulma.getText().toString(), oxigeno_ulma.getText().toString()
+                            , vacio_ultravac.getText().toString(), temp_ultravac.getText().toString(), hora_fin_ultravac.getText().toString(), lote_fondo.getText().toString(), lote_tapa.getText().toString()
+                            , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString());
+                    if(exitoso){
+                        limpia_campos();
+                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+                    }
+                    else{
+                        Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                    }
                 }
 
             }
@@ -388,6 +405,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         }
         else {
 
+            limpia_campos();
         }
 
 
@@ -702,6 +720,8 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         lote_funda.setText("");
 
         observaciones.setText("");
+        lote_origen.setEnabled(true);
+        btn_listviewdialog.setVisibility(View.VISIBLE);
     }
 
 
@@ -717,6 +737,10 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
     public void llenarValoresBusqueda(String lote)
     {
+
+        lote_origen.setEnabled(false);
+        btn_listviewdialog.setVisibility(View.INVISIBLE);
+
         cursor = con.DAOLLenarEmpaque(lote);
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
         lote_origen.setText(cursor.getString(cursor.getColumnIndex("lote_origen")));
@@ -724,16 +748,27 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         nombre_pt.setText(cursor.getString(cursor.getColumnIndex("prod_terminado")));
         lote_empaque.setText(cursor.getString(cursor.getColumnIndex("lote")));
         caducidad.setText(f_caducidad.Dame_caducidad(codigo_prod.getText().toString()));
-
         p_reproceso.setText(cursor.getString(cursor.getColumnIndex("piezas_reproceso")));
         temp.setText(cursor.getString(cursor.getColumnIndex("temp_pt")));
         temp_formado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_ulma")));
-
         hora_inicioPT.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")));
+
+        if (cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Optima")) {
+            spMaquinaUsar.setSelection(0);
+        }
+        else if(cursor.getString(cursor.getColumnIndex("maquina_usar")).equals("ULMA Mini"))
+        {
+            spMaquinaUsar.setSelection(1);
+        }
+        else{
+            spMaquinaUsar.setSelection(2);
+    }
+
+
+
         cod_restos.setText(cursor.getString(cursor.getColumnIndex("cod_prod_restos")));
         lote_restos.setText(cursor.getString(cursor.getColumnIndex("lote_restos")));
         cantidad_restos.setText(cursor.getString(cursor.getColumnIndex("cantidad_restos")));
-        //maquina_usar.setText(cursor.getString(cursor.getColumnIndex("maquina_usar")));
         vacio_ulma.setText(cursor.getString(cursor.getColumnIndex("vacio_ulma")));
         gas_ulma.setText(cursor.getString(cursor.getColumnIndex("gas_ulma")));
         temp_sellado_ulma.setText(cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")));
@@ -749,7 +784,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         piezas_calidad.setText(cursor.getString(cursor.getColumnIndex("piezas_calidad")));
 
 
-        Guardar.setText("ACTUALIZAR");
+
 
     }
 }
