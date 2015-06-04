@@ -683,7 +683,8 @@ public class consultas {
         cursor = db.rawQuery("SELECT lote " +
                 "FROM fundido WHERE fecha ='" +
                 fecha + "'", null);
-        Log.i("",fecha);
+        Log.i("","SELECT lote " +
+                "FROM fundido WHERE fecha ='"+fecha+"'");
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 

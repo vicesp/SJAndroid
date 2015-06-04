@@ -51,7 +51,7 @@ public class Fundido_Realizados extends Activity implements AdapterView.OnItemCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.empaque_realizados);
+        setContentView(R.layout.fundido__realizados);
 
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
@@ -98,7 +98,7 @@ public class Fundido_Realizados extends Activity implements AdapterView.OnItemCl
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
 
-                LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(calendario.getDate())));
+                LLena_Lista(con.DAOListaFundidoRealizado(fechaSeleccionada(calendario.getDate())));
 
 
             }
