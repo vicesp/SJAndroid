@@ -210,6 +210,7 @@ public class Cuajado_Realizados extends Activity implements AdapterView.OnItemCl
             public void onClick(DialogInterface dialog, int id) {
                 finish();startActivity(new Intent(Cuajado_Realizados.this, Cuajado_parte2.class));
 
+
             }
 
 
