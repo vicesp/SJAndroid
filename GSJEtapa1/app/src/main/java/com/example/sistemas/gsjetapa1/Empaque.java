@@ -17,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -29,6 +30,7 @@ import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.security.Guard;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
@@ -50,7 +52,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
     private TextView Fecha,codigo_prod,nombre_pt,lote_empaque,tvLote_fondo,tvLote_tapa,tvLote_funda,tvP_entregadas,caducidad;
     private EditText lote_origen,p_reproceso,temp,hora_inicioPT,cod_restos,lote_restos,cantidad_restos,vacio_ulma,gas_ulma,piezas_emp,piezas_calidad;
     private EditText temp_formado_ulma,temp_sellado_ulma,oxigeno_ulma,vacio_ultravac,temp_ultravac,hora_fin_ultravac,lote_fondo,lote_tapa,lote_funda,observaciones;
-    private Button Guardar;
+    private ImageButton Guardar;
     private int num_resto=0,num_empaque=0,total=0,longi_origen=0,dia_juliano_origen=0;
     private Button btn_listviewdialog=null;
     private EditText txt_item=null;
@@ -290,7 +292,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         });
 
         //******************    Button    ****************//
-        Guardar=(Button)findViewById(R.id.btnGurdaEmpaque);
+        Guardar=(ImageButton)findViewById(R.id.btnGurdaEmpaque);
         Guardar.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -405,6 +407,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         }
         else {
 
+            Guardar.setImageResource(R.drawable.guarda);
             limpia_campos();
         }
 

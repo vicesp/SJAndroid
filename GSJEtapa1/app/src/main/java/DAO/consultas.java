@@ -1539,20 +1539,20 @@ public class consultas {
                               String porce_prot_tina,String Temp_adi_cuajo,String ph_pasta_coag,String hora_adi_cuajo,
                               String temp_cocido, String num_equipo, int estatus_guardado, int estatus_pendiente){
 
-        cursor=null;
+
         db = myDbHelper.getWritableDatabase();
 
         try {
                 db.execSQL("UPDATE cuajado SET " +
-                        "fecha = " + "'" + fecha + "',lote = '" + lote + "',silo='" + silo + "',num_equipo = '" + num_equipo + "',familia='" + familia + "',leche_silo='" + leche_silo +
+                        "fecha = " + "'" + fecha + "', lote = '" + lote + "',silo='" + silo + "',num_equipo = '" + num_equipo + "',familia='" + familia + "',leche_silo='" + leche_silo +
                         "',ph_leche='" + ph_leche + "',porcen_grasa_leche='" + porcen_grasa_leche + "',porce_proteina='" + porce_proteina + "', " +
                         "leche_tina='" + leche_tina + "',porce_grasa_leche_tina='" + porce_grasa_leche_tina + "',porce_prot_tina='" + porce_prot_tina /*+
-                        "',crema_kilos='" + crema_kilos +"',porce_grasa_crema='"+porce_grasa_crema*/+ "',Temp_adi_cuajo='" + Temp_adi_cuajo + "'," +
+                        "',crema_kilos='" + crema_kilos +"',porce_grasa_crema='"+porce_grasa_crema*/ + "',Temp_adi_cuajo='" + Temp_adi_cuajo + "'," +
                         "ph_pasta_coag='" + ph_pasta_coag + "',hora_adi_cuajo='" + hora_adi_cuajo + "',temp_cocido='" + temp_cocido + "', estatus_guardado='" + estatus_guardado +
                         "',estatus_pendiente='" + estatus_pendiente /*+"',hora_inicio_desuerado='"+hora_inicio_desuerado+"',litros_suero='"+litros_suero+
                         "',ph_desuerado='"+ph_desuerado+"',solidos_totales='"+solidos_totales+"',pasta_obtenida='"+pasta_obtenida+"',numero_moldes='"+numero_moldes+
-                        "',kilos_pendientes='"+kilos_pendientes+"',porcentaje_humedad='"+porcentaje_humedad+"' "*/+
-                        "WHERE lote='"+lote+"'");
+                        "',kilos_pendientes='"+kilos_pendientes+"',porcentaje_humedad='"+porcentaje_humedad+"' "*/ +
+                        "' WHERE lote='" + lote + "';");
                 myDbHelper.close();
                 db.close();
             return true;
@@ -1570,16 +1570,14 @@ public class consultas {
                                       String mp025,String lote_mp025,String mp062,String lote_mp062,
                                       String mp070, String lote_mp070, String mp071, String lote_mp071, String mp072, String lote_mp072, String le04, String lote_le04,
                                       String le03, String lote_le03,int estatus_guardado){
-        cursor=null;
-        db = myDbHelper.getWritableDatabase();
 
+        db = myDbHelper.getWritableDatabase();
         try {
                 db.execSQL("UPDATE cuajado_aditivos SET lote_cuajado='"+lote_cuajado+"',mp001='"+mp001+"',lote_mp001='"+lote_mp001+"',mp003='"+mp003+"',lote_mp003='"+lote_mp003+"',mp002='"+mp002+"',lote_mp002='"+lote_mp002+"',mp006='"+mp006+"',lote_mp006='"+lote_mp006+"'," +
                         "mp011='"+mp011+"',lote_mp011='"+lote_mp011+"',mp021='"+mp021+"',lote_mp021='"+lote_mp021+"',cr01='"+cr01+"',lote_cr01='"+lote_cr01+"'," +
                         "mp025='"+mp025+"',lote_mp025='"+lote_mp025+"',mp062='"+mp062+"', lote_mp062='"+lote_mp062+"' ,mp070='"+mp070+"' ,lote_mp070='"+lote_mp070+"' ,mp071='"+mp071+"' ,lote_mp071='"+lote_mp071+"' ,mp072='"+mp072+"',lote_mp072='"+lote_mp072+"' ," +
-                        "le04='"+le04+"' ,lote_le04='"+lote_le04+"' ,le03='"+le03+"' ,lote_le03='"+lote_le03+"',estatus_guardado="+estatus_guardado+""+
-                        " WHERE lote_cuajado='"+lote_cuajado+"'");
-                cursor.close();
+                        "le04='"+le04+"' ,lote_le04='"+lote_le04+"' ,le03='"+le03+"' ,lote_le03='"+lote_le03+"',estatus_guardado='"+estatus_guardado+"'"+
+                        " WHERE lote_cuajado='"+lote_cuajado+"';");
                 myDbHelper.close();
                 db.close();
                 return true;

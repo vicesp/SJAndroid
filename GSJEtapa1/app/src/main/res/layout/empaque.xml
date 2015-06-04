@@ -893,13 +893,11 @@
             android:layout_toLeftOf="@+id/textView146"
             android:layout_toStartOf="@+id/textView146" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textSize="25dp"
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="105dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/guarda"
+            android:background="@drawable/actualizarmenos"
             android:id="@+id/btnGurdaEmpaque"
             android:layout_below="@+id/relativeLayout4"
             android:layout_alignParentRight="true"

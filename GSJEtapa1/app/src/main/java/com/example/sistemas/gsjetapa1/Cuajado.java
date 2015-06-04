@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -58,7 +59,8 @@ public class Cuajado extends ActionBarActivity {
     private String silo_select,familia_select;
     private Spinner spSilo, spFamiliaCuaj;
     private TextView Fecha,Lote,NumTina,NumEquipo;
-    private Button Guarda1, Guarda2,Regresar;
+    private Button  Guarda2,Regresar;
+    private ImageButton Guarda1;
     private int num_tina_consec;
     private EditText lecheSilo,phLeche,grasaLecheSilo,grasaLecheTina,proteinaLecheSilo,lecheTina,proteinaTina;
     private EditText adi1,lote1,adi2,lote2,adi3,lote3,adi4,lote4,adi5,lote5,adi6,lote6,adi7,lote7,adi8,lote8,adi9,lote9,adi10,lote10,adi11,lote11,adi12,lote12,adi13,lote13,adi14,lote14;
@@ -401,7 +403,7 @@ public class Cuajado extends ActionBarActivity {
         });
 
         //******************    Inicio Buttons    ****************//
-        Guarda1=(Button)findViewById(R.id.btnGuardaCuajo1);
+        Guarda1=(ImageButton)findViewById(R.id.btnGuardaCuajo1);
         Guarda1.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -422,6 +424,7 @@ public class Cuajado extends ActionBarActivity {
                 }
                 if(var.isFromCuajado()) {
 
+
                     boolean exitoso = con.DAOActualizarCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
@@ -437,7 +440,11 @@ public class Cuajado extends ActionBarActivity {
                             adi6.getText().toString(), lote6.getText().toString(), adi7.getText().toString(), lote7.getText().toString(), adi8.getText().toString(), lote8.getText().toString(),
                             adi9.getText().toString(), lote9.getText().toString(), adi10.getText().toString(), lote10.getText().toString(), adi11.getText().toString(), lote11.getText().toString(),
                             adi12.getText().toString(), lote12.getText().toString(), adi13.getText().toString(), lote13.getText().toString(), adi14.getText().toString(), lote14.getText().toString(), 1);
+
+
                     if (exitoso && exitoso_Aditivos) {
+
+                        var.setFromCuajado(false);
 
                         GuardaCuajadoSync task = new GuardaCuajadoSync();
                         task.execute();
@@ -552,6 +559,8 @@ public class Cuajado extends ActionBarActivity {
                     } else {
                         Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                     }
+                    limpia_campos();
+
 
                 }
                 else {
@@ -753,7 +762,7 @@ public class Cuajado extends ActionBarActivity {
         }
         else
         {
-
+            Guarda1.setImageResource(R.drawable.guarda);
 
         }
 
@@ -1172,6 +1181,55 @@ public class Cuajado extends ActionBarActivity {
 
 
 
+    }
+    public void limpia_campos()
+    {
+        //Fecha.setText("");
+        lecheSilo.setText("");
+        phLeche.setText("");
+        grasaLecheSilo.setText("");
+        proteinaLecheSilo.setText("");
+        lecheTina.setText("");
+        grasaLecheTina.setText("");
+        proteinaTina.setText("");
+        tempCoagulacion.setText("");
+        horaAdicionCuajo.setText("");
+        tempCocido.setText("");
+        phPasta.setText("");
+
+        NumEquipo.setText("");
+        NumTina.setText("");
+        //Lote.setText("");
+
+        adi1.setText("");
+        adi2.setText("");
+        adi3.setText("");
+        adi4.setText("");
+        adi5.setText("");
+        adi6.setText("");
+        adi7.setText("");
+        adi8.setText("");
+        adi9.setText("");
+        adi10.setText("");
+        adi11.setText("");
+        adi12.setText("");
+        adi13.setText("");
+        adi14.setText("");
+
+        lote1.setText("");
+        lote2.setText("");
+        lote3.setText("");
+        lote4.setText("");
+        lote5.setText("");
+        lote6.setText("");
+        lote7.setText("");
+        lote8.setText("");
+        lote9.setText("");
+        lote10.setText("");
+        lote11.setText("");
+        lote12.setText("");
+        lote13.setText("");
+        lote14.setText("");
     }
 
 

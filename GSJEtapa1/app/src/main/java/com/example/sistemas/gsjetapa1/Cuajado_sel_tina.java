@@ -102,6 +102,7 @@ public class Cuajado_sel_tina extends Activity{
             public void onClick(View v) {
                 Variables.setEquipo_tina("A");
                 startActivity(new Intent(Cuajado_sel_tina.this, Cuajado.class));
+                Variables.setFromCuajado(false);
             }
         });
 
@@ -130,6 +131,7 @@ public class Cuajado_sel_tina extends Activity{
             public void onClick(View v) {
                 Variables.setEquipo_tina("B");
                 startActivity(new Intent(Cuajado_sel_tina.this, Cuajado.class));
+                Variables.setFromCuajado(false);
             }
         });
 
@@ -158,6 +160,7 @@ public class Cuajado_sel_tina extends Activity{
             public void onClick(View v) {
                 Variables.setEquipo_tina("C");
                 startActivity(new Intent(Cuajado_sel_tina.this, Cuajado.class));
+                Variables.setFromCuajado(false);
             }
         });
 
