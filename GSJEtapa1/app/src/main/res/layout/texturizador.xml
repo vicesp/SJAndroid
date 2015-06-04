@@ -1272,12 +1272,12 @@
             android:layout_alignRight="@+id/editText"
             android:layout_alignEnd="@+id/editText" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="105dp"
             android:text=""
             android:textSize="25dp"
-            android:background="@drawable/guarda"
+            android:background="@drawable/actualizarmenos"
             android:id="@+id/btntSave"
             android:layout_alignBottom="@+id/ettKilosTot"
             android:layout_alignRight="@+id/textView18"
