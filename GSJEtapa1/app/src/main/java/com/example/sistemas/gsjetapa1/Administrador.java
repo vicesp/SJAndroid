@@ -47,7 +47,7 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
+            finish();startActivity(new Intent(Administrador.this, Fundido_Realizados.class));
 
 
             }
