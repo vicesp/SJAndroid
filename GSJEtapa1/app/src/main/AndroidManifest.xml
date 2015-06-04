@@ -79,6 +79,10 @@
             android:name=".Cuajado_Realizados"
             android:label="@string/title_activity_cuajado__realizados" >
         </activity>
+        <activity
+            android:name=".Fundido_Realizados"
+            android:label="@string/title_activity_fundido__realizados" >
+        </activity>
     </application>
 
 </manifest>

@@ -9,6 +9,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,6 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +42,8 @@ import DTO.Variables;
 
 public class Cuajado_parte2 extends Activity{
 
-    private Button Save,Regresa;
+    private ImageButton Save;
+    private Button Regresa;
     private boolean banderaA=false,banderaB=false,banderaC=false;
     private TextView fecha,lote,tvNumMoldes,tvKilosPend;
     private String leche_tina;
@@ -52,7 +55,7 @@ public class Cuajado_parte2 extends Activity{
     private EditText grasaCrema,cremaEstandarizada, porce_humedad;
     private EditText horaInicioDesue,litrosSuero,phDesuerado,solidosDesuerado,pastaCuaj,nummoldesCuaj,KilosCuaj;
 
-
+    protected Cursor cursor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +70,12 @@ public class Cuajado_parte2 extends Activity{
         fecha=(TextView)findViewById(R.id.tvCfechapend);
         fecha.setText(FechaH.Hoy());
         lote=(TextView)findViewById(R.id.tvCLotePendiente);
-        lote.setText(Variables.getLopen());
-
+        if(Variables.isFromCuajado()) {
+            lote.setText(Variables.getLoteCuajado());
+        }
+        else {
+            lote.setText(Variables.getLopen());
+        }
         leche_tina=con.DAOC_select_leche_tina(lote.getText().toString());
 
         grasaCrema=(EditText)findViewById(R.id.etCPporGrasa);
@@ -107,12 +114,12 @@ public class Cuajado_parte2 extends Activity{
             public void onCheckedChanged(CompoundButton buttonView,
                                          boolean isChecked) {
 
-                if(isChecked){
+                if (isChecked) {
                     tvNumMoldes.setTextColor(getResources().getColor(R.color.act));
                     tvKilosPend.setTextColor(getResources().getColor(R.color.act));
                     nummoldesCuaj.setEnabled(true);
                     KilosCuaj.setEnabled(true);
-                }else{
+                } else {
                     tvNumMoldes.setTextColor(getResources().getColor(R.color.desac));
                     tvKilosPend.setTextColor(getResources().getColor(R.color.desac));
                     nummoldesCuaj.setEnabled(false);
@@ -150,7 +157,7 @@ public class Cuajado_parte2 extends Activity{
             }
         });
 
-        Save=(Button)findViewById(R.id.btnCGuardapendi);
+        Save=(ImageButton)findViewById(R.id.btnCGuardapendi);
         Save.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,6 +182,16 @@ public class Cuajado_parte2 extends Activity{
                 finish();startActivity(new Intent(Cuajado_parte2.this,Cuajado_lista.class));
             }
         });
+
+        if(Variables.isFromCuajado())
+        {
+            llenarValoresBusquedaCuajado(Variables.getLoteCuajado());
+        }
+        else
+        {
+            Save.setImageResource(R.drawable.guarda);
+
+        }
 
     }
 
@@ -433,6 +450,25 @@ public class Cuajado_parte2 extends Activity{
         public void onTextChanged(CharSequence s, int start, int before, int count) { }
 
     }
+    public void llenarValoresBusquedaCuajado(String lote) {
+
+        //ote_origen.setEnabled(false);
+        //btn_listviewdialog.setVisibility(View.INVISIBLE);
+
+        cursor = con.DAOLLenarCuajado(lote);
+
+        cremaEstandarizada.setText(cursor.getString(cursor.getColumnIndex("crema_kilos")));
+        grasaCrema.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_crema")));
+        horaInicioDesue.setText(cursor.getString(cursor.getColumnIndex("hora_inicio_desuerado")));
+        fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        phDesuerado.setText(cursor.getString(cursor.getColumnIndex("ph_desuerado")));
+        litrosSuero.setText(cursor.getString(cursor.getColumnIndex("litros_suero")));
+        solidosDesuerado.setText(cursor.getString(cursor.getColumnIndex("solidos_totales")));
+        pastaCuaj.setText(cursor.getString(cursor.getColumnIndex("pasta_obtenida")));
+        nummoldesCuaj.setText(cursor.getString(cursor.getColumnIndex("numero_moldes")));
+        KilosCuaj.setText(cursor.getString(cursor.getColumnIndex("kilos_pendientes")));
+        porce_humedad.setText(cursor.getString(cursor.getColumnIndex("porcentaje_humedad")));
 
 
+    }
 }

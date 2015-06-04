@@ -142,7 +142,7 @@ public class Cuajado_Realizados extends Activity implements AdapterView.OnItemCl
         Variables.setFromCuajado(true);
         Variables.setLoteCuajado(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
         // Variables.setLopen(((TextView)view.findViewById(R.id.tvItem)).getText().toString());
-        finish();startActivity(new Intent(Cuajado_Realizados.this, Cuajado.class));
+        AlertaCuajado("Seleccione pantalla a la que desea dirigirse");
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -189,5 +189,33 @@ public class Cuajado_Realizados extends Activity implements AdapterView.OnItemCl
         String hoyConFormato = df.format(fechaSeleccionada);
         return  hoyConFormato;
     }
+    public void AlertaCuajado(String mensaje){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Cuajado_Realizados.this);
 
+        alertDialogBuilder.setTitle("Seleccione la opción que desea realizar:");
+
+        alertDialogBuilder.setMessage(mensaje);
+
+        alertDialogBuilder.setPositiveButton("Edicion Cuajado", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+                finish();startActivity(new Intent(Cuajado_Realizados.this, Cuajado.class));
+
+            }
+
+
+        });
+        alertDialogBuilder.setNegativeButton("Edicion Cuajado Pendientes", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int id) {
+                finish();startActivity(new Intent(Cuajado_Realizados.this, Cuajado_parte2.class));
+
+            }
+
+
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
 }
