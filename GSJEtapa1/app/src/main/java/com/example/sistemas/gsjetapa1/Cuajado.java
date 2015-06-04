@@ -420,9 +420,9 @@ public class Cuajado extends ActionBarActivity {
                     con.DAOC_elimina_registro(Lote.getText().toString());
                     //Variables.setPendiente_tina_C(false);
                 }
+                if(var.isFromCuajado()) {
 
-
-                    boolean exitoso=con.DAOCuajado(Lote.getText().toString(),
+                    boolean exitoso = con.DAOActualizarCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
                             familia_select,
@@ -430,19 +430,19 @@ public class Cuajado extends ActionBarActivity {
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                             proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
-                            tempCocido.getText().toString(),NumEquipo.getText().toString(),1,0);
+                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0);
 
-                    boolean exitoso_Aditivos=con.DAOCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(),lote1.getText().toString(),adi2.getText().toString(),lote2.getText().toString(),
-                            adi3.getText().toString(),lote3.getText().toString(),adi4.getText().toString(),lote4.getText().toString(),adi5.getText().toString(),lote5.getText().toString(),
-                            adi6.getText().toString(),lote6.getText().toString(),adi7.getText().toString(),lote7.getText().toString(),adi8.getText().toString(),lote8.getText().toString(),
-                            adi9.getText().toString(),lote9.getText().toString(),adi10.getText().toString(),lote10.getText().toString(),adi11.getText().toString(),lote11.getText().toString(),
-                            adi12.getText().toString(),lote12.getText().toString(),adi13.getText().toString(),lote13.getText().toString(),adi14.getText().toString(),lote14.getText().toString(),1);
-                    if(exitoso && exitoso_Aditivos){
+                    boolean exitoso_Aditivos = con.DAOActualizarCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(), lote1.getText().toString(), adi2.getText().toString(), lote2.getText().toString(),
+                            adi3.getText().toString(), lote3.getText().toString(), adi4.getText().toString(), lote4.getText().toString(), adi5.getText().toString(), lote5.getText().toString(),
+                            adi6.getText().toString(), lote6.getText().toString(), adi7.getText().toString(), lote7.getText().toString(), adi8.getText().toString(), lote8.getText().toString(),
+                            adi9.getText().toString(), lote9.getText().toString(), adi10.getText().toString(), lote10.getText().toString(), adi11.getText().toString(), lote11.getText().toString(),
+                            adi12.getText().toString(), lote12.getText().toString(), adi13.getText().toString(), lote13.getText().toString(), adi14.getText().toString(), lote14.getText().toString(), 1);
+                    if (exitoso && exitoso_Aditivos) {
 
-                        GuardaCuajadoSync task=new GuardaCuajadoSync();
+                        GuardaCuajadoSync task = new GuardaCuajadoSync();
                         task.execute();
 
-                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
                         /*num_tina_consec=con.DAOC_Numero_tina(FechaH.Hoy());
                         num_tina_consec+=1;
                         NumTina.setText(""+num_tina_consec);*/
@@ -459,22 +459,26 @@ public class Cuajado extends ActionBarActivity {
                                 else{
                                     num_tina_consec=Variables.getNumero_tina_B()+1;}
                             }*/
-                        if(NumEquipo.getText().toString()=="A"){Variables.setNumero_tina_A(Integer.parseInt(NumTina.getText().toString()));}
-                        else if(NumEquipo.getText().toString()=="B"){Variables.setNumero_tina_B(Integer.parseInt(NumTina.getText().toString()));}
-                        else if(NumEquipo.getText().toString()=="C"){Variables.setNumero_tina_C(Integer.parseInt(NumTina.getText().toString()));}
+                        if (NumEquipo.getText().toString() == "A") {
+                            Variables.setNumero_tina_A(Integer.parseInt(NumTina.getText().toString()));
+                        } else if (NumEquipo.getText().toString() == "B") {
+                            Variables.setNumero_tina_B(Integer.parseInt(NumTina.getText().toString()));
+                        } else if (NumEquipo.getText().toString() == "C") {
+                            Variables.setNumero_tina_C(Integer.parseInt(NumTina.getText().toString()));
+                        }
 
-                            if(Variables.getNumero_tina_A() > Variables.getNumero_tina_B() && Variables.getNumero_tina_A() > Variables.getNumero_tina_C()){
-                                //System.out.println("El numero mayor es " + A);
-                                num_tina_consec=Variables.getNumero_tina_A()+1;
-                            }else{
-                                if(Variables.getNumero_tina_B() > Variables.getNumero_tina_A() && Variables.getNumero_tina_B() > Variables.getNumero_tina_C()){
-                                    //System.out.println("El numero mayor es " + B);
-                                    num_tina_consec=Variables.getNumero_tina_B()+1;
-                                }else{
-                                    //System.out.println("El numero mayor es " + C);
-                                    num_tina_consec=Variables.getNumero_tina_C()+1;
-                                }
+                        if (Variables.getNumero_tina_A() > Variables.getNumero_tina_B() && Variables.getNumero_tina_A() > Variables.getNumero_tina_C()) {
+                            //System.out.println("El numero mayor es " + A);
+                            num_tina_consec = Variables.getNumero_tina_A() + 1;
+                        } else {
+                            if (Variables.getNumero_tina_B() > Variables.getNumero_tina_A() && Variables.getNumero_tina_B() > Variables.getNumero_tina_C()) {
+                                //System.out.println("El numero mayor es " + B);
+                                num_tina_consec = Variables.getNumero_tina_B() + 1;
+                            } else {
+                                //System.out.println("El numero mayor es " + C);
+                                num_tina_consec = Variables.getNumero_tina_C() + 1;
                             }
+                        }
 
                             /*else{
                                 num_tina_consec=Variables.getNumero_tina_A()+1;
@@ -541,15 +545,147 @@ public class Cuajado extends ActionBarActivity {
                             Variables.setPendiente_tina_A(false);
                         }*/
 
-                        NumTina.setText(""+num_tina_consec);
-                        Lote.setText(NumTina.getText().toString()+DiaJ.Dame_dia_J_y_anio());
+                        NumTina.setText("" + num_tina_consec);
+                        Lote.setText(NumTina.getText().toString() + DiaJ.Dame_dia_J_y_anio());
 
 
+                    } else {
+                        Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                     }
-                    else{
+
+                }
+                else {
+                    boolean exitoso = con.DAOCuajado(Lote.getText().toString(),
+                            silo_select,
+                            NumTina.getText().toString(),
+                            familia_select,
+                            Fecha.getText().toString(),
+                            lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
+                            lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
+                            proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
+                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0);
+
+                    boolean exitoso_Aditivos = con.DAOCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(), lote1.getText().toString(), adi2.getText().toString(), lote2.getText().toString(),
+                            adi3.getText().toString(), lote3.getText().toString(), adi4.getText().toString(), lote4.getText().toString(), adi5.getText().toString(), lote5.getText().toString(),
+                            adi6.getText().toString(), lote6.getText().toString(), adi7.getText().toString(), lote7.getText().toString(), adi8.getText().toString(), lote8.getText().toString(),
+                            adi9.getText().toString(), lote9.getText().toString(), adi10.getText().toString(), lote10.getText().toString(), adi11.getText().toString(), lote11.getText().toString(),
+                            adi12.getText().toString(), lote12.getText().toString(), adi13.getText().toString(), lote13.getText().toString(), adi14.getText().toString(), lote14.getText().toString(), 1);
+                    if (exitoso && exitoso_Aditivos) {
+
+                        GuardaCuajadoSync task = new GuardaCuajadoSync();
+                        task.execute();
+
+                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+                        /*num_tina_consec=con.DAOC_Numero_tina(FechaH.Hoy());
+                        num_tina_consec+=1;
+                        NumTina.setText(""+num_tina_consec);*/
+
+                        /*if(NumEquipo.getText().toString()=="A"){
+
+                            Variables.setNumero_tina_A(Integer.parseInt(NumTina.getText().toString()));
+*/
+                            /*if(Variables.getNumero_tina_B()!=0 || Variables.getNumero_tina_C()!=0){
+
+                                if(Variables.getNumero_tina_B()<Variables.getNumero_tina_C()){
+                                    num_tina_consec=Variables.getNumero_tina_C()+1;
+                                }
+                                else{
+                                    num_tina_consec=Variables.getNumero_tina_B()+1;}
+                            }*/
+                        if (NumEquipo.getText().toString() == "A") {
+                            Variables.setNumero_tina_A(Integer.parseInt(NumTina.getText().toString()));
+                        } else if (NumEquipo.getText().toString() == "B") {
+                            Variables.setNumero_tina_B(Integer.parseInt(NumTina.getText().toString()));
+                        } else if (NumEquipo.getText().toString() == "C") {
+                            Variables.setNumero_tina_C(Integer.parseInt(NumTina.getText().toString()));
+                        }
+
+                        if (Variables.getNumero_tina_A() > Variables.getNumero_tina_B() && Variables.getNumero_tina_A() > Variables.getNumero_tina_C()) {
+                            //System.out.println("El numero mayor es " + A);
+                            num_tina_consec = Variables.getNumero_tina_A() + 1;
+                        } else {
+                            if (Variables.getNumero_tina_B() > Variables.getNumero_tina_A() && Variables.getNumero_tina_B() > Variables.getNumero_tina_C()) {
+                                //System.out.println("El numero mayor es " + B);
+                                num_tina_consec = Variables.getNumero_tina_B() + 1;
+                            } else {
+                                //System.out.println("El numero mayor es " + C);
+                                num_tina_consec = Variables.getNumero_tina_C() + 1;
+                            }
+                        }
+
+                            /*else{
+                                num_tina_consec=Variables.getNumero_tina_A()+1;
+                            }*/
+
+                            /*int sig=Integer.parseInt(NumTina.getText().toString());
+                            Variables.setNumero_tina_A((sig+1));*/
+                         /*   NumTina.setText(""+num_tina_consec);
+                            Variables.setPendiente_tina_A(false);
+                        }*/
+                        /*else if(NumEquipo.getText().toString()=="B"){
+                            int sig=Integer.parseInt(NumTina.getText().toString());
+                            Variables.setNumero_tina_B((sig+1));
+                            NumTina.setText(""+Variables.getNumero_tina_B());
+                            Variables.setPendiente_tina_B(true);
+                        }*/
+
+                        /*else if(NumEquipo.getText().toString()=="B"){
+
+                            Variables.setNumero_tina_B(Integer.parseInt(NumTina.getText().toString()));
+
+                            if(Variables.getNumero_tina_A()!=0 || Variables.getNumero_tina_C()!=0){
+                                if(Variables.getNumero_tina_A()<Variables.getNumero_tina_C()){
+                                    num_tina_consec=Variables.getNumero_tina_C()+1;
+                                }
+                                else{
+                                    num_tina_consec=Variables.getNumero_tina_A()+1;}
+                            }
+                            else{
+                                num_tina_consec=Variables.getNumero_tina_B()+1;
+                            }
+
+                            *//*int sig=Integer.parseInt(NumTina.getText().toString());
+                            Variables.setNumero_tina_A((sig+1));*//*
+                            NumTina.setText(""+num_tina_consec);
+                            Variables.setPendiente_tina_B(false);
+                        }
+
+                        *//*else if(NumEquipo.getText().toString()=="C"){
+                            int sig=Integer.parseInt(NumTina.getText().toString());
+                            Variables.setNumero_tina_C((sig+1));
+                            NumTina.setText(""+Variables.getNumero_tina_C());
+                            Variables.setPendiente_tina_C(true);
+                        }*//*
+
+                        else if(NumEquipo.getText().toString()=="C"){
+
+                            Variables.setNumero_tina_C(Integer.parseInt(NumTina.getText().toString()));
+
+                            if(Variables.getNumero_tina_B()!=0 || Variables.getNumero_tina_A()!=0){
+                                if(Variables.getNumero_tina_B()<Variables.getNumero_tina_A()){
+                                    num_tina_consec=Variables.getNumero_tina_A()+1;
+                                }
+                                else{
+                                    num_tina_consec=Variables.getNumero_tina_B()+1;}
+                            }
+                            else{
+                                num_tina_consec=Variables.getNumero_tina_C()+1;
+                            }
+
+                            *//*int sig=Integer.parseInt(NumTina.getText().toString());
+                            Variables.setNumero_tina_A((sig+1));*//*
+                            NumTina.setText(""+num_tina_consec);
+                            Variables.setPendiente_tina_A(false);
+                        }*/
+
+                        NumTina.setText("" + num_tina_consec);
+                        Lote.setText(NumTina.getText().toString() + DiaJ.Dame_dia_J_y_anio());
+
+
+                    } else {
                         Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                     }
-
+                }
             }
         });
 
