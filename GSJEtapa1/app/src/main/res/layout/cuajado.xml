@@ -1245,14 +1245,14 @@
             android:layout_alignLeft="@+id/etHoraAdiciCoagulacion"
             android:layout_alignStart="@+id/etHoraAdiciCoagulacion" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="100dp"
+
             android:textSize="25dp"
             android:layout_marginTop="62dp"
             android:id="@+id/btnGuardaCuajo1"
-            android:background="@drawable/guarda"
+            android:background="@drawable/actualizarmenos"
             android:layout_below="@+id/textView54"
             android:layout_toRightOf="@+id/textView54"
             android:layout_toEndOf="@+id/textView54" />

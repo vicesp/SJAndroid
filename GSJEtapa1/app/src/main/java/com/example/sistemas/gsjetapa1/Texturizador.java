@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -44,7 +45,8 @@ public class Texturizador extends ActionBarActivity {
     private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
     private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
     private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,kilos_tot;
-    private Button Guardar,Regresar;
+    private Button Regresar;
+    private ImageButton Guardar;
     private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
@@ -580,7 +582,7 @@ public class Texturizador extends ActionBarActivity {
         });
 
 
-        Guardar=(Button)findViewById(R.id.btntSave);
+        Guardar=(ImageButton)findViewById(R.id.btntSave);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1064,7 +1066,9 @@ public class Texturizador extends ActionBarActivity {
         kilos_tot.setText(cursor.getString(cursor.getColumnIndex("kilos_totales")));
 
         Lote.setText(lote);
-        Guardar.setText("ACTUALIZAR");
+
+        Guardar.setImageResource(R.drawable.guarda);
+
 
     }
 }
