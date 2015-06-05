@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 import org.ksoap2.SoapEnvelope;
 import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
@@ -1144,7 +1145,7 @@ public class GuardaTexturizador extends AsyncTask<String, Void, Boolean>
 
         SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
-        request.addProperty("lote", Lote.getText().toString());
+        request.addProperty("lote", Texturizador.Lote.getText().toString());
         request.addProperty("fecha", Fecha.getText().toString());
         request.addProperty("texturizador", texturizador_select);
         request.addProperty("mp002", tvtx1.getText().toString());
