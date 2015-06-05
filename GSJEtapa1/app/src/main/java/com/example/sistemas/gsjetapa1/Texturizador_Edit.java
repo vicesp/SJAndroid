@@ -846,7 +846,7 @@ public class Texturizador_Edit extends ActionBarActivity {
     public void actualizarValores(String columna)
 
     {
-        Log.i("columna:", columna);
+
         if(sw1.isChecked()) {
             tvtm1.setText(con.DAOValoresActuales(columna, "1"));
         }
