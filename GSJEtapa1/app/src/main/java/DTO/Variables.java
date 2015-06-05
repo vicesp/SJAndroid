@@ -217,6 +217,16 @@ public class Variables {
     private static String silo;
     private static String familia;
 
+    public static String getNombre_usuario() {
+        return nombre_usuario;
+    }
+
+    public static void setNombre_usuario(String nombre_usuario) {
+        Variables.nombre_usuario = nombre_usuario;
+    }
+
+    private static String nombre_usuario;
+
 
 
     private static String lecheSilo,grasaLecheSilo,phLeche,proteinaLecheSilo,grasaCrema,cremaEstandarizada,lecheTina,grasaLecheTina,proteinaTina;

@@ -25,12 +25,13 @@ import java.util.ArrayList;
 
 import DAO.consultas;
 import DTO.Fecha_Hoy;
+import DTO.Variables;
 
 
 public class Texturizador_Edit extends ActionBarActivity {
 
     private static Fecha_Hoy FechaH;
-    private String texturizador_select;
+    private String texturizador_select,datos_cambiados;
     private String [] familia;
     private TextView Fecha;
     private Spinner spFamiliaTextu;
@@ -50,6 +51,8 @@ public class Texturizador_Edit extends ActionBarActivity {
 
         FechaH = new Fecha_Hoy();
         con = new consultas();
+
+        datos_cambiados="";
 
         //******************    Switch  ****************//
 
@@ -583,6 +586,8 @@ public class Texturizador_Edit extends ActionBarActivity {
                 int position = spFamiliaTextu.getSelectedItemPosition();
                 boolean exitoso=true;
 
+
+
                 switch (position)
                 {
                     case 0:
@@ -648,7 +653,10 @@ public class Texturizador_Edit extends ActionBarActivity {
                 }
                 if (exitoso) {
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
+                    Log.i("datos:",datos_cambiados);
+                    con.DAOConsulta(Variables.getNombre_usuario(), "texturizador_edit", datos_cambiados, "", Fecha.getText().toString());
                     //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                    datos_cambiados="";
                     vaciarValorNuevo();
                 } else {
                     Alerta(getResources().getString(R.string.Alerta_NoGuardado));
@@ -848,109 +856,147 @@ public class Texturizador_Edit extends ActionBarActivity {
     {
 
         if(sw1.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm1.setText(con.DAOValoresActuales(columna, "1"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
+
         }
         else {
             tvtm1.setText("");
+
         }
         if(sw2.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm2.setText(con.DAOValoresActuales(columna, "2"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm2.setText("");
         }
         if(sw3.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm3.setText(con.DAOValoresActuales(columna, "3"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm3.setText("");
         }
         if(sw4.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm4.setText(con.DAOValoresActuales(columna, "4"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm4.setText("");
         }
         if(sw5.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm5.setText(con.DAOValoresActuales(columna, "5"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm5.setText("");
         }
         if(sw6.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm6.setText(con.DAOValoresActuales(columna, "6"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm6.setText("");
         }
         if(sw7.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm7.setText(con.DAOValoresActuales(columna, "7"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm7.setText("");
         }
         if(sw8.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm8.setText(con.DAOValoresActuales(columna, "8"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm8.setText("");
         }
         if(sw9.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm9.setText(con.DAOValoresActuales(columna, "9"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm9.setText("");
         }
         if(sw10.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm10.setText(con.DAOValoresActuales(columna, "10"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm10.setText("");
         }
         if(sw11.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm11.setText(con.DAOValoresActuales(columna, "11"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm11.setText("");
         }
         if(sw12.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm12.setText(con.DAOValoresActuales(columna, "12"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm12.setText("");
         }
         if(sw13.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm13.setText(con.DAOValoresActuales(columna, "13"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm13.setText("");
         }
         if(sw14.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm14.setText(con.DAOValoresActuales(columna, "14"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm14.setText("");
         }
         if(sw15.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm15.setText(con.DAOValoresActuales(columna, "15"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm15.setText("");
         }
         if(sw16.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm16.setText(con.DAOValoresActuales(columna, "16"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm16.setText("");
         }
         if(sw17.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm17.setText(con.DAOValoresActuales(columna, "17"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm17.setText("");
         }
         if(sw18.isChecked()) {
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
             tvtm18.setText(con.DAOValoresActuales(columna, "18"));
+            datos_cambiados = datos_cambiados+" "+tvtm1.getText().toString();
         }
         else {
             tvtm18.setText("");
