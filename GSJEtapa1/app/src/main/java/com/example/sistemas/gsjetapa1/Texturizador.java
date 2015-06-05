@@ -558,6 +558,46 @@ public class Texturizador extends ActionBarActivity {
 
 
                 }
+                else if (position == 6) {  //Personalizado
+                    switch_false();
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool7");
+                    setSwitches("valBool7");
+                    cambia_switch("valBool7");
+                    actualizarValores("valor7");
+
+
+                }
+                else if (position == 7) {  //Personalizado
+                    switch_false();
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool8");
+                    setSwitches("valBool8");
+                    cambia_switch("valBool8");
+                    actualizarValores("valor8");
+
+
+                }
+                else if (position == 8) {  //Personalizado
+                    switch_false();
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool9");
+                    setSwitches("valBool9");
+                    cambia_switch("valBool9");
+                    actualizarValores("valor9");
+
+
+                }
+                else if (position == 9) {  //Personalizado
+                    switch_false();
+                    lote_texto_vacio();
+                    cambia_color_textos("valBool10");
+                    setSwitches("valBool10");
+                    cambia_switch("valBool10");
+                    actualizarValores("valor10");
+
+
+                }
 
 
             }

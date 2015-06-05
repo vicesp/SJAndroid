@@ -674,6 +674,40 @@ public class consultas {
         }
     }
 
+    /****************    Consulta para Llenar la lista de lotes Fundido-Realizado    *************/
+    public ArrayList<consultas> DAOListaFundidoRealizado(String fecha){
+
+
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM fundido WHERE fecha ='" +
+                fecha + "'", null);
+        Log.i("","SELECT lote " +
+                "FROM fundido WHERE fecha ='"+fecha+"'");
+                /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+
     /****************    Consulta para Texturizador     *************/
     public boolean DAOTexturizador(String lote, String fecha,String texturizador,String mp002,String lote_mp002,String mp003,String lote_mp003,
                                    String mp004,String lote_mp004,String mp005, String lote_mp005,

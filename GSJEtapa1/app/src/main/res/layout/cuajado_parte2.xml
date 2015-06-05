@@ -353,13 +353,11 @@
         android:layout_toLeftOf="@+id/textView190"
         android:layout_toStartOf="@+id/textView190" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="25dp"
+    <ImageButton
+        android:layout_width="210dp"
+        android:layout_height="105dp"
         android:id="@+id/btnCGuardapendi"
-        android:background="@drawable/guarda"
+        android:background="@drawable/actualizarmenos"
         android:layout_below="@+id/etCporceHumedad"
         android:layout_toRightOf="@+id/textView19"
         android:layout_toEndOf="@+id/textView19"

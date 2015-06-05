@@ -37,8 +37,8 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                finish();startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
 
+                finish();startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
             }
         });
 
@@ -47,7 +47,7 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
+            finish();startActivity(new Intent(Administrador.this, Fundido_Realizados.class));
 
 
             }
@@ -58,7 +58,7 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                Alerta("Seleccione la pantalla a la que se quiere dirigir.");
+                AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
 
             }
         });
@@ -106,7 +106,7 @@ public class Administrador extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void Alerta(String mensaje){
+    public void AlertaEmpaque(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Administrador.this);
 
         alertDialogBuilder.setTitle("Seleccione la opción que desea realizar:");
@@ -135,4 +135,5 @@ public class Administrador extends ActionBarActivity {
         alertDialog.show();
 
     }
+
 }
