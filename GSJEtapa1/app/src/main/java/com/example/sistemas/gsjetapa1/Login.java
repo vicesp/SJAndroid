@@ -93,6 +93,11 @@ public class Login extends Activity {
                 {
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
+                else if (tipoUsuario== 10 && tipoUsuario==11 && tipoUsuario ==12 && tipoUsuario ==13)
+                {
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
+                }
+
 
 
                 else {Alerta();}
