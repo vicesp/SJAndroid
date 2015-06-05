@@ -1243,6 +1243,6 @@ public class Texturizador extends ActionBarActivity {
 }
 
 
-}
+
 
 
