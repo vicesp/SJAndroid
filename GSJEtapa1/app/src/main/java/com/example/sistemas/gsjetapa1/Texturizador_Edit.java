@@ -534,6 +534,30 @@ public class Texturizador_Edit extends ActionBarActivity {
                         setSwitches("valBool6");
                         actualizarValores("valor6");
                         break;
+                    case 6:
+                        vaciarValorNuevo();
+                        cambia_color_textos("valBool7");
+                        setSwitches("valBool7");
+                        actualizarValores("valor7");
+                        break;
+                    case 7:
+                        vaciarValorNuevo();
+                        cambia_color_textos("valBool8");
+                        setSwitches("valBool8");
+                        actualizarValores("valor8");
+                        break;
+                    case 8:
+                        vaciarValorNuevo();
+                        cambia_color_textos("valBool9");
+                        setSwitches("valBool9");
+                        actualizarValores("valor9");
+                        break;
+                    case 9:
+                        vaciarValorNuevo();
+                        cambia_color_textos("valBool10");
+                        setSwitches("valBool10");
+                        actualizarValores("valor10");
+                        break;
                 }
             }
 
@@ -820,7 +844,9 @@ public class Texturizador_Edit extends ActionBarActivity {
     }
 
     public void actualizarValores(String columna)
+
     {
+        Log.i("columna:", columna);
         if(sw1.isChecked()) {
             tvtm1.setText(con.DAOValoresActuales(columna, "1"));
         }
