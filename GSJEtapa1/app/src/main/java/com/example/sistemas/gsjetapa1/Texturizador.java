@@ -4,16 +4,20 @@ package com.example.sistemas.gsjetapa1;
  * Created by Sistemas on 05/03/2015.
  */
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -24,6 +28,12 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -41,7 +51,7 @@ public class Texturizador extends ActionBarActivity {
     private Spinner spFamiliaTextu;
     private String texturizador_select;
     private int in1=0,in2=0,in3=0,in4=0,in5=0,in6=0,in7=0,in8=0,in9=0,in10=0,in11=0,in12=0,in13=0,in14=0,in15=0,in16=0,in17=0,in18=0,numero_conse=0;
-    private TextView Fecha,Lote;
+    private static TextView Fecha,Lote;
     private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
     private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
     private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,kilos_tot;
@@ -1111,4 +1121,123 @@ public class Texturizador extends ActionBarActivity {
 
 
     }
+}
+
+public class GuardaTexturizador extends AsyncTask<String, Void, Boolean>
+{
+    private final ProgressDialog dialog = new ProgressDialog(Texturizador.this);
+
+    @Override
+    protected void onPreExecute()
+    {
+        this.dialog.setMessage("Enviando Datos...");
+        this.dialog.show();
+    }
+
+    protected Boolean doInBackground(final String... args)
+    {
+        final String NAMESPACE = "http://serv_gsj.net/";
+        final String URL = "http://" + Variables.getIp_servidor() + "ServidorWebSoap/ServicioClientes.asmx";
+        final String METHOD_NAME = "insertatexturizador";
+        final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+        final int time = 2000, time2 = 190000;
+
+        SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+        request.addProperty("lote", Lote.getText().toString());
+        request.addProperty("fecha", Fecha.getText().toString());
+        request.addProperty("texturizador", texturizador_select);
+        request.addProperty("mp002", tvtx1.getText().toString());
+        request.addProperty("lote_mp002",lote1.getText().toString());
+        request.addProperty("mp003", tvtx2.getText().toString());
+        request.addProperty("lote_mp003", lote2.getText().toString());
+        request.addProperty("mp004", tvtx3.getText().toString());
+        request.addProperty("lote_mp004", lote3.getText().toString());
+        request.addProperty("mp005", tvtx4.getText().toString());
+        request.addProperty("lote_mp005", lote4.getText().toString());
+        request.addProperty("mp006", tvtx5.getText().toString());
+        request.addProperty("lote_mp006", lote5.getText().toString());
+        request.addProperty("mp007", tvtx6.getText().toString());
+        request.addProperty("lote_mp007", lote6.getText().toString());
+        request.addProperty("mp008", tvtx7.getText().toString());
+        request.addProperty("lote_mp008", lote7.getText().toString());
+        request.addProperty("mp009", tvtx8.getText().toString());
+        request.addProperty("lote_mp009", lote8.getText().toString());
+        request.addProperty("mp010", tvtx9.getText().toString());
+        request.addProperty("lote_mp010", lote9.getText().toString());
+        request.addProperty("mp021", tvtx10.getText().toString());
+        request.addProperty("lote_mp021", lote10.getText().toString());
+        request.addProperty("mp025", tvtx11.getText().toString());
+        request.addProperty("lote_mp025", lote11.getText().toString());
+        request.addProperty("mp026", tvtx12.getText().toString());
+        request.addProperty("lote_mp026", lote12.getText().toString());
+        request.addProperty("mp027", tvtx13.getText().toString());
+        request.addProperty("lote_mp027", lote13.getText().toString());
+        request.addProperty("mp028", tvtx14.getText().toString());
+        request.addProperty("lote_mp028", lote14.getText().toString());
+        request.addProperty("mp031", tvtx15.getText().toString());
+        request.addProperty("lote_mp031", lote15.getText().toString());
+        request.addProperty("mp012", tvtx16.getText().toString());
+        request.addProperty("lote_mp012", lote16.getText().toString());
+        request.addProperty("mp013", tvtx17.getText().toString());
+        request.addProperty("lote_mp013", lote17.getText().toString());
+        request.addProperty("mp014", tvtx18.getText().toString());
+        request.addProperty("lote_mp014", lote18.getText().toString());
+        request.addProperty("kilos_totales", kilos_tot.getText().toString());
+        request.addProperty("num_consecutivo", numero_conse);
+
+        SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+        envelope.dotNet = true;
+
+        envelope.setOutputSoapObject(request);
+        HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+        try
+        {
+            transporte.call(SOAP_ACTION, envelope);
+
+            SoapPrimitive resultado_XML = (SoapPrimitive)envelope.getResponse();
+            String mensaje = resultado_XML.toString();
+
+            if(mensaje.contentEquals("true")){
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            Log.i("Error", "Error de sincronizacion:  " + e);
+            return false;
+        }
+    }
+
+    protected void onPostExecute(final Boolean success)
+    {
+        if (this.dialog.isShowing())
+        {
+            this.dialog.dismiss();
+        }
+
+        if (success)
+        {
+            Toast.makeText(Texturizador.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(Texturizador.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void PaginaMonitor()
+    {
+        WebView myWebView = (WebView) findViewById(R.id.webView);
+        myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+    }
+}
 }
