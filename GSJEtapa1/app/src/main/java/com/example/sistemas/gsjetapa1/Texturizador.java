@@ -1154,52 +1154,52 @@ public class Texturizador extends ActionBarActivity {
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp003")).equals(lote2.getText().toString()))) {
             datos_cambiados = datos_cambiados + "MP003 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp003")) + ", Valor Nuevo: " + lote2.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp004"))!= lote3.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp004")).equals(lote3.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP004 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp004")) + ", Valor Nuevo: " + lote3.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp005"))!= lote4.getText().toString())){
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp005")).equals(lote4.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp005")) + ", Valor Nuevo: " + lote4.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp006"))!= lote5.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp006")).equals(lote5.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP006 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp006")) + ", Valor Nuevo: " + lote5.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp007"))!= lote6.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp007")).equals(lote6.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp007")) + ", Valor Nuevo: " + lote6.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp008"))!= lote7.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp008")).equals(lote7.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP008 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp008")) + ", Valor Nuevo: " + lote7.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp009"))!= lote8.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp009")).equals(lote8.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP009 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp009")) + ", Valor Nuevo: " + lote8.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp010"))!= lote9.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp010")).equals(lote9.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP010 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp010")) + ", Valor Nuevo: " + lote9.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp021"))!= lote10.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp021")).equals(lote10.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP021 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp021")) + ", Valor Nuevo: " + lote10.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp025"))!= lote11.getText().toString())){
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp025")).equals(lote11.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP025 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp025")) + ", Valor Nuevo: " + lote11.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002"))!= lote12.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote12.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP026 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp026")) + ", Valor Nuevo: " + lote12.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp027"))!= lote13.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp027")).equals(lote13.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP027 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp027")) + ", Valor Nuevo: " + lote13.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp028"))!= lote14.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp028")).equals(lote14.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP028 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp028")) + ", Valor Nuevo: " + lote14.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp031"))!= lote15.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp031")).equals(lote15.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP031 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp031")) + ", Valor Nuevo: " + lote15.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp012"))!= lote16.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp012")).equals(lote16.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP012 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp012")) + ", Valor Nuevo: " + lote16.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002"))!= lote17.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote17.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP013 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp013")) + ", Valor Nuevo: " + lote17.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013"))!= lote18.getText().toString())) {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013")).equals(lote18.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP014 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp014")) + ", Valor Nuevo: " + lote18.getText().toString() + "; ";
         }
     }
