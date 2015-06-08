@@ -448,7 +448,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
 
-        cursor = db.rawQuery("SELECT nombre_producto, caducidad, eliminado FROM cat_productos WHERE codigo_producto = '"+codigo+"' AND eliminado = 0;", null);
+        cursor = db.rawQuery("SELECT nombre_producto, caducidad, eliminado FROM cat_productos WHERE codigo_producto = '" + codigo + "' AND eliminado = 0;", null);
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
         consultas lista = new consultas();
         lista.producto=new String[3];
@@ -1620,6 +1620,31 @@ public class consultas {
             return false;
         }
     }
+
+
+
+    /****************    Consulta para llenar la bitacora      *************/
+
+    public void DAOConsultaBitacora(String nombre, String modulo, String datos, String observaciones,String fecha)
+    {
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("INSERT INTO bitacora (nombre_usuario,modulo_modificado,datos_cambiados,observaciones,fecha) VALUES ('"
+                    + nombre + "','"
+                    + modulo + "','"
+                    + datos + "','"
+                    + observaciones + "','"
+                    + fecha + "');");
+            myDbHelper.close();
+            db.close();
+        }
+        catch (Exception e)
+        {}
+    }
+
+
 
     /****************    Consulta para Configuracion IP      *************/
     public boolean DAOConfigIP(String ip_actual,String fecha){

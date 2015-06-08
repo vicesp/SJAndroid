@@ -47,7 +47,7 @@ import DTO.fecha_Caducidad;
 public class Empaque extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private String [] maquina_usar,listaProductos;
-    private String maquina_usar_select;
+    private String maquina_usar_select,datos_cambiados;
     private Spinner spMaquinaUsar;
     private TextView Fecha,codigo_prod,nombre_pt,lote_empaque,tvLote_fondo,tvLote_tapa,tvLote_funda,tvP_entregadas,caducidad;
     private EditText lote_origen,p_reproceso,temp,hora_inicioPT,cod_restos,lote_restos,cantidad_restos,vacio_ulma,gas_ulma,piezas_emp,piezas_calidad;
@@ -80,6 +80,8 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         DiaJ=new Dia_Juliano();
         con=new consultas();
         var = new Variables();
+
+        datos_cambiados="";
 
         f_caducidad=new fecha_Caducidad();
 
@@ -306,6 +308,10 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                             , gas_ulma.getText().toString(), temp_formado_ulma.getText().toString(), temp_sellado_ulma.getText().toString(), oxigeno_ulma.getText().toString()
                             , vacio_ultravac.getText().toString(), temp_ultravac.getText().toString(), hora_fin_ultravac.getText().toString(), lote_fondo.getText().toString(), lote_tapa.getText().toString()
                             , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString());
+
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "empaque", datos_cambiados, observaciones.getText().toString(), Fecha.getText().toString());
+                    datos_cambiados=null;
+
                     if(exitoso){
                         limpia_campos();
                         var.setFromEmpaque(false);

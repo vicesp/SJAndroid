@@ -29,6 +29,7 @@ public class Login extends Activity {
         setContentView(R.layout.login);
 
         Variables.setContextoGral(getApplicationContext());
+        Variables.setNombre_usuario("");
 
         Usuario = (EditText)findViewById(R.id.etUsuario);
         Clave = (EditText)findViewById(R.id.etContrasena);
@@ -93,8 +94,24 @@ public class Login extends Activity {
                 {
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
-                else if (tipoUsuario== 10 && tipoUsuario==11 && tipoUsuario ==12 && tipoUsuario ==13)
+                else if (tipoUsuario== 10 )
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
+                }
+                else if (tipoUsuario== 11 )
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
+                }
+                else if (tipoUsuario== 12 )
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
+                }
+                else if (tipoUsuario== 13 )
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
 

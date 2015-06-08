@@ -185,7 +185,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="1290dp"
+        android:layout_height="1550dp"
         android:background="@drawable/plantilla_texturizador"
         android:id="@+id/relativeLayout"
         android:layout_below="@+id/imageView13"
@@ -1246,6 +1246,66 @@
             android:layout_alignTop="@+id/textView135"
             android:layout_alignLeft="@+id/tvtm17"
             android:layout_alignStart="@+id/tvtm17" />
+        <RelativeLayout
+            android:layout_width="600dp"
+            android:layout_height="230dp"
+            android:background="@drawable/plantilla_pt"
+            android:id="@+id/relativeLayout4"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
+            android:layout_below="@+id/textView120"
+            android:visibility="invisible"
+            android:layout_alignLeft="@+id/textView120"
+            android:layout_alignStart="@+id/textView120"
+            android:layout_alignRight="@+id/ettlot18"
+            android:layout_alignEnd="@+id/ettlot18">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText98"
+                android:visibility="invisible"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="   Observaciones   "
+                android:textColor="#98002E"
+                android:textSize="30dp"
+                android:id="@+id/textView169"
+                android:background="@android:color/white"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="19dp"
+                android:layout_marginStart="39dp"
+                android:layout_marginTop="0dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="dd"
+                android:visibility="invisible"
+                android:id="@+id/textView173"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/eteObservaciones"
+                android:textSize="25dp"
+                android:layout_below="@+id/editText98"
+                android:layout_alignLeft="@+id/textView169"
+                android:layout_alignStart="@+id/textView169"
+                android:layout_toLeftOf="@+id/textView173"
+                android:layout_toStartOf="@+id/textView173" />
+
+        </RelativeLayout>
+
 
     </RelativeLayout>
 
