@@ -157,7 +157,7 @@
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="1500dp"
             android:background="@drawable/plantilla_texturizador"
             android:id="@+id/relativeLayout"
             android:layout_below="@+id/imageView13"
@@ -997,7 +997,11 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="50dp"
                 android:layout_below="@+id/valNuevo18"
-                android:layout_centerHorizontal="true">
+                android:layout_centerHorizontal="true"
+                android:layout_alignLeft="@+id/textView120"
+                android:layout_alignStart="@+id/textView120"
+                android:layout_alignRight="@+id/valNuevo18"
+                android:layout_alignEnd="@+id/valNuevo18">
 
                 <EditText
                     android:layout_width="wrap_content"
