@@ -593,7 +593,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView301"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -605,7 +605,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView302"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -617,7 +617,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView303"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -629,7 +629,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView304"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -641,7 +641,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView305"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -653,7 +653,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView306"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -665,7 +665,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView307"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -677,7 +677,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView308"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -689,7 +689,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView309"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -701,7 +701,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView310"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -713,7 +713,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView311"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -725,7 +725,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView312"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -737,7 +737,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView313"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -749,7 +749,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView314"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -761,7 +761,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView315"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -773,7 +773,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView316"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -785,7 +785,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView317"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"
@@ -797,7 +797,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="0.5"
+                android:text=""
                 android:id="@+id/textView318"
                 android:textSize="25dp"
                 android:textColor="@android:color/holo_red_dark"

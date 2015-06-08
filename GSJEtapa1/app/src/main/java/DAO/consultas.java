@@ -1625,7 +1625,7 @@ public class consultas {
 
     /****************    Consulta para llenar la bitacora      *************/
 
-    public void DAOConsulta(String nombre, String modulo, String datos, String observaciones,String fecha)
+    public void DAOConsultaBitacora(String nombre, String modulo, String datos, String observaciones,String fecha)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
