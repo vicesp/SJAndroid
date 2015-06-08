@@ -653,6 +653,12 @@ public class Texturizador extends ActionBarActivity {
 
                 if (var.isFromSearch()) {
 
+                    generarDatosCambiados();
+                    Log.i("datos:", datos_cambiados);
+                    if (datos_cambiados=="")
+                    {
+                        datos_cambiados="no se hicieron cambios";
+                    }
                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
                             tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
@@ -660,7 +666,7 @@ public class Texturizador extends ActionBarActivity {
                             tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
                     con.DAOConsultaBitacora(Variables.getNombre_usuario(), "texturizador", datos_cambiados, etObservaciones.getText().toString(), Fecha.getText().toString());
-                    datos_cambiados=null;
+                    datos_cambiados="";
 
                 }
 
@@ -976,148 +982,111 @@ public class Texturizador extends ActionBarActivity {
     }
     public void actualizarValores(String columna)
     {
-        if(sw1.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP002 Valor previo:"+tvtm1.getText().toString()+", ";
-            tvtm1.setText(con.DAOValoresActuales(columna, "1"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm1.getText().toString()+";";
 
+        if(sw1.isEnabled()) {
+            tvtm1.setText(con.DAOValoresActuales(columna, "1"));
         }
         else {
             tvtm1.setText("");
-
         }
-        if(sw2.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP003 Valor previo:"+tvtm2.getText().toString()+", ";
+        if(sw2.isEnabled()) {
             tvtm2.setText(con.DAOValoresActuales(columna, "2"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm2.getText().toString()+";";
         }
         else {
             tvtm2.setText("");
         }
-        if(sw3.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP004 Valor previo:"+tvtm3.getText().toString()+", ";
+        if(sw3.isEnabled()) {
             tvtm3.setText(con.DAOValoresActuales(columna, "3"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm3.getText().toString()+";";
         }
         else {
             tvtm3.setText("");
         }
-        if(sw4.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP005 Valor previo:"+tvtm4.getText().toString()+", ";
+        if(sw4.isEnabled()) {
             tvtm4.setText(con.DAOValoresActuales(columna, "4"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm4.getText().toString()+";";
         }
         else {
             tvtm4.setText("");
         }
-        if(sw5.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP006 Valor previo:"+tvtm5.getText().toString()+", ";
+        if(sw5.isEnabled()) {
             tvtm5.setText(con.DAOValoresActuales(columna, "5"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm5.getText().toString()+";";
         }
         else {
             tvtm5.setText("");
         }
-        if(sw6.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP007 Valor previo:"+tvtm6.getText().toString()+", ";
+        if(sw6.isEnabled()) {
             tvtm6.setText(con.DAOValoresActuales(columna, "6"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm6.getText().toString()+";";
         }
         else {
             tvtm6.setText("");
         }
-        if(sw7.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP008 Valor previo:"+tvtm7.getText().toString()+", ";
+        if(sw7.isEnabled()) {
             tvtm7.setText(con.DAOValoresActuales(columna, "7"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm7.getText().toString()+";";
         }
         else {
             tvtm7.setText("");
         }
-        if(sw8.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP009 Valor previo:"+tvtm8.getText().toString()+", ";
+        if(sw8.isEnabled()) {
             tvtm8.setText(con.DAOValoresActuales(columna, "8"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm8.getText().toString()+";";
         }
         else {
             tvtm8.setText("");
         }
-        if(sw9.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP010 Valor previo:"+tvtm9.getText().toString()+", ";
-            tvtm8.setText(con.DAOValoresActuales(columna, "9"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm9.getText().toString()+";";
+        if(sw9.isEnabled()) {
+            tvtm9.setText(con.DAOValoresActuales(columna, "9"));
         }
         else {
             tvtm9.setText("");
         }
-        if(sw10.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP021 Valor previo:"+tvtm10.getText().toString()+", ";
+        if(sw10.isEnabled()) {
             tvtm10.setText(con.DAOValoresActuales(columna, "10"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm10.getText().toString()+";";
         }
         else {
             tvtm10.setText("");
         }
-        if(sw11.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP025 Valor previo:"+tvtm11.getText().toString()+", ";
+        if(sw11.isEnabled()) {
             tvtm11.setText(con.DAOValoresActuales(columna, "11"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm11.getText().toString()+";";
         }
         else {
             tvtm11.setText("");
         }
-        if(sw12.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP026 Valor previo:"+tvtm12.getText().toString()+", ";
+        if(sw12.isEnabled()) {
             tvtm12.setText(con.DAOValoresActuales(columna, "12"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm12.getText().toString()+";";
         }
         else {
             tvtm12.setText("");
         }
-        if(sw13.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP027 Valor previo:"+tvtm13.getText().toString()+", ";
+        if(sw13.isEnabled()) {
             tvtm13.setText(con.DAOValoresActuales(columna, "13"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm13.getText().toString()+";";
         }
         else {
             tvtm13.setText("");
         }
-        if(sw14.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP028 Valor previo:"+tvtm14.getText().toString()+", ";
+        if(sw14.isEnabled()) {
             tvtm14.setText(con.DAOValoresActuales(columna, "14"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm14.getText().toString()+";";
         }
         else {
             tvtm14.setText("");
         }
-        if(sw15.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP031 Valor previo:"+tvtm15.getText().toString()+", ";
+        if(sw15.isEnabled()) {
             tvtm15.setText(con.DAOValoresActuales(columna, "15"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm15.getText().toString()+";";
         }
         else {
             tvtm15.setText("");
         }
-        if(sw16.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP012 Valor previo:"+tvtm16.getText().toString()+", ";
+        if(sw16.isEnabled()) {
             tvtm16.setText(con.DAOValoresActuales(columna, "16"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm16.getText().toString()+";";
         }
         else {
             tvtm16.setText("");
         }
-        if(sw17.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP013 Valor previo:"+tvtm17.getText().toString()+", ";
+        if(sw17.isEnabled()) {
             tvtm17.setText(con.DAOValoresActuales(columna, "17"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm17.getText().toString()+";";
         }
         else {
             tvtm17.setText("");
         }
-        if(sw18.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP014 Valor previo:"+tvtm18.getText().toString()+", ";
+        if(sw18.isEnabled()) {
             tvtm18.setText(con.DAOValoresActuales(columna, "18"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm18.getText().toString()+";";
         }
         else {
             tvtm18.setText("");
@@ -1174,6 +1143,65 @@ public class Texturizador extends ActionBarActivity {
         Guardar.setImageResource(R.drawable.guarda);
 
 
+    }
+
+    public void generarDatosCambiados()
+    {
+
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "MP002 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp002")) + ", Valor Nuevo: " + lote1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp003")).equals(lote2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "MP003 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp003")) + ", Valor Nuevo: " + lote2.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp004"))!= lote3.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP004 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp004")) + ", Valor Nuevo: " + lote3.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp005"))!= lote4.getText().toString())){
+            datos_cambiados = datos_cambiados + "MP005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp005")) + ", Valor Nuevo: " + lote4.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp006"))!= lote5.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP006 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp006")) + ", Valor Nuevo: " + lote5.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp007"))!= lote6.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp007")) + ", Valor Nuevo: " + lote6.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp008"))!= lote7.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP008 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp008")) + ", Valor Nuevo: " + lote7.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp009"))!= lote8.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP009 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp009")) + ", Valor Nuevo: " + lote8.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp010"))!= lote9.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP010 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp010")) + ", Valor Nuevo: " + lote9.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp021"))!= lote10.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP021 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp021")) + ", Valor Nuevo: " + lote10.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp025"))!= lote11.getText().toString())){
+            datos_cambiados = datos_cambiados + "MP025 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp025")) + ", Valor Nuevo: " + lote11.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002"))!= lote12.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP026 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp026")) + ", Valor Nuevo: " + lote12.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp027"))!= lote13.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP027 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp027")) + ", Valor Nuevo: " + lote13.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp028"))!= lote14.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP028 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp028")) + ", Valor Nuevo: " + lote14.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp031"))!= lote15.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP031 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp031")) + ", Valor Nuevo: " + lote15.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp012"))!= lote16.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP012 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp012")) + ", Valor Nuevo: " + lote16.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002"))!= lote17.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP013 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp013")) + ", Valor Nuevo: " + lote17.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013"))!= lote18.getText().toString())) {
+            datos_cambiados = datos_cambiados + "MP014 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp014")) + ", Valor Nuevo: " + lote18.getText().toString() + "; ";
+        }
     }
 
     public class GuardaTexturizador extends AsyncTask <String, Void, Boolean>
