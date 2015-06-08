@@ -4,20 +4,16 @@ package com.example.sistemas.gsjetapa1;
  * Created by Sistemas on 05/03/2015.
  */
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -25,17 +21,9 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.ksoap2.SoapEnvelope;
-import org.ksoap2.serialization.SoapObject;
-import org.ksoap2.serialization.SoapPrimitive;
-import org.ksoap2.serialization.SoapSerializationEnvelope;
-import org.ksoap2.transport.HttpTransportSE;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,16 +39,14 @@ public class Texturizador extends ActionBarActivity {
 
     private String [] familia;
     private Spinner spFamiliaTextu;
-    private String texturizador_select, datos_cambiados;
+    private String texturizador_select;
     private int in1=0,in2=0,in3=0,in4=0,in5=0,in6=0,in7=0,in8=0,in9=0,in10=0,in11=0,in12=0,in13=0,in14=0,in15=0,in16=0,in17=0,in18=0,numero_conse=0;
-    private static TextView Fecha,Lote;
+    private TextView Fecha,Lote;
     private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
     private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
-    private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,
-            kilos_tot, etObservaciones;
+    private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,kilos_tot;
     private Button Regresar;
     private ImageButton Guardar;
-    private RelativeLayout layoutObservaciones;
     private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
@@ -80,11 +66,7 @@ public class Texturizador extends ActionBarActivity {
         con=new consultas();
         var= new Variables();
 
-        datos_cambiados="";
 
-
-        //******************    Relative Layout    ****************//
-        layoutObservaciones = (RelativeLayout)findViewById(R.id.relativeLayout4);
 
         //******************    Text View    ****************//
 
@@ -154,8 +136,6 @@ public class Texturizador extends ActionBarActivity {
         lote17=(EditText)findViewById(R.id.ettlot17);
         lote18=(EditText)findViewById(R.id.ettlot18);
         kilos_tot=(EditText)findViewById(R.id.ettKilosTot);
-
-        etObservaciones=(EditText)findViewById(R.id.eteObservaciones);
 
 
 
@@ -635,7 +615,7 @@ public class Texturizador extends ActionBarActivity {
         Regresar=(Button)findViewById(R.id.btnRegPendiLista);
         Regresar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
+        public void onClick(View v){
                 startActivity(new Intent(Texturizador.this, Texturizador_Realizados.class));
             }
 
@@ -653,50 +633,41 @@ public class Texturizador extends ActionBarActivity {
 
                 if (var.isFromSearch()) {
 
-                    generarDatosCambiados();
-                    Log.i("datos:", datos_cambiados);
-                    if (datos_cambiados=="")
-                    {
-                        datos_cambiados="no se hicieron cambios";
+                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
+                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
+
+                }
+
+                else {
+                     exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
+                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
+
+                }
+                    if (exitoso) {
+                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+
+                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                        numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
+                        numero_conse += 1;
+                        Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
                     }
-                    exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
-                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
-                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
-                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
-                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
+                    else if (exitosoActualizado) {
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
 
-                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "texturizador", datos_cambiados, etObservaciones.getText().toString(), Fecha.getText().toString());
-                    datos_cambiados="";
-
-                }
-
-                else {
-                    exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
-                            tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
-                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
-                            tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
-                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
-
-                }
-                if (exitoso) {
-                    Alerta(getResources().getString(R.string.Alerta_Guardado));
-
-                    //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
-                    numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
-                    numero_conse += 1;
-                    Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
-                }
-                else if (exitosoActualizado) {
-                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
-
-                    //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
-                }
-                else if(!exitosoActualizado)
-                {
+                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                    }
+                    else if(!exitosoActualizado)
+                    {
                     Alerta(getResources().getString(R.string.Alerta_NoActualizado));
-                }
+                    }
                 else {
-                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
 
             }
@@ -705,7 +676,6 @@ public class Texturizador extends ActionBarActivity {
         if(var.isFromSearch())
         {
             llenarValoresBusqueda(var.getLoteTexturizador());
-            layoutObservaciones.setVisibility(View.VISIBLE);
         }
         else {
             Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
@@ -976,13 +946,10 @@ public class Texturizador extends ActionBarActivity {
             lote16.setText("");
             lote17.setText("");
             lote18.setText("");
-            kilos_tot.setText("");
-            etObservaciones.setText("");
         }
     }
     public void actualizarValores(String columna)
     {
-
         if(sw1.isEnabled()) {
             tvtm1.setText(con.DAOValoresActuales(columna, "1"));
         }
@@ -1112,7 +1079,7 @@ public class Texturizador extends ActionBarActivity {
         sw16.setChecked(con.DAOSwitchBool(columna,"16"));
         sw17.setChecked(con.DAOSwitchBool(columna,"17"));
         sw18.setChecked(con.DAOSwitchBool(columna,"18"));
-    }
+}
     public void llenarValoresBusqueda(String lote)
     {
         cursor = con.DAOLLenarTexturizador(lote);
@@ -1144,186 +1111,4 @@ public class Texturizador extends ActionBarActivity {
 
 
     }
-
-    public void generarDatosCambiados()
-    {
-
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote1.getText().toString()))) {
-            datos_cambiados = datos_cambiados + "MP002 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp002")) + ", Valor Nuevo: " + lote1.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp003")).equals(lote2.getText().toString()))) {
-            datos_cambiados = datos_cambiados + "MP003 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp003")) + ", Valor Nuevo: " + lote2.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp004")).equals(lote3.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP004 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp004")) + ", Valor Nuevo: " + lote3.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp005")).equals(lote4.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp005")) + ", Valor Nuevo: " + lote4.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp006")).equals(lote5.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP006 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp006")) + ", Valor Nuevo: " + lote5.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp007")).equals(lote6.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp007")) + ", Valor Nuevo: " + lote6.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp008")).equals(lote7.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP008 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp008")) + ", Valor Nuevo: " + lote7.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp009")).equals(lote8.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP009 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp009")) + ", Valor Nuevo: " + lote8.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp010")).equals(lote9.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP010 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp010")) + ", Valor Nuevo: " + lote9.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp021")).equals(lote10.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP021 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp021")) + ", Valor Nuevo: " + lote10.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp025")).equals(lote11.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP025 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp025")) + ", Valor Nuevo: " + lote11.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp026")).equals(lote12.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP026 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp026")) + ", Valor Nuevo: " + lote12.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp027")).equals(lote13.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP027 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp027")) + ", Valor Nuevo: " + lote13.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp028")).equals(lote14.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP028 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp028")) + ", Valor Nuevo: " + lote14.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp031")).equals(lote15.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP031 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp031")) + ", Valor Nuevo: " + lote15.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp012")).equals(lote16.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP012 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp012")) + ", Valor Nuevo: " + lote16.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013")).equals(lote17.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP013 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp013")) + ", Valor Nuevo: " + lote17.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp014")).equals(lote18.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP014 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp014")) + ", Valor Nuevo: " + lote18.getText().toString() + "; ";
-        }
-    }
-
-    public class GuardaTexturizador extends AsyncTask <String, Void, Boolean>
-    {
-        private final ProgressDialog dialog = new ProgressDialog(Texturizador.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            this.dialog.setMessage("Enviando Datos...");
-            this.dialog.show();
-        }
-
-        protected Boolean doInBackground(final String... args)
-        {
-            final String NAMESPACE = "http://serv_gsj.net/";
-            final String URL = "http://" + Variables.getIp_servidor() + "ServidorWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertatexturizador";
-            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-            final int time = 2000, time2 = 190000;
-
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-            request.addProperty("lote", Lote.getText().toString());
-            request.addProperty("fecha", Fecha.getText().toString());
-            request.addProperty("texturizador", texturizador_select);
-            request.addProperty("mp002", tvtx1.getText().toString());
-            request.addProperty("lote_mp002",lote1.getText().toString());
-            request.addProperty("mp003", tvtx2.getText().toString());
-            request.addProperty("lote_mp003", lote2.getText().toString());
-            request.addProperty("mp004", tvtx3.getText().toString());
-            request.addProperty("lote_mp004", lote3.getText().toString());
-            request.addProperty("mp005", tvtx4.getText().toString());
-            request.addProperty("lote_mp005", lote4.getText().toString());
-            request.addProperty("mp006", tvtx5.getText().toString());
-            request.addProperty("lote_mp006", lote5.getText().toString());
-            request.addProperty("mp007", tvtx6.getText().toString());
-            request.addProperty("lote_mp007", lote6.getText().toString());
-            request.addProperty("mp008", tvtx7.getText().toString());
-            request.addProperty("lote_mp008", lote7.getText().toString());
-            request.addProperty("mp009", tvtx8.getText().toString());
-            request.addProperty("lote_mp009", lote8.getText().toString());
-            request.addProperty("mp010", tvtx9.getText().toString());
-            request.addProperty("lote_mp010", lote9.getText().toString());
-            request.addProperty("mp021", tvtx10.getText().toString());
-            request.addProperty("lote_mp021", lote10.getText().toString());
-            request.addProperty("mp025", tvtx11.getText().toString());
-            request.addProperty("lote_mp025", lote11.getText().toString());
-            request.addProperty("mp026", tvtx12.getText().toString());
-            request.addProperty("lote_mp026", lote12.getText().toString());
-            request.addProperty("mp027", tvtx13.getText().toString());
-            request.addProperty("lote_mp027", lote13.getText().toString());
-            request.addProperty("mp028", tvtx14.getText().toString());
-            request.addProperty("lote_mp028", lote14.getText().toString());
-            request.addProperty("mp031", tvtx15.getText().toString());
-            request.addProperty("lote_mp031", lote15.getText().toString());
-            request.addProperty("mp012", tvtx16.getText().toString());
-            request.addProperty("lote_mp012", lote16.getText().toString());
-            request.addProperty("mp013", tvtx17.getText().toString());
-            request.addProperty("lote_mp013", lote17.getText().toString());
-            request.addProperty("mp014", tvtx18.getText().toString());
-            request.addProperty("lote_mp014", lote18.getText().toString());
-            request.addProperty("kilos_totales", kilos_tot.getText().toString());
-            request.addProperty("num_consecutivo", numero_conse);
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.dotNet = true;
-
-            envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL, time);
-
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-
-                SoapPrimitive resultado_XML = (SoapPrimitive)envelope.getResponse();
-                String mensaje = resultado_XML.toString();
-
-                if(mensaje.contentEquals("true")){
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            catch (Exception e)
-            {
-                Log.i("Error", "Error de sincronizacion:  " + e);
-                return false;
-            }
-        }
-
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
-                this.dialog.dismiss();
-            }
-
-            if (success)
-            {
-                Toast.makeText(Texturizador.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
-                Toast.makeText(Texturizador.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        public void PaginaMonitor()
-        {
-            WebView myWebView = (WebView) findViewById(R.id.webView);
-            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
-
-            WebSettings webSettings = myWebView.getSettings();
-            webSettings.setJavaScriptEnabled(true);
-        }
-    }
 }
-
-
-
-
-
