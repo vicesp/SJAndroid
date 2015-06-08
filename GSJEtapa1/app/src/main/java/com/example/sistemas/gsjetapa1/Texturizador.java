@@ -1181,7 +1181,7 @@ public class Texturizador extends ActionBarActivity {
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp025")).equals(lote11.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP025 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp025")) + ", Valor Nuevo: " + lote11.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote12.getText().toString()))){
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp026")).equals(lote12.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP026 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp026")) + ", Valor Nuevo: " + lote12.getText().toString() + "; ";
         }
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp027")).equals(lote13.getText().toString()))){
@@ -1196,10 +1196,10 @@ public class Texturizador extends ActionBarActivity {
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp012")).equals(lote16.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP012 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp012")) + ", Valor Nuevo: " + lote16.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp002")).equals(lote17.getText().toString()))){
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013")).equals(lote17.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP013 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp013")) + ", Valor Nuevo: " + lote17.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp013")).equals(lote18.getText().toString()))){
+        if (!(cursor.getString(cursor.getColumnIndex("lote_mp014")).equals(lote18.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP014 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp014")) + ", Valor Nuevo: " + lote18.getText().toString() + "; ";
         }
     }
