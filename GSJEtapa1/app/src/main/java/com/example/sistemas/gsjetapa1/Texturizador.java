@@ -20,7 +20,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -45,8 +44,7 @@ public class Texturizador extends ActionBarActivity {
     private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
     private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
     private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,kilos_tot;
-    private Button Regresar;
-    private ImageButton Guardar;
+    private Button Guardar,Regresar;
     private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
@@ -502,47 +500,47 @@ public class Texturizador extends ActionBarActivity {
 
                 if (position == 0) {
                     switch_false();
-                    lote_texto_vacio();
+                    ////lote_texto_vacio();
                     cambia_color_textos("valBool1");
                     cambia_switch("valBool1");
-                    setSwitches("valBool1");
+                    //setSwitches("valBool1");
                     actualizarValores("valor1");
 
                 }
 
                 else if (position == 1) {
                     switch_false();
-                    lote_texto_vacio();
+                    //lote_texto_vacio();
                     cambia_color_textos("valBool2");
                     cambia_switch("valBool2");
-                    setSwitches("valBool2");
+                    //setSwitches("valBool2");
                     actualizarValores("valor2");
 
                 }
 
                 else if (position == 2) {
                     switch_false();
-                    lote_texto_vacio();
+                    //lote_texto_vacio();
                     cambia_color_textos("valBool3");
                     cambia_switch("valBool3");
-                    setSwitches("valBool3");
+                    //setSwitches("valBool3");
                     actualizarValores("valor3");
 
                 }
 
                 else if (position == 3) {
                     switch_false();
-                    lote_texto_vacio();
+                    //lote_texto_vacio();
                     cambia_color_textos("valBool4");
-                    setSwitches("valBool4");
+                    //setSwitches("valBool4");
                     cambia_switch("valBool4");
                     actualizarValores("valor4");
                 }
                 else if (position == 4) {
                     switch_false();
-                    lote_texto_vacio();
+                    //lote_texto_vacio();
                     cambia_color_textos("valBool5");
-                    setSwitches("valBool5");
+                    //setSwitches("valBool5");
                     cambia_switch("valBool5");
                     actualizarValores("valor5");
 
@@ -550,51 +548,11 @@ public class Texturizador extends ActionBarActivity {
                 }
                 else if (position == 5) {  //Personalizado
                     switch_false();
-                    lote_texto_vacio();
+                    //lote_texto_vacio();
                     cambia_color_textos("valBool6");
-                    setSwitches("valBool6");
+                    //setSwitches("valBool6");
                     cambia_switch("valBool6");
                     actualizarValores("valor6");
-
-
-                }
-                else if (position == 6) {  //Personalizado
-                    switch_false();
-                    lote_texto_vacio();
-                    cambia_color_textos("valBool7");
-                    setSwitches("valBool7");
-                    cambia_switch("valBool7");
-                    actualizarValores("valor7");
-
-
-                }
-                else if (position == 7) {  //Personalizado
-                    switch_false();
-                    lote_texto_vacio();
-                    cambia_color_textos("valBool8");
-                    setSwitches("valBool8");
-                    cambia_switch("valBool8");
-                    actualizarValores("valor8");
-
-
-                }
-                else if (position == 8) {  //Personalizado
-                    switch_false();
-                    lote_texto_vacio();
-                    cambia_color_textos("valBool9");
-                    setSwitches("valBool9");
-                    cambia_switch("valBool9");
-                    actualizarValores("valor9");
-
-
-                }
-                else if (position == 9) {  //Personalizado
-                    switch_false();
-                    lote_texto_vacio();
-                    cambia_color_textos("valBool10");
-                    setSwitches("valBool10");
-                    cambia_switch("valBool10");
-                    actualizarValores("valor10");
 
 
                 }
@@ -615,14 +573,14 @@ public class Texturizador extends ActionBarActivity {
         Regresar=(Button)findViewById(R.id.btnRegPendiLista);
         Regresar.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v){
+            public void onClick(View v){
                 startActivity(new Intent(Texturizador.this, Texturizador_Realizados.class));
             }
 
         });
 
 
-        Guardar=(ImageButton)findViewById(R.id.btntSave);
+        Guardar=(Button)findViewById(R.id.btntSave);
         Guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -633,7 +591,7 @@ public class Texturizador extends ActionBarActivity {
 
                 if (var.isFromSearch()) {
 
-                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                    exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
                             tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
@@ -642,32 +600,32 @@ public class Texturizador extends ActionBarActivity {
                 }
 
                 else {
-                     exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                    exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
                             tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
                             tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
                 }
-                    if (exitoso) {
-                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+                if (exitoso) {
+                    Alerta(getResources().getString(R.string.Alerta_Guardado));
 
-                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
-                        numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
-                        numero_conse += 1;
-                        Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
-                    }
-                    else if (exitosoActualizado) {
-                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                    //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                    numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
+                    numero_conse += 1;
+                    Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
+                }
+                else if (exitosoActualizado) {
+                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
 
-                        //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
-                    }
-                    else if(!exitosoActualizado)
-                    {
+                    //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
+                }
+                else if(!exitosoActualizado)
+                {
                     Alerta(getResources().getString(R.string.Alerta_NoActualizado));
-                    }
+                }
                 else {
-                Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
 
             }
@@ -867,23 +825,41 @@ public class Texturizador extends ActionBarActivity {
 
     public void cambia_switch(String columna){
         sw1.setEnabled(con.DAOSwitchBool(columna, "1"));
+        if (!con.DAOSwitchBool(columna, "1")){lote1.setText("");}
         sw2.setEnabled(con.DAOSwitchBool(columna, "2"));
+        if (!con.DAOSwitchBool(columna, "2")){lote2.setText("");}
         sw3.setEnabled(con.DAOSwitchBool(columna, "3"));
+        if (!con.DAOSwitchBool(columna, "3")){lote3.setText("");}
         sw4.setEnabled(con.DAOSwitchBool(columna, "4"));
+        if (!con.DAOSwitchBool(columna, "4")){lote4.setText("");}
         sw5.setEnabled(con.DAOSwitchBool(columna, "5"));
+        if (!con.DAOSwitchBool(columna, "5")){lote5.setText("");}
         sw6.setEnabled(con.DAOSwitchBool(columna, "6"));
+        if (!con.DAOSwitchBool(columna, "6")){lote6.setText("");}
         sw7.setEnabled(con.DAOSwitchBool(columna, "7"));
+        if (!con.DAOSwitchBool(columna, "7")){lote7.setText("");}
         sw8.setEnabled(con.DAOSwitchBool(columna, "8"));
+        if (!con.DAOSwitchBool(columna, "8")){lote8.setText("");}
         sw9.setEnabled(con.DAOSwitchBool(columna, "9"));
+        if (!con.DAOSwitchBool(columna, "9")){lote9.setText("");}
         sw10.setEnabled(con.DAOSwitchBool(columna, "10"));
+        if (!con.DAOSwitchBool(columna, "10")){lote10.setText("");}
         sw11.setEnabled(con.DAOSwitchBool(columna, "11"));
+        if (!con.DAOSwitchBool(columna, "11")){lote11.setText("");}
         sw12.setEnabled(con.DAOSwitchBool(columna, "12"));
+        if (!con.DAOSwitchBool(columna, "12")){lote12.setText("");}
         sw13.setEnabled(con.DAOSwitchBool(columna, "13"));
+        if (!con.DAOSwitchBool(columna, "13")){lote13.setText("");}
         sw14.setEnabled(con.DAOSwitchBool(columna, "14"));
+        if (!con.DAOSwitchBool(columna, "14")){lote14.setText("");}
         sw15.setEnabled(con.DAOSwitchBool(columna, "15"));
+        if (!con.DAOSwitchBool(columna, "15")){lote15.setText("");}
         sw16.setEnabled(con.DAOSwitchBool(columna, "16"));
+        if (!con.DAOSwitchBool(columna, "16")){lote16.setText("");}
         sw17.setEnabled(con.DAOSwitchBool(columna, "17"));
+        if (!con.DAOSwitchBool(columna, "17")){lote17.setText("");}
         sw18.setEnabled(con.DAOSwitchBool(columna, "18"));
+        if (!con.DAOSwitchBool(columna, "18")){lote18.setText("");}
     }
     public void cambia_texto_cantidad(String tv1,String tv2,String tv3,String tv4,String tv5,String tv6,String tv7,String tv8,
                                       String tv9,String tv10,String tv11,String tv12,String tv13,String tv14,String tv15,String tv16,String tv17,String tv18){
@@ -1079,7 +1055,7 @@ public class Texturizador extends ActionBarActivity {
         sw16.setChecked(con.DAOSwitchBool(columna,"16"));
         sw17.setChecked(con.DAOSwitchBool(columna,"17"));
         sw18.setChecked(con.DAOSwitchBool(columna,"18"));
-}
+    }
     public void llenarValoresBusqueda(String lote)
     {
         cursor = con.DAOLLenarTexturizador(lote);
@@ -1106,9 +1082,7 @@ public class Texturizador extends ActionBarActivity {
         kilos_tot.setText(cursor.getString(cursor.getColumnIndex("kilos_totales")));
 
         Lote.setText(lote);
-
-        Guardar.setImageResource(R.drawable.guarda);
-
+        Guardar.setText("ACTUALIZAR");
 
     }
 }
