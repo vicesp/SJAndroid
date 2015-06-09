@@ -1085,4 +1085,8 @@ public class Texturizador extends ActionBarActivity {
         Guardar.setText("ACTUALIZAR");
 
     }
+
+    public void nueva(){
+
+    }
 }
