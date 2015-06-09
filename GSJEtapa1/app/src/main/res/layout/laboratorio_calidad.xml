@@ -341,6 +341,49 @@
         android:layout_alignRight="@+id/imageViewFuncional"
         android:layout_alignEnd="@+id/imageViewFuncional" />
 
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:layout_alignTop="@+id/editText8"
+        android:layout_toRightOf="@+id/switchFundido"
+        android:layout_toLeftOf="@+id/textView127"
+        android:layout_toStartOf="@+id/textView127" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hebrado"
+        android:id="@+id/switchHebrado"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:id="@+id/textView209"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/switchHebrado"
+        android:layout_toRightOf="@+id/spinner"
+        android:layout_toEndOf="@+id/spinner" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText9"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/textView209"
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:layout_alignRight="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8" />
+
 
 </RelativeLayout>
 

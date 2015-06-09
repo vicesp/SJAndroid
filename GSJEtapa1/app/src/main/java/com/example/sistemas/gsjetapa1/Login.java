@@ -114,6 +114,13 @@ public class Login extends Activity {
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
+                else if (tipoUsuario==14)
+                {
+
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Laboratorio_Calidad.class));
+
+                }
 
 
 
