@@ -873,24 +873,42 @@ public class Texturizador extends ActionBarActivity {
     }
 
     public void cambia_switch(String columna){
+
         sw1.setEnabled(con.DAOSwitchBool(columna, "1"));
+        if (!con.DAOSwitchBool(columna, "1")){lote1.setText("");}
         sw2.setEnabled(con.DAOSwitchBool(columna, "2"));
+        if (!con.DAOSwitchBool(columna, "2")){lote2.setText("");}
         sw3.setEnabled(con.DAOSwitchBool(columna, "3"));
+        if (!con.DAOSwitchBool(columna, "3")){lote3.setText("");}
         sw4.setEnabled(con.DAOSwitchBool(columna, "4"));
+        if (!con.DAOSwitchBool(columna, "4")){lote4.setText("");}
         sw5.setEnabled(con.DAOSwitchBool(columna, "5"));
+        if (!con.DAOSwitchBool(columna, "5")){lote5.setText("");}
         sw6.setEnabled(con.DAOSwitchBool(columna, "6"));
+        if (!con.DAOSwitchBool(columna, "6")){lote6.setText("");}
         sw7.setEnabled(con.DAOSwitchBool(columna, "7"));
+        if (!con.DAOSwitchBool(columna, "7")){lote7.setText("");}
         sw8.setEnabled(con.DAOSwitchBool(columna, "8"));
+        if (!con.DAOSwitchBool(columna, "8")){lote8.setText("");}
         sw9.setEnabled(con.DAOSwitchBool(columna, "9"));
+        if (!con.DAOSwitchBool(columna, "9")){lote9.setText("");}
 
         sw11.setEnabled(con.DAOSwitchBool(columna, "11"));
+        if (!con.DAOSwitchBool(columna, "11")){lote11.setText("");}
         sw12.setEnabled(con.DAOSwitchBool(columna, "12"));
+        if (!con.DAOSwitchBool(columna, "12")){lote12.setText("");}
         sw13.setEnabled(con.DAOSwitchBool(columna, "13"));
+        if (!con.DAOSwitchBool(columna, "13")){lote13.setText("");}
         sw14.setEnabled(con.DAOSwitchBool(columna, "14"));
+        if (!con.DAOSwitchBool(columna, "14")){lote14.setText("");}
         sw15.setEnabled(con.DAOSwitchBool(columna, "15"));
+        if (!con.DAOSwitchBool(columna, "15")){lote15.setText("");}
         sw16.setEnabled(con.DAOSwitchBool(columna, "16"));
+        if (!con.DAOSwitchBool(columna, "16")){lote16.setText("");}
         sw17.setEnabled(con.DAOSwitchBool(columna, "17"));
+        if (!con.DAOSwitchBool(columna, "17")){lote17.setText("");}
         sw18.setEnabled(con.DAOSwitchBool(columna, "18"));
+        if (!con.DAOSwitchBool(columna, "18")){lote18.setText("");}
     }
     public void cambia_texto_cantidad(String tv1,String tv2,String tv3,String tv4,String tv5,String tv6,String tv7,String tv8,
                                       String tv9,String tv11,String tv12,String tv13,String tv14,String tv15,String tv16,String tv17,String tv18){
