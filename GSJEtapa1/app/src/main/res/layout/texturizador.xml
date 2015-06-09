@@ -467,17 +467,7 @@
             android:layout_alignLeft="@+id/textView110"
             android:layout_alignStart="@+id/textView110" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MP021-TAE Antibac RD "
-            android:textColor="@android:color/black"
-            android:textSize="25dp"
-            android:id="@+id/textView112"
-            android:layout_marginTop="25dp"
-            android:layout_below="@+id/textView111"
-            android:layout_alignLeft="@+id/textView111"
-            android:layout_alignStart="@+id/textView111" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -487,9 +477,9 @@
             android:textSize="25dp"
             android:id="@+id/textView113"
             android:layout_marginTop="25dp"
-            android:layout_below="@+id/textView112"
-            android:layout_alignLeft="@+id/textView112"
-            android:layout_alignStart="@+id/textView112" />
+            android:layout_below="@+id/textView111"
+            android:layout_alignLeft="@+id/textView111"
+            android:layout_alignStart="@+id/textView111" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -662,14 +652,7 @@
             android:layout_alignLeft="@+id/swt8"
             android:layout_alignStart="@+id/swt8" />
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/swt10"
-            android:checked="false"
-            android:layout_alignTop="@+id/textView127"
-            android:layout_alignLeft="@+id/swt9"
-            android:layout_alignStart="@+id/swt9" />
+
 
         <Switch
             android:layout_width="wrap_content"
@@ -677,8 +660,8 @@
             android:id="@+id/swt11"
             android:checked="false"
             android:layout_alignTop="@+id/textView113"
-            android:layout_alignLeft="@+id/swt10"
-            android:layout_alignStart="@+id/swt10" />
+            android:layout_alignLeft="@+id/swt9"
+            android:layout_alignStart="@+id/swt9" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -704,8 +687,8 @@
             android:id="@+id/swt14"
             android:checked="false"
             android:layout_alignBottom="@+id/textView131"
-            android:layout_alignLeft="@+id/swt13"
-            android:layout_alignStart="@+id/swt13" />
+            android:layout_alignLeft="@+id/swt12"
+            android:layout_alignStart="@+id/swt12" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -713,8 +696,8 @@
             android:id="@+id/swt15"
             android:checked="false"
             android:layout_alignBottom="@+id/textView132"
-            android:layout_alignLeft="@+id/swt14"
-            android:layout_alignStart="@+id/swt14" />
+            android:layout_alignLeft="@+id/swt13"
+            android:layout_alignStart="@+id/swt13" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -722,8 +705,8 @@
             android:id="@+id/swt16"
             android:checked="false"
             android:layout_alignBottom="@+id/textView133"
-            android:layout_alignLeft="@+id/swt15"
-            android:layout_alignStart="@+id/swt15" />
+            android:layout_alignLeft="@+id/swt14"
+            android:layout_alignStart="@+id/swt14" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -731,8 +714,8 @@
             android:id="@+id/swt17"
             android:checked="false"
             android:layout_alignTop="@+id/textView119"
-            android:layout_alignLeft="@+id/swt16"
-            android:layout_alignStart="@+id/swt16" />
+            android:layout_alignLeft="@+id/swt15"
+            android:layout_alignStart="@+id/swt15" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -740,8 +723,8 @@
             android:id="@+id/swt18"
             android:checked="false"
             android:layout_alignBottom="@+id/textView135"
-            android:layout_alignLeft="@+id/swt17"
-            android:layout_alignStart="@+id/swt17" />
+            android:layout_alignLeft="@+id/swt16"
+            android:layout_alignStart="@+id/swt16" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -798,16 +781,7 @@
             android:layout_toRightOf="@+id/editText72"
             android:layout_toEndOf="@+id/editText72" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lote"
-            android:textColor="@android:color/black"
-            android:textSize="25dp"
-            android:id="@+id/textView127"
-            android:layout_alignBottom="@+id/textView112"
-            android:layout_toRightOf="@+id/editText72"
-            android:layout_toEndOf="@+id/editText72" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -948,15 +922,7 @@
             android:layout_alignLeft="@+id/ettlot7"
             android:layout_alignStart="@+id/ettlot7" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ettlot10"
-            android:layout_alignBottom="@+id/textView127"
-            android:layout_alignRight="@+id/ettlot9"
-            android:layout_alignEnd="@+id/ettlot9"
-            android:layout_alignLeft="@+id/ettlot16"
-            android:layout_alignStart="@+id/ettlot16" />
+
 
         <EditText
             android:layout_width="wrap_content"
@@ -965,16 +931,16 @@
             android:layout_alignBottom="@+id/textView128"
             android:layout_alignRight="@+id/ettlot9"
             android:layout_alignEnd="@+id/ettlot9"
-            android:layout_alignLeft="@+id/ettlot10"
-            android:layout_alignStart="@+id/ettlot10" />
+            android:layout_alignLeft="@+id/ettlot9"
+            android:layout_alignStart="@+id/ettlot9" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/ettlot12"
             android:layout_alignBottom="@+id/textView129"
-            android:layout_alignLeft="@+id/ettlot10"
-            android:layout_alignStart="@+id/ettlot10"
+            android:layout_alignLeft="@+id/ettlot9"
+            android:layout_alignStart="@+id/ettlot9"
             android:layout_alignRight="@+id/ettlot11"
             android:layout_alignEnd="@+id/ettlot11" />
 
@@ -1148,16 +1114,7 @@
             android:layout_toRightOf="@+id/textView102"
             android:layout_toEndOf="@+id/textView102" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0.2"
-            android:textSize="25dp"
-            android:textColor="#98002E"
-            android:id="@+id/tvtm10"
-            android:layout_above="@+id/textView113"
-            android:layout_toRightOf="@+id/textView102"
-            android:layout_toEndOf="@+id/textView102" />
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -1167,8 +1124,8 @@
             android:textColor="#98002E"
             android:id="@+id/tvtm11"
             android:layout_alignTop="@+id/textView113"
-            android:layout_alignLeft="@+id/tvtm10"
-            android:layout_alignStart="@+id/tvtm10" />
+            android:layout_alignLeft="@+id/tvtm9"
+            android:layout_alignStart="@+id/tvtm9" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -1254,7 +1211,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="50dp"
             android:layout_below="@+id/textView120"
-            android:visibility="invisible"
+            android:visibility="visible"
             android:layout_alignLeft="@+id/textView120"
             android:layout_alignStart="@+id/textView120"
             android:layout_alignRight="@+id/ettlot18"

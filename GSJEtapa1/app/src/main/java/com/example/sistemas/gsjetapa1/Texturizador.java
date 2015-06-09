@@ -54,14 +54,14 @@ public class Texturizador extends ActionBarActivity {
     private String texturizador_select, datos_cambiados;
     private int in1=0,in2=0,in3=0,in4=0,in5=0,in6=0,in7=0,in8=0,in9=0,in10=0,in11=0,in12=0,in13=0,in14=0,in15=0,in16=0,in17=0,in18=0,numero_conse=0;
     private static TextView Fecha,Lote;
-    private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
-    private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
-    private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote10,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,
+    private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
+    private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
+    private EditText lote1,lote2,lote3,lote4,lote5,lote6,lote7,lote8,lote9,lote11,lote12,lote13,lote14,lote15,lote16,lote17,lote18,
             kilos_tot, etObservaciones;
     private Button Regresar;
     private ImageButton Guardar;
     private RelativeLayout layoutObservaciones;
-    private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
+    private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
@@ -105,7 +105,7 @@ public class Texturizador extends ActionBarActivity {
         tvtm7=(TextView)findViewById(R.id.tvtm7);
         tvtm8=(TextView)findViewById(R.id.tvtm8);
         tvtm9=(TextView)findViewById(R.id.tvtm9);
-        tvtm10=(TextView)findViewById(R.id.tvtm10);
+
         tvtm11=(TextView)findViewById(R.id.tvtm11);
         tvtm12=(TextView)findViewById(R.id.tvtm12);
         tvtm13=(TextView)findViewById(R.id.tvtm13);
@@ -124,7 +124,7 @@ public class Texturizador extends ActionBarActivity {
         tvtx7=(TextView)findViewById(R.id.textView109);
         tvtx8=(TextView)findViewById(R.id.textView110);
         tvtx9=(TextView)findViewById(R.id.textView111);
-        tvtx10=(TextView)findViewById(R.id.textView112);
+
         tvtx11=(TextView)findViewById(R.id.textView113);
         tvtx12=(TextView)findViewById(R.id.textView114);
         tvtx13=(TextView)findViewById(R.id.textView115);
@@ -144,7 +144,7 @@ public class Texturizador extends ActionBarActivity {
         lote7=(EditText)findViewById(R.id.ettlot7);
         lote8=(EditText)findViewById(R.id.ettlot8);
         lote9=(EditText)findViewById(R.id.ettlot9);
-        lote10=(EditText)findViewById(R.id.ettlot10);
+
         lote11=(EditText)findViewById(R.id.ettlot11);
         lote12=(EditText)findViewById(R.id.ettlot12);
         lote13=(EditText)findViewById(R.id.ettlot13);
@@ -331,24 +331,7 @@ public class Texturizador extends ActionBarActivity {
             }
         });
 
-        sw10=(Switch)findViewById(R.id.swt10);
-        lote10.setEnabled(false);
-        sw10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-
-                if(isChecked){
-                    lote10.setEnabled(true);
-                    in10=1;
-                }else{
-                    lote10.setEnabled(false);
-                    in10=0;
-                }
-
-            }
-        });
 
         sw11=(Switch)findViewById(R.id.swt11);
         lote11.setEnabled(false);
@@ -661,7 +644,7 @@ public class Texturizador extends ActionBarActivity {
                     }
                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
-                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
                             tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
@@ -673,7 +656,7 @@ public class Texturizador extends ActionBarActivity {
                 else {
                     exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
-                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm10.getText().toString(), lote10.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
+                            tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
                             tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
@@ -831,13 +814,7 @@ public class Texturizador extends ActionBarActivity {
         {
             tvtx9.setTextColor(getResources().getColor(R.color.desac));
         }
-        if(con.DAOSwitchBool(columna,"10")) {
-            tvtx10.setTextColor(getResources().getColor(R.color.act));
-        }
-        else
-        {
-            tvtx10.setTextColor(getResources().getColor(R.color.desac));
-        }
+
         if(con.DAOSwitchBool(columna,"11")) {
             tvtx11.setTextColor(getResources().getColor(R.color.act));
         }
@@ -905,7 +882,7 @@ public class Texturizador extends ActionBarActivity {
         sw7.setEnabled(con.DAOSwitchBool(columna, "7"));
         sw8.setEnabled(con.DAOSwitchBool(columna, "8"));
         sw9.setEnabled(con.DAOSwitchBool(columna, "9"));
-        sw10.setEnabled(con.DAOSwitchBool(columna, "10"));
+
         sw11.setEnabled(con.DAOSwitchBool(columna, "11"));
         sw12.setEnabled(con.DAOSwitchBool(columna, "12"));
         sw13.setEnabled(con.DAOSwitchBool(columna, "13"));
@@ -916,7 +893,7 @@ public class Texturizador extends ActionBarActivity {
         sw18.setEnabled(con.DAOSwitchBool(columna, "18"));
     }
     public void cambia_texto_cantidad(String tv1,String tv2,String tv3,String tv4,String tv5,String tv6,String tv7,String tv8,
-                                      String tv9,String tv10,String tv11,String tv12,String tv13,String tv14,String tv15,String tv16,String tv17,String tv18){
+                                      String tv9,String tv11,String tv12,String tv13,String tv14,String tv15,String tv16,String tv17,String tv18){
         tvtm1.setText(tv1);
         tvtm2.setText(tv2);
         tvtm3.setText(tv3);
@@ -926,7 +903,7 @@ public class Texturizador extends ActionBarActivity {
         tvtm7.setText(tv7);
         tvtm8.setText(tv8);
         tvtm9.setText(tv9);
-        tvtm10.setText(tv10);
+
         tvtm11.setText(tv11);
         tvtm12.setText(tv12);
         tvtm13.setText(tv13);
@@ -946,7 +923,7 @@ public class Texturizador extends ActionBarActivity {
         sw7.setChecked(false);
         sw8.setChecked(false);
         sw9.setChecked(false);
-        sw10.setChecked(false);
+
         sw11.setChecked(false);
         sw12.setChecked(false);
         sw13.setChecked(false);
@@ -967,7 +944,7 @@ public class Texturizador extends ActionBarActivity {
             lote7.setText("");
             lote8.setText("");
             lote9.setText("");
-            lote10.setText("");
+
             lote11.setText("");
             lote12.setText("");
             lote13.setText("");
@@ -1037,12 +1014,7 @@ public class Texturizador extends ActionBarActivity {
         else {
             tvtm9.setText("");
         }
-        if(sw10.isEnabled()) {
-            tvtm10.setText(con.DAOValoresActuales(columna, "10"));
-        }
-        else {
-            tvtm10.setText("");
-        }
+
         if(sw11.isEnabled()) {
             tvtm11.setText(con.DAOValoresActuales(columna, "11"));
         }
@@ -1103,7 +1075,7 @@ public class Texturizador extends ActionBarActivity {
         sw7.setChecked(con.DAOSwitchBool(columna,"7"));
         sw8.setChecked(con.DAOSwitchBool(columna,"8"));
         sw9.setChecked(con.DAOSwitchBool(columna,"9"));
-        sw10.setChecked(con.DAOSwitchBool(columna,"10"));
+
         sw11.setChecked(con.DAOSwitchBool(columna,"11"));
         sw12.setChecked(con.DAOSwitchBool(columna,"12"));
         sw13.setChecked(con.DAOSwitchBool(columna,"13"));
@@ -1127,7 +1099,7 @@ public class Texturizador extends ActionBarActivity {
         lote7.setText(cursor.getString(cursor.getColumnIndex("lote_mp008")));
         lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp009")));
         lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp010")));
-        lote10.setText(cursor.getString(cursor.getColumnIndex("lote_mp021")));
+
         lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
         lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp026")));
         lote13.setText(cursor.getString(cursor.getColumnIndex("lote_mp027")));
@@ -1174,9 +1146,6 @@ public class Texturizador extends ActionBarActivity {
         }
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp010")).equals(lote9.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP010 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp010")) + ", Valor Nuevo: " + lote9.getText().toString() + "; ";
-        }
-        if (!(cursor.getString(cursor.getColumnIndex("lote_mp021")).equals(lote10.getText().toString()))){
-            datos_cambiados = datos_cambiados + "MP021 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp021")) + ", Valor Nuevo: " + lote10.getText().toString() + "; ";
         }
         if (!(cursor.getString(cursor.getColumnIndex("lote_mp025")).equals(lote11.getText().toString()))){
             datos_cambiados = datos_cambiados + "MP025 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp025")) + ", Valor Nuevo: " + lote11.getText().toString() + "; ";
@@ -1246,8 +1215,6 @@ public class Texturizador extends ActionBarActivity {
             request.addProperty("lote_mp009", lote8.getText().toString());
             request.addProperty("mp010", tvtx9.getText().toString());
             request.addProperty("lote_mp010", lote9.getText().toString());
-            request.addProperty("mp021", tvtx10.getText().toString());
-            request.addProperty("lote_mp021", lote10.getText().toString());
             request.addProperty("mp025", tvtx11.getText().toString());
             request.addProperty("lote_mp025", lote11.getText().toString());
             request.addProperty("mp026", tvtx12.getText().toString());

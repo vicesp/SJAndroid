@@ -1,0 +1,347 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:textSize="25dp"
+        android:textColor="#98002E"
+        android:text=""
+        android:layout_marginTop="85dp"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fechaText"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:text="Fecha"
+        android:layout_above="@+id/tvLCProducto"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_toEndOf="@+id/editText" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/fechaText1"
+        android:layout_marginLeft="40dp"
+        android:textColor="#98002E"
+        android:text=""
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/tvLCNombre"
+        android:layout_toEndOf="@+id/tvLCNombre"
+        android:layout_marginStart="40dp" />
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/editText" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/fechaText1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="LABORATORIO CALIDAD"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="32dp"
+        android:id="@+id/textView19"
+        android:layout_below="@+id/btnRegPendiLista"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:id="@+id/btnRegPendiLista"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView2"
+        android:layout_alignEnd="@+id/imageView2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote     "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/tvLCLote"
+        android:layout_alignBottom="@+id/tvLCLotePendiente"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/tvLCLotePendiente"
+        android:layout_above="@+id/tvLCProducto"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_alignRight="@+id/btnECP"
+        android:layout_alignEnd="@+id/btnECP" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seleccionar Familia"
+        android:background="@android:color/transparent"
+        android:id="@+id/btnECP"
+        android:layout_alignBottom="@+id/tvLCProducto"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Familia"
+        android:id="@+id/tvLCProducto"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/fechaText1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tvLCNombre"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:text="Nombre"
+        android:layout_alignBottom="@+id/btnECP"
+        android:layout_alignLeft="@+id/fechaText"
+        android:layout_alignStart="@+id/fechaText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Código"
+        android:id="@+id/tvLCCodigo"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/tvLCProducto"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/textView208"
+        android:textColor="#98002E"
+        android:text=""
+        android:layout_alignBottom="@+id/btnECP"
+        android:layout_alignLeft="@+id/fechaText1"
+        android:layout_alignStart="@+id/fechaText1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/tvLCCodigo1"
+        android:textColor="#98002E"
+        android:text=""
+        android:layout_alignTop="@+id/tvLCCodigo"
+        android:layout_alignLeft="@+id/btnECP"
+        android:layout_alignStart="@+id/btnECP" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageView14"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/tvLCCodigo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRUEBAS SENSORIALES"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView136"
+        android:layout_alignTop="@+id/imageView14"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Apariencia     "
+        android:id="@+id/switchApariencia"
+        android:layout_below="@+id/imageView14"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Color               "
+        android:id="@+id/switchColor"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/switchApariencia"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sabor    "
+        android:id="@+id/switchSabor"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_below="@+id/imageView14"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_toEndOf="@+id/editText" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aroma  "
+        android:id="@+id/switchAroma"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/switchColor"
+        android:layout_alignLeft="@+id/switchSabor"
+        android:layout_alignStart="@+id/switchSabor" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageViewFuncional"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/switchAroma"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRUEBAS FUNCIONALES"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView137"
+        android:layout_alignTop="@+id/imageViewFuncional"
+        android:layout_centerHorizontal="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rallado"
+        android:id="@+id/switchRallado"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_below="@+id/imageViewFuncional"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:id="@+id/textView112"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignBottom="@+id/switchRallado"
+        android:layout_toRightOf="@+id/switchColor"
+        android:layout_toEndOf="@+id/switchColor" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText7"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/textView112"
+        android:layout_alignRight="@+id/imageViewFuncional"
+        android:layout_alignEnd="@+id/imageViewFuncional"
+        android:layout_toRightOf="@+id/textView112"
+        android:layout_toEndOf="@+id/textView112" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fundido"
+        android:id="@+id/switchFundido"
+        android:checked="false"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/switchRallado"
+        android:layout_marginTop="25dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:id="@+id/textView127"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/switchFundido"
+        android:layout_toRightOf="@+id/switchApariencia"
+        android:layout_toEndOf="@+id/switchApariencia" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText8"
+        android:textSize="25dp"
+        android:layout_alignBottom="@+id/textView127"
+        android:layout_alignLeft="@+id/editText7"
+        android:layout_alignStart="@+id/editText7"
+        android:layout_alignRight="@+id/imageViewFuncional"
+        android:layout_alignEnd="@+id/imageViewFuncional" />
+
+
+</RelativeLayout>
+
+

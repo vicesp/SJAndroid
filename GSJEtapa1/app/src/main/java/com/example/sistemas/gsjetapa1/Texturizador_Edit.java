@@ -37,13 +37,13 @@ public class Texturizador_Edit extends ActionBarActivity {
     private Spinner spFamiliaTextu;
     private static consultas con;
     private static ArrayAdapter adapter;
-    private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw10,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
-    private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx10,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
-    private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm10,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
-    private EditText valNuevo1, valNuevo2, valNuevo3, valNuevo4, valNuevo5, valNuevo6, valNuevo7, valNuevo8, valNuevo9, valNuevo10, valNuevo11,
+    private Switch sw1,sw2,sw3,sw4,sw5,sw6,sw7,sw8,sw9,sw11,sw12,sw13,sw14,sw15,sw16,sw17,sw18;
+    private TextView tvtx1,tvtx2,tvtx3,tvtx4,tvtx5,tvtx6,tvtx7,tvtx8,tvtx9,tvtx11,tvtx12,tvtx13,tvtx14,tvtx15,tvtx16,tvtx17,tvtx18;
+    private TextView tvtm1,tvtm2,tvtm3,tvtm4,tvtm5,tvtm6,tvtm7,tvtm8,tvtm9,tvtm11,tvtm12,tvtm13,tvtm14,tvtm15,tvtm16,tvtm17,tvtm18;
+    private EditText valNuevo1, valNuevo2, valNuevo3, valNuevo4, valNuevo5, valNuevo6, valNuevo7, valNuevo8, valNuevo9, valNuevo11,
                      valNuevo12, valNuevo13, valNuevo14, valNuevo15, valNuevo16, valNuevo17, valNuevo18, etObservaciones ;
     private Button Guardar,Buscador;
-    private int in1=0,in2=0,in3=0,in4=0,in5=0,in6=0,in7=0,in8=0,in9=0,in10=0,in11=0,in12=0,in13=0,in14=0,in15=0,in16=0,in17=0,in18=0,numero_conse=0;
+    private int in1=0,in2=0,in3=0,in4=0,in5=0,in6=0,in7=0,in8=0,in9=0,in11=0,in12=0,in13=0,in14=0,in15=0,in16=0,in17=0,in18=0,numero_conse=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -239,26 +239,7 @@ public class Texturizador_Edit extends ActionBarActivity {
 
             }
         });
-        sw10=(Switch)findViewById(R.id.swt10);
-        sw10.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
-
-                if(isChecked){
-                    valNuevo10.setEnabled(true);
-                    in10=1;
-                    tvtx10.setTextColor(getResources().getColor(R.color.act));
-                }else{
-                    valNuevo10.setEnabled(false);
-                    in10=0;
-                    tvtx10.setTextColor(getResources().getColor(R.color.desac));
-                    tvtm10.setText("");
-                }
-
-            }
-        });
         sw11=(Switch)findViewById(R.id.swt11);
         sw11.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -436,7 +417,6 @@ public class Texturizador_Edit extends ActionBarActivity {
         tvtm7 = (TextView) findViewById(R.id.textView307);
         tvtm8 = (TextView) findViewById(R.id.textView308);
         tvtm9 = (TextView) findViewById(R.id.textView309);
-        tvtm10 = (TextView) findViewById(R.id.textView310);
         tvtm11 = (TextView) findViewById(R.id.textView311);
         tvtm12 = (TextView) findViewById(R.id.textView312);
         tvtm13 = (TextView) findViewById(R.id.textView313);
@@ -455,7 +435,7 @@ public class Texturizador_Edit extends ActionBarActivity {
         tvtx7 = (TextView) findViewById(R.id.textView109);
         tvtx8 = (TextView) findViewById(R.id.textView110);
         tvtx9 = (TextView) findViewById(R.id.textView111);
-        tvtx10 = (TextView) findViewById(R.id.textView112);
+
         tvtx11 = (TextView) findViewById(R.id.textView113);
         tvtx12 = (TextView) findViewById(R.id.textView114);
         tvtx13 = (TextView) findViewById(R.id.textView115);
@@ -478,7 +458,7 @@ public class Texturizador_Edit extends ActionBarActivity {
         valNuevo7 = (EditText) findViewById(R.id.valNuevo7);
         valNuevo8 = (EditText) findViewById(R.id.valNuevo8);
         valNuevo9 = (EditText) findViewById(R.id.valNuevo9);
-        valNuevo10 = (EditText) findViewById(R.id.valNuevo10);
+
         valNuevo11 = (EditText) findViewById(R.id.valNuevo11);
         valNuevo12 = (EditText) findViewById(R.id.valNuevo12);
         valNuevo13 = (EditText) findViewById(R.id.valNuevo13);
@@ -496,7 +476,6 @@ public class Texturizador_Edit extends ActionBarActivity {
         llena_Texturizador(con.DAODescripcionTexturizador());
 
         spFamiliaTextu.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
@@ -764,13 +743,8 @@ public class Texturizador_Edit extends ActionBarActivity {
         {
             tvtx9.setTextColor(getResources().getColor(R.color.desac));
         }
-        if(con.DAOSwitchBool(columna,"10")) {
-            tvtx10.setTextColor(getResources().getColor(R.color.act));
-        }
-        else
-        {
-            tvtx10.setTextColor(getResources().getColor(R.color.desac));
-        }
+
+
         if(con.DAOSwitchBool(columna,"11")) {
             tvtx11.setTextColor(getResources().getColor(R.color.act));
         }
@@ -840,7 +814,7 @@ public class Texturizador_Edit extends ActionBarActivity {
         valNuevo7.setText("");
         valNuevo8.setText("");
         valNuevo9.setText("");
-        valNuevo10.setText("");
+
         valNuevo11.setText("");
         valNuevo12.setText("");
         valNuevo13.setText("");
@@ -925,20 +899,13 @@ public class Texturizador_Edit extends ActionBarActivity {
         }
         if(sw9.isChecked()) {
             datos_cambiados = datos_cambiados+"MP010 Valor previo:"+tvtm9.getText().toString()+", ";
-            tvtm8.setText(con.DAOValoresActuales(columna, "9"));
+            tvtm9.setText(con.DAOValoresActuales(columna, "9"));
             datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm9.getText().toString()+";";
         }
         else {
             tvtm9.setText("");
         }
-        if(sw10.isChecked()) {
-            datos_cambiados = datos_cambiados+"MP021 Valor previo:"+tvtm10.getText().toString()+", ";
-            tvtm10.setText(con.DAOValoresActuales(columna, "10"));
-            datos_cambiados = datos_cambiados+"Valor nuevo:"+tvtm10.getText().toString()+";";
-        }
-        else {
-            tvtm10.setText("");
-        }
+
         if(sw11.isChecked()) {
             datos_cambiados = datos_cambiados+"MP025 Valor previo:"+tvtm11.getText().toString()+", ";
             tvtm11.setText(con.DAOValoresActuales(columna, "11"));
@@ -1019,7 +986,7 @@ public class Texturizador_Edit extends ActionBarActivity {
                 con.DAOGuardarValores("valor" + numeroCampo, 7, valNuevo7.getText().toString(), "valBool" + numeroCampo, in7) &&
                 con.DAOGuardarValores("valor" + numeroCampo, 8, valNuevo8.getText().toString(), "valBool" + numeroCampo, in8) &&
                 con.DAOGuardarValores("valor" + numeroCampo, 9, valNuevo9.getText().toString(), "valBool" + numeroCampo, in9) &&
-                con.DAOGuardarValores("valor" + numeroCampo, 10, valNuevo10.getText().toString(), "valBool" + numeroCampo, in10) &&
+
                 con.DAOGuardarValores("valor" + numeroCampo, 11, valNuevo11.getText().toString(), "valBool" + numeroCampo, in11) &&
                 con.DAOGuardarValores("valor" + numeroCampo, 12, valNuevo12.getText().toString(), "valBool" + numeroCampo, in12) &&
                 con.DAOGuardarValores("valor" + numeroCampo, 13, valNuevo13.getText().toString(), "valBool" + numeroCampo, in13) &&
@@ -1042,7 +1009,7 @@ public class Texturizador_Edit extends ActionBarActivity {
         sw7.setChecked(con.DAOSwitchBool(columna, "7"));
         sw8.setChecked(con.DAOSwitchBool(columna, "8"));
         sw9.setChecked(con.DAOSwitchBool(columna, "9"));
-        sw10.setChecked(con.DAOSwitchBool(columna, "10"));
+
         sw11.setChecked(con.DAOSwitchBool(columna, "11"));
         sw12.setChecked(con.DAOSwitchBool(columna, "12"));
         sw13.setChecked(con.DAOSwitchBool(columna, "13"));
@@ -1060,7 +1027,7 @@ public class Texturizador_Edit extends ActionBarActivity {
         valNuevo7.setEnabled(con.DAOSwitchBool(columna,"7"));
         valNuevo8.setEnabled(con.DAOSwitchBool(columna,"8"));
         valNuevo9.setEnabled(con.DAOSwitchBool(columna,"9"));
-        valNuevo10.setEnabled(con.DAOSwitchBool(columna,"10"));
+
         valNuevo11.setEnabled(con.DAOSwitchBool(columna,"11"));
         valNuevo12.setEnabled(con.DAOSwitchBool(columna,"12"));
         valNuevo13.setEnabled(con.DAOSwitchBool(columna,"13"));

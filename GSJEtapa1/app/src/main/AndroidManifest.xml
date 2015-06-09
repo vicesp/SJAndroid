@@ -83,6 +83,10 @@
             android:name=".Fundido_Realizados"
             android:label="@string/title_activity_fundido__realizados" >
         </activity>
+        <activity
+            android:name=".Laboratorio_Calidad"
+            android:label="@string/title_activity_laboratorio__calidad" >
+        </activity>
     </application>
 
 </manifest>

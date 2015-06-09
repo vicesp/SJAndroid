@@ -713,7 +713,7 @@ public class consultas {
                                    String mp004,String lote_mp004,String mp005, String lote_mp005,
                                    String mp006,String lote_mp006,String mp007,String lote_mp007,
                                    String mp008,String lote_mp008,String mp009,String lote_mp009,
-                                   String mp010,String lote_mp010,String mp021,String lote_mp021,String mp025,
+                                   String mp010,String lote_mp010,String mp025,
                               String lote_mp025,String mp026,String lote_mp026,String mp027,String lote_mp027,
                                    String mp028,String lote_mp028,String mp031,String lote_mp031,String mp012,
                               String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo){
@@ -725,7 +725,7 @@ public class consultas {
         try {
             db.execSQL("INSERT INTO texturizador (" +
                     " lote,fecha,texturizador,mp002,lote_mp002,mp003,lote_mp003,mp004,lote_mp004,mp005,lote_mp005,mp006,lote_mp006,mp007,lote_mp007," +
-                    "mp008,lote_mp008,mp009,lote_mp009,mp010,lote_mp010,mp021,lote_mp021,mp025,lote_mp025,mp026,lote_mp026,mp027,lote_mp027,mp028," +
+                    "mp008,lote_mp008,mp009,lote_mp009,mp010,lote_mp010,mp025,lote_mp025,mp026,lote_mp026,mp027,lote_mp027,mp028," +
                     "lote_mp028,mp031,lote_mp031,mp012,lote_mp012,mp013,lote_mp013,mp014,lote_mp014,kilos_totales,num_consecutivo) " +
                     "VALUES ('" + lote + "','"
                     + fecha + "','"
@@ -748,8 +748,6 @@ public class consultas {
                     + lote_mp009 + "','"
                     + mp010 + "','"
                     + lote_mp010 + "','"
-                    + mp021 + "','"
-                    + lote_mp021 + "','"
                     + mp025 + "','"
                     + lote_mp025 + "','"
                     + mp026 + "','"
@@ -785,7 +783,7 @@ public class consultas {
                                        String mp004,String lote_mp004,String mp005, String lote_mp005,
                                        String mp006,String lote_mp006,String mp007,String lote_mp007,
                                        String mp008,String lote_mp008,String mp009,String lote_mp009,
-                                       String mp010,String lote_mp010,String mp021,String lote_mp021,String mp025,
+                                       String mp010,String lote_mp010,String mp025,
                                        String lote_mp025,String mp026,String lote_mp026,String mp027,String lote_mp027,
                                        String mp028,String lote_mp028,String mp031,String lote_mp031,String mp012,
                                        String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo)
@@ -816,8 +814,6 @@ public class consultas {
                     + "lote_mp009 = '" + lote_mp009 + "',"
                     + "mp010 = '" + mp010 + "',"
                     + "lote_mp010 = '" + lote_mp010 + "',"
-                    + "mp021 = '" + mp021 + "',"
-                    + "lote_mp021 = '" + lote_mp021 + "',"
                     + "mp025 = '" + mp025 + "',"
                     + "lote_mp025 = '" + lote_mp025 + "',"
                     + "mp026 = '" + mp026 + "',"
