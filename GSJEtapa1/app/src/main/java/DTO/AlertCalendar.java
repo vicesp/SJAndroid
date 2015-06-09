@@ -109,8 +109,8 @@ public class AlertCalendar  {
     public String Consulta(){
 
         if (Variables.getTipo_consulta()==1) {
-            //armado = "select * from " + Variables.getNombre_tabla() + " where fecha LIKE '"+Variables.getFechaExportacion()+"%'";
-            armado = "select * from " + "bitacora" + " where fecha LIKE '"+Variables.getFechaExportacion()+"%'";
+            armado = "select * from " + Variables.getNombre_tabla() + " where fecha LIKE '"+Variables.getFechaExportacion()+"%'";
+            //armado = "select * from " + "bitacora" + " where fecha LIKE '"+Variables.getFechaExportacion()+"%'";
         }
         else{ //Para consulta cuajado junto con aditivos
             armado = "select c.fecha, c.lote, c.silo,c.num_equipo ,c.num_tina ,c.familia ,c.leche_silo ,c.ph_leche ,c.porcen_grasa_leche ," +
