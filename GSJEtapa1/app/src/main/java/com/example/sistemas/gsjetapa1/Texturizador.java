@@ -80,6 +80,7 @@ public class Texturizador extends ActionBarActivity {
         con=new consultas();
         var= new Variables();
 
+
         datos_cambiados="";
 
 
@@ -663,7 +664,8 @@ public class Texturizador extends ActionBarActivity {
                 }
                 if (exitoso) {
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
-
+                    GuardaTexturizador g = new GuardaTexturizador();
+                    g.execute();
                     //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
                     numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
                     numero_conse += 1;

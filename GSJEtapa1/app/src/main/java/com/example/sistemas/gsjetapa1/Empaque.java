@@ -488,124 +488,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         return super.onOptionsItemSelected(item);
     }
 
-    public class GuardaEmpaqueSync extends AsyncTask<String, Void, Boolean>
 
-    {
-        private final ProgressDialog dialog = new ProgressDialog(Empaque.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            this.dialog.setMessage("Enviando datos...");
-            this.dialog.show();
-        }
-
-        protected Boolean doInBackground(final String... args)
-
-        {
-
-            final String NAMESPACE = "http://serv_gsj.net/";
-            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
-            final String URL="http://"+ Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertaEmpaque";
-            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-            final int time=20000,time2=190000;
-
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-
-
-            /*Para tabla cuajado*/
-            request.addProperty("lote_origen", lote_origen.getText().toString());
-            request.addProperty("FechaH", ""+FechaH.Hoy_hora());
-            request.addProperty("codigo_prod", codigo_prod.getText().toString());
-            request.addProperty("nombre_pt", nombre_pt.getText().toString());
-            request.addProperty("lote_empaque", lote_empaque.getText().toString());
-            request.addProperty("tvP_entregadas", tvP_entregadas.getText().toString());
-            request.addProperty("p_reproceso", p_reproceso.getText().toString());
-            request.addProperty("temp", temp.getText().toString());
-            request.addProperty("hora_inicioPT", hora_inicioPT.getText().toString());
-            request.addProperty("cod_restos", cod_restos.getText().toString());
-            request.addProperty("lote_restos", lote_restos.getText().toString());
-            request.addProperty("cantidad_restos", cantidad_restos.getText().toString());
-            request.addProperty("maquina_usar_select", maquina_usar_select);
-            request.addProperty("vacio_ulma", vacio_ulma.getText().toString());
-            request.addProperty("gas_ulma", gas_ulma.getText().toString());
-            request.addProperty("temp_formado_ulma", temp_formado_ulma.getText().toString());
-            request.addProperty("temp_sellado_ulma", temp_sellado_ulma.getText().toString());
-            request.addProperty("oxigeno_ulma", oxigeno_ulma.getText().toString());
-            request.addProperty("vacio_ultravac", vacio_ultravac.getText().toString());
-            request.addProperty("temp_ultravac", temp_ultravac.getText().toString());
-            request.addProperty("hora_fin_ultravac", hora_fin_ultravac.getText().toString());
-            request.addProperty("lote_fondo", lote_fondo.getText().toString());
-            request.addProperty("lote_tapa", lote_tapa.getText().toString());
-            request.addProperty("lote_funda", lote_funda.getText().toString());
-            request.addProperty("observaciones", observaciones.getText().toString());
-            request.addProperty("piezas_emp", piezas_emp.getText().toString());
-            request.addProperty("piezas_calidad", piezas_calidad.getText().toString());
-
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.dotNet = true;
-            envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL,time);
-
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-
-                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
-                String mensaje = resultado_xml.toString();
-                if(mensaje.contentEquals("true")){
-                    //transporte.getConnection().disconnect();
-
-                    //transporte.getServiceConnection().disconnect();
-
-                    //transporte.reset();
-                    return true;
-                }
-                else{
-                    // transporte.getConnection().disconnect();
-                    //transporte.getServiceConnection().disconnect();
-                    //transporte.reset();
-                    Log.i("Mensaje", "Mensaje SOAP:    " + mensaje);
-                    return false;
-                }
-
-
-
-
-            }
-            catch (Exception e)
-            {
-                Log.i("Error","Error de Sincronizacion:  "+e);
-
-                return false;
-
-            }
-
-
-        }
-
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
-                this.dialog.dismiss();
-            }
-
-            if (success)
-            {
-                Toast.makeText(Empaque.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            else
-            {
-                Toast.makeText(Empaque.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
-            }
-        }}
 
     public void Alerta(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Empaque.this);
@@ -796,4 +679,123 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
 
     }
+    public class GuardaEmpaqueSync extends AsyncTask<String, Void, Boolean>
+
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Empaque.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Enviando datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+
+        {
+
+            final String NAMESPACE = "http://serv_gsj.net/";
+            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
+            final String URL="http://"+ Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaEmpaque";
+            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+            final int time=20000,time2=190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+
+
+            /*Para tabla cuajado*/
+            request.addProperty("lote_origen", lote_origen.getText().toString());
+            request.addProperty("FechaH", ""+FechaH.Hoy_hora());
+            request.addProperty("codigo_prod", codigo_prod.getText().toString());
+            request.addProperty("nombre_pt", nombre_pt.getText().toString());
+            request.addProperty("lote_empaque", lote_empaque.getText().toString());
+            request.addProperty("tvP_entregadas", tvP_entregadas.getText().toString());
+            request.addProperty("p_reproceso", p_reproceso.getText().toString());
+            request.addProperty("temp", temp.getText().toString());
+            request.addProperty("hora_inicioPT", hora_inicioPT.getText().toString());
+            request.addProperty("cod_restos", cod_restos.getText().toString());
+            request.addProperty("lote_restos", lote_restos.getText().toString());
+            request.addProperty("cantidad_restos", cantidad_restos.getText().toString());
+            request.addProperty("maquina_usar_select", maquina_usar_select);
+            request.addProperty("vacio_ulma", vacio_ulma.getText().toString());
+            request.addProperty("gas_ulma", gas_ulma.getText().toString());
+            request.addProperty("temp_formado_ulma", temp_formado_ulma.getText().toString());
+            request.addProperty("temp_sellado_ulma", temp_sellado_ulma.getText().toString());
+            request.addProperty("oxigeno_ulma", oxigeno_ulma.getText().toString());
+            request.addProperty("vacio_ultravac", vacio_ultravac.getText().toString());
+            request.addProperty("temp_ultravac", temp_ultravac.getText().toString());
+            request.addProperty("hora_fin_ultravac", hora_fin_ultravac.getText().toString());
+            request.addProperty("lote_fondo", lote_fondo.getText().toString());
+            request.addProperty("lote_tapa", lote_tapa.getText().toString());
+            request.addProperty("lote_funda", lote_funda.getText().toString());
+            request.addProperty("observaciones", observaciones.getText().toString());
+            request.addProperty("piezas_emp", piezas_emp.getText().toString());
+            request.addProperty("piezas_calidad", piezas_calidad.getText().toString());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL,time);
+
+            try
+            {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
+                String mensaje = resultado_xml.toString();
+                if(mensaje.contentEquals("true")){
+                    //transporte.getConnection().disconnect();
+
+                    //transporte.getServiceConnection().disconnect();
+
+                    //transporte.reset();
+                    return true;
+                }
+                else{
+                    // transporte.getConnection().disconnect();
+                    //transporte.getServiceConnection().disconnect();
+                    //transporte.reset();
+                    Log.i("Mensaje", "Mensaje SOAP:    " + mensaje);
+                    return false;
+                }
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                Log.i("Error","Error de Sincronizacion:  "+e);
+
+                return false;
+
+            }
+
+
+        }
+
+        protected void onPostExecute(final Boolean success)
+        {
+            if (this.dialog.isShowing())
+            {
+                this.dialog.dismiss();
+            }
+
+            if (success)
+            {
+                Toast.makeText(Empaque.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            else
+            {
+                Toast.makeText(Empaque.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
+            }
+        }}
 }
+
