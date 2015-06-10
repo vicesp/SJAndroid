@@ -26,5 +26,6 @@
     <string name="title_activity_cuajado__realizados">Cuajado_Realizados</string>
     <string name="title_activity_fundido__realizados">Fundido_Realizados</string>
     <string name="title_activity_laboratorio__calidad">Laboratorio_Calidad</string>
+    <string name="title_activity_realizados">Realizados</string>
 
 </resources>

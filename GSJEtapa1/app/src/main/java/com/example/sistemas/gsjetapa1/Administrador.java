@@ -17,9 +17,10 @@ import DTO.Variables;
 
 public class Administrador extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
+    private static Variables var;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class Administrador extends ActionBarActivity {
         setContentView(R.layout.administrador);
 
         FechaH=new Fecha_Hoy();
+        var= new Variables();
 
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
@@ -38,7 +40,8 @@ public class Administrador extends ActionBarActivity {
             public void onClick(View v) {
 
 
-                finish();startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
+                finish();
+                startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
             }
         });
 
@@ -79,6 +82,15 @@ public class Administrador extends ActionBarActivity {
             public void onClick(View v) {
 
 
+
+            }
+        });
+        btnLab=(Button)findViewById(R.id.btnLab);
+        btnLab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                var.setFromAdminLaboratorio(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
         });

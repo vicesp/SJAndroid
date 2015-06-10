@@ -32,21 +32,19 @@
         android:textSize="25dp"
         android:textColor="@android:color/black"
         android:text="Fecha"
-        android:layout_above="@+id/tvLCProducto"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
+        android:layout_below="@+id/imageView2"
+        android:layout_alignLeft="@+id/switchSabor"
+        android:layout_alignStart="@+id/switchSabor" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:id="@+id/fechaText1"
-        android:layout_marginLeft="40dp"
         android:textColor="#98002E"
         android:text=""
-        android:layout_below="@+id/imageView"
-        android:layout_toRightOf="@+id/tvLCProducto"
-        android:layout_toEndOf="@+id/tvLCProducto"
-        android:layout_marginStart="40dp" />
+        android:layout_alignTop="@+id/tvLCLote"
+        android:layout_toLeftOf="@+id/checkBox3"
+        android:layout_toStartOf="@+id/checkBox3" />
 
 
     <ImageView

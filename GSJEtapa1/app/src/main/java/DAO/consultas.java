@@ -1652,17 +1652,17 @@ public class consultas {
 
         try {
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo, apariencia,sabor," +
-                    "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
-                    "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                    "necesidad_remuestreo) VALUES ('" +
+                            "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
+                            "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
+                            "necesidad_remuestreo) VALUES ('" +
 
-                            fecha+"','"+ lote+"','"+familia+"','"+producto+"','"+
-                            codigo+"','"+apariencia+"','"+sabor+"','"+color+"','"+aroma+"','"+
-                            observaciones_sabor+"','"+rallado+"','"+observaciones_rallado+"','"+
-                            fundido+"','"+observaciones_fundido+"','"+hebrado+"','"+
-                            observaciones_hebrado+"','"+grasa_residual+"','"+humedad+"','"+ph+"','"+
-                            grasa_total+"','"+humedad_remuestreo+"','"+ph_remuestreo+"','"+
-                            grasa_remuestreo+"','"+necesidad_remuestreo+
+                            fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
+                            codigo + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
+                            observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
+                            fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
+                            observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
+                            grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
+                            grasa_remuestreo + "','" + necesidad_remuestreo +
 
                             "');"
             );
@@ -1671,6 +1671,70 @@ public class consultas {
         catch(SQLException e)
         {
             return false;
+        }
+    }
+
+    /****************    Consulta para Llenar la lista de lotes Laboratorio    *************/
+    public ArrayList<consultas> DAOListaLaboratorioRealizado(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM laboratorio_calidad WHERE fecha ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+
+    public Cursor DAOLLenarLaboratorio(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo, apariencia, sabor" +
+                    ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
+                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo " +
+
+                    "FROM laboratorio_calidad WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
         }
     }
 

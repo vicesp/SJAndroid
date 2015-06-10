@@ -2,12 +2,11 @@ package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.media.Image;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +29,7 @@ import java.util.Arrays;
 import DAO.consultas;
 import DTO.Dia_Juliano;
 import DTO.Fecha_Hoy;
+import DTO.Variables;
 
 
 public class Laboratorio_Calidad extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -37,12 +37,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
+
     private TextView Fecha,codigo_prod, producto;
     private Button btn_listviewdialog;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
     private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem;
-    private EditText lote, observaciones_sabor, observacion_rallado, observaciones_fundido, observaciones_hebrado,
+    private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
             humedad, ph, grasa_total, humRem, phRem, grasRem;
     private Spinner spinnerDiez;
 
@@ -51,6 +53,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private ArrayList<String> array_sort;
     int textlength=0;
     private AlertDialog myalertDialog=null;
+    protected Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var = new Variables();
 
 
         /*********** Text Views **************/
@@ -77,13 +81,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         Guardar.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
-                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), lote.getText().toString(),"", producto.getText().toString(),
-                                                   codigo_prod.getText().toString(), switchTexter(swApa.isActivated()),switchTexter(swSa.isActivated()),
-                                                   switchTexter(swCo.isActivated()),switchTexter(swAro.isActivated()), observaciones_sabor.getText().toString(),
-                                                   switchTexter(swRall.isSelected()), observacion_rallado.getText().toString(),"",observaciones_fundido.getText().toString(),
-                                                   switchTexter(swHeb.isSelected()),observaciones_hebrado.getText().toString(),"",humedad.getText().toString(), ph.getText().toString(),
+                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), "", producto.getText().toString(),
+                                                   codigo_prod.getText().toString(), switchTexter(swApa.isActivated()), switchTexter(swSa.isActivated()),
+                                                   switchTexter(swCo.isActivated()), switchTexter(swAro.isActivated()), observaciones_sabor.getText().toString(),
+                                                   switchTexter(swRall.isSelected()), observaciones_rallado.getText().toString(), "", observaciones_fundido.getText().toString(),
+                                                   switchTexter(swHeb.isSelected()), observaciones_hebrado.getText().toString(), "", humedad.getText().toString(), ph.getText().toString(),
                                                    grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                   "","");
+                                                   "", "");
                                            if(exitoso){
 
                                                Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -123,9 +127,9 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         });
 
         /************Edit Texts***************/
-        lote=(EditText)findViewById(R.id.tvLCLotePendiente);
+        Lote =(EditText)findViewById(R.id.tvLCLotePendiente);
         observaciones_sabor=(EditText)findViewById(R.id.editText17);
-        observacion_rallado=(EditText)findViewById(R.id.editText7);
+        observaciones_rallado=(EditText)findViewById(R.id.editText7);
         observaciones_fundido=(EditText)findViewById(R.id.editText8);
         observaciones_hebrado=(EditText)findViewById(R.id.editText9);
         humedad=(EditText)findViewById(R.id.editText10);
@@ -226,6 +230,15 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             }
         });
+
+        if(var.isFromLaboratorio())
+        {
+            llenarValoresBusqueda(var.getLoteLaboratorio());
+
+        }
+        else {
+
+        }
 
     }
 
@@ -350,6 +363,28 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+    }
+    public void llenarValoresBusqueda(String lote) {
+        cursor = con.DAOLLenarLaboratorio(lote);
+        Lote.setText(lote);
+        Lote.setEnabled(false);
+
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        producto.setText(cursor.getString(cursor.getColumnIndex("producto")));
+        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo")));
+        observaciones_sabor.setText(cursor.getString(cursor.getColumnIndex("observaciones_sabor")));
+        observaciones_rallado.setText(cursor.getString(cursor.getColumnIndex("observaciones_rallado")));
+        observaciones_fundido.setText(cursor.getString(cursor.getColumnIndex("observaciones_fundido")));
+        observaciones_hebrado.setText(cursor.getString(cursor.getColumnIndex("observaciones_hebrado")));
+        humedad.setText(cursor.getString(cursor.getColumnIndex("humedad")));
+        ph.setText(cursor.getString(cursor.getColumnIndex("ph")));
+        grasa_total.setText(cursor.getString(cursor.getColumnIndex("grasa_total")));
+        humRem.setText(cursor.getString(cursor.getColumnIndex("humedad_remuestreo")));
+        phRem.setText(cursor.getString(cursor.getColumnIndex("ph_remuestreo")));
+        grasRem.setText(cursor.getString(cursor.getColumnIndex("grasa_remuestreo")));
+
+        var.setFromLaboratorio(false);
 
     }
 }

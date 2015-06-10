@@ -136,8 +136,8 @@ public class Fundido_Realizados extends Activity implements AdapterView.OnItemCl
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        Variables.setFromEmpaque(true);
-        Variables.setLoteEmpaque(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+        Variables.setFromFundido(true);
+        Variables.setLoteFundido(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
         finish();startActivity(new Intent(Fundido_Realizados.this, Empaque.class));
     }
     @Override
