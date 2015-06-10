@@ -23,6 +23,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -49,7 +51,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             humedad, ph, grasa_total, humRem, phRem, grasRem;
     private Spinner spinnerDiez;
 
-    private String Nombre_PT[];
+    private String Nombre_PT[], numero;
     private String [] listaProductos;
     private ArrayList<String> array_sort;
     int textlength=0;
@@ -76,7 +78,57 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /********** Spinner ****************/
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
+        spinnerDiez.setOnItemSelectedListener(new OnItemSelectedListener() {
 
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+
+                switch (position)
+                {
+                    case 0:{
+                        numero="0";
+                    }
+                    case 1:{
+                        numero="10";
+                    }
+                    case 2:{
+                        numero="20";
+                    }
+                    case 3:{
+                        numero="30";
+                    }
+                    case 4:{
+                        numero="40";
+                    }
+                    case 5:{
+                        numero="50";
+                    }
+                    case 6:{
+                        numero="60";
+                    }
+                    case 7:{
+                        numero="70";
+                    }
+                    case 8:{
+                        numero="80";
+                    }
+                    case 9:{
+                        numero="90";
+                    }
+                    case 10:{
+                        numero="100";
+                    }
+
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
         /********** Image Button *****************/
         Guardar=(ImageButton)findViewById(R.id.guardarBtn);
@@ -86,7 +138,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                            boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), "", producto.getText().toString(),
                                                    codigo_prod.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                    switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
-                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), "", observaciones_fundido.getText().toString(),
+                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), numero, observaciones_fundido.getText().toString(),
                                                    switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                    grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
                                                    switchTexter(swRem.isChecked()), "");
