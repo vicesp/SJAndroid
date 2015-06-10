@@ -229,21 +229,20 @@
             android:textColor="@android:color/black"
             android:textSize="25dp"
             android:id="@+id/textView180"
+            android:layout_marginTop="54dp"
             android:layout_below="@+id/btnECuajado"
-            android:layout_toRightOf="@+id/textView177"
-            android:layout_toEndOf="@+id/textView177"
-            android:layout_marginTop="41dp" />
+            android:layout_alignLeft="@+id/btnECuajado"
+            android:layout_alignStart="@+id/btnECuajado" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PRODUCTO TERMINADO"
+            android:text="TERMINADO"
             android:textColor="@android:color/black"
             android:textSize="25dp"
             android:id="@+id/textView181"
-            android:layout_alignTop="@+id/textView180"
-            android:layout_toRightOf="@+id/textView178"
-            android:layout_toEndOf="@+id/textView178" />
+            android:layout_toLeftOf="@+id/editText66"
+            android:layout_alignTop="@+id/textView180" />
 
         <Button
             android:layout_width="wrap_content"
@@ -269,9 +268,8 @@
             android:id="@+id/btnEtexturizador"
             android:background="@drawable/d3"
             android:layout_below="@+id/textView180"
-            android:layout_marginRight="25dp"
-            android:layout_alignRight="@+id/textView180"
-            android:layout_alignEnd="@+id/textView180" />
+            android:layout_alignLeft="@+id/textView180"
+            android:layout_alignStart="@+id/textView180" />
 
         <Button
             android:layout_width="wrap_content"
@@ -279,8 +277,37 @@
             android:id="@+id/btnEpt"
             android:background="@drawable/d3"
             android:layout_below="@+id/textView181"
-            android:layout_toLeftOf="@+id/btnEempaque"
-            android:layout_toStartOf="@+id/btnEempaque" />
+            android:layout_alignLeft="@+id/btnEempaque"
+            android:layout_alignStart="@+id/btnEempaque" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnELab"
+            android:background="@drawable/d3"
+            android:layout_alignBottom="@+id/btnEtexturizador"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LABORATORIO"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView208"
+            android:layout_above="@+id/btnELab"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRODUCTO"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView218"
+            android:layout_above="@+id/textView181"
+            android:layout_alignRight="@+id/textView179"
+            android:layout_alignEnd="@+id/textView179" />
 
     </RelativeLayout>
 

@@ -48,7 +48,7 @@ public class Login extends Activity {
 
                 if(tipoUsuario==1)
                 {
-                    finish();startActivity(new Intent(Login.this, Laboratorio_Calidad.class));
+                    finish();startActivity(new Intent(Login.this, Exportar.class));
 
                 }
 

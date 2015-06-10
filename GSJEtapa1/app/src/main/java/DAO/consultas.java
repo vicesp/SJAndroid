@@ -1640,6 +1640,40 @@ public class consultas {
         {}
     }
 
+    /****************    Consulta para Laboratorio Calidad     *************/
+    public boolean DAOLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo,String apariencia,String sabor,
+                              String color,String aroma,String observaciones_sabor, String rallado,
+                              String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
+                              String observaciones_hebrado,String grasa_residual,String humedad,String ph,
+                              String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones)
+    {
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo, apariencia,sabor," +
+                    "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
+                    "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
+                    "necesidad_remuestreo) VALUES ('" +
+
+                            fecha+"','"+ lote+"','"+familia+"','"+producto+"','"+
+                            codigo+"','"+apariencia+"','"+sabor+"','"+color+"','"+aroma+"','"+
+                            observaciones_sabor+"','"+rallado+"','"+observaciones_rallado+"','"+
+                            fundido+"','"+observaciones_fundido+"','"+hebrado+"','"+
+                            observaciones_hebrado+"','"+grasa_residual+"','"+humedad+"','"+ph+"','"+
+                            grasa_total+"','"+humedad_remuestreo+"','"+ph_remuestreo+"','"+
+                            grasa_remuestreo+"','"+necesidad_remuestreo+
+
+                            "');"
+            );
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+
 
 
     /****************    Consulta para Configuracion IP      *************/

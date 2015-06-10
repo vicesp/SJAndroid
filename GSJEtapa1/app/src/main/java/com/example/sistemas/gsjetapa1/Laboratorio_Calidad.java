@@ -2,6 +2,7 @@ package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -35,11 +37,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
-    private TextView Fecha,codigo_prod;
+    private TextView Fecha,codigo_prod, producto;
     private Button btn_listviewdialog;
+    private ImageButton Guardar;
     private CheckBox check1, check2, check3;
     private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem;
-    private EditText humRem, phRem, grasRem;
+    private EditText lote, observaciones_sabor, observacion_rallado, observaciones_fundido, observaciones_hebrado,
+            humedad, ph, grasa_total, humRem, phRem, grasRem;
     private Spinner spinnerDiez;
 
     private String Nombre_PT[];
@@ -62,12 +66,43 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         Fecha = (TextView) findViewById(R.id.fechaText1);
         Fecha.setText(FechaH.Hoy());
         codigo_prod = (TextView)findViewById(R.id.tvLCCodigo1);
+        producto=(TextView)findViewById(R.id.tvLCProducto1);
 
         /********** Spinner ****************/
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
 
+        /********** Image Button *****************/
+        Guardar=(ImageButton)findViewById(R.id.guardarBtn);
+        Guardar.setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View v) {
+                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), lote.getText().toString(),"", producto.getText().toString(),
+                                                   codigo_prod.getText().toString(), switchTexter(swApa.isActivated()),switchTexter(swSa.isActivated()),
+                                                   switchTexter(swCo.isActivated()),switchTexter(swAro.isActivated()), observaciones_sabor.getText().toString(),
+                                                   switchTexter(swRall.isSelected()), observacion_rallado.getText().toString(),"",observaciones_fundido.getText().toString(),
+                                                   switchTexter(swHeb.isSelected()),observaciones_hebrado.getText().toString(),"",humedad.getText().toString(), ph.getText().toString(),
+                                                   grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
+                                                   "","");
+                                           if(exitoso){
+
+                                               Alerta(getResources().getString(R.string.Alerta_Guardado));
+                                           }
+                                           else{
+                                               Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                                           }
+                                       }
+                                   }
+        );
+
+
         /********** Switches *****************/
+        swApa=(Switch)findViewById(R.id.switchApariencia);
+        swSa=(Switch)findViewById(R.id.switchSabor);
+        swCo=(Switch)findViewById(R.id.switchColor);
+        swAro=(Switch)findViewById(R.id.switchAroma);
+        swRall=(Switch)findViewById(R.id.switchRallado);
+        swHeb=(Switch)findViewById(R.id.switchHebrado);
         swRem = (Switch)findViewById(R.id.switchRemuestreo);
         swRem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -88,6 +123,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         });
 
         /************Edit Texts***************/
+        lote=(EditText)findViewById(R.id.tvLCLotePendiente);
+        observaciones_sabor=(EditText)findViewById(R.id.editText17);
+        observacion_rallado=(EditText)findViewById(R.id.editText7);
+        observaciones_fundido=(EditText)findViewById(R.id.editText8);
+        observaciones_hebrado=(EditText)findViewById(R.id.editText9);
+        humedad=(EditText)findViewById(R.id.editText10);
+        ph=(EditText)findViewById(R.id.editText11);
+        grasa_total=(EditText)findViewById(R.id.editText13);
         humRem=(EditText)findViewById(R.id.editText14);
         grasRem=(EditText)findViewById(R.id.editText15);
         phRem=(EditText)findViewById(R.id.editText16);
@@ -280,5 +323,33 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,valuesSpinner);
         // Attach the adapter to a ListView
         spinnerDiez.setAdapter(adapter);
+    }
+    public String switchTexter(boolean affirmation){
+        if(affirmation)
+        {
+            return "si";
+        }
+        else
+        {
+            return "no";
+        }
+    }
+    public void Alerta(String mensaje){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Laboratorio_Calidad.this);
+
+        alertDialogBuilder.setTitle("Aviso");
+
+        alertDialogBuilder.setMessage(mensaje);
+
+        alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog,int id) {
+
+            }
+
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
 }
