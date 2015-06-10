@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -76,18 +77,19 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
 
+
         /********** Image Button *****************/
         Guardar=(ImageButton)findViewById(R.id.guardarBtn);
         Guardar.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
                                            boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), "", producto.getText().toString(),
-                                                   codigo_prod.getText().toString(), switchTexter(swApa.isActivated()), switchTexter(swSa.isActivated()),
-                                                   switchTexter(swCo.isActivated()), switchTexter(swAro.isActivated()), observaciones_sabor.getText().toString(),
-                                                   switchTexter(swRall.isSelected()), observaciones_rallado.getText().toString(), "", observaciones_fundido.getText().toString(),
-                                                   switchTexter(swHeb.isSelected()), observaciones_hebrado.getText().toString(), "", humedad.getText().toString(), ph.getText().toString(),
+                                                   codigo_prod.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
+                                                   switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
+                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), "", observaciones_fundido.getText().toString(),
+                                                   switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                    grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                   "", "");
+                                                   switchTexter(swRem.isChecked()), "");
                                            if(exitoso){
 
                                                Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -307,6 +309,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     public void onClick(View v) {
 
     }
+
     public String[] getProductosArray(final ArrayList<consultas> genArray)
     {
         for(final consultas con: genArray)
@@ -336,6 +339,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,valuesSpinner);
         // Attach the adapter to a ListView
         spinnerDiez.setAdapter(adapter);
+
     }
     public String switchTexter(boolean affirmation){
         if(affirmation)
@@ -346,6 +350,47 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         {
             return "no";
         }
+    }
+    public boolean textSwithcer(String affirmation)
+    {
+        if(affirmation.equals("si"))
+        {
+            return true;
+        }
+        else{return false;}
+
+    }
+    public String getGrasa()
+    {
+
+        if (check1.isChecked()){
+            return "+1";
+        }
+        else if (check2.isChecked()){
+            return "+2";
+        }
+        else if (check3.isChecked()){
+            return "+3";
+        }
+        else
+        {return null;}
+
+
+    }
+    public void checkCheckers(String check){
+
+        if(check.equals("+1"))
+        {
+            check1.setChecked(true);
+        }
+        else if(check.equals("+2")) {
+        check2.setChecked(true);
+        }
+        else if (check.equals("+3")){
+            check3.setChecked(true);
+        }
+
+
     }
     public void Alerta(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Laboratorio_Calidad.this);
@@ -383,6 +428,19 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         humRem.setText(cursor.getString(cursor.getColumnIndex("humedad_remuestreo")));
         phRem.setText(cursor.getString(cursor.getColumnIndex("ph_remuestreo")));
         grasRem.setText(cursor.getString(cursor.getColumnIndex("grasa_remuestreo")));
+
+        swSa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("sabor"))));
+        swApa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("apariencia"))));
+        swCo.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("color"))));
+        swAro.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("aroma"))));
+        swRall.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("rallado"))));
+        swHeb.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("hebrado"))));
+        swRem.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("necesidad_remuestreo"))));
+
+        checkCheckers(cursor.getString(cursor.getColumnIndex("grasa_residual")));
+
+
+        Log.i("Remuestreo", cursor.getString(cursor.getColumnIndex("necesidad_remuestreo")));
 
         var.setFromLaboratorio(false);
 
