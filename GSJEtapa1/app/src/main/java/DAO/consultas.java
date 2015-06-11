@@ -413,28 +413,42 @@ public class consultas {
 
     /*************** Obtener tods productos empaque     *************/
 
-    public ArrayList<consultas> DAOGetTodosProductos()
+    public ArrayList<consultas> DAOGetTodosProductos(String codigo_familia, int fromWhere)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0" + "", null);
-        ArrayList<consultas> productosArray = new ArrayList<consultas>();
+        if (fromWhere == 0) {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia = '" + codigo_familia + "'", null);
+        }
+        else {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
+        }
+
+            ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
-            if  (cursor.moveToFirst()) {
-
+            if (cursor.moveToFirst()) {
+                Log.i("LLgeue","aca");
                 consultas lista = new consultas();
-                lista.producto=new String[cursor.getCount()];
+                lista.producto = new String[cursor.getCount()];
 
-                for(int x=0;x< cursor.getCount();x++)
-                {
+                for (int x = 0; x < cursor.getCount(); x++) {
 
-                    lista.producto[x]=cursor.getString(cursor.getColumnIndex("codigo_producto"))+"-"+cursor.getString(cursor.getColumnIndex("nombre_producto"));
+                    lista.producto[x] = cursor.getString(cursor.getColumnIndex("codigo_producto")) + "-" + cursor.getString(cursor.getColumnIndex("nombre_producto"));
                     cursor.moveToNext();
                 }
 
                 productosArray.add(lista);
             }
+        }
+         if (productosArray.isEmpty()){
+            Log.i("LLgeue","aqui");
+            consultas lista = new consultas();
+            lista.producto = new String[1];
+
+            lista.producto[0]="No Hay Productos en esa familia- favor de editarlos";
+            productosArray.add(lista);
+
         }
         cursor.close();
         myDbHelper.close();
@@ -1641,7 +1655,7 @@ public class consultas {
     }
 
     /****************    Consulta para Laboratorio Calidad     *************/
-    public boolean DAOLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo,String apariencia,String sabor,
+    public boolean DAOLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,String sabor,
                               String color,String aroma,String observaciones_sabor, String rallado,
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
@@ -1651,13 +1665,13 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
 
         try {
-            db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo, apariencia,sabor," +
+            db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
                             "necesidad_remuestreo) VALUES ('" +
 
                             fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
-                            codigo + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
+                            codigo_prod+"','"+codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
                             observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
                             fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
                             observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
@@ -1703,11 +1717,12 @@ public class consultas {
         return empaqueArray;
     }
 
+    /****************    Consulta para LLenar Laboratorio Calidad     *************/
     public Cursor DAOLLenarLaboratorio(String lote) {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo, apariencia, sabor" +
+            cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia, sabor" +
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
                     ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo " +
 
@@ -1737,6 +1752,36 @@ public class consultas {
 
         }
     }
+    /****************    Consulta para Obtener Familias     *************/
+    public ArrayList<consultas> DAOGetTodosFamilias()
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias " + "", null);
+        ArrayList<consultas> productosArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+
+                consultas lista = new consultas();
+                lista.producto=new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+
+                    lista.producto[x]=cursor.getString(cursor.getColumnIndex("codigo_familia"))+"-"+cursor.getString(cursor.getColumnIndex("nombre_familia"));
+                    cursor.moveToNext();
+                }
+
+                productosArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return productosArray;
+    }
+
 
 
 

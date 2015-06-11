@@ -693,6 +693,7 @@ public class Texturizador extends ActionBarActivity {
             layoutObservaciones.setVisibility(View.VISIBLE);
         }
         else {
+            Guardar.setImageResource(R.drawable.guarda);
             Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
         }
 
@@ -1132,7 +1133,7 @@ public class Texturizador extends ActionBarActivity {
 
         Lote.setText(lote);
 
-        Guardar.setImageResource(R.drawable.guarda);
+        //Guardar.setImageResource(R.drawable.guarda);
 
 
     }

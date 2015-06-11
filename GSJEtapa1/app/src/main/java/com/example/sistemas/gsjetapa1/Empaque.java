@@ -350,7 +350,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
                 AlertDialog.Builder myDialog = new AlertDialog.Builder(Empaque.this);
 
-                Nombre_PT=getProductosArray(con.DAOGetTodosProductos());
+                Nombre_PT=getProductosArray(con.DAOGetTodosProductos("",1));
                 //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
                 final EditText editText = new EditText(Empaque.this);
                 final ListView listview=new ListView(Empaque.this);

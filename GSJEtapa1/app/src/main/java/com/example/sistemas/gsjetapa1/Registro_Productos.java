@@ -115,7 +115,7 @@ AlertaInicial("Que desea hacer?");
 
                 AlertDialog.Builder myDialog = new AlertDialog.Builder(Registro_Productos.this);
 
-                Nombre_PT=getProductosArray(con.DAOGetTodosProductos());
+                Nombre_PT=getProductosArray(con.DAOGetTodosProductos("",1));
                 //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
                 final EditText editText = new EditText(Registro_Productos.this);
                 final ListView listview=new ListView(Registro_Productos.this);

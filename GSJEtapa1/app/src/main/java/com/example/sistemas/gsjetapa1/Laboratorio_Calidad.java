@@ -23,8 +23,6 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,16 +40,16 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static consultas con;
     private static Variables var;
 
-    private TextView Fecha,codigo_prod, producto;
-    private Button btn_listviewdialog;
+    private TextView Fecha,codigo_prod, codigo_fam;
+    private Button btn_listviewdialog, btn_listviewdialog1;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
     private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem;
     private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
             humedad, ph, grasa_total, humRem, phRem, grasRem;
     private Spinner spinnerDiez;
-
-    private String Nombre_PT[], numero;
+    private boolean deCual;
+    private String Nombre_PT[];
     private String [] listaProductos;
     private ArrayList<String> array_sort;
     int textlength=0;
@@ -72,73 +70,27 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /*********** Text Views **************/
         Fecha = (TextView) findViewById(R.id.fechaText1);
         Fecha.setText(FechaH.Hoy());
-        codigo_prod = (TextView)findViewById(R.id.tvLCCodigo1);
-        producto=(TextView)findViewById(R.id.tvLCProducto1);
+        codigo_fam = (TextView)findViewById(R.id.tvLCCodigoFamilia);
+        codigo_prod=(TextView)findViewById(R.id.tvLCCodigoProducto);
+
 
         /********** Spinner ****************/
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
-        spinnerDiez.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
 
-                switch (position)
-                {
-                    case 0:{
-                        numero="0";
-                    }
-                    case 1:{
-                        numero="10";
-                    }
-                    case 2:{
-                        numero="20";
-                    }
-                    case 3:{
-                        numero="30";
-                    }
-                    case 4:{
-                        numero="40";
-                    }
-                    case 5:{
-                        numero="50";
-                    }
-                    case 6:{
-                        numero="60";
-                    }
-                    case 7:{
-                        numero="70";
-                    }
-                    case 8:{
-                        numero="80";
-                    }
-                    case 9:{
-                        numero="90";
-                    }
-                    case 10:{
-                        numero="100";
-                    }
 
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         /********** Image Button *****************/
         Guardar=(ImageButton)findViewById(R.id.guardarBtn);
         Guardar.setOnClickListener(new View.OnClickListener() {
                                        @Override
                                        public void onClick(View v) {
-                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), "", producto.getText().toString(),
-                                                   codigo_prod.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
+
+                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
+                                                   codigo_prod.getText().toString(), codigo_fam.getText().toString() ,switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                    switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
-                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), numero, observaciones_fundido.getText().toString(),
+                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                    switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                    grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
                                                    switchTexter(swRem.isChecked()), "");
@@ -223,6 +175,17 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             }});
 
         /*********** Buttons *****************/
+        btn_listviewdialog1=(Button)findViewById(R.id.tvLCProducto1);
+        btn_listviewdialog1.setOnClickListener(this);
+        btn_listviewdialog1.setEnabled(false);
+        btn_listviewdialog1.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                launchView(1);
+            }});
+
         btn_listviewdialog=(Button)findViewById(R.id.btnECP);
         btn_listviewdialog.setOnClickListener(this);
         btn_listviewdialog.setOnClickListener(new View.OnClickListener() {
@@ -230,57 +193,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder myDialog = new AlertDialog.Builder(Laboratorio_Calidad.this);
+                launchView(0);
 
-                Nombre_PT = getProductosArray(con.DAOGetTodosProductos());
-                //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
-                final EditText editText = new EditText(Laboratorio_Calidad.this);
-                final ListView listview = new ListView(Laboratorio_Calidad.this);
-                editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
-                array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
-                LinearLayout layout = new LinearLayout(Laboratorio_Calidad.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                layout.addView(editText);
-                layout.addView(listview);
-                myDialog.setView(layout);
-                CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Laboratorio_Calidad.this, array_sort);
-                listview.setAdapter(arrayAdapter);
-
-                listview.setOnItemClickListener(Laboratorio_Calidad.this);
-                editText.addTextChangedListener(new TextWatcher() {
-                    public void afterTextChanged(Editable s) {
-
-                    }
-
-                    public void beforeTextChanged(CharSequence s,
-                                                  int start, int count, int after) {
-
-                    }
-
-                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-                        editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        textlength = editText.getText().length();
-                        array_sort.clear();
-                        for (int i = 0; i < Nombre_PT.length; i++) {
-                            if (textlength <= Nombre_PT[i].length()) {
-
-                                if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
-                                    array_sort.add(Nombre_PT[i]);
-                                }
-                            }
-                        }
-                        listview.setAdapter(new CustomAlertAdapter(Laboratorio_Calidad.this, array_sort));
-                    }
-                });
-                myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                myalertDialog = myDialog.show();
 
             }
         });
@@ -291,6 +205,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
         }
         else {
+            Guardar.setImageResource(R.drawable.guarda);
 
         }
 
@@ -325,36 +240,16 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
         String strName=array_sort.get(position);
 
-        codigo_prod.setText(strName.substring(0, 4));
-/*
-        //longi_origen=lote_origen.getText().length();
-        //lote_origen.getText().toString().substring()
 
-        String x=lote_origen.getText().toString().substring(0,3);
-
-        if(x.substring(0,2)=="00"){
-            dia_juliano_origen = Integer.parseInt(lote_origen.getText().toString().substring(2,3));
+        if (deCual) {
+            codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
+            btn_listviewdialog1.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
         }
-        else if (x.substring(0,1)=="0"){
-            lote_origen.getText().toString().substring(1,3);
+        if(!deCual) {
+            codigo_fam.setText(strName.substring(0, strName.indexOf('-')));
+            btn_listviewdialog.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
+            btn_listviewdialog1.setEnabled(true);
         }
-        else {
-            dia_juliano_origen = Integer.parseInt(x);
-        }
-
-        lote_empaque.setText(strName.substring(0, 4) + DiaJ.Dame_dia_J_y_anio_Empaque(dia_juliano_origen,true));
-
-        /*if (strName.substring(0,4)=="OX07" || strName.substring(0,4)=="OX13"){
-            lote_empaque.setText(strName.substring(0, 4) + DiaJ.Dame_dia_J_y_anio_Empaque(dia_juliano_origen,true));
-        }
-        else {
-                 lote_empaque.setText(strName.substring(0, 4) + DiaJ.Dame_dia_J_y_anio_Empaque(dia_juliano_origen,false));
-             }
-
-        caducidad.setText(f_caducidad.Dame_caducidad(codigo_prod.getText().toString()));
-        //Log.i("","fecha convertida:   "+f_caducidad.Dame_caducidad("AS21"));
-
-        nombre_pt.setText(strName.substring(5,strName.length()));*/
 
     }
     @Override
@@ -444,6 +339,27 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
 
     }
+
+    public int getIndex(String num) {
+
+        switch (num){
+            case "0": return 0;
+            case "10": return 1;
+            case "20": return 2;
+            case "30": return 3;
+            case "40": return 4;
+            case "50": return 5;
+            case "60": return 6;
+            case "70": return 7;
+            case "80": return 8;
+            case "90": return 9;
+            case "100": return 10;
+            default: return 0;
+
+        }
+
+    }
+
     public void Alerta(String mensaje){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Laboratorio_Calidad.this);
 
@@ -466,10 +382,12 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         cursor = con.DAOLLenarLaboratorio(lote);
         Lote.setText(lote);
         Lote.setEnabled(false);
+        btn_listviewdialog1.setEnabled(false);
+        btn_listviewdialog.setEnabled(false);
 
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
-        producto.setText(cursor.getString(cursor.getColumnIndex("producto")));
-        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo")));
+        btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("producto")));
+        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_prod")));
         observaciones_sabor.setText(cursor.getString(cursor.getColumnIndex("observaciones_sabor")));
         observaciones_rallado.setText(cursor.getString(cursor.getColumnIndex("observaciones_rallado")));
         observaciones_fundido.setText(cursor.getString(cursor.getColumnIndex("observaciones_fundido")));
@@ -480,7 +398,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         humRem.setText(cursor.getString(cursor.getColumnIndex("humedad_remuestreo")));
         phRem.setText(cursor.getString(cursor.getColumnIndex("ph_remuestreo")));
         grasRem.setText(cursor.getString(cursor.getColumnIndex("grasa_remuestreo")));
-
         swSa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("sabor"))));
         swApa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("apariencia"))));
         swCo.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("color"))));
@@ -488,13 +405,77 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swRall.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("rallado"))));
         swHeb.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("hebrado"))));
         swRem.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("necesidad_remuestreo"))));
-
         checkCheckers(cursor.getString(cursor.getColumnIndex("grasa_residual")));
-
-
-        Log.i("Remuestreo", cursor.getString(cursor.getColumnIndex("necesidad_remuestreo")));
+        spinnerDiez.setSelection(getIndex(cursor.getString(cursor.getColumnIndex("fundido"))));
+        btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("familia")));
+        codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
 
         var.setFromLaboratorio(false);
+
+    }
+
+    public void launchView(int from)
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Laboratorio_Calidad.this);
+        if(from==1) {
+            Nombre_PT = getProductosArray(con.DAOGetTodosProductos(codigo_fam.getText().toString(),0));
+            deCual=true;
+        }
+        else if(from==0){
+            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
+            deCual =false;
+        }
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Laboratorio_Calidad.this);
+        final ListView listview = new ListView(Laboratorio_Calidad.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Laboratorio_Calidad.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Laboratorio_Calidad.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+
+        listview.setOnItemClickListener(Laboratorio_Calidad.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Laboratorio_Calidad.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
 
     }
 }
