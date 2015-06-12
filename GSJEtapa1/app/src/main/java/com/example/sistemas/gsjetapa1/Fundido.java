@@ -1256,6 +1256,8 @@ public class Fundido extends ActionBarActivity {
         Lote.setText(cursor.getString(cursor.getColumnIndex("lote")));
         Linea.setText(cursor.getString(cursor.getColumnIndex("linea")));
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        Fundida.setText(cursor.getString(cursor.getColumnIndex("num_fundida")));
+        cj01.setText(cursor.getString(cursor.getColumnIndex("cj01")));
 
     }
 
