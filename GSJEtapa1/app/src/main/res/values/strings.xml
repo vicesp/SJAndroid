@@ -27,5 +27,6 @@
     <string name="title_activity_fundido__realizados">Fundido_Realizados</string>
     <string name="title_activity_laboratorio__calidad">Laboratorio_Calidad</string>
     <string name="title_activity_realizados">Realizados</string>
+    <string name="title_activity_registro__familias">Registro_Familias</string>
 
 </resources>

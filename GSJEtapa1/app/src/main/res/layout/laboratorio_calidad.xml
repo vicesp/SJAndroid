@@ -255,6 +255,7 @@
         android:src="@drawable/madera"
         android:scaleType="centerCrop"
         android:layout_below="@+id/textView217"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/imageView"
@@ -299,11 +300,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText7"
         android:textSize="25dp"
+        android:layout_alignRight="@+id/editText17"
+        android:layout_alignEnd="@+id/editText17"
         android:layout_alignBottom="@+id/textView112"
-        android:layout_alignRight="@+id/imageViewFuncional"
-        android:layout_alignEnd="@+id/imageViewFuncional"
-        android:layout_toRightOf="@+id/textView112"
-        android:layout_toEndOf="@+id/textView112" />
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:layout_below="@+id/textView137"
+        android:gravity="bottom" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -336,20 +339,26 @@
         android:id="@+id/editText8"
         android:textSize="25dp"
         android:layout_alignBottom="@+id/textView127"
-        android:layout_alignLeft="@+id/editText7"
-        android:layout_alignStart="@+id/editText7"
         android:layout_alignRight="@+id/imageViewFuncional"
-        android:layout_alignEnd="@+id/imageViewFuncional" />
+        android:layout_alignEnd="@+id/imageViewFuncional"
+        android:layout_below="@+id/editText7"
+        android:layout_toRightOf="@+id/fechaText"
+        android:layout_toEndOf="@+id/fechaText"
+        android:gravity="bottom" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:textAlignment="gravity"
-        android:layout_alignTop="@+id/editText8"
-        android:layout_toRightOf="@+id/switchFundido"
-        android:layout_toLeftOf="@+id/textView127"
-        android:layout_toStartOf="@+id/textView127" />
+        android:textAlignment="center"
+        android:gravity="center"
+
+        android:layout_alignBottom="@+id/switchFundido"
+        android:layout_alignRight="@+id/switchRallado"
+        android:layout_alignEnd="@+id/switchRallado"
+        android:layout_alignTop="@+id/switchFundido"
+        android:layout_toRightOf="@+id/textView212"
+        android:layout_toEndOf="@+id/textView212" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -371,8 +380,8 @@
         android:textSize="25dp"
         android:textColor="@android:color/black"
         android:layout_alignTop="@+id/switchHebrado"
-        android:layout_toRightOf="@+id/spinner"
-        android:layout_toEndOf="@+id/spinner" />
+        android:layout_alignLeft="@+id/textView127"
+        android:layout_alignStart="@+id/textView127" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -383,7 +392,8 @@
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
         android:layout_alignRight="@+id/editText8"
-        android:layout_alignEnd="@+id/editText8" />
+        android:layout_alignEnd="@+id/editText8"
+        android:gravity="bottom" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -494,12 +504,13 @@
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/editText10"
+        android:numeric="integer"
+        android:layout_toRightOf="@+id/switchRallado"
         android:layout_above="@+id/textView212"
-        android:layout_alignLeft="@+id/tvLCCodigoFamilia"
-        android:layout_alignStart="@+id/tvLCCodigoFamilia"
-        android:layout_alignRight="@+id/editText"
-        android:layout_alignEnd="@+id/editText"
-        android:numeric="integer" />
+        android:layout_toLeftOf="@+id/textView219"
+        android:layout_toStartOf="@+id/textView219"
+        android:layout_below="@+id/imageViewFisico"
+        android:gravity="bottom" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -512,7 +523,8 @@
         android:layout_alignStart="@+id/editText10"
         android:layout_toLeftOf="@+id/editText"
         android:layout_toStartOf="@+id/editText"
-        android:numeric="integer" />
+        android:numeric="integer"
+        android:gravity="bottom" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -520,13 +532,14 @@
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/editText13"
-        android:layout_above="@+id/textView212"
+        android:numeric="decimal"
+        android:layout_alignBottom="@+id/textView213"
         android:layout_alignRight="@+id/imageViewFisico"
         android:layout_alignEnd="@+id/imageViewFisico"
-        android:layout_alignTop="@+id/textView213"
+        android:layout_below="@+id/imageViewFisico"
         android:layout_toRightOf="@+id/textView137"
         android:layout_toEndOf="@+id/textView137"
-        android:numeric="decimal" />
+        android:gravity="bottom" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -596,21 +609,24 @@
         android:layout_alignRight="@+id/editText15"
         android:layout_alignEnd="@+id/editText15"
         android:numeric="integer"
-        android:enabled="false" />
+        android:enabled="false"
+        android:layout_alignTop="@+id/editText16"
+        android:gravity="bottom" />
 
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
+        android:layout_height="25dp"
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/editText15"
-        android:layout_alignTop="@+id/textView215"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_alignRight="@+id/editText11"
-        android:layout_alignEnd="@+id/editText11"
         android:numeric="integer"
-        android:enabled="false" />
+        android:enabled="false"
+        android:layout_alignBottom="@+id/textView215"
+        android:layout_toLeftOf="@+id/fechaText"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_below="@+id/editText14"
+        android:gravity="bottom" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -621,12 +637,13 @@
         android:id="@+id/editText16"
         android:layout_alignRight="@+id/checkBox3"
         android:layout_alignEnd="@+id/checkBox3"
-        android:layout_alignTop="@+id/textView216"
         android:layout_alignLeft="@+id/editText13"
         android:layout_alignStart="@+id/editText13"
         android:layout_alignBottom="@+id/textView216"
         android:numeric="decimal"
-        android:enabled="false" />
+        android:enabled="false"
+        android:layout_below="@+id/switchRemuestreo"
+        android:gravity="bottom" />
 
     <ImageButton
         android:layout_width="210dp"
@@ -668,12 +685,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText17"
         android:textSize="25dp"
-        android:layout_alignBottom="@+id/textView217"
-        android:layout_alignRight="@+id/editText7"
-        android:layout_alignEnd="@+id/editText7"
-        android:layout_below="@+id/switchAroma"
         android:layout_alignLeft="@+id/textView139"
-        android:layout_alignStart="@+id/textView139" />
+        android:layout_alignStart="@+id/textView139"
+        android:layout_alignBottom="@+id/textView217"
+        android:layout_alignRight="@+id/tvLCProducto1"
+        android:layout_alignEnd="@+id/tvLCProducto1" />
 
     <TextView
         android:layout_width="wrap_content"

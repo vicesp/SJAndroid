@@ -17,7 +17,7 @@ import DTO.Variables;
 
 public class Administrador extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab, btnProductos, btnFamilias;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
     private static Variables var;
@@ -61,7 +61,8 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
+                //AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
+                finish();startActivity(new Intent(Administrador.this, Empaque_Realizados.class));
 
             }
         });
@@ -94,6 +95,28 @@ public class Administrador extends ActionBarActivity {
 
             }
         });
+
+        btnProductos=(Button)findViewById(R.id.btnProd);
+        btnProductos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+                startActivity(new Intent(Administrador.this, Registro_Productos.class));
+
+            }
+        });
+        btnFamilias=(Button)findViewById(R.id.btnFam);
+        btnFamilias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();startActivity(new Intent(Administrador.this, Registro_Familias.class));
+
+            }
+        });
+
+
     }
 
     @Override

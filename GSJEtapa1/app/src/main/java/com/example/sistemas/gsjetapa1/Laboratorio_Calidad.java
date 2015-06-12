@@ -283,9 +283,10 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         valuesSpinner.add("100");
 
         // Create the adapter to convert the array to views
-        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_dropdown_item,valuesSpinner);
+        ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,valuesSpinner);
         // Attach the adapter to a ListView
         spinnerDiez.setAdapter(adapter);
+
 
     }
     public String switchTexter(boolean affirmation){
