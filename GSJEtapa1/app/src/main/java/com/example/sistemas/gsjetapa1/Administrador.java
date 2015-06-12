@@ -49,8 +49,8 @@ public class Administrador extends ActionBarActivity {
         btnFundido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            finish();startActivity(new Intent(Administrador.this, Fundido_Realizados.class));
+            var.setFromAdminFundido(true);
+            finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
 
             }

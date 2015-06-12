@@ -60,7 +60,8 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         DiaJ=new Dia_Juliano();
         con=new consultas();
         var = new Variables();
-
+        Log.i("Lab",""+var.isFromAdminLaboratorio());
+        Log.i("Fundido", ""+var.isFromAdminFundido());
         Calendar c = Calendar.getInstance();
 
 
@@ -90,6 +91,8 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         Regresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                var.setFromAdminFundido(false);
+                var.setFromAdminLaboratorio(false);
                 finish();
                 startActivity(new Intent(Realizados.this, Administrador.class));
             }
@@ -106,12 +109,19 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 if (var.isFromAdminLaboratorio()) {
                     LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(calendario.getDate())));
                 }
+                else if (var.isFromAdminFundido()) {
+                    LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(calendario.getDate())));
+                }
 
             }
         });
         if (var.isFromAdminLaboratorio()) {
             LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("LABORATORIO REALIZADOS");
+        }
+        else if(var.isFromAdminFundido()){
+            LLena_Lista(con.DAOListaFundidoRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("FUNDIDO REALIZADOS");
         }
 
     }
@@ -152,6 +162,14 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setFromAdminLaboratorio(false);
             finish();
             startActivity(new Intent(Realizados.this, Laboratorio_Calidad.class));
+        }
+        else if (var.isFromAdminFundido()){
+
+            var.setFromFundido(true);
+            var.setLoteFundido(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setFromAdminFundido(false);
+            finish();
+            startActivity(new Intent(Realizados.this, Fundido.class));
         }
     }
     @Override

@@ -16,12 +16,21 @@ public class Variables {
     private static boolean pendiente_tina_A;
     private static boolean fromSearch, fromEmpaque, fromCuajado,fromFundido, fromLaboratorio;
     private static boolean fromAdminLaboratorio;
+    private static boolean fromAdminFundido;
     public static String loteTexturizador;
     public static String loteEmpaque;
     public static String loteCuajado;
     public static String loteFundido;
     public static String loteLaboratorio;
 
+
+    public static boolean isFromAdminFundido() {
+        return fromAdminFundido;
+    }
+
+    public static void setFromAdminFundido(boolean fromAdminFundido) {
+        Variables.fromAdminFundido = fromAdminFundido;
+    }
     public static String getLoteLaboratorio() {
         return loteLaboratorio;
     }

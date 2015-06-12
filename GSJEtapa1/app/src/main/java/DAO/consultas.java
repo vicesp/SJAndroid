@@ -617,7 +617,7 @@ public class consultas {
                               String lote_cj02,String agua,String tipo_crema,String lote_tipo_crema,String cantidad_crema,String familia_reproceso,
                               String lote_fami_repro, String cantidad_fami_repro, String temperatura, String peso_total, String texturizador, String lote_texturizador,
                               String cj01_1,String lote_cj01_1,String ph_cj01_1,String cj01_2,String lote_cj01_2,String ph_cj01_2,String tipo_crema2,String lote_crema2,String cantidad_crema2,
-                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3){
+                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -626,7 +626,7 @@ public class consultas {
                     " linea,fecha,num_fundida,lote,familia,cj01,lote_cj01,ph_cj01,cj011,lote_cj011,ph_cj011,mp005,lote_mp005,mp015,lote_mp015," +
                     "s0101,lote_s0101,mp007,lote_mp007,sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,tipo_crema," +
                     "lote_tipo_crema, cantidad_crema, familia_reproceso,lote_fami_repro,cantidad_fami_repro,temperatura,peso_total,texturizador,lote_texturizador," +
-                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3, cj01_3, lote_cj01_3, ph_cj01_3) " +
+                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3, cj01_3, lote_cj01_3, ph_cj01_3, fecha_hoy) " +
                     "VALUES (" + linea + ",'"
                     + fecha + "','"
                     + num_fundida + "','"
@@ -679,13 +679,53 @@ public class consultas {
                     + tipo_cuajada_3 + "','"
                     + cj01_3 + "','"
                     + lote_cj01_3 + "','"
-                    + ph_cj01_3
-                    + "')");
+                    + ph_cj01_3+"','"
+                    + fecha_hoy+
+                    "')");
 
             return true;
         }
         catch (Exception e){
             return false;
+        }
+    }
+    /****************    Consulta para Llenar Fundido de busqueda   *************/
+    public Cursor DAOLLenarFundido(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT linea, num_fundida, fecha, lote, familia, cj01, ph_cj01" +
+                    ", lote_cj01, tipo_cuajada_1, cj01_1, ph_cj01_1, lote_cj01_1, tipo_cuajada_2, cj01_2, ph_cj01_2" +
+                    ", lote_cj01_2, tipo_cuajada_3, cj01_3, ph_cj01_3, lote_cj01_3, cj011, lote_cj011, ph_cj011, texturizador " +
+                    ", lote_texturizador, tipo_crema, lote_tipo_crema, cantidad_crema, tipo_crema2, lote_tipo_crema2, cantidad_crema2"+
+                    ", mp005, mp015, s0101, mp007, sa01, mp024, mp078, cj02, agua, familia_reproceso, lote_fami_repro, cantidad_fami_repro"+
+                    ", temperatura, peso_total, lote_mp005, lote_mp015, lote_s0101, lote_mp007, lote_sa01, lote_mp024, lote_mp078"+
+                    ", lote_cj02, fecha_hoy  "+
+                    "FROM fundido WHERE lote ='" +
+                    lote + "'", null);
+
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
         }
     }
 
@@ -696,10 +736,9 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote " +
-                "FROM fundido WHERE fecha ='" +
+                "FROM fundido WHERE fecha_hoy ='" +
                 fecha + "'", null);
-        Log.i("","SELECT lote " +
-                "FROM fundido WHERE fecha ='"+fecha+"'");
+
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
