@@ -418,7 +418,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         if (fromWhere == 0) {
-            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia = '" + codigo_familia + "'", null);
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias WHERE codigo_familia = '" + codigo_familia + "'", null);
         }
         else {
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
@@ -462,10 +462,10 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
 
-        cursor = db.rawQuery("SELECT nombre_producto, caducidad, eliminado FROM cat_productos WHERE codigo_producto = '" + codigo + "' AND eliminado = 0;", null);
+        cursor = db.rawQuery("SELECT nombre_producto, caducidad, eliminado, codigo_familia FROM cat_productos WHERE codigo_producto = '" + codigo + "' AND eliminado = 0;", null);
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
         consultas lista = new consultas();
-        lista.producto=new String[3];
+        lista.producto=new String[4];
 
 
         if (cursor != null ) {
@@ -474,6 +474,7 @@ public class consultas {
                 lista.producto[0]=cursor.getString(cursor.getColumnIndex("nombre_producto"));
                 lista.producto[1]=cursor.getString(cursor.getColumnIndex("caducidad"));
                 lista.producto[2]=cursor.getString(cursor.getColumnIndex("eliminado"));
+                lista.producto[3]=cursor.getString(cursor.getColumnIndex("codigo_familia"));
 
             }
         }
@@ -484,7 +485,7 @@ public class consultas {
     }
 
     /*********** Actualizar Productos **************/
-    public boolean DAOActualizarProductos(String codigo, String nombre, String caducidad, int eliminar) {
+    public boolean DAOActualizarProductos(String codigo, String nombre, String caducidad, int eliminar, String familia) {
         boolean check = false;
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -523,13 +524,13 @@ public class consultas {
 
     /*********** Guardar Nuevo Producto **************/
 
-    public boolean DAOGuardarProducto(String codigo, String descripcion, String caducidad)
+    public boolean DAOGuardarProducto(String codigo, String descripcion, String caducidad, String familia)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         try {
 
-            db.execSQL("INSERT INTO cat_productos(codigo_producto, nombre_producto, caducidad, eliminado) VALUES ('" + codigo + "','" + descripcion + "','" + caducidad + "', 0)" );
+            db.execSQL("INSERT INTO cat_productos(codigo_producto, nombre_producto, caducidad, eliminado, codigo_familia) VALUES ('" + codigo + "','" + descripcion + "','" + caducidad + "', 0, '"+familia+"');" );
         return true;
         }
         catch(Exception e){

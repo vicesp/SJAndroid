@@ -35,8 +35,9 @@ public class Registro_Productos extends ActionBarActivity implements AdapterView
     private static consultas con;
 
     private Boolean isEdit = true;
+    private boolean deCual =false;
 
-    private Button Eliminar, desplegarProductos,backButton;
+    private Button Eliminar, desplegarProductos,backButton, buttonFamilia;
     private ImageButton Guardar;
     private TextView Fecha, indicadorText;
     private EditText codigoProducto, descProducto, diasCaducidad;
@@ -55,13 +56,20 @@ AlertaInicial("Que desea hacer?");
         con = new consultas();
 
         /***********  Button   *************/
+        buttonFamilia=(Button)findViewById(R.id.buttonFamilia);
+        buttonFamilia.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                launchView(0);
+            }});
+
+
         Guardar = (ImageButton)findViewById(R.id.btnSavePT);
         Guardar.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
+                public void onClick(View v) {
 
                 if (isEdit) {
 
-                    if (con.DAOActualizarProductos(codigoProducto.getText().toString().toUpperCase(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0)) {
+                    if (con.DAOActualizarProductos(codigoProducto.getText().toString().toUpperCase(), descProducto.getText().toString(), diasCaducidad.getText().toString(), 0,buttonFamilia.getText().toString())) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
                         vaciarCampos();
 
@@ -72,7 +80,7 @@ AlertaInicial("Que desea hacer?");
 
 
                 } else {
-                    if (con.DAOGuardarProducto(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString())) {
+                    if (con.DAOGuardarProducto(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString(),buttonFamilia.getText().toString())) {
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
                         vaciarCampos();
 
@@ -90,7 +98,7 @@ AlertaInicial("Que desea hacer?");
             public void onClick(View v)
             {
 
-                    if (con.DAOActualizarProductos(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString(),1)) {
+                    if (con.DAOActualizarProductos(codigoProducto.getText().toString(), descProducto.getText().toString(), diasCaducidad.getText().toString(),1,"")) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
                         vaciarCampos();
 
@@ -113,63 +121,9 @@ AlertaInicial("Que desea hacer?");
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder myDialog = new AlertDialog.Builder(Registro_Productos.this);
+                launchView(1);
 
-                Nombre_PT=getProductosArray(con.DAOGetTodosProductos("",1));
-                //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
-                final EditText editText = new EditText(Registro_Productos.this);
-                final ListView listview=new ListView(Registro_Productos.this);
-                editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
-                array_sort=new ArrayList<String> (Arrays.asList(Nombre_PT));
-                LinearLayout layout = new LinearLayout(Registro_Productos.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                layout.addView(editText);
-                layout.addView(listview);
-                myDialog.setView(layout);
-                CustomAlertAdapter arrayAdapter=new CustomAlertAdapter(Registro_Productos.this, array_sort);
-                listview.setAdapter(arrayAdapter);
-
-                listview.setOnItemClickListener(Registro_Productos.this);
-                editText.addTextChangedListener(new TextWatcher()
-                {
-                    public void afterTextChanged(Editable s){
-
-                    }
-                    public void beforeTextChanged(CharSequence s,
-                                                  int start, int count, int after){
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count)
-                    {
-                        editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        textlength = editText.getText().length();
-                        array_sort.clear();
-                        for (int i = 0; i < Nombre_PT.length; i++)
-                        {
-                            if (textlength <= Nombre_PT[i].length())
-                            {
-
-                                if(Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim()))
-                                {
-                                    array_sort.add(Nombre_PT[i]);
-                                }
-                            }
-                        }
-                        listview.setAdapter(new CustomAlertAdapter(Registro_Productos.this, array_sort));
-                    }
-                });
-                myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                myalertDialog=myDialog.show();
-
-            }
-        });
+            }});
 
 
         backButton = (Button)findViewById(R.id.backButton);
@@ -197,6 +151,7 @@ AlertaInicial("Que desea hacer?");
 
 
     }
+
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -220,9 +175,17 @@ AlertaInicial("Que desea hacer?");
     public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
         myalertDialog.dismiss();
         String strName=array_sort.get(position);
-        codigoProducto.setText(strName.substring(0, 4));
-        descProducto.setText(con.DAOGetProdcuto(strName.substring(0, 4))[0]);
-        diasCaducidad.setText(con.DAOGetProdcuto(strName.substring(0, 4))[1]);
+
+        if(deCual) {
+            codigoProducto.setText(strName.substring(0, 4));
+            descProducto.setText(con.DAOGetProdcuto(strName.substring(0, 4))[0]);
+            diasCaducidad.setText(con.DAOGetProdcuto(strName.substring(0, 4))[1]);
+            buttonFamilia.setText(con.DAOGetProdcuto(strName.substring(0,4))[3]);
+        }
+        else
+        {
+            buttonFamilia.setText(strName.substring(0,strName.indexOf('-')));
+        }
         //longi_origen=lote_origen.getText().length();
         //lote_origen.getText().toString().substring()
     }
@@ -294,7 +257,6 @@ AlertaInicial("Que desea hacer?");
                 indicadorText.setText("Editar producto existente");
 
 
-
                 isEdit = true;
 
             }
@@ -328,6 +290,71 @@ AlertaInicial("Que desea hacer?");
             listaProductos = con.producto;
         }
         return listaProductos;
+    }
+    public void launchView(int from)
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Registro_Productos.this);
+        if(from==1) {
+            Nombre_PT = getProductosArray(con.DAOGetTodosProductos("",1));
+            deCual=true;
+        }
+        else if(from==0){
+            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
+            deCual =false;
+        }
+
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Registro_Productos.this);
+        final ListView listview = new ListView(Registro_Productos.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Registro_Productos.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Registro_Productos.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+
+        listview.setOnItemClickListener(Registro_Productos.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Registro_Productos.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
+
     }
 
 }

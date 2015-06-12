@@ -150,7 +150,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="350dp"
         android:background="@drawable/plantilla_pt"
         android:id="@+id/relativeLayout2"
         android:layout_below="@+id/btntBuscar"
@@ -211,6 +211,18 @@
             android:layout_marginLeft="10dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seleccione Familia P"
+            android:textColor="@android:color/black"
+            android:id="@+id/textView208"
+            android:textSize="25dp"
+            android:layout_below="@+id/textView207"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -250,8 +262,16 @@
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"/>
 
-
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Familia"
+            android:id="@+id/buttonFamilia"
+            android:layout_alignBottom="@+id/textView208"
+            android:layout_alignLeft="@+id/editText6"
+            android:layout_alignStart="@+id/editText6"
+            android:layout_alignRight="@+id/editText6"
+            android:layout_alignEnd="@+id/editText6" />
 
 
     </RelativeLayout>
