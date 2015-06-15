@@ -1022,9 +1022,7 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="BUSCADOR"
-            android:textSize="25dp"
-            android:background="@drawable/green_button"
+            android:background="@drawable/buscar"
             android:id="@+id/btntBuscar"
             android:layout_alignTop="@+id/btntSave"
             android:layout_alignParentLeft="true"

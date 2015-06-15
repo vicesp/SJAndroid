@@ -291,9 +291,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/btnLab"
-            android:text="LAB"
             android:textSize="50dp"
-            android:background="@drawable/red_button"
+            android:background="@drawable/ic_lab"
             android:layout_below="@+id/textView180"
             android:layout_centerHorizontal="true" />
 
