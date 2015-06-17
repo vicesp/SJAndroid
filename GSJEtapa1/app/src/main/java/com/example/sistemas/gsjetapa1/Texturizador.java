@@ -80,6 +80,7 @@ public class Texturizador extends ActionBarActivity {
         con=new consultas();
         var= new Variables();
 
+
         datos_cambiados="";
 
 
@@ -619,7 +620,8 @@ public class Texturizador extends ActionBarActivity {
         Regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Texturizador.this, Texturizador_Realizados.class));
+                Variables.setFromAdminTexturizador(true);
+                startActivity(new Intent(Texturizador.this, Realizados.class));
             }
 
         });
@@ -663,7 +665,8 @@ public class Texturizador extends ActionBarActivity {
                 }
                 if (exitoso) {
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
-
+                    GuardaTexturizador g = new GuardaTexturizador();
+                    g.execute();
                     //String fechamod=(FechaH.Hoy().substring(0,2)+FechaH.Hoy().substring(3,5)+FechaH.Hoy().substring(8,10));
                     numero_conse = con.DAOTextu_consecutivo(FechaH.Hoy());
                     numero_conse += 1;
@@ -691,6 +694,7 @@ public class Texturizador extends ActionBarActivity {
             layoutObservaciones.setVisibility(View.VISIBLE);
         }
         else {
+            Guardar.setImageResource(R.drawable.guarda);
             Lote.setText(numero_conse + DiaJ.Dame_dia_J_y_anio());
         }
 
@@ -1130,7 +1134,7 @@ public class Texturizador extends ActionBarActivity {
 
         Lote.setText(lote);
 
-        Guardar.setImageResource(R.drawable.guarda);
+        //Guardar.setImageResource(R.drawable.guarda);
 
 
     }

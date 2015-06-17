@@ -1,0 +1,266 @@
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">
+
+
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote            "
+        android:visibility="invisible"
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView"
+
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/backButton"
+        android:background="@android:color/transparent"
+        android:layout_above="@+id/tvptLote"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_toStartOf="@+id/tvptLote"
+        android:layout_toLeftOf="@+id/tvptLote"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha        "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/imageView"
+        android:layout_toLeftOf="@+id/tvptFecha"
+        android:layout_toStartOf="@+id/tvptFecha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="        "
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvptLote"
+        android:layout_alignBaseline="@+id/editText"
+        android:layout_alignBottom="@+id/editText"
+        android:layout_toLeftOf="@+id/editText"
+        android:layout_alignLeft="@+id/textView19"
+        android:layout_alignStart="@+id/textView19" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+        android:id="@+id/tvptFecha"
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregado de Familia"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="22dp"
+        android:id="@+id/textView18"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/tvptFecha"
+        android:layout_alignStart="@+id/tvptFecha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REGISTRO DE FAMILIA"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="32dp"
+        android:id="@+id/textView19"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_centerHorizontal="true" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="230dp"
+        android:background="@drawable/plantilla_pt"
+        android:id="@+id/relativeLayout2"
+        android:layout_below="@+id/btntBuscar"
+        android:layout_marginTop="35dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="info Familia"
+            android:textColor="#98002E"
+            android:textSize="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="20dp"
+            android:id="@+id/textView141"
+            android:background="@android:color/white"
+            android:layout_alignParentTop="true"
+            android:layout_alignLeft="@+id/textView94"
+            android:layout_alignStart="@+id/textView94" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código F"
+            android:textColor="@android:color/black"
+            android:id="@+id/textView205"
+            android:textSize="25dp"
+            android:layout_below="@+id/textView141"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nombre F"
+            android:textColor="@android:color/black"
+            android:id="@+id/textView206"
+            android:textSize="25dp"
+            android:layout_below="@+id/textView205"
+            android:layout_marginTop="35dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText4"
+            android:layout_alignLeft="@+id/editText5"
+            android:layout_alignStart="@+id/editText5"
+            android:layout_alignBottom="@+id/textView205"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"/>
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:id="@+id/editText5"
+            android:layout_alignBottom="@+id/textView206"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"/>
+
+
+    </RelativeLayout>
+
+    <ImageButton
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text=""
+        android:textSize="25dp"
+        android:background="@drawable/actualizarmenos"
+        android:id="@+id/btnSavePT"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignRight="@+id/tvptFecha"
+        android:layout_alignEnd="@+id/tvptFecha"
+        android:layout_marginTop="35dp"/>
+
+
+
+    <Button
+        android:layout_width="200dp"
+        android:layout_height="100dp"
+        android:text="Eliminar"
+        android:textSize="25dp"
+        android:id="@+id/buttonEliminar"
+        android:background="@drawable/red_button"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp"/>
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:text=""
+        android:background="@drawable/buscar"
+        android:id="@+id/btntBuscar"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>

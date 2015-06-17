@@ -1,4 +1,7 @@
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -29,21 +32,20 @@
         android:textSize="25dp"
         android:textColor="@android:color/black"
         android:text="Fecha"
-        android:layout_above="@+id/tvLCProducto"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
+        android:layout_alignTop="@+id/fechaText1"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:id="@+id/fechaText1"
-        android:layout_marginLeft="40dp"
         android:textColor="#98002E"
         android:text=""
-        android:layout_below="@+id/imageView"
-        android:layout_toRightOf="@+id/tvLCNombre"
-        android:layout_toEndOf="@+id/tvLCNombre"
-        android:layout_marginStart="40dp" />
+        android:layout_toLeftOf="@+id/checkBox3"
+        android:layout_alignTop="@+id/tvLCLote"
+        android:layout_alignLeft="@+id/tvLCProducto1"
+        android:layout_alignStart="@+id/tvLCProducto1" />
 
 
     <ImageView
@@ -104,28 +106,27 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/tvLCLotePendiente"
-        android:layout_above="@+id/tvLCProducto"
-        android:layout_toRightOf="@+id/imageView2"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/btnECP"
+        android:layout_alignStart="@+id/btnECP"
         android:layout_alignRight="@+id/btnECP"
         android:layout_alignEnd="@+id/btnECP" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Seleccionar Familia"
-        android:background="@android:color/transparent"
         android:id="@+id/btnECP"
-        android:layout_alignBottom="@+id/tvLCProducto"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_toEndOf="@+id/imageView2" />
+        android:layout_alignBottom="@+id/tvLCFamilia"
+        android:layout_toRightOf="@+id/tvLCCodigo"
+        android:layout_toEndOf="@+id/tvLCCodigo" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Familia"
-        android:id="@+id/tvLCProducto"
+        android:id="@+id/tvLCFamilia"
         android:textSize="25dp"
         android:textColor="@android:color/black"
         android:layout_below="@+id/fechaText1"
@@ -136,18 +137,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tvLCNombre"
+        android:id="@+id/tvLCProducto"
         android:textSize="25dp"
         android:textColor="@android:color/black"
-        android:text="Nombre"
-        android:layout_alignBottom="@+id/btnECP"
-        android:layout_alignLeft="@+id/fechaText"
-        android:layout_alignStart="@+id/fechaText" />
+        android:text="Producto"
+        android:layout_alignBottom="@+id/tvLCProducto1"
+        android:layout_toLeftOf="@+id/switchSabor"
+        android:layout_toStartOf="@+id/switchSabor" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Código"
+        android:text="Código Familia"
         android:id="@+id/tvLCCodigo"
         android:textSize="25dp"
         android:textColor="@android:color/black"
@@ -156,27 +157,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/textView208"
-        android:textColor="#98002E"
-        android:text=""
-        android:layout_alignBottom="@+id/btnECP"
-        android:layout_alignLeft="@+id/fechaText1"
-        android:layout_alignStart="@+id/fechaText1" />
+        android:text="Seleccionar Producto"
+        android:id="@+id/tvLCProducto1"
+        android:textColor="#ff000000"
+        android:layout_alignTop="@+id/btnECP"
+        android:layout_toRightOf="@+id/textView219"
+        android:layout_toEndOf="@+id/textView219" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="25dp"
-        android:id="@+id/tvLCCodigo1"
+        android:id="@+id/tvLCCodigoFamilia"
         android:textColor="#98002E"
-        android:text=""
         android:layout_alignTop="@+id/tvLCCodigo"
-        android:layout_alignLeft="@+id/btnECP"
-        android:layout_alignStart="@+id/btnECP" />
+        android:layout_alignLeft="@+id/textView19"
+        android:layout_alignStart="@+id/textView19" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="35dp"
@@ -254,7 +253,8 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/madera"
         android:scaleType="centerCrop"
-        android:layout_below="@+id/switchAroma"
+        android:layout_below="@+id/swRalladoQR"
+        android:layout_marginBottom="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/imageView"
@@ -299,11 +299,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/editText7"
         android:textSize="25dp"
+        android:layout_alignRight="@+id/editText17"
+        android:layout_alignEnd="@+id/editText17"
         android:layout_alignBottom="@+id/textView112"
-        android:layout_alignRight="@+id/imageViewFuncional"
-        android:layout_alignEnd="@+id/imageViewFuncional"
-        android:layout_toRightOf="@+id/textView112"
-        android:layout_toEndOf="@+id/textView112" />
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8"
+        android:layout_below="@+id/textView137"
+        android:gravity="bottom" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -336,19 +338,26 @@
         android:id="@+id/editText8"
         android:textSize="25dp"
         android:layout_alignBottom="@+id/textView127"
-        android:layout_alignLeft="@+id/editText7"
-        android:layout_alignStart="@+id/editText7"
         android:layout_alignRight="@+id/imageViewFuncional"
-        android:layout_alignEnd="@+id/imageViewFuncional" />
+        android:layout_alignEnd="@+id/imageViewFuncional"
+        android:layout_below="@+id/editText7"
+        android:layout_toRightOf="@+id/fechaText"
+        android:layout_toEndOf="@+id/fechaText"
+        android:gravity="bottom" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
-        android:layout_alignTop="@+id/editText8"
-        android:layout_toRightOf="@+id/switchFundido"
-        android:layout_toLeftOf="@+id/textView127"
-        android:layout_toStartOf="@+id/textView127" />
+        android:textAlignment="center"
+        android:gravity="center"
+
+        android:layout_alignBottom="@+id/switchFundido"
+        android:layout_alignRight="@+id/switchRallado"
+        android:layout_alignEnd="@+id/switchRallado"
+        android:layout_alignTop="@+id/switchFundido"
+        android:layout_toRightOf="@+id/textView212"
+        android:layout_toEndOf="@+id/textView212" />
 
     <Switch
         android:layout_width="wrap_content"
@@ -358,7 +367,7 @@
         android:checked="false"
         android:textSize="25dp"
         android:layout_marginTop="25dp"
-        android:layout_below="@+id/spinner"
+        android:layout_below="@+id/switchFundido"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -370,8 +379,8 @@
         android:textSize="25dp"
         android:textColor="@android:color/black"
         android:layout_alignTop="@+id/switchHebrado"
-        android:layout_toRightOf="@+id/spinner"
-        android:layout_toEndOf="@+id/spinner" />
+        android:layout_alignLeft="@+id/textView127"
+        android:layout_alignStart="@+id/textView127" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -382,7 +391,8 @@
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
         android:layout_alignRight="@+id/editText8"
-        android:layout_alignEnd="@+id/editText8" />
+        android:layout_alignEnd="@+id/editText8"
+        android:gravity="bottom" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -400,6 +410,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+1"
+        android:textSize="25dp"
         android:id="@+id/checkBox"
         android:layout_alignTop="@+id/textView210"
         android:layout_alignLeft="@+id/textView209"
@@ -410,23 +421,354 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+2"
+        android:textSize="25dp"
         android:id="@+id/checkBox2"
-        android:layout_alignBottom="@+id/checkBox"
-        android:layout_toLeftOf="@+id/fechaText1"
-        android:layout_toStartOf="@+id/fechaText1"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_alignBottom="@+id/textView210"
+        android:layout_alignLeft="@+id/textView213"
+        android:layout_alignStart="@+id/textView213" />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="+3"
+        android:textSize="25dp"
         android:id="@+id/checkBox3"
         android:layout_alignBottom="@+id/checkBox2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:checked="false" />
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageViewFisico"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/textView210"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRUEBAS FISICO QUIMICAS"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView138"
+        android:layout_alignTop="@+id/imageViewFisico"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humedad"
+        android:id="@+id/textView211"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/imageViewFisico"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grasa Total"
+        android:id="@+id/textView212"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView211"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pH"
+        android:id="@+id/textView213"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/textView211"
+        android:layout_alignLeft="@+id/switchAroma"
+        android:layout_alignStart="@+id/switchAroma" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText10"
+        android:numeric="decimal"
+        android:layout_toRightOf="@+id/switchRallado"
+        android:layout_above="@+id/textView212"
+        android:layout_toLeftOf="@+id/textView219"
+        android:layout_toStartOf="@+id/textView219"
+        android:layout_below="@+id/imageViewFisico"
+        android:gravity="bottom" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText11"
+        android:layout_alignTop="@+id/textView212"
+        android:layout_alignLeft="@+id/editText10"
+        android:layout_alignStart="@+id/editText10"
+        android:layout_toLeftOf="@+id/editText"
+        android:layout_toStartOf="@+id/editText"
+        android:numeric="decimal"
+        android:gravity="bottom" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText13"
+        android:numeric="decimal"
+        android:layout_alignBottom="@+id/textView213"
+        android:layout_alignRight="@+id/imageViewFisico"
+        android:layout_alignEnd="@+id/imageViewFisico"
+        android:layout_below="@+id/imageViewFisico"
+        android:layout_toRightOf="@+id/textView137"
+        android:layout_toEndOf="@+id/textView137"
+        android:gravity="bottom" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:id="@+id/imageViewRemuestreo"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_below="@+id/textView212"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="REMUESTREO"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="25dp"
+        android:id="@+id/textView139"
+        android:layout_alignTop="@+id/imageViewRemuestreo"
+        android:layout_centerHorizontal="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Humedad"
+        android:id="@+id/textView214"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/switchRemuestreo"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grasa Total"
+        android:id="@+id/textView215"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="44dp"
+        android:layout_below="@+id/textView216"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pH"
+        android:id="@+id/textView216"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignTop="@+id/textView214"
+        android:layout_alignLeft="@+id/textView213"
+        android:layout_alignStart="@+id/textView213" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText14"
+        android:layout_above="@+id/textView215"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_alignRight="@+id/editText15"
+        android:layout_alignEnd="@+id/editText15"
+        android:numeric="decimal"
+        android:enabled="false"
+        android:layout_alignTop="@+id/editText16"
+        android:gravity="bottom" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText15"
+        android:numeric="decimal"
+        android:enabled="false"
+        android:layout_alignBottom="@+id/textView215"
+        android:layout_toLeftOf="@+id/fechaText"
+        android:layout_toRightOf="@+id/imageView2"
+        android:layout_toEndOf="@+id/imageView2"
+        android:layout_below="@+id/editText14"
+        android:gravity="bottom" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#98002E"
+        android:textSize="20dp"
+        android:id="@+id/editText16"
+        android:layout_alignRight="@+id/checkBox3"
+        android:layout_alignEnd="@+id/checkBox3"
+        android:layout_alignLeft="@+id/editText13"
+        android:layout_alignStart="@+id/editText13"
+        android:layout_alignBottom="@+id/textView216"
+        android:numeric="decimal"
+        android:enabled="false"
+        android:layout_below="@+id/switchRemuestreo"
+        android:gravity="bottom" />
+
+    <ImageButton
+        android:layout_width="210dp"
+        android:layout_height="105dp"
+        android:id="@+id/guardarBtn"
+        android:background="@drawable/actualizarmenos"
+        android:layout_alignTop="@+id/textView215"
+        android:layout_toEndOf="@+id/textView19"
+        android:layout_below="@+id/textView216"
+        android:layout_marginTop="100dp"
+        android:layout_toRightOf="@+id/textView19" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Necesidad de remuestreo"
+        android:id="@+id/switchRemuestreo"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_below="@+id/textView139"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones de Sabor"
+        android:id="@+id/textView217"
+        android:textSize="25dp"
+        android:layout_marginTop="25dp"
+        android:textColor="@android:color/black"
+        android:layout_below="@+id/switchColor"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText17"
+        android:textSize="25dp"
+        android:layout_alignLeft="@+id/textView139"
+        android:layout_alignStart="@+id/textView139"
+        android:layout_alignBottom="@+id/textView217"
+        android:layout_alignRight="@+id/tvLCProducto1"
+        android:layout_alignEnd="@+id/tvLCProducto1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Código Producto"
+        android:id="@+id/textView219"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:layout_alignBottom="@+id/tvLCCodigo"
+        android:layout_alignLeft="@+id/tvLCProducto"
+        android:layout_alignStart="@+id/tvLCProducto" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:id="@+id/tvLCCodigoProducto"
+        android:textColor="#98002E"
+        android:layout_alignBottom="@+id/textView219"
+        android:layout_alignRight="@+id/imageView14"
+        android:layout_alignEnd="@+id/imageView14"
+        android:layout_alignTop="@+id/textView219"
+        android:layout_alignLeft="@+id/tvLCProducto1"
+        android:layout_alignStart="@+id/tvLCProducto1"
+        android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBack"
+        android:background="@android:color/transparent"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toLeftOf="@+id/editText14"
+        android:layout_toStartOf="@+id/editText14" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swRalladoQR"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_below="@+id/textView217"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignRight="@+id/switchColor"
+        android:layout_alignEnd="@+id/switchColor"
+        android:text="Rallado QR"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:id="@+id/textView227"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/swRalladoQR"
+        android:layout_alignRight="@+id/fechaText"
+        android:layout_alignEnd="@+id/fechaText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/observacionesRalladoQR"
+        android:textSize="25dp"
+        android:gravity="bottom"
+        android:layout_alignBottom="@+id/textView227"
+        android:layout_alignRight="@+id/editText17"
+        android:layout_alignEnd="@+id/editText17"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/fechaText"
+        android:layout_toEndOf="@+id/fechaText" />
+
 
 </RelativeLayout>
-
+</ScrollView>
 

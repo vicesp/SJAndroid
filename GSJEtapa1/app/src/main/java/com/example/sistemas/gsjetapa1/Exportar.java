@@ -38,7 +38,7 @@ import config.DataBaseHelper;
  */
 public class Exportar extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT, btnELab;
     private TextView fecha;
     String nom_tabla;
     String nom_excel;
@@ -130,6 +130,19 @@ public class Exportar extends ActionBarActivity {
             }
         });
 
+
+        btnELab=(Button)findViewById(R.id.btnELab);
+        btnELab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Variables.setNombre_excel("Laboratorio Calidad");
+                Variables.setNombre_tabla("laboratorio_calidad");
+                Variables.setTipo_consulta(1);
+                AC.dialogee.show();
+
+            }
+        });
 
 
 

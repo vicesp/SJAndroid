@@ -142,12 +142,12 @@ public class Cuajado extends ActionBarActivity {
         //******************    Text Viewes    ****************//
 
         Fecha=(TextView)findViewById(R.id.tvFechaCuaj);
-        Fecha.setText(FechaH.Hoy());
+        Fecha.setText(FechaH.Hoy_hora());
 
         NumEquipo=(TextView)findViewById(R.id.tvNumequipo);
         NumEquipo.setText(Variables.getEquipo_tina());
 
-        con.DAOC_llena_info_sin_guardar(NumEquipo.getText().toString(),Fecha.getText().toString());
+        con.DAOC_llena_info_sin_guardar(NumEquipo.getText().toString(), Fecha.getText().toString());
 
 
         lecheSilo.setText(Variables.getLecheSilo());
@@ -429,7 +429,7 @@ public class Cuajado extends ActionBarActivity {
                             silo_select,
                             NumTina.getText().toString(),
                             familia_select,
-                            Fecha.getText().toString(),
+                            FechaH.Hoy_hora(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                             proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
@@ -568,11 +568,11 @@ public class Cuajado extends ActionBarActivity {
                             silo_select,
                             NumTina.getText().toString(),
                             familia_select,
-                            Fecha.getText().toString(),
+                            FechaH.Hoy_hora(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                             proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
-                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0);
+                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0, Fecha.getText().toString());
 
                     boolean exitoso_Aditivos = con.DAOCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(), lote1.getText().toString(), adi2.getText().toString(), lote2.getText().toString(),
                             adi3.getText().toString(), lote3.getText().toString(), adi4.getText().toString(), lote4.getText().toString(), adi5.getText().toString(), lote5.getText().toString(),
@@ -709,11 +709,11 @@ public class Cuajado extends ActionBarActivity {
                         silo_select,
                         NumTina.getText().toString(),
                         familia_select,
-                        Fecha.getText().toString(),
+                        FechaH.Hoy_hora(),
                         lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                         lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                         proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
-                        tempCocido.getText().toString(),NumEquipo.getText().toString(),0,0);
+                        tempCocido.getText().toString(),NumEquipo.getText().toString(),0,0, FechaH.Hoy());
 
                 boolean exitoso_Aditivos=con.DAOCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(),lote1.getText().toString(),adi2.getText().toString(),lote2.getText().toString(),
                         adi3.getText().toString(),lote3.getText().toString(),adi4.getText().toString(),lote4.getText().toString(),adi5.getText().toString(),lote5.getText().toString(),

@@ -3,6 +3,7 @@ package com.example.sistemas.gsjetapa1;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
 import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -79,6 +80,8 @@ public class Fundido extends ActionBarActivity {
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
+    protected Cursor cursor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +92,8 @@ public class Fundido extends ActionBarActivity {
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var =new Variables();
+
 
         Variables.setIp_servidor(con.DAOSelecConfigIP());
 
@@ -833,7 +838,7 @@ public class Fundido extends ActionBarActivity {
                         tempe_final.getText().toString(),Peso_tot.getText().toString(),texturizador_sel,lote_textu.getText().toString(),
                         cj01_1.getText().toString(),lote_cj01_1.getText().toString(),ph_cj01_1.getText().toString(),cj01_2.getText().toString(),lote_cj01_2.getText().toString(),ph_cj01_2.getText().toString(),
                         tipo_crema_sel2,lote_crema2.getText().toString(),cantidad_crema2.getText().toString(),tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel,cj01_3.getText().toString(),
-                        lote_cj01_3.getText().toString(),ph_cj01_3.getText().toString());
+                        lote_cj01_3.getText().toString(),ph_cj01_3.getText().toString(), FechaH.Hoy());
 
                 if(exitoso){
                     GuardaFundidoSync task=new GuardaFundidoSync();
@@ -864,7 +869,9 @@ public class Fundido extends ActionBarActivity {
 
 
 
-
+    if(var.isFromFundido()){
+        llenarValoresBusqueda(var.getLoteFundido());
+    }
 
 
 
@@ -1241,6 +1248,17 @@ public class Fundido extends ActionBarActivity {
 
         WebSettings webSettings = myWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+    }
+    public void llenarValoresBusqueda(String lote) {
+
+        cursor= con.DAOLLenarFundido(lote);
+
+        Lote.setText(cursor.getString(cursor.getColumnIndex("lote")));
+        Linea.setText(cursor.getString(cursor.getColumnIndex("linea")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        Fundida.setText(cursor.getString(cursor.getColumnIndex("num_fundida")));
+        cj01.setText(cursor.getString(cursor.getColumnIndex("cj01")));
+
     }
 
 }

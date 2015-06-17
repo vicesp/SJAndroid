@@ -274,9 +274,8 @@
             android:id="@+id/btnEtexturizador"
             android:background="@drawable/ic_textu"
             android:layout_below="@+id/textView180"
-            android:layout_marginRight="75dp"
-            android:layout_alignRight="@+id/textView180"
-            android:layout_alignEnd="@+id/textView180" />
+            android:layout_alignLeft="@+id/btnECuajado"
+            android:layout_alignStart="@+id/btnECuajado" />
 
         <Button
             android:layout_width="150dp"
@@ -286,8 +285,144 @@
 
             android:layout_below="@+id/textView181"
             android:layout_alignRight="@+id/textView179"
-            android:layout_alignEnd="@+id/textView179"
-            android:layout_marginRight="100dp"/>
+            android:layout_alignEnd="@+id/textView179" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnLab"
+            android:textSize="50dp"
+            android:background="@drawable/ic_lab"
+            android:layout_below="@+id/textView180"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/plantilla_marco"
+        android:id="@+id/relativeLayout6"
+        android:layout_below="@+id/relativeLayout2"
+        android:layout_alignRight="@+id/relativeLayout2"
+        android:layout_alignEnd="@+id/relativeLayout2">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnProd"
+            android:text="Productos"
+            android:background="@drawable/red_button"
+            android:layout_below="@+id/textView223"
+            android:layout_alignLeft="@+id/textView223"
+            android:layout_alignStart="@+id/textView223" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnFam"
+            android:background="@drawable/red_button"
+            android:text="Familias"
+            android:layout_below="@+id/textView224"
+            android:layout_alignRight="@+id/textView224"
+            android:layout_alignEnd="@+id/textView224"
+            android:layout_marginLeft="30dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText18"
+            android:visibility="invisible"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText19"
+            android:visibility="invisible"
+            android:layout_alignBottom="@+id/editText18"
+            android:layout_toLeftOf="@+id/editText18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView220"
+            android:layout_above="@+id/editText18"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear o Editar"
+            android:textColor="#98002E"
+            android:textSize="30dp"
+            android:layout_marginTop="0dp"
+            android:id="@+id/textView221"
+            android:background="@android:color/white"
+            android:layout_above="@+id/textView222"
+            android:layout_toRightOf="@+id/textView222"
+            android:layout_toEndOf="@+id/textView222" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   "
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/textView222"
+            android:layout_below="@+id/editText19" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUAJADO_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView223"
+            android:layout_below="@+id/textView222"
+            android:layout_toRightOf="@+id/textView222"
+            android:layout_toEndOf="@+id/textView222" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FUNDIDO_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView224"
+            android:layout_below="@+id/textView222"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMPAQUE_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView225"
+            android:layout_alignTop="@+id/textView224"
+            android:layout_toLeftOf="@+id/editText19"
+            android:layout_toStartOf="@+id/editText19" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEXTURIZADOR_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView226"
+            android:layout_below="@+id/btnProd"
+            android:layout_toRightOf="@+id/textView223"
+            android:layout_toEndOf="@+id/textView223"
+            android:layout_marginTop="41dp" />
 
     </RelativeLayout>
 

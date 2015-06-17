@@ -17,9 +17,10 @@ import DTO.Variables;
 
 public class Administrador extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab, btnProductos, btnFamilias;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
+    private static Variables var;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +28,7 @@ public class Administrador extends ActionBarActivity {
         setContentView(R.layout.administrador);
 
         FechaH=new Fecha_Hoy();
+        var= new Variables();
 
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
@@ -37,8 +39,9 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
-                finish();startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
+                var.setFromAdminCuajado(true);
+                finish();
+                startActivity(new Intent(Administrador.this, Realizados.class));
             }
         });
 
@@ -46,8 +49,8 @@ public class Administrador extends ActionBarActivity {
         btnFundido.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            finish();startActivity(new Intent(Administrador.this, Fundido_Realizados.class));
+            var.setFromAdminFundido(true);
+            finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
 
             }
@@ -58,7 +61,9 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
+                //AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
+                var.setFromAdminEmpaque(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
         });
@@ -82,6 +87,49 @@ public class Administrador extends ActionBarActivity {
 
             }
         });
+        btnLab=(Button)findViewById(R.id.btnLab);
+        btnLab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                var.setFromAdminLaboratorio(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
+
+            }
+        });
+
+        btnProductos=(Button)findViewById(R.id.btnProd);
+        btnProductos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();
+                startActivity(new Intent(Administrador.this, Registro_Productos.class));
+
+            }
+        });
+        btnFamilias=(Button)findViewById(R.id.btnFam);
+        btnFamilias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                finish();startActivity(new Intent(Administrador.this, Registro_Familias.class));
+
+            }
+        });
+
+        if(var.getNombre_usuario().equals("EL"))
+        {
+
+            btnFamilias.setEnabled(false);
+            btnProductos.setEnabled(false);
+            btnCuajado.setEnabled(false);
+            btnEmpaque.setEnabled(false);
+            btnFundido.setEnabled(false);
+            btnPT.setEnabled(false);
+            btnTextu.setEnabled(false);
+        }
+
+
     }
 
     @Override
@@ -116,7 +164,8 @@ public class Administrador extends ActionBarActivity {
         alertDialogBuilder.setPositiveButton("Edicion de Registro", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                finish();startActivity(new Intent(Administrador.this, Empaque_Realizados.class));
+                var.setFromAdminEmpaque(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
 
