@@ -109,39 +109,45 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                                             int dayOfMonth) {
                 if (var.isFromAdminLaboratorio()) {
                     LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(calendario.getDate())));
-                }
-                else if (var.isFromAdminFundido()) {
+                } else if (var.isFromAdminFundido()) {
                     LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(calendario.getDate())));
-                }
-                else if (var.isFromAdminCuajado()){
+                } else if (var.isFromAdminCuajado()) {
                     LLena_Lista(con.DAOListaCuajadoRealizado(fechaSeleccionada(calendario.getDate())));
-                }
-                else if(var.isFromAdminEmpaque()){
+                } else if (var.isFromAdminEmpaque()) {
                     LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(calendario.getDate())));
-                }
-                else if (var.isFromAdminTexturizador()){
+                } else if (var.isFromAdminTexturizador()) {
                     LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(calendario.getDate())));
                 }
 
             }
         });
+
+
+        /*Log.i("LAB:", var.isFromAdminLaboratorio() + "");
+        Log.i("FUN:",var.isFromAdminFundido()+"");
+        Log.i("CUAJ:",var.isFromAdminCuajado()+"");
+        Log.i("EMP:",var.isFromAdminEmpaque()+"");
+        Log.i("TEXT:",var.isFromAdminTexturizador()+"");*/
+
+
+
         if (var.isFromAdminLaboratorio()) {
             LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("LABORATORIO REALIZADOS");
         }
-        else if(var.isFromAdminFundido()){
+        if(var.isFromAdminFundido()){
             LLena_Lista(con.DAOListaFundidoRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("FUNDIDO REALIZADOS");
         }
-        else if(var.isFromAdminCuajado()){
+        if(var.isFromAdminCuajado()){
             LLena_Lista(con.DAOListaCuajadoRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("CUAJADO REALIZADOS");
         }
-        else if(var.isFromAdminEmpaque()){
+        if(var.isFromAdminEmpaque()){
             LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("EMPAQUE REALIZADOS");
         }
-        else if(var.isFromAdminTexturizador()){
+        if(var.isFromAdminTexturizador()){
             LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("TEXTURIZADOR REALIZADOS");
         }
@@ -207,7 +213,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setFromEmpaque(true);
             var.setLoteEmpaque(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
             finish();
-            startActivity(new Intent(Realizados.this, Cuajado.class));
+            startActivity(new Intent(Realizados.this, Empaque.class));
         }
         else if(var.isFromAdminTexturizador()){
             var.setFromSearch(true);

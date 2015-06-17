@@ -302,7 +302,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                 // TODO Auto-generated method stub
 
                 if (var.isFromEmpaque()) {
-                    boolean exitoso = con.DAOActualizarEmpaque(lote_origen.getText().toString(), FechaH.Hoy(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
+                    boolean exitoso = con.DAOActualizarEmpaque(lote_origen.getText().toString(), Fecha.getText().toString(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
                             , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
                             , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()
                             , gas_ulma.getText().toString(), temp_formado_ulma.getText().toString(), temp_sellado_ulma.getText().toString(), oxigeno_ulma.getText().toString()
@@ -322,12 +322,12 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                     }
                 }
                 else {
-                    boolean exitoso = con.DAOEmpaque(lote_origen.getText().toString(), FechaH.Hoy(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
+                    boolean exitoso = con.DAOEmpaque(lote_origen.getText().toString(), FechaH.Hoy_hora(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
                             , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
                             , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()
                             , gas_ulma.getText().toString(), temp_formado_ulma.getText().toString(), temp_sellado_ulma.getText().toString(), oxigeno_ulma.getText().toString()
                             , vacio_ultravac.getText().toString(), temp_ultravac.getText().toString(), hora_fin_ultravac.getText().toString(), lote_fondo.getText().toString(), lote_tapa.getText().toString()
-                            , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString());
+                            , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString(),Fecha.getText().toString());
                     if(exitoso){
                         limpia_campos();
                         Alerta(getResources().getString(R.string.Alerta_Guardado));

@@ -138,7 +138,7 @@ public class consultas {
                               String porcen_grasa_leche,String ph_leche,String porce_proteina,
                               String leche_tina,String porce_grasa_leche_tina,
                               String porce_prot_tina,String Temp_adi_cuajo,String ph_pasta_coag,String hora_adi_cuajo,
-                              String temp_cocido, String num_equipo, int estatus_guardado, int estatus_pendiente){
+                              String temp_cocido, String num_equipo, int estatus_guardado, int estatus_pendiente, String fecha_hoy){
 
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -167,7 +167,7 @@ public class consultas {
                 db.execSQL("INSERT INTO cuajado (" +
                         "lote,silo,num_tina,familia,fecha,leche_silo,porcen_grasa_leche,ph_leche,porce_proteina," +
                         "leche_tina,porce_grasa_leche_tina,porce_prot_tina,Temp_adi_cuajo," +
-                        "ph_pasta_coag,hora_adi_cuajo,temp_cocido, num_equipo, estatus_guardado,estatus_pendiente) " +
+                        "ph_pasta_coag,hora_adi_cuajo,temp_cocido, num_equipo, estatus_guardado,estatus_pendiente, fecha_hoy) " +
                         "VALUES ('"+lote+"','"
                         + silo + "',"
                         + num_tina + ",'"
@@ -186,7 +186,8 @@ public class consultas {
                         + temp_cocido + "','"
                         + num_equipo + "',"
                         + estatus_guardado + ","
-                        + estatus_pendiente
+                        + estatus_pendiente+",'"
+                        +fecha_hoy+"' "
                         + ")");
 
                 cursor.close();
@@ -318,7 +319,7 @@ public class consultas {
                                       String cantidad_restos,String maquina_usar,String vacio_ulma,String gas_ulma,
                                       String temp_ulma,String temp_sellado_ulma,String oxigeno_ulma,String vacio_ultra,
                                       String temp_ultra, String hora_fin_ultra, String lote_fondo, String lote_tapa, String lote_funda, String observaciones,
-                                      String piezas_empacadas, String piezas_calidad){
+                                      String piezas_empacadas, String piezas_calidad, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -326,7 +327,7 @@ public class consultas {
             db.execSQL("INSERT INTO empaque (" +
                     " lote_origen,fecha,cod_prod,prod_terminado,lote,piezas_almacen,piezas_reproceso,temp_pt,hora_inicio_pt,cod_prod_restos," +
                     "lote_restos,cantidad_restos,maquina_usar,vacio_ulma,gas_ulma,temp_ulma,temp_sellado_ulma,oxigeno_ulma,vacio_ultra," +
-                    "temp_ultra,hora_fin_ultra,lote_fondo,lote_tapa,lote_funda,observaciones,piezas_empacadas,piezas_calidad)" +
+                    "temp_ultra,hora_fin_ultra,lote_fondo,lote_tapa,lote_funda,observaciones,piezas_empacadas,piezas_calidad, fecha_hoy)" +
                     "VALUES ('" + lote_origen + "','"
                     + fecha + "','"
                     + cod_prod + "','"
@@ -353,7 +354,8 @@ public class consultas {
                     + lote_funda + "','"
                     + observaciones + "','"
                     + piezas_empacadas + "','"
-                    + piezas_calidad
+                    + piezas_calidad+"','"
+                    +fecha_hoy
                     + "')");
 
             return true;
@@ -546,7 +548,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote " +
-                "FROM empaque WHERE fecha ='" +
+                "FROM empaque WHERE fecha_hoy ='" +
                 fecha + "'", null);
         Log.i("",fecha);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
@@ -1519,9 +1521,9 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote " +
-                "FROM cuajado WHERE fecha ='" +
+                "FROM cuajado WHERE fecha_hoy ='" +
                 fecha + "'", null);
-
+        Log.i("",fecha);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -1529,11 +1531,11 @@ public class consultas {
             if  (cursor.moveToFirst()) {
                 consultas lista = new consultas();
 
-                lista.cuajado = new String[cursor.getCount()];
+                lista.empaque = new String[cursor.getCount()];
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.cuajado[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
