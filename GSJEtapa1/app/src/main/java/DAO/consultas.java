@@ -1699,7 +1699,8 @@ public class consultas {
                               String color,String aroma,String observaciones_sabor, String rallado,
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
-                              String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones)
+                              String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones,
+                                         String ralladoqr, String observaciones_ralladoqr)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -1708,15 +1709,15 @@ public class consultas {
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                            "necesidad_remuestreo) VALUES ('" +
+                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr) VALUES ('" +
 
                             fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
-                            codigo_prod+"','"+codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
+                            codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
                             observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
                             fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
                             observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
                             grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                            grasa_remuestreo + "','" + necesidad_remuestreo +
+                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+
 
                             "');"
             );
@@ -1727,12 +1728,41 @@ public class consultas {
             return false;
         }
     }
+    /****************    Consulta para actualizar Laboratorio Calidad   *************/
+
+    public boolean DAOActualizarLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,String sabor,
+                          String color,String aroma,String observaciones_sabor, String rallado,
+                          String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
+                          String observaciones_hebrado,String grasa_residual,String humedad,String ph,
+                          String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr){
+
+        db = myDbHelper.getWritableDatabase();
+        try {
+            db.execSQL("UPDATE laboratorio_calidad SET fecha = '"+fecha+"', lote = '"+lote+"', familia='"+familia+"', producto='"+producto+"',"+
+
+                            "codigo_prod='"+codigo_prod+"', codigo_fam='"+codigo_fam+"', apariencia='"+apariencia+"',sabor='"+sabor+"'," +
+                            "color='"+color+"', aroma='"+aroma+"', observaciones_sabor='"+observaciones_sabor+"', rallado='"+rallado+"',"+
+                            "observaciones_rallado='"+observaciones_rallado+"', fundido='"+fundido+"', observaciones_fundido='"+observaciones_fundido+"'," +
+                            "hebrado='"+hebrado+"', observaciones_hebrado='"+observaciones_hebrado+"', grasa_residual='"+grasa_residual+"',"+
+                            "humedad='"+humedad+"', ph='"+ph+"', grasa_total='"+grasa_total+"', humedad_remuestreo='"+humedad_remuestreo+"',"+
+                            "ph_remuestreo='"+ph_remuestreo+"', grasa_remuestreo='"+grasa_remuestreo+ "',"+"necesidad_remuestreo='"+necesidad_remuestreo+"',"+
+                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"';");
+            myDbHelper.close();
+            db.close();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
 
     /****************    Consulta para Llenar la lista de lotes Laboratorio    *************/
     public ArrayList<consultas> DAOListaLaboratorioRealizado(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, codigo_prod, producto " +
                 "FROM laboratorio_calidad WHERE fecha ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -1745,7 +1775,7 @@ public class consultas {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_prod"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
@@ -1758,7 +1788,7 @@ public class consultas {
     }
 
     /****************    Consulta para LLenar Laboratorio Calidad     *************/
-    public Cursor DAOLLenarLaboratorio(String lote) {
+    public Cursor DAOLLenarLaboratorio(String lote, String codigo_prod) {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
@@ -1766,8 +1796,7 @@ public class consultas {
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
                     ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo " +
 
-                    "FROM laboratorio_calidad WHERE lote ='" +
-                    lote + "'", null);
+                    "FROM laboratorio_calidad WHERE lote ='" + lote + "' AND codigo_prod ='"+codigo_prod+"';", null);
             if (cursor.moveToPosition(0)) {
 
                 //cursor.close();

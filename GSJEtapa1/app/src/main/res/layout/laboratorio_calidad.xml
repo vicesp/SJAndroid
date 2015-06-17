@@ -160,7 +160,6 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="Seleccionar Producto"
         android:id="@+id/tvLCProducto1"
         android:textColor="#ff000000"
@@ -254,7 +253,7 @@
         android:layout_marginTop="30dp"
         android:src="@drawable/madera"
         android:scaleType="centerCrop"
-        android:layout_below="@+id/textView217"
+        android:layout_below="@+id/swRalladoQR"
         android:layout_marginBottom="30dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -504,7 +503,7 @@
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/editText10"
-        android:numeric="integer"
+        android:numeric="decimal"
         android:layout_toRightOf="@+id/switchRallado"
         android:layout_above="@+id/textView212"
         android:layout_toLeftOf="@+id/textView219"
@@ -523,7 +522,7 @@
         android:layout_alignStart="@+id/editText10"
         android:layout_toLeftOf="@+id/editText"
         android:layout_toStartOf="@+id/editText"
-        android:numeric="integer"
+        android:numeric="decimal"
         android:gravity="bottom" />
 
     <EditText
@@ -608,7 +607,7 @@
         android:layout_toRightOf="@+id/imageView2"
         android:layout_alignRight="@+id/editText15"
         android:layout_alignEnd="@+id/editText15"
-        android:numeric="integer"
+        android:numeric="decimal"
         android:enabled="false"
         android:layout_alignTop="@+id/editText16"
         android:gravity="bottom" />
@@ -619,7 +618,7 @@
         android:textColor="#98002E"
         android:textSize="20dp"
         android:id="@+id/editText15"
-        android:numeric="integer"
+        android:numeric="decimal"
         android:enabled="false"
         android:layout_alignBottom="@+id/textView215"
         android:layout_toLeftOf="@+id/fechaText"
@@ -715,6 +714,59 @@
         android:layout_alignLeft="@+id/tvLCProducto1"
         android:layout_alignStart="@+id/tvLCProducto1"
         android:layout_marginLeft="5dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBack"
+        android:background="@android:color/transparent"
+        android:enabled="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toLeftOf="@+id/editText14"
+        android:layout_toStartOf="@+id/editText14" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/swRalladoQR"
+        android:checked="false"
+        android:textSize="25dp"
+        android:layout_below="@+id/textView217"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignRight="@+id/switchColor"
+        android:layout_alignEnd="@+id/switchColor"
+        android:text="Rallado QR"
+        android:visibility="invisible" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Observaciones"
+        android:id="@+id/textView227"
+        android:textSize="25dp"
+        android:textColor="@android:color/black"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/swRalladoQR"
+        android:layout_alignRight="@+id/fechaText"
+        android:layout_alignEnd="@+id/fechaText" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/observacionesRalladoQR"
+        android:textSize="25dp"
+        android:gravity="bottom"
+        android:layout_alignBottom="@+id/textView227"
+        android:layout_alignRight="@+id/editText17"
+        android:layout_alignEnd="@+id/editText17"
+        android:visibility="invisible"
+        android:layout_toRightOf="@+id/fechaText"
+        android:layout_toEndOf="@+id/fechaText" />
 
 
 </RelativeLayout>

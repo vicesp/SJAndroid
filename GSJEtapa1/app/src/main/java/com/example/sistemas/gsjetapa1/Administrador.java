@@ -116,6 +116,18 @@ public class Administrador extends ActionBarActivity {
             }
         });
 
+        if(var.getNombre_usuario().equals("EL"))
+        {
+
+            btnFamilias.setEnabled(false);
+            btnProductos.setEnabled(false);
+            btnCuajado.setEnabled(false);
+            btnEmpaque.setEnabled(false);
+            btnFundido.setEnabled(false);
+            btnPT.setEnabled(false);
+            btnTextu.setEnabled(false);
+        }
+
 
     }
 

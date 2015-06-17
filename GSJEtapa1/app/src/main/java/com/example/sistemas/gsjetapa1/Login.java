@@ -48,12 +48,14 @@ public class Login extends Activity {
 
                 if(tipoUsuario==1)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Exportar.class));
 
                 }
 
                 else if(tipoUsuario==2)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     Variables.setNum_tina_mostrar(0);
                     Variables.setNumero_tina_A(0);
                     Variables.setNumero_tina_B(0);
@@ -69,29 +71,35 @@ public class Login extends Activity {
                    }
                 else if(tipoUsuario==4)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Producto_Terminado.class));
                 }
                 else if(tipoUsuario==5)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     Variables.setFromSearch(false);
                     finish();startActivity(new Intent(Login.this, Texturizador.class));
                 }
                 else if(tipoUsuario==6)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Empaque.class));
                 }
                 else if(tipoUsuario==7)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Fundido.class));
                     Variables.setLinea_fundido(2);
                 }
                 else if(tipoUsuario==8)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Configuracion.class));
 
                 }
                 else if (tipoUsuario==9)
                 {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
                 else if (tipoUsuario== 10 )
@@ -119,6 +127,18 @@ public class Login extends Activity {
 
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Laboratorio_Calidad.class));
+
+                }
+                else if (tipoUsuario==15)
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
+
+                }
+                else if (tipoUsuario==16)
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Administrador.class));
 
                 }
 

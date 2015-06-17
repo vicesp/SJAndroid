@@ -2,6 +2,7 @@ package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -40,13 +41,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static consultas con;
     private static Variables var;
 
-    private TextView Fecha,codigo_prod, codigo_fam;
-    private Button btn_listviewdialog, btn_listviewdialog1;
+    private TextView Fecha,codigo_prod, codigo_fam, observacionesqr;
+    private Button btn_listviewdialog, btn_listviewdialog1, btnBack;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
-    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem;
+    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR;
     private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
-            humedad, ph, grasa_total, humRem, phRem, grasRem;
+            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr;
     private Spinner spinnerDiez;
     private boolean deCual;
     private String Nombre_PT[];
@@ -72,6 +73,9 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         Fecha.setText(FechaH.Hoy());
         codigo_fam = (TextView)findViewById(R.id.tvLCCodigoFamilia);
         codigo_prod=(TextView)findViewById(R.id.tvLCCodigoProducto);
+        observacionesqr=(TextView)findViewById(R.id.textView227);
+
+
 
 
         /********** Spinner ****************/
@@ -87,19 +91,37 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                        @Override
                                        public void onClick(View v) {
 
-                                           boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
-                                                   codigo_prod.getText().toString(), codigo_fam.getText().toString() ,switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
-                                                   switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
-                                                   switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
-                                                   switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
-                                                   grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                   switchTexter(swRem.isChecked()), "");
-                                           if(exitoso){
+                                           if (var.isFromLaboratorio()) {
 
-                                               Alerta(getResources().getString(R.string.Alerta_Guardado));
-                                           }
-                                           else{
-                                               Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                                               boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
+                                                       codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
+                                                       switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
+                                                       switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
+                                                       switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
+                                                       grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                               if (exitoso) {
+
+                                                   Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                                               } else {
+                                                   Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                                               }
+                                           } else {
+
+
+                                               boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
+                                                       codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
+                                                       switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
+                                                       switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
+                                                       switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
+                                                       grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                               if (exitoso) {
+
+                                                   Alerta(getResources().getString(R.string.Alerta_Guardado));
+                                               } else {
+                                                   Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                                               }
                                            }
                                        }
                                    }
@@ -113,6 +135,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swAro=(Switch)findViewById(R.id.switchAroma);
         swRall=(Switch)findViewById(R.id.switchRallado);
         swHeb=(Switch)findViewById(R.id.switchHebrado);
+        swRallQR=(Switch)findViewById(R.id.swRalladoQR);
         swRem = (Switch)findViewById(R.id.switchRemuestreo);
         swRem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -138,6 +161,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         observaciones_rallado=(EditText)findViewById(R.id.editText7);
         observaciones_fundido=(EditText)findViewById(R.id.editText8);
         observaciones_hebrado=(EditText)findViewById(R.id.editText9);
+        observaciones_ralladoqr=(EditText)findViewById(R.id.observacionesRalladoQR);
         humedad=(EditText)findViewById(R.id.editText10);
         ph=(EditText)findViewById(R.id.editText11);
         grasa_total=(EditText)findViewById(R.id.editText13);
@@ -183,6 +207,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
+
                 launchView(1);
             }});
 
@@ -199,15 +224,32 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             }
         });
 
+        btnBack = (Button)findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(this);
+        btnBack.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                var.setFromAdminLaboratorio(true);
+                finish();
+                startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class ));
+
+
+            }
+        });
+
         if(var.isFromLaboratorio())
         {
-            llenarValoresBusqueda(var.getLoteLaboratorio());
+            llenarValoresBusqueda(var.getLoteLaboratorio(),var.getCodProdLaboratorio());
 
         }
         else {
             Guardar.setImageResource(R.drawable.guarda);
 
         }
+
+
+
 
     }
 
@@ -244,6 +286,30 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         if (deCual) {
             codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
             btn_listviewdialog1.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
+
+
+
+            if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
+            {
+
+                observaciones_ralladoqr.setVisibility(View.VISIBLE);
+                observacionesqr.setVisibility(View.VISIBLE);
+                swRallQR.setVisibility(View.VISIBLE);
+
+                observaciones_rallado.setEnabled(false);
+                swRall.setEnabled(false);
+
+            }
+            else{
+                observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+                observacionesqr.setVisibility(View.INVISIBLE);
+                swRallQR.setVisibility(View.INVISIBLE);
+
+                observaciones_rallado.setEnabled(true);
+                swRall.setEnabled(true);
+
+            }
+
         }
         if(!deCual) {
             codigo_fam.setText(strName.substring(0, strName.indexOf('-')));
@@ -379,8 +445,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         alertDialog.show();
 
     }
-    public void llenarValoresBusqueda(String lote) {
-        cursor = con.DAOLLenarLaboratorio(lote);
+    public void llenarValoresBusqueda(String lote, String cod_prod) {
+        cursor = con.DAOLLenarLaboratorio(lote, cod_prod);
         Lote.setText(lote);
         Lote.setEnabled(false);
         btn_listviewdialog1.setEnabled(false);
@@ -411,7 +477,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("familia")));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
 
-        var.setFromLaboratorio(false);
+        //swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
+        //observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
 
     }
 

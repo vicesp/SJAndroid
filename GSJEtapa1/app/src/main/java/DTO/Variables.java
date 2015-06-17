@@ -23,6 +23,16 @@ public class Variables {
     public static String loteFundido;
     public static String loteLaboratorio;
 
+    public static String getCodProdLaboratorio() {
+        return codProdLaboratorio;
+    }
+
+    public static void setCodProdLaboratorio(String codProdLaboratorio) {
+        Variables.codProdLaboratorio = codProdLaboratorio;
+    }
+
+    public static String codProdLaboratorio;
+
 
     public static boolean isFromAdminFundido() {
         return fromAdminFundido;

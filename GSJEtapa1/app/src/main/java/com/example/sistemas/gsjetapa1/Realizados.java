@@ -157,8 +157,11 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
         if(var.isFromAdminLaboratorio()) {
+            String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
+            Log.i(texto.substring(0,texto.indexOf('-')).trim(), texto.substring(texto.indexOf('-')+1,texto.indexOf('/')).trim());
             var.setFromLaboratorio(true);
-            var.setLoteLaboratorio(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setLoteLaboratorio(texto.substring(0, texto.indexOf('-')).trim());
+            var.setCodProdLaboratorio(texto.substring(texto.indexOf('-')+1,texto.indexOf('/')).trim());
             var.setFromAdminLaboratorio(false);
             finish();
             startActivity(new Intent(Realizados.this, Laboratorio_Calidad.class));
