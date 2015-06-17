@@ -646,7 +646,8 @@ public class Texturizador_Edit extends ActionBarActivity {
         Buscador.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                finish();startActivity(new Intent(Texturizador_Edit.this, Texturizador_Realizados.class));
+                Variables.setFromAdminTexturizador(true);
+                finish();startActivity(new Intent(Texturizador_Edit.this, Realizados.class));
             }
         });
     }

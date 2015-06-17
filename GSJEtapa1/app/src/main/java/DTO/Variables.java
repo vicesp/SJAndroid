@@ -16,12 +16,41 @@ public class Variables {
     private static boolean pendiente_tina_A;
     private static boolean fromSearch, fromEmpaque, fromCuajado,fromFundido, fromLaboratorio;
     private static boolean fromAdminLaboratorio;
+    private static boolean fromAdminEmpaque;
+    private static boolean fromAdminCuajado;
+    private static boolean fromAdminTexturizador;
     private static boolean fromAdminFundido;
     public static String loteTexturizador;
     public static String loteEmpaque;
     public static String loteCuajado;
     public static String loteFundido;
     public static String loteLaboratorio;
+    public static String codProdLaboratorio;
+
+
+    public static boolean isFromAdminTexturizador() {
+        return fromAdminTexturizador;
+    }
+
+    public static void setFromAdminTexturizador(boolean fromAdminTexturizador) {
+        Variables.fromAdminTexturizador = fromAdminTexturizador;
+    }
+
+    public static boolean isFromAdminCuajado() {
+        return fromAdminCuajado;
+    }
+
+    public static void setFromAdminCuajado(boolean fromAdminCuajado) {
+        Variables.fromAdminCuajado = fromAdminCuajado;
+    }
+
+    public static boolean isFromAdminEmpaque() {
+        return fromAdminEmpaque;
+    }
+
+    public static void setFromAdminEmpaque(boolean fromAdminEmpaque) {
+        Variables.fromAdminEmpaque = fromAdminEmpaque;
+    }
 
     public static String getCodProdLaboratorio() {
         return codProdLaboratorio;
@@ -30,10 +59,6 @@ public class Variables {
     public static void setCodProdLaboratorio(String codProdLaboratorio) {
         Variables.codProdLaboratorio = codProdLaboratorio;
     }
-
-    public static String codProdLaboratorio;
-
-
     public static boolean isFromAdminFundido() {
         return fromAdminFundido;
     }

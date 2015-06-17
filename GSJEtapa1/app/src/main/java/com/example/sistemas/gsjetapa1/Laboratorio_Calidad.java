@@ -119,6 +119,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
+                                                   vaciarTodo();
                                                } else {
                                                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                                                }
@@ -477,8 +478,29 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("familia")));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
 
-        //swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
-        //observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
+        swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
+        observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
+
+        if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
+        {
+
+            observaciones_ralladoqr.setVisibility(View.VISIBLE);
+            observacionesqr.setVisibility(View.VISIBLE);
+            swRallQR.setVisibility(View.VISIBLE);
+
+            observaciones_rallado.setEnabled(false);
+            swRall.setEnabled(false);
+
+        }
+        else{
+            observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+            observacionesqr.setVisibility(View.INVISIBLE);
+            swRallQR.setVisibility(View.INVISIBLE);
+
+            observaciones_rallado.setEnabled(true);
+            swRall.setEnabled(true);
+
+        }
 
     }
 
@@ -544,6 +566,41 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         });
 
         myalertDialog = myDialog.show();
+
+    }
+
+    public void vaciarTodo(){
+
+        Lote.setText("");
+        Fecha.setText("");
+        codigo_prod.setText("");
+        observaciones_sabor.setText("");
+        observaciones_rallado.setText("");
+        observaciones_fundido.setText("");
+        observaciones_hebrado.setText("");
+        humedad.setText("");
+        ph.setText("");
+        grasa_total.setText("");
+        humRem.setText("");
+        phRem.setText("");
+        grasRem.setText("");
+        swCo.setChecked(false);
+        swSa.setChecked(false);
+        swAro.setChecked(false);
+        swApa.setChecked(false);
+        swRall.setChecked(false);
+        swHeb.setChecked(false);
+        swRem.setChecked(false);
+        spinnerDiez.setSelection(0);
+        btn_listviewdialog1.setText("Seleccione un Producto");
+        btn_listviewdialog.setText("Seleccione una Familia");
+        btn_listviewdialog1.setEnabled(false);
+        codigo_fam.setText("");
+        swRallQR.setChecked(false);
+        observaciones_ralladoqr.setText("");
+        check1.setChecked(false);
+        check2.setChecked(false);
+        check3.setChecked(false);
 
     }
 }

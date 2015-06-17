@@ -620,7 +620,8 @@ public class Texturizador extends ActionBarActivity {
         Regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                startActivity(new Intent(Texturizador.this, Texturizador_Realizados.class));
+                Variables.setFromAdminTexturizador(true);
+                startActivity(new Intent(Texturizador.this, Realizados.class));
             }
 
         });

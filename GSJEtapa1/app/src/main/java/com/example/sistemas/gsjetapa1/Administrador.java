@@ -39,9 +39,9 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
+                var.setFromAdminCuajado(true);
                 finish();
-                startActivity(new Intent(Administrador.this, Cuajado_Realizados.class));
+                startActivity(new Intent(Administrador.this, Realizados.class));
             }
         });
 
@@ -62,7 +62,8 @@ public class Administrador extends ActionBarActivity {
             public void onClick(View v) {
 
                 //AlertaEmpaque("Seleccione la pantalla a la que se quiere dirigir.");
-                finish();startActivity(new Intent(Administrador.this, Empaque_Realizados.class));
+                var.setFromAdminEmpaque(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
         });
@@ -163,7 +164,8 @@ public class Administrador extends ActionBarActivity {
         alertDialogBuilder.setPositiveButton("Edicion de Registro", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int id) {
-                finish();startActivity(new Intent(Administrador.this, Empaque_Realizados.class));
+                var.setFromAdminEmpaque(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
 

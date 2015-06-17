@@ -56,33 +56,13 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Texturizador_Realizados"
-            android:label="@string/title_activity_texturizador__realizados"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".Registro_Productos"
             android:label="@string/title_activity_registro__productos"
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name=".Empaque_Realizados"
-            android:label="@string/title_activity_empaque__realizados"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
             android:name=".Administrador"
             android:label="@string/title_activity_administrador"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".Cuajado_Realizados"
-            android:label="@string/title_activity_cuajado__realizados"
-            android:screenOrientation="portrait" >
-        </activity>
-        <activity
-            android:name=".Fundido_Realizados"
-            android:label="@string/title_activity_fundido__realizados"
             android:screenOrientation="portrait" >
         </activity>
         <activity

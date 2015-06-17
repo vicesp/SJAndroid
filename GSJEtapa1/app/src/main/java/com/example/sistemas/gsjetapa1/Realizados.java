@@ -60,8 +60,6 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         DiaJ=new Dia_Juliano();
         con=new consultas();
         var = new Variables();
-        Log.i("Lab",""+var.isFromAdminLaboratorio());
-        Log.i("Fundido", ""+var.isFromAdminFundido());
         Calendar c = Calendar.getInstance();
 
 
@@ -93,6 +91,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             public void onClick(View v) {
                 var.setFromAdminFundido(false);
                 var.setFromAdminLaboratorio(false);
+                var.setFromAdminCuajado(false);
+                var.setFromAdminEmpaque(false);
+                var.setFromAdminTexturizador(false);
                 finish();
                 startActivity(new Intent(Realizados.this, Administrador.class));
             }
@@ -112,6 +113,15 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 else if (var.isFromAdminFundido()) {
                     LLena_Lista(con.DAOListaLaboratorioRealizado(fechaSeleccionada(calendario.getDate())));
                 }
+                else if (var.isFromAdminCuajado()){
+                    LLena_Lista(con.DAOListaCuajadoRealizado(fechaSeleccionada(calendario.getDate())));
+                }
+                else if(var.isFromAdminEmpaque()){
+                    LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(calendario.getDate())));
+                }
+                else if (var.isFromAdminTexturizador()){
+                    LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(calendario.getDate())));
+                }
 
             }
         });
@@ -123,7 +133,18 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             LLena_Lista(con.DAOListaFundidoRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("FUNDIDO REALIZADOS");
         }
-
+        else if(var.isFromAdminCuajado()){
+            LLena_Lista(con.DAOListaCuajadoRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("CUAJADO REALIZADOS");
+        }
+        else if(var.isFromAdminEmpaque()){
+            LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("EMPAQUE REALIZADOS");
+        }
+        else if(var.isFromAdminTexturizador()){
+            LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("TEXTURIZADOR REALIZADOS");
+        }
     }
 
 
@@ -156,9 +177,10 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+
         if(var.isFromAdminLaboratorio()) {
             String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
-            Log.i(texto.substring(0,texto.indexOf('-')).trim(), texto.substring(texto.indexOf('-')+1,texto.indexOf('/')).trim());
             var.setFromLaboratorio(true);
             var.setLoteLaboratorio(texto.substring(0, texto.indexOf('-')).trim());
             var.setCodProdLaboratorio(texto.substring(texto.indexOf('-')+1,texto.indexOf('/')).trim());
@@ -173,6 +195,26 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setFromAdminFundido(false);
             finish();
             startActivity(new Intent(Realizados.this, Fundido.class));
+        }
+        else if(var.isFromAdminCuajado()){
+            var.setFromCuajado(true);
+            var.setLoteCuajado(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setFromAdminCuajado(false);
+            finish();
+            startActivity(new Intent(Realizados.this, Cuajado.class));
+        }
+        else if(var.isFromAdminEmpaque()){
+            var.setFromEmpaque(true);
+            var.setLoteEmpaque(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();
+            startActivity(new Intent(Realizados.this, Cuajado.class));
+        }
+        else if(var.isFromAdminTexturizador()){
+            var.setFromSearch(true);
+            var.setLoteTexturizador(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();
+            startActivity(new Intent(Realizados.this, Texturizador.class));
+
         }
     }
     @Override
