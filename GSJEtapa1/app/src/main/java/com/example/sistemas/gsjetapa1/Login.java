@@ -66,6 +66,7 @@ public class Login extends Activity {
                 }
                 else if(tipoUsuario==3)
                    {
+                       Variables.setFromFundido(false);
                        finish();startActivity(new Intent(Login.this, Fundido.class));
                        Variables.setLinea_fundido(1);
                    }
@@ -83,11 +84,13 @@ public class Login extends Activity {
                 else if(tipoUsuario==6)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromEmpaque(false);
                     finish();startActivity(new Intent(Login.this, Empaque.class));
                 }
                 else if(tipoUsuario==7)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromFundido(false);
                     finish();startActivity(new Intent(Login.this, Fundido.class));
                     Variables.setLinea_fundido(2);
                 }

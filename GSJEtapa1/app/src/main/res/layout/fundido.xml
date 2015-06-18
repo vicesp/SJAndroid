@@ -215,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:id="@+id/imageView3"
-            android:layout_below="@+id/spSilo"
+            android:layout_below="@+id/spFamiliaFundido"
             android:layout_marginTop="40dp"
             android:src="@drawable/madera"
             android:scaleType="centerCrop"
@@ -754,10 +754,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/swTinaFundido"
+            android:checked="false"
             android:layout_alignTop="@+id/spSilo"
-            android:layout_alignLeft="@+id/spSilo"
-            android:layout_alignStart="@+id/spSilo"
-            android:checked="false" />
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_toStartOf="@+id/textView11"
+            android:layout_alignBottom="@+id/textView5"
+            android:layout_alignRight="@+id/etLoteCremaFun"
+            android:layout_alignEnd="@+id/etLoteCremaFun" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -1174,12 +1177,12 @@
             android:layout_alignRight="@+id/etCj02Fun"
             android:layout_alignEnd="@+id/etCj02Fun" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="105dp"
 
             android:layout_marginTop="69dp"
-            android:background="@drawable/guarda"
+            android:background="@drawable/actualizarmenos"
             android:id="@+id/btnGuardaFundido"
             android:layout_below="@+id/textView74"
             android:layout_alignRight="@+id/imageView12"
@@ -1499,8 +1502,9 @@
             android:id="@+id/btnAddCuaj"
             android:src="@drawable/add3"
             android:layout_below="@+id/spFamiliaFundido"
-            android:layout_alignRight="@+id/spFamiliaFundido"
-            android:layout_alignEnd="@+id/spFamiliaFundido" />
+            android:layout_marginTop="10dp"
+            android:layout_alignRight="@+id/imageView3"
+            android:layout_alignEnd="@+id/imageView3" />
 
         <TextView
             android:layout_width="wrap_content"

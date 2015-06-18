@@ -619,7 +619,7 @@ public class consultas {
                               String lote_cj02,String agua,String tipo_crema,String lote_tipo_crema,String cantidad_crema,String familia_reproceso,
                               String lote_fami_repro, String cantidad_fami_repro, String temperatura, String peso_total, String texturizador, String lote_texturizador,
                               String cj01_1,String lote_cj01_1,String ph_cj01_1,String cj01_2,String lote_cj01_2,String ph_cj01_2,String tipo_crema2,String lote_crema2,String cantidad_crema2,
-                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy){
+                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy, String tina, int bandera){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -628,7 +628,8 @@ public class consultas {
                     " linea,fecha,num_fundida,lote,familia,cj01,lote_cj01,ph_cj01,cj011,lote_cj011,ph_cj011,mp005,lote_mp005,mp015,lote_mp015," +
                     "s0101,lote_s0101,mp007,lote_mp007,sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,tipo_crema," +
                     "lote_tipo_crema, cantidad_crema, familia_reproceso,lote_fami_repro,cantidad_fami_repro,temperatura,peso_total,texturizador,lote_texturizador," +
-                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3, cj01_3, lote_cj01_3, ph_cj01_3, fecha_hoy) " +
+                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3," +
+                    " cj01_3, lote_cj01_3, ph_cj01_3, fecha_hoy, tina, bandera) " +
                     "VALUES (" + linea + ",'"
                     + fecha + "','"
                     + num_fundida + "','"
@@ -682,7 +683,9 @@ public class consultas {
                     + cj01_3 + "','"
                     + lote_cj01_3 + "','"
                     + ph_cj01_3+"','"
-                    + fecha_hoy+
+                    + fecha_hoy+"','"
+                    +tina+"','"+
+                    +bandera+
                     "')");
 
             return true;
@@ -691,7 +694,89 @@ public class consultas {
             return false;
         }
     }
-    /****************    Consulta para Llenar Fundido de busqueda   *************/
+
+    public boolean DAOActualizarFundido(String lote, String linea,String fecha,String num_fundida,String familia,String cj01,String lote_cj01,
+                              String ph_cj01,String cj011,String lote_cj011, String ph_cj011,
+                              String mp005,String lote_mp005,String mp015,String lote_mp015,
+                              String s0101,String lote_s0101,String mp007,String lote_mp007,
+                              String sa01, String lote_sa01, String mp024, String lote_mp024, String mp078, String lote_mp078, String cj02,
+                              String lote_cj02,String agua,String tipo_crema,String lote_tipo_crema,String cantidad_crema,String familia_reproceso,
+                              String lote_fami_repro, String cantidad_fami_repro, String temperatura, String peso_total, String texturizador, String lote_texturizador,
+                              String cj01_1,String lote_cj01_1,String ph_cj01_1,String cj01_2,String lote_cj01_2,String ph_cj01_2,String tipo_crema2,String lote_crema2,String cantidad_crema2,
+                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy, String tina, int bandera) {
+
+
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE fundido SET "+
+                     "linea='"+linea+"',"+
+                     "fecha='"+fecha+"',"+
+                     "num_fundida='"+num_fundida+"',"+
+                     "lote='"+lote+"',"+
+                     "familia='"+familia+"',"+
+                     "cj01='"+cj01+"',"+
+                     "lote_cj01='"+lote_cj01+"',"+
+                     "ph_cj01='"+ph_cj01+"',"+
+                     "cj011='"+cj011+"',"+
+                     "lote_cj011='"+lote_cj011+"',"+
+                     "ph_cj011='"+ph_cj011+"',"+
+                     "mp005='"+mp005+"',"+
+                     "lote_mp005='"+lote_mp005+"',"+
+                     "mp015='"+mp015+"',"+
+                     "lote_mp015='"+lote_mp015+"',"+
+                     "s0101='"+s0101+"',"+
+                     "lote_s0101='"+lote_s0101+"',"+
+                     "mp007='"+mp007+"',"+
+                     "lote_mp007='"+lote_mp007+"',"+
+                     "sa01='"+sa01+"',"+
+                     "lote_sa01='"+lote_sa01+"',"+
+                     "mp024='"+mp024+"',"+
+                     "lote_mp024='"+lote_mp024+"',"+
+                     "mp078='"+mp078+"',"+
+                     "lote_mp078='"+lote_mp078+"',"+
+                     "cj02='"+cj02+"',"+
+                     "lote_cj02='"+lote_cj02+"',"+
+                     "agua='"+agua+"',"+
+                     "tipo_crema='"+tipo_crema+"',"+
+                     "lote_tipo_crema='"+lote_tipo_crema+"',"+
+                     "cantidad_crema='"+cantidad_crema+"',"+
+                     "familia_reproceso='"+familia_reproceso+"',"+
+                     "lote_fami_repro='"+lote_fami_repro+"',"+
+                     "cantidad_fami_repro='"+cantidad_fami_repro+"',"+
+                     "temperatura='"+temperatura+"',"+
+                     "peso_total='"+peso_total+"',"+
+                     "texturizador='"+texturizador+"',"+
+                     "lote_texturizador='"+lote_texturizador+"',"+
+                     "cj01_1='"+cj01_1+"',"+
+                     "lote_cj01_1='"+lote_cj01_1+"',"+
+                     "ph_cj01_1='"+ph_cj01_1+"',"+
+                     "cj01_2='"+cj01_2+"',"+
+                     "lote_cj01_2='"+lote_cj01_2+"',"+
+                     "ph_cj01_2='"+ph_cj01_2+"',"+
+                     "tipo_crema2='"+tipo_crema2+"',"+
+                     "lote_tipo_crema2='"+lote_crema2+"',"+
+                     "cantidad_crema2='"+cantidad_crema2+"',"+
+                     "tipo_cuajada_1='"+tipo_cuajada_1+"',"+
+                     "tipo_cuajada_2='"+tipo_cuajada_2+"',"+
+                     "tipo_cuajada_3='"+tipo_cuajada_3+"',"+
+                     "cj01_3='"+cj01_3+"',"+
+                     "lote_cj01_3='"+lote_cj01_3+"',"+
+                     "ph_cj01_3='"+ph_cj01_3+"',"+
+                     "fecha_hoy='"+fecha_hoy+"',"+
+                     "tina='"+tina+"',"+
+                            "bandera='"+bandera+"'"
+            );
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
+        /****************    Consulta para Llenar Fundido de busqueda   *************/
     public Cursor DAOLLenarFundido(String lote) {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
@@ -702,7 +787,7 @@ public class consultas {
                     ", lote_texturizador, tipo_crema, lote_tipo_crema, cantidad_crema, tipo_crema2, lote_tipo_crema2, cantidad_crema2"+
                     ", mp005, mp015, s0101, mp007, sa01, mp024, mp078, cj02, agua, familia_reproceso, lote_fami_repro, cantidad_fami_repro"+
                     ", temperatura, peso_total, lote_mp005, lote_mp015, lote_s0101, lote_mp007, lote_sa01, lote_mp024, lote_mp078"+
-                    ", lote_cj02, fecha_hoy  "+
+                    ", lote_cj02, fecha_hoy, tina, bandera "+
                     "FROM fundido WHERE lote ='" +
                     lote + "'", null);
 
@@ -730,6 +815,8 @@ public class consultas {
 
         }
     }
+
+
 
     /****************    Consulta para Llenar la lista de lotes Fundido-Realizado    *************/
     public ArrayList<consultas> DAOListaFundidoRealizado(String fecha){

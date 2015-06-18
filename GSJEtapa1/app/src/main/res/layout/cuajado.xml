@@ -1176,7 +1176,7 @@
             android:textColor="@android:color/black"
             android:textSize="25dp"
             android:id="@+id/textView52"
-            android:layout_alignTop="@+id/textView51"
+            android:layout_alignBottom="@+id/etTempCuajado1"
             android:layout_toRightOf="@+id/tvcentro"
             android:layout_toEndOf="@+id/tvcentro" />
 
@@ -1209,19 +1209,19 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/etpHPastaCoagulacion"
-            android:layout_alignBottom="@+id/textView52"
-            android:layout_toRightOf="@+id/tvFechaCuaj" />
+            android:layout_alignBottom="@+id/textView51"
+            android:layout_toRightOf="@+id/textView54"
+            android:layout_toEndOf="@+id/textView54" />
 
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/etHoraAdiciCoagulacion"
-            android:layout_alignTop="@+id/textView53"
-            android:layout_alignRight="@+id/spSilo"
-            android:layout_alignEnd="@+id/spSilo"
-            android:layout_alignLeft="@+id/textView21"
-            android:layout_alignStart="@+id/textView21" />
+            android:layout_alignBottom="@+id/textView53"
+            android:layout_toRightOf="@+id/textView51"
+            android:layout_alignRight="@+id/etTempCuajado1"
+            android:layout_alignEnd="@+id/etTempCuajado1" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -1239,11 +1239,10 @@
             android:ems="10"
             android:inputType="numberDecimal"
             android:id="@+id/etTempCuajado1"
-            android:layout_alignTop="@+id/etpHPastaCoagulacion"
-            android:layout_alignRight="@+id/spSilo"
-            android:layout_alignEnd="@+id/spSilo"
-            android:layout_alignLeft="@+id/etHoraAdiciCoagulacion"
-            android:layout_alignStart="@+id/etHoraAdiciCoagulacion" />
+            android:layout_alignBottom="@+id/textView51"
+            android:layout_toRightOf="@+id/textView51"
+            android:layout_toLeftOf="@+id/textView15"
+            android:layout_toStartOf="@+id/textView15" />
 
         <ImageButton
             android:layout_width="210dp"

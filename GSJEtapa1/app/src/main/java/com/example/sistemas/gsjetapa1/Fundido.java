@@ -63,7 +63,7 @@ import config.DataBaseHelper;
 
 public class Fundido extends ActionBarActivity {
 
-    private String [] familia_fundido,tipo_cuajada,tipo_Crema,tipo_Crema2,familia_reprocdso,texturizador,tipo_cuajada_1,tipo_cuajada_2,tipo_cuajada_3;
+    private String [] familia,familia_fundido,tipo_cuajada,tipo_Crema,tipo_Crema2,familia_reprocdso,texturizador,tipo_cuajada_1,tipo_cuajada_2,tipo_cuajada_3;
     private String familia_sel,tipo_crema_sel,tipo_crema_sel2,familia_repro_sel,texturizador_sel,tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel;
     private Spinner spFamiliaFun, spTipoCrema, spTipoCrema2, spFamiliaReproceso, spTexturizador,spTipoCuajada1,spTipoCuajada2,spTipoCuajada3;
     private TextView Fecha,Lote, Fundida, Linea,Peso_tot,tipo_cre,lote_tipocre,cantidadCrem;
@@ -71,16 +71,18 @@ public class Fundido extends ActionBarActivity {
     private EditText cj01,lote_cj01,ph_cj01,cj011,lote_cj011,ph_cj011,ad1,lot1,ad2,lot2,ad3,lot3,ad4,lot4,tempe_final,cantidad_reproceso,lote_textu;
     private EditText cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,lote_crema2,cantidad_crema2,cj01_3,lote_cj01_3,ph_cj01_3;
     private EditText sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,lote_crema,cantidad_crema,lote_famiRepro,kilos_FamiRepro;
-    private Button GuardarF,Calcula_peso;
-    private ImageButton AddCuajada;
+    private Button Calcula_peso;
+    private ImageButton AddCuajada, GuardarF;
     private double peso_texturizador=0,valor_total=0,cantidad_cj01=0,cantidad_cj01_1=0,cantidad_cj01_2=0,cantidad_cj01_3=0,canti_crema2=0,cantidad_cj011=0,cantidad_mp005=0,cantidad_mp015=0,cantidad_s0101=0,tot_s0101=0,tot_mp015=0,cantidad_mp007=0,cantidad_sa01=0,cantidad_mp024=0,cantidad_int_crema=0,cantidad_familia_repro=0;
    private Switch tinas;
     private int bandera=1;
+    private int btnBandera =0;
     private RelativeLayout rlAddtina;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
     private static Variables var;
+    private static ArrayAdapter adapter;
     protected Cursor cursor;
 
     @Override
@@ -229,6 +231,7 @@ public class Fundido extends ActionBarActivity {
 
                 } else {
                     AddCuajada.setVisibility(View.INVISIBLE);
+                    //checarAbiertos(0);
 
                 }
 
@@ -287,11 +290,7 @@ public class Fundido extends ActionBarActivity {
         spFamiliaReproceso.setAdapter(ad);
 
         spTexturizador = (Spinner) findViewById(R.id.spTipoTexturizador);
-        texturizador=getResources().getStringArray(R.array.nombre_familia_texturizador_Fundido);
-        ArrayAdapter<String> adatex = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, texturizador);
-        adatex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTexturizador.setAdapter(adatex);
+        llena_Texturizador(con.DAODescripcionTexturizador());
 
         spTipoCuajada1.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -332,7 +331,7 @@ public class Fundido extends ActionBarActivity {
         spTexturizador.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                texturizador_sel=texturizador[position];
+                texturizador_sel=familia[position];
                 if(position==0) {
                 peso_texturizador=10.8;
                 }
@@ -364,8 +363,9 @@ public class Fundido extends ActionBarActivity {
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 // TODO Auto-generated method stub
-
-                spTipoCrema2.setSelection(0);
+                if(!(var.isFromFundido())) {
+                    spTipoCrema2.setSelection(0);
+                }
 
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
                 familia_sel=familia_fundido[position];
@@ -689,30 +689,34 @@ public class Fundido extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
-                int rr=params.width;
+                checarAbiertos(bandera);
 
-                switch (bandera) {
+               // RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
+                //int rr=params.width;
+
+                /*switch (bandera) {
                     case 0:
                         AddCuajada.setImageResource(R.drawable.add3);
                         ResizeAnimation res = new ResizeAnimation(rlAddtina, params.width, params.height, 1, 1);
                         rlAddtina.startAnimation(res);
 
-                        spTipoCuajada1.setSelection(0);
-                        spTipoCuajada2.setSelection(0);
-                        spTipoCuajada3.setSelection(0);
+                        if(!(var.isFromFundido())) {
+                            spTipoCuajada1.setSelection(0);
+                            spTipoCuajada2.setSelection(0);
+                            spTipoCuajada3.setSelection(0);
 
-                        lote_cj01_1.setText("");
-                        lote_cj01_2.setText("");
-                        lote_cj01_3.setText("");
+                            lote_cj01_1.setText("");
+                            lote_cj01_2.setText("");
+                            lote_cj01_3.setText("");
 
-                        cj01_3.setText("");
-                        cj01_1.setText("");
-                        cj01_2.setText("");
+                            cj01_3.setText("");
+                            cj01_1.setText("");
+                            cj01_2.setText("");
 
-                        ph_cj01_1.setText("");
-                        ph_cj01_2.setText("");
-                        ph_cj01_3.setText("");
+                            ph_cj01_1.setText("");
+                            ph_cj01_2.setText("");
+                            ph_cj01_3.setText("");
+                        }
 
                         bandera=1;
                         break;
@@ -737,7 +741,7 @@ public class Fundido extends ActionBarActivity {
 
                     default:
                         break;
-                }
+                }*/
 
             }
         });
@@ -820,48 +824,73 @@ public class Fundido extends ActionBarActivity {
 
             }
         });
-        GuardarF=(Button)findViewById(R.id.btnGuardaFundido);
+        GuardarF=(ImageButton)findViewById(R.id.btnGuardaFundido);
         GuardarF.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if(var.isFromFundido()){
 
-                boolean exitoso= con.DAOFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
+                    boolean exitoso = con.DAOActualizarFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
+                            familia_sel, cj01.getText().toString(), lote_cj01.getText().toString(), ph_cj01.getText().toString(), cj011.getText().toString(),
+                            lote_cj011.getText().toString(), ph_cj011.getText().toString(),
+                            ad1.getText().toString(), lot1.getText().toString(), ad2.getText().toString(), lot2.getText().toString(), ad3.getText().toString(), lot3.getText().toString(),
+                            ad4.getText().toString(), lot4.getText().toString(), sa01.getText().toString(), lote_sa01.getText().toString(), mp024.getText().toString(),
+                            lote_mp024.getText().toString(), mp078.getText().toString(), lote_mp078.getText().toString(), cj02.getText().toString(),
+                            lote_cj02.getText().toString(), agua.getText().toString(), tipo_crema_sel, lote_crema.getText().toString(),
+                            cantidad_crema.getText().toString(), familia_repro_sel, lote_famiRepro.getText().toString(), cantidad_reproceso.getText().toString(),
+                            tempe_final.getText().toString(), Peso_tot.getText().toString(), texturizador_sel, lote_textu.getText().toString(),
+                            cj01_1.getText().toString(), lote_cj01_1.getText().toString(), ph_cj01_1.getText().toString(), cj01_2.getText().toString(), lote_cj01_2.getText().toString(), ph_cj01_2.getText().toString(),
+                            tipo_crema_sel2, lote_crema2.getText().toString(), cantidad_crema2.getText().toString(), tipo_cj_1_sel, tipo_cj_2_sel, tipo_cj_3_sel, cj01_3.getText().toString(),
+                            lote_cj01_3.getText().toString(), ph_cj01_3.getText().toString(), FechaH.Hoy(), switchTexter(tinas.isChecked()),btnBandera);
+
+                    if (exitoso) {
+                        limpia_campos();
+
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+
+                    } else {
+                        Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                    }
+
+                }
+                else{
+                boolean exitoso = con.DAOFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
                         familia_sel, cj01.getText().toString(), lote_cj01.getText().toString(), ph_cj01.getText().toString(), cj011.getText().toString(),
                         lote_cj011.getText().toString(), ph_cj011.getText().toString(),
                         ad1.getText().toString(), lot1.getText().toString(), ad2.getText().toString(), lot2.getText().toString(), ad3.getText().toString(), lot3.getText().toString(),
                         ad4.getText().toString(), lot4.getText().toString(), sa01.getText().toString(), lote_sa01.getText().toString(), mp024.getText().toString(),
                         lote_mp024.getText().toString(), mp078.getText().toString(), lote_mp078.getText().toString(), cj02.getText().toString(),
-                        lote_cj02.getText().toString(), agua.getText().toString(),tipo_crema_sel, lote_crema.getText().toString(),
+                        lote_cj02.getText().toString(), agua.getText().toString(), tipo_crema_sel, lote_crema.getText().toString(),
                         cantidad_crema.getText().toString(), familia_repro_sel, lote_famiRepro.getText().toString(), cantidad_reproceso.getText().toString(),
-                        tempe_final.getText().toString(),Peso_tot.getText().toString(),texturizador_sel,lote_textu.getText().toString(),
-                        cj01_1.getText().toString(),lote_cj01_1.getText().toString(),ph_cj01_1.getText().toString(),cj01_2.getText().toString(),lote_cj01_2.getText().toString(),ph_cj01_2.getText().toString(),
-                        tipo_crema_sel2,lote_crema2.getText().toString(),cantidad_crema2.getText().toString(),tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel,cj01_3.getText().toString(),
-                        lote_cj01_3.getText().toString(),ph_cj01_3.getText().toString(), FechaH.Hoy());
+                        tempe_final.getText().toString(), Peso_tot.getText().toString(), texturizador_sel, lote_textu.getText().toString(),
+                        cj01_1.getText().toString(), lote_cj01_1.getText().toString(), ph_cj01_1.getText().toString(), cj01_2.getText().toString(), lote_cj01_2.getText().toString(), ph_cj01_2.getText().toString(),
+                        tipo_crema_sel2, lote_crema2.getText().toString(), cantidad_crema2.getText().toString(), tipo_cj_1_sel, tipo_cj_2_sel, tipo_cj_3_sel, cj01_3.getText().toString(),
+                        lote_cj01_3.getText().toString(), ph_cj01_3.getText().toString(), FechaH.Hoy(), switchTexter(tinas.isChecked()),btnBandera);
 
-                if(exitoso){
-                    GuardaFundidoSync task=new GuardaFundidoSync();
+                if (exitoso) {
+                    GuardaFundidoSync task = new GuardaFundidoSync();
                     task.execute();
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
                     PaginaMonitor();
-                    int resul=con.DAOF_num_fundida(Variables.getLinea_fundido(),Fecha.getText().toString());
-                    if (Variables.getLinea_fundido()==1 && resul==0){
-                        resul+=1;
+                    int resul = con.DAOF_num_fundida(Variables.getLinea_fundido(), Fecha.getText().toString());
+                    if (Variables.getLinea_fundido() == 1 && resul == 0) {
+                        resul += 1;
+                    } else if (Variables.getLinea_fundido() == 1 && resul != 0) {
+                        resul += 2;
+                    } else if (Variables.getLinea_fundido() == 2) {
+                        resul += 2;
                     }
-                    else if(Variables.getLinea_fundido()==1 && resul!=0){
-                        resul+=2;
-                    }
-                    else if(Variables.getLinea_fundido()==2){
-                        resul+=2;
-                    }
-                    Fundida.setText(""+resul);
-                    Lote.setText(Fundida.getText().toString()+DiaJ.Dame_dia_J_y_anio());
-                }
-                else{
+                    Fundida.setText("" + resul);
+                    Lote.setText(Fundida.getText().toString() + DiaJ.Dame_dia_J_y_anio());
+                    spFamiliaReproceso.setSelection(0);
+                    lote_famiRepro.setText("");
+                    kilos_FamiRepro.setText("");
+                } else {
                     Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
-
+            }
             }
         });
 
@@ -871,6 +900,9 @@ public class Fundido extends ActionBarActivity {
 
     if(var.isFromFundido()){
         llenarValoresBusqueda(var.getLoteFundido());
+    }
+    else{
+        GuardarF.setImageResource(R.drawable.guarda);
     }
 
 
@@ -976,25 +1008,27 @@ public class Fundido extends ActionBarActivity {
     }
 
     public void limpia_campos(){
-        ad1.setText("");
-        lot1.setText("");
-        ad2.setText("");
-        lot2.setText("");
-        ad3.setText("");
-        lot3.setText("");
-        ad4.setText("");
-        lot4.setText("");
-        sa01.setText("");
-        lote_sa01.setText("");
-        mp024.setText("");
-        lote_mp024.setText("");
-        mp078.setText("");
-        lote_mp078.setText("");
-        cj02.setText("");
-        lote_cj02.setText("");
-        agua.setText("");
-        lote_crema2.setText("");
-        cantidad_crema2.setText("");
+        if(!(var.isFromFundido())) {
+            ad1.setText("");
+            lot1.setText("");
+            ad2.setText("");
+            lot2.setText("");
+            ad3.setText("");
+            lot3.setText("");
+            ad4.setText("");
+            lot4.setText("");
+            sa01.setText("");
+            lote_sa01.setText("");
+            mp024.setText("");
+            lote_mp024.setText("");
+            mp078.setText("");
+            lote_mp078.setText("");
+            cj02.setText("");
+            lote_cj02.setText("");
+            agua.setText("");
+            lote_crema2.setText("");
+            cantidad_crema2.setText("");
+        }
     }
 
     class CurrencyTextWatcher3decimales implements TextWatcher {
@@ -1258,7 +1292,171 @@ public class Fundido extends ActionBarActivity {
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         Fundida.setText(cursor.getString(cursor.getColumnIndex("num_fundida")));
         cj01.setText(cursor.getString(cursor.getColumnIndex("cj01")));
+        lote_cj01.setText(cursor.getString(cursor.getColumnIndex("lote_cj01")));
+        ph_cj01.setText(cursor.getString(cursor.getColumnIndex("ph_cj01")));
+        ad1.setText(cursor.getString(cursor.getColumnIndex("mp005")));
+        lot1.setText(cursor.getString(cursor.getColumnIndex("lote_mp005")));
+        ad2.setText(cursor.getString(cursor.getColumnIndex("mp015")));
+        lot2.setText(cursor.getString(cursor.getColumnIndex("lote_mp015")));
+        ad3.setText(cursor.getString(cursor.getColumnIndex("s0101")));
+        lot3.setText(cursor.getString(cursor.getColumnIndex("lote_s0101")));
+        ad4.setText(cursor.getString(cursor.getColumnIndex("mp007")));
+        lot4.setText(cursor.getString(cursor.getColumnIndex("lote_mp007")));
+        sa01.setText(cursor.getString(cursor.getColumnIndex("sa01")));
+        lote_sa01.setText(cursor.getString(cursor.getColumnIndex("lote_sa01")));
+        mp024.setText(cursor.getString(cursor.getColumnIndex("mp024")));
+        lote_mp024.setText(cursor.getString(cursor.getColumnIndex("lote_mp024")));
+        mp078.setText(cursor.getString(cursor.getColumnIndex("mp078")));
+        lote_mp078.setText(cursor.getString(cursor.getColumnIndex("lote_mp078")));
+        cj02.setText(cursor.getString(cursor.getColumnIndex("cj02")));
+        lote_cj02.setText(cursor.getString(cursor.getColumnIndex("lote_cj02")));
+        agua.setText(cursor.getString(cursor.getColumnIndex("agua")));
+        setCrema(cursor.getString(cursor.getColumnIndex("tipo_crema")));
+        lote_crema.setText(cursor.getString(cursor.getColumnIndex("lote_tipo_crema")));
+        cantidad_crema.setText(cursor.getString(cursor.getColumnIndex("cantidad_crema")));
+        //familia_repro_sel.setText(cursor.getString(cursor.getColumnIndex("")));
+        lote_famiRepro.setText(cursor.getString(cursor.getColumnIndex("lote_fami_repro")));
+        cantidad_reproceso.setText(cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")));
+        tempe_final.setText(cursor.getString(cursor.getColumnIndex("temperatura")));
+        Peso_tot.setText(cursor.getString(cursor.getColumnIndex("peso_total")));
+        setTexturizador(cursor.getString(cursor.getColumnIndex("texturizador")));
+        lote_textu.setText(cursor.getString(cursor.getColumnIndex("lote_texturizador")));
+        cj01_1.setText(cursor.getString(cursor.getColumnIndex("cj01_1")));
+        lote_cj01_1.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_1")));
+        ph_cj01_1.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_1")));
+        cj01_2.setText(cursor.getString(cursor.getColumnIndex("cj01_2")));
+        lote_cj01_2.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_2")));
+        ph_cj01_2.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_2")));
+        setCrema2(cursor.getString(cursor.getColumnIndex("tipo_crema2")));
+        lote_crema2.setText(cursor.getString(cursor.getColumnIndex("lote_tipo_crema2")));
+        cantidad_crema2.setText(cursor.getString(cursor.getColumnIndex("cantidad_crema2")));
+        //tipo_cj_1_sel.setText(cursor.getString(cursor.getColumnIndex("")));
+        //tipo_cj_2_sel.setText(cursor.getString(cursor.getColumnIndex("")));
+        //tipo_cj_3_sel.setText(cursor.getString(cursor.getColumnIndex("")));
+        cj01_3.setText(cursor.getString(cursor.getColumnIndex("cj01_3")));
+        lote_cj01_3.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_3")));
+        ph_cj01_3.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_3")));
+        cj011.setText(cursor.getString(cursor.getColumnIndex("cj011")));
+        lote_cj011.setText(cursor.getString(cursor.getColumnIndex("lote_cj011")));
+        ph_cj011.setText(cursor.getString(cursor.getColumnIndex("ph_cj011")));
+        tinas.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("tina"))));
+        checarAbiertos(cursor.getInt(cursor.getColumnIndex("bandera")));
 
+
+
+    }
+    public void llena_Texturizador(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.producto);
+            familia= con.producto;
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTexturizador.setAdapter(adapter);
+    }
+
+    public void setTexturizador(String tx) {
+
+        for (int x = 0; x < familia.length; x++) {
+            if (tx.equals(familia[x])) {
+                spTexturizador.setSelection(x);
+            }
+        }
+    }
+
+    public void setCrema(String tx) {
+
+        for (int x = 0; x < tipo_Crema.length; x++) {
+            if (tx.equals(tipo_Crema[x])) {
+                spTipoCrema.setSelection(x);
+            }
+        }
+    }
+    public void setCrema2(String tx)
+    {
+
+        for(int x = 0;x<tipo_Crema2.length;x++){
+            if(tx.equals(tipo_Crema2[x])){
+                spTipoCrema2.setSelection(x);
+            }
+        }
+
+    }
+    public String switchTexter(boolean val){
+        if(val){
+            return "si";
+        }
+        else{
+            return"no";
+        }
+    }
+    public boolean textSwitcher(String val){
+        if (val.equals("si")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void checarAbiertos(int val){
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
+        int rr=params.width;
+        switch (val) {
+            case 0:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res = new ResizeAnimation(rlAddtina, params.width, params.height, 1, 1);
+                rlAddtina.startAnimation(res);
+
+                if(!(var.isFromFundido())) {
+                    spTipoCuajada1.setSelection(0);
+                    spTipoCuajada2.setSelection(0);
+                    spTipoCuajada3.setSelection(0);
+
+                    lote_cj01_1.setText("");
+                    lote_cj01_2.setText("");
+                    lote_cj01_3.setText("");
+
+                    cj01_3.setText("");
+                    cj01_1.setText("");
+                    cj01_2.setText("");
+
+                    ph_cj01_1.setText("");
+                    ph_cj01_2.setText("");
+                    ph_cj01_3.setText("");
+                }
+
+                bandera=1;
+                btnBandera = 0;
+                break;
+            case 1:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res1 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 75);
+                rlAddtina.startAnimation(res1);
+                bandera=2;
+                btnBandera=1;
+
+                break;
+            case 2:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res2 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 125);
+                rlAddtina.startAnimation(res2);
+                bandera=3;
+                btnBandera=2;
+                break;
+            case 3:
+                AddCuajada.setImageResource(R.drawable.menos);
+                ResizeAnimation res3 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 200);
+                rlAddtina.startAnimation(res3);
+                bandera=0;
+                btnBandera=3;
+                break;
+
+            default:
+                break;
+        }
     }
 
 }
