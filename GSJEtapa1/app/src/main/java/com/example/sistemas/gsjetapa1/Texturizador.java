@@ -639,7 +639,7 @@ public class Texturizador extends ActionBarActivity {
                 if (var.isFromSearch()) {
 
                     generarDatosCambiados();
-                    Log.i("datos:", datos_cambiados);
+
                     if (datos_cambiados=="")
                     {
                         datos_cambiados="no se hicieron cambios";
