@@ -81,6 +81,22 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /********** Spinner ****************/
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
+        spinnerDiez.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+
+                ((TextView) parent.getChildAt(0)).setTextSize(22);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
 
@@ -207,8 +223,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             @Override
             public void onClick(View v) {
-
-
                 launchView(1);
             }});
 
@@ -351,6 +365,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
         // Create the adapter to convert the array to views
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,valuesSpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Attach the adapter to a ListView
         spinnerDiez.setAdapter(adapter);
 

@@ -199,14 +199,15 @@
             android:layout_alignLeft="@+id/tvNumFundida"
             android:layout_alignStart="@+id/tvNumFundida" />
 
-        <Spinner
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/spFamiliaFundido"
             android:layout_alignTop="@+id/textView6"
             android:layout_alignLeft="@+id/tvLoteFundido"
             android:layout_alignStart="@+id/tvLoteFundido"
-            android:spinnerMode="dialog"
+            android:text="Seleccione familia"
+            android:textSize="15dp"
             android:background="#E6E6E6"
             android:layout_alignRight="@+id/imageView3"
             android:layout_alignEnd="@+id/imageView3" />
@@ -900,17 +901,18 @@
             android:layout_toRightOf="@+id/textView72"
             android:layout_toEndOf="@+id/textView72" />
 
-        <Spinner
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:id="@+id/spFamiliaReproceso"
-            android:spinnerMode="dialog"
+            android:text="Seleccione Familia"
+            android:textSize="25dp"
             android:layout_alignTop="@+id/textView69"
             android:layout_alignLeft="@+id/spTipoCrema"
             android:layout_alignStart="@+id/spTipoCrema"
             android:layout_alignRight="@+id/spTipoCrema"
             android:background="#E6E6E6"
-            android:descendantFocusability="beforeDescendants"
+
             android:layout_alignEnd="@+id/spTipoCrema" />
 
         <TextView

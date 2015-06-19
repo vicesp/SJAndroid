@@ -351,7 +351,9 @@
         android:id="@+id/spinner"
         android:textAlignment="center"
         android:gravity="center"
-
+        android:spinnerMode="dialog"
+        android:background="#E6E6E6"
+        android:descendantFocusability="beforeDescendants"
         android:layout_alignBottom="@+id/switchFundido"
         android:layout_alignRight="@+id/switchRallado"
         android:layout_alignEnd="@+id/switchRallado"
