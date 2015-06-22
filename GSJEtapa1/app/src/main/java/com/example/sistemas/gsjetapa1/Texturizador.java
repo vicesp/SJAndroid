@@ -80,6 +80,7 @@ public class Texturizador extends ActionBarActivity {
         con=new consultas();
         var= new Variables();
 
+        Variables.setIp_servidor(con.DAOSelecConfigIP());
 
         datos_cambiados="";
 
@@ -1121,7 +1122,6 @@ public class Texturizador extends ActionBarActivity {
         lote7.setText(cursor.getString(cursor.getColumnIndex("lote_mp008")));
         lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp009")));
         lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp010")));
-
         lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
         lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp026")));
         lote13.setText(cursor.getString(cursor.getColumnIndex("lote_mp027")));
@@ -1209,10 +1209,10 @@ public class Texturizador extends ActionBarActivity {
         protected Boolean doInBackground(final String... args)
         {
             final String NAMESPACE = "http://serv_gsj.net/";
-            final String URL = "http://" + Variables.getIp_servidor() + "ServidorWebSoap/ServicioClientes.asmx";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
             final String METHOD_NAME = "insertatexturizador";
             final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-            final int time = 2000, time2 = 190000;
+            final int time = 20000, time2 = 190000;
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 

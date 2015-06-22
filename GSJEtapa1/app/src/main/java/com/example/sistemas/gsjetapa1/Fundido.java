@@ -3,6 +3,7 @@ package com.example.sistemas.gsjetapa1;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -62,7 +63,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
     private EditText cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,lote_crema2,cantidad_crema2,cj01_3,lote_cj01_3,ph_cj01_3;
     private EditText sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,lote_crema,cantidad_crema,lote_famiRepro,kilos_FamiRepro;
     private EditText etObservaciones;
-    private Button Calcula_peso, btnFamiliaFun, btnFamiliaReproceso;
+    private Button Calcula_peso, btnFamiliaFun, btnFamiliaReproceso, Regresar;
     private ImageButton AddCuajada, GuardarF;
     private double peso_texturizador=0,valor_total=0,cantidad_cj01=0,cantidad_cj01_1=0,cantidad_cj01_2=0,cantidad_cj01_3=0,canti_crema2=0,cantidad_cj011=0,cantidad_mp005=0,cantidad_mp015=0,cantidad_s0101=0,tot_s0101=0,tot_mp015=0,cantidad_mp007=0,cantidad_sa01=0,cantidad_mp024=0,cantidad_int_crema=0,cantidad_familia_repro=0;
     private Switch tinas;
@@ -897,11 +898,24 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
                     Lote.setText(Fundida.getText().toString() + DiaJ.Dame_dia_J_y_anio());
                     btnFamiliaReproceso.setText("SELECCIONE FAMILIA");
                     lote_famiRepro.setText("");
-                    kilos_FamiRepro.setText("");
+                    cantidad_reproceso.setText("");
                 } else {
                     Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
             }
+            }
+        });
+
+        Regresar=(Button)findViewById(R.id.buttonBack);
+        Regresar.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+             if(var.isFromFundido()){
+                var.setFromAdminFundido(true);
+                 finish();startActivity(new Intent(Fundido.this,Realizados.class));
+
+             }
+
             }
         });
 
@@ -911,11 +925,15 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
 
     if(var.isFromFundido()){
         llenarValoresBusqueda(var.getLoteFundido());
-
+        tinas.setEnabled(false);
+        btnFamiliaFun.setEnabled(false);
     }
     else{
         GuardarF.setImageResource(R.drawable.guarda);
         rlObservaciones.setVisibility(View.INVISIBLE);
+        tinas.setEnabled(true);
+        btnFamiliaFun.setEnabled(true);
+
     }
 
 
@@ -1380,78 +1398,115 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         if (!(cursor.getString(cursor.getColumnIndex("familia")).equals(btnFamiliaFun.getText().toString()))) {
             datos_cambiados = datos_cambiados + "Familia Fundido Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia")) + ", Valor Nuevo: " + btnFamiliaFun.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01")) + ", Valor Nuevo: " + cj01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_cj01")).equals(cj01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_cj01")).equals(cj01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01")) + ", Valor Nuevo: " + lote_cj01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("ph_cj01")).equals(ph_cj01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("ph_cj01")).equals(ph_cj01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "ph_cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_cj01")) + ", Valor Nuevo: " + ph_cj01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("mp005")).equals(ad1.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("mp005")).equals(ad1.getText().toString()))) {
             datos_cambiados = datos_cambiados + "mp005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp005")) + ", Valor Nuevo: " + ad1.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_mp005")).equals(lot1.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp005")).equals(lot1.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_mp005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp005")) + ", Valor Nuevo: " + lot1.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("mp015")).equals(ad2.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("mp015")).equals(ad2.getText().toString()))) {
             datos_cambiados = datos_cambiados + "mp015 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp015")) + ", Valor Nuevo: " + ad2.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_mp015")).equals(lot2.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp015")).equals(lot2.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_mp015 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp015")) + ", Valor Nuevo: " + lot2.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("s0101")).equals(ad3.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("s0101")).equals(ad3.getText().toString()))) {
             datos_cambiados = datos_cambiados + "s0101 Valor Previo: " + cursor.getString(cursor.getColumnIndex("s0101")) + ", Valor Nuevo: " + ad3.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_s0101")).equals(lot3.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_s0101")).equals(lot3.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_s0101 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_s0101")) + ", Valor Nuevo: " + lot3.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("mp007")).equals(ad4.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("mp007")).equals(ad4.getText().toString()))) {
             datos_cambiados = datos_cambiados + "mp007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp007")) + ", Valor Nuevo: " + ad4.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_mp007")).equals(lot4.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp007")).equals(lot4.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_mp007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp007")) + ", Valor Nuevo: " + lot4.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("sa01")).equals(sa01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("sa01")).equals(sa01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "sa01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("sa01")) + ", Valor Nuevo: " + sa01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_sa01")).equals(lote_sa01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_sa01")).equals(lote_sa01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_sa01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_sa01")) + ", Valor Nuevo: " + lote_sa01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("mp024")).equals(mp024.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("mp024")).equals(mp024.getText().toString()))) {
             datos_cambiados = datos_cambiados + "mp024 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp024")) + ", Valor Nuevo: " + mp024.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_mp024")).equals(lote_mp024.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp024")).equals(lote_mp024.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_mp024 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp024")) + ", Valor Nuevo: " + lote_mp024.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("mp078")).equals(cj01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("mp078")).equals(cj01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "mp078 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp078")) + ", Valor Nuevo: " + mp078.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_mp078")).equals(lote_mp078.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp078")).equals(lote_mp078.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_mp078 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp078")) + ", Valor Nuevo: " + lote_mp078.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("cj02")).equals(cj02.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("cj02")).equals(cj02.getText().toString()))) {
             datos_cambiados = datos_cambiados + "cj02 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj02")) + ", Valor Nuevo: " + cj02.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_cj02")).equals(lote_cj02.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_cj02")).equals(lote_cj02.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_cj02 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj02")) + ", Valor Nuevo: " + lote_cj02.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("agua")).equals(agua.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("agua")).equals(agua.getText().toString()))) {
             datos_cambiados = datos_cambiados + "agua Valor Previo: " + cursor.getString(cursor.getColumnIndex("agua")) + ", Valor Nuevo: " + agua.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("tipo_crema")).equals(tipo_Crema[spTipoCrema.getSelectedItemPosition()]))) {
+         if (!(cursor.getString(cursor.getColumnIndex("tipo_crema")).equals(tipo_Crema[spTipoCrema.getSelectedItemPosition()]))) {
             datos_cambiados = datos_cambiados + "tipo_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("tipo_crema")) + ", Valor Nuevo: " + tipo_Crema[spTipoCrema.getSelectedItemPosition()] + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
             datos_cambiados = datos_cambiados + "cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01")) + ", Valor Nuevo: " + cj01.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("lote_tipo_crema")).equals(lote_crema.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("lote_tipo_crema")).equals(lote_crema.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_tipo_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_tipo_crema")) + ", Valor Nuevo: " + lote_crema.getText().toString() + "; ";
         }
-        else if (!(cursor.getString(cursor.getColumnIndex("cantidad_crema")).equals(cantidad_crema.getText().toString()))) {
+         if (!(cursor.getString(cursor.getColumnIndex("cantidad_crema")).equals(cantidad_crema.getText().toString()))) {
             datos_cambiados = datos_cambiados + "cantidad_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("cantidad_crema")) + ", Valor Nuevo: " + cantidad_crema.getText().toString() + "; ";
         }
+        if (!(cursor.getString(cursor.getColumnIndex("familia_reproceso")).equals(btnFamiliaReproceso.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "familia_reproceso Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia_reproceso")) + ", Valor Nuevo: " + btnFamiliaReproceso.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_fami_repro")).equals(lote_famiRepro.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_fami_repro Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_fami_repro")) + ", Valor Nuevo: " + lote_famiRepro.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")).equals(cantidad_reproceso.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cantidad_fami_repro Valor Previo: " + cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")) + ", Valor Nuevo: " + cantidad_reproceso.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temperatura")).equals(tempe_final.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temperatura Valor Previo: " + cursor.getString(cursor.getColumnIndex("temperatura")) + ", Valor Nuevo: " + tempe_final.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("peso_total")).equals(Peso_tot.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "peso_total Valor Previo: " + cursor.getString(cursor.getColumnIndex("peso_total")) + ", Valor Nuevo: " + Peso_tot.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("texturizador")).equals(texturizador[spTexturizador.getSelectedItemPosition()]))) {
+            datos_cambiados = datos_cambiados + "texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("texturizador")) + ", Valor Nuevo: " +texturizador[spTexturizador.getSelectedItemPosition()] + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_texturizador")).equals(lote_textu.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_texturizador")) + ", Valor Nuevo: " + lote_textu.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cj01_1")).equals(cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01_1")) + ", Valor Nuevo: " + cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_cj01_1")).equals(lote_cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01_1")) + ", Valor Nuevo: " + lote_cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph_cj01_1")).equals(ph_cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph_cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_cj01_1")) + ", Valor Nuevo: " + ph_cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cj01_2")).equals(cj01_2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01_2 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01_2")) + ", Valor Nuevo: " + cj01_2.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_cj01_2")).equals(lote_cj01_2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj01_2 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01_2")) + ", Valor Nuevo: " + lote_cj01_2.getText().toString() + "; ";
+        }
+
 
 
 

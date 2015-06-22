@@ -1789,7 +1789,7 @@ public class consultas {
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
                               String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones,
-                                         String ralladoqr, String observaciones_ralladoqr)
+                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -1798,7 +1798,7 @@ public class consultas {
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr) VALUES ('" +
+                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia) VALUES ('" +
 
                             fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
                             codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
@@ -1806,7 +1806,7 @@ public class consultas {
                             fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
                             observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
                             grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+
+                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+
 
                             "');"
             );
@@ -1823,7 +1823,7 @@ public class consultas {
                           String color,String aroma,String observaciones_sabor, String rallado,
                           String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                           String observaciones_hebrado,String grasa_residual,String humedad,String ph,
-                          String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr){
+                          String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr, String observaciones_apariencia){
 
         db = myDbHelper.getWritableDatabase();
         try {
@@ -1835,7 +1835,7 @@ public class consultas {
                             "hebrado='"+hebrado+"', observaciones_hebrado='"+observaciones_hebrado+"', grasa_residual='"+grasa_residual+"',"+
                             "humedad='"+humedad+"', ph='"+ph+"', grasa_total='"+grasa_total+"', humedad_remuestreo='"+humedad_remuestreo+"',"+
                             "ph_remuestreo='"+ph_remuestreo+"', grasa_remuestreo='"+grasa_remuestreo+ "',"+"necesidad_remuestreo='"+necesidad_remuestreo+"',"+
-                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"';");
+                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"',observaciones_apariencia= "+observaciones_apariencia+"';");
             myDbHelper.close();
             db.close();
             return true;
@@ -1883,7 +1883,7 @@ public class consultas {
         try {
             cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia, sabor" +
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
-                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo, ralladoqr, observaciones_ralladoqr " +
+                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia " +
 
                     "FROM laboratorio_calidad WHERE lote ='" + lote + "' AND codigo_prod ='"+codigo_prod+"';", null);
             if (cursor.moveToPosition(0)) {

@@ -47,7 +47,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private CheckBox check1, check2, check3;
     private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR;
     private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
-            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr;
+            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr, observaciones_apariencia;
     private Spinner spinnerDiez;
     private boolean deCual;
     private String Nombre_PT[];
@@ -115,7 +115,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString(),observaciones_apariencia.getText().toString());
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -131,7 +131,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString());
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -175,6 +175,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /************Edit Texts***************/
         Lote =(EditText)findViewById(R.id.tvLCLotePendiente);
         observaciones_sabor=(EditText)findViewById(R.id.editText17);
+        observaciones_apariencia=(EditText)findViewById(R.id.editText20);
         observaciones_rallado=(EditText)findViewById(R.id.editText7);
         observaciones_fundido=(EditText)findViewById(R.id.editText8);
         observaciones_hebrado=(EditText)findViewById(R.id.editText9);
@@ -495,6 +496,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
         swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
         observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
+        observaciones_apariencia.setText(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")));
 
         if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
         {
@@ -613,6 +615,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         codigo_fam.setText("");
         swRallQR.setChecked(false);
         observaciones_ralladoqr.setText("");
+        observaciones_apariencia.setText("");
         check1.setChecked(false);
         check2.setChecked(false);
         check3.setChecked(false);
