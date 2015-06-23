@@ -237,6 +237,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         //******************    Spinners    ****************//
 
         spTipoCuajada1 = (Spinner) findViewById(R.id.spTipoCj1);
+        spTipoCuajada1.setFocusable(true);
+        spTipoCuajada1.setFocusableInTouchMode(true);
+        spTipoCuajada1.requestFocus();
         tipo_cuajada_1=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_1);
@@ -244,6 +247,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         spTipoCuajada1.setAdapter(adpcj1);
 
         spTipoCuajada2 = (Spinner) findViewById(R.id.spTipoCj2);
+        spTipoCuajada2.setFocusable(true);
+        spTipoCuajada2.setFocusableInTouchMode(true);
+        spTipoCuajada2.requestFocus();
         tipo_cuajada_2=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_2);
@@ -251,6 +257,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         spTipoCuajada2.setAdapter(adpcj2);
 
         spTipoCuajada3 = (Spinner) findViewById(R.id.spTipoCj3);
+        spTipoCuajada3.setFocusable(true);
+        spTipoCuajada3.setFocusableInTouchMode(true);
+        spTipoCuajada3.requestFocus();
         tipo_cuajada_3=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj3 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_3);
@@ -258,6 +267,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         spTipoCuajada3.setAdapter(adpcj3);
 
         spTipoCrema = (Spinner) findViewById(R.id.spTipoCrema);
+        spTipoCrema.setFocusable(true);
+        spTipoCrema.setFocusableInTouchMode(true);
+        spTipoCrema.requestFocus();
         tipo_Crema=getResources().getStringArray(R.array.tipo_crema);
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_Crema);
@@ -265,6 +277,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         spTipoCrema.setAdapter(adapt);
 
         spTipoCrema2 = (Spinner) findViewById(R.id.spTipoCrema2);
+        spTipoCrema2.setFocusable(true);
+        spTipoCrema2.setFocusableInTouchMode(true);
+        spTipoCrema2.requestFocus();
         tipo_Crema2=getResources().getStringArray(R.array.tipo_crema2);
         ArrayAdapter<String> adapt2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_Crema2);
@@ -272,6 +287,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         spTipoCrema2.setAdapter(adapt2);
 
         spTexturizador = (Spinner) findViewById(R.id.spTipoTexturizador);
+        spTexturizador.setFocusable(true);
+        spTexturizador.setFocusableInTouchMode(true);
+        spTexturizador.requestFocus();
         llena_Texturizador(con.DAODescripcionTexturizador());
 
         spTipoCuajada1.setOnItemSelectedListener(new OnItemSelectedListener() {
@@ -350,7 +368,14 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
             public Double sumarPesoTX(String columna){
                 peso_texturizador=0;
                 for(int x=1;x<=18;x++) {
-                    peso_texturizador+=Double.parseDouble(con.DAOValoresActuales(columna, ""+x));
+
+                    try {
+                        peso_texturizador += Double.parseDouble(con.DAOValoresActuales(columna, "" + x));
+                    }
+                    catch (Exception e)
+                    {
+                        Log.i("Error:", e.toString());
+                    }
                 }
                 return peso_texturizador;
             }
@@ -673,20 +698,26 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         //******************    Inicio Buttons    ****************//
 
         btnFamiliaReproceso = (Button) findViewById(R.id.spFamiliaReproceso);
-        btnFamiliaReproceso.setOnClickListener(new View.OnClickListener(){
+        btnFamiliaReproceso.setFocusable(true);
+        btnFamiliaReproceso.setFocusableInTouchMode(true);
+        btnFamiliaReproceso.requestFocus();
+        btnFamiliaReproceso.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                funCheck=false;
+            public void onClick(View v) {
+                funCheck = false;
                 launchView();
 
             }
         });
 
         btnFamiliaFun = (Button) findViewById(R.id.spFamiliaFundido);
+        btnFamiliaFun.setFocusable(true);
+        btnFamiliaFun.setFocusableInTouchMode(true);
+        btnFamiliaFun.requestFocus();
         btnFamiliaFun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                funCheck=true;
+                funCheck = true;
                 launchView();
 
             }
@@ -694,6 +725,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
 
         AddCuajada=(ImageButton)findViewById(R.id.btnAddCuaj);
         AddCuajada.setVisibility(View.INVISIBLE);
+        AddCuajada.setFocusable(true);
+        AddCuajada.setFocusableInTouchMode(true);
+        AddCuajada.requestFocus();
         AddCuajada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1185,141 +1219,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         return bd.doubleValue();
     }
 
-    public class GuardaFundidoSync extends AsyncTask<String, Void, Boolean>
 
-    {
-        private final ProgressDialog dialog = new ProgressDialog(Fundido.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            this.dialog.setMessage("Enviando datos...");
-            this.dialog.show();
-        }
-
-        protected Boolean doInBackground(final String... args)
-
-        {
-
-
-
-            final String NAMESPACE = "http://serv_gsj.net/";
-            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
-            final String URL="http://"+Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertaFundido";
-            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-            final int time=20000,time2=190000;
-
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-
-            request.addProperty("linea", Linea.getText().toString());
-            /*request.addProperty("fecha", ""+FechaH.Hoy_hora());*/
-            request.addProperty("fecha", ""+FechaH.Hoy_hora());
-            Log.i("","La fecha es:    "+""+FechaH.Hoy_hora());
-            request.addProperty("num_fundida", Fundida.getText().toString());
-            request.addProperty("lote", Lote.getText().toString());
-            request.addProperty("familia", btnFamiliaFun.getText().toString());
-            request.addProperty("cj01", cj01.getText().toString());
-            request.addProperty("lote_cj01", lote_cj01.getText().toString());
-            request.addProperty("ph_cj01", ph_cj01.getText().toString());
-            request.addProperty("cj011", cj011.getText().toString());
-            request.addProperty("lote_cj011", lote_cj011.getText().toString());
-            request.addProperty("ph_cj011", ph_cj011.getText().toString());
-            request.addProperty("mp005", ad1.getText().toString());
-            request.addProperty("lote_mp005", lot1.getText().toString());
-            request.addProperty("mp015", ad2.getText().toString());
-            request.addProperty("lote_mp015", lot2.getText().toString());
-            request.addProperty("s0101", ad3.getText().toString());
-            request.addProperty("lote_s0101", lot3.getText().toString());
-            request.addProperty("mp007", ad4.getText().toString());
-            request.addProperty("lote_mp007", lot4.getText().toString());
-            request.addProperty("sa01", sa01.getText().toString());
-            request.addProperty("lote_sa01", lote_sa01.getText().toString());
-            request.addProperty("mp024", mp024.getText().toString());
-            request.addProperty("lote_mp024", lote_mp024.getText().toString());
-            request.addProperty("mp078", mp078.getText().toString());
-            request.addProperty("lote_mp078", lote_mp078.getText().toString());
-            request.addProperty("cj02", cj02.getText().toString());
-            request.addProperty("lote_cj02", lote_cj02.getText().toString());
-            request.addProperty("agua", agua.getText().toString());
-            request.addProperty("tipo_crema", tipo_crema_sel);
-            request.addProperty("lote_tipo_crema", lote_crema.getText().toString());
-            request.addProperty("cantidad_crema", cantidad_crema.getText().toString());
-            request.addProperty("familia_reproceso", btnFamiliaReproceso.getText().toString());
-            request.addProperty("lote_fami_repro", lote_famiRepro.getText().toString());
-            request.addProperty("cantidad_fami_repro", cantidad_reproceso.getText().toString());
-            request.addProperty("temperatura", tempe_final.getText().toString());
-            request.addProperty("peso_total", Peso_tot.getText().toString());
-            request.addProperty("texturizador", texturizador_sel);
-            request.addProperty("lote_texturizador", lote_textu.getText().toString());
-            request.addProperty("cj01_1", cj01_1.getText().toString());
-            request.addProperty("lote_cj01_1", lote_cj01_1.getText().toString());
-            request.addProperty("ph_cj01_1", ph_cj01_1.getText().toString());
-            request.addProperty("cj01_2", cj01_2.getText().toString());
-            request.addProperty("lote_cj01_2", lote_cj01_2.getText().toString());
-            request.addProperty("ph_cj01_2", ph_cj01_2.getText().toString());
-            request.addProperty("tipo_crema2", tipo_crema_sel2);
-            request.addProperty("lote_tipo_crema2", lote_crema2.getText().toString());
-            request.addProperty("cantidad_crema2", cantidad_crema2.getText().toString());
-            request.addProperty("tipo_cuajada_1", tipo_cj_1_sel);
-            request.addProperty("tipo_cuajada_2", tipo_cj_2_sel);
-            request.addProperty("tipo_cuajada_3", tipo_cj_3_sel);
-            request.addProperty("cj01_3", cj01_3.getText().toString());
-            request.addProperty("lote_cj01_3", lote_cj01_3.getText().toString());
-            request.addProperty("ph_cj01_3", ph_cj01_3.getText().toString());
-
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.dotNet = true;
-            envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL,time);
-
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-
-                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
-                String mensaje = resultado_xml.toString();
-                //transporte.getConnection().disconnect();
-//transporte.getServiceConnection().disconnect();
-//transporte.reset();
-// transporte.getConnection().disconnect();
-//transporte.getServiceConnection().disconnect();
-//transporte.reset();
-                return mensaje.contentEquals("true");
-
-
-            }
-            catch (Exception e)
-            {
-                Log.i("Error","Error de Sincronizacion:  "+e);
-
-                return false;
-
-            }
-
-
-        }
-
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
-                this.dialog.dismiss();
-            }
-
-            if (success)
-            {
-                Toast.makeText(Fundido.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            else
-            {
-                Toast.makeText(Fundido.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
-            }
-        }}
 
 
     public void PaginaMonitor(){
@@ -1720,4 +1620,144 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
 
     }
 
+
+
+
+
+
+    public class GuardaFundidoSync extends AsyncTask<String, Void, Boolean>
+
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Fundido.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Enviando datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+
+        {
+
+
+
+            final String NAMESPACE = "http://serv_gsj.net/";
+            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
+            final String URL="http://"+Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaFundido";
+            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
+            final int time=20000,time2=190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+
+            request.addProperty("linea", Linea.getText().toString());
+            /*request.addProperty("fecha", ""+FechaH.Hoy_hora());*/
+            request.addProperty("fecha", ""+FechaH.Hoy_hora());
+            Log.i("","La fecha es:    "+""+FechaH.Hoy_hora());
+            request.addProperty("num_fundida", Fundida.getText().toString());
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("familia", btnFamiliaFun.getText().toString());
+            request.addProperty("cj01", cj01.getText().toString());
+            request.addProperty("lote_cj01", lote_cj01.getText().toString());
+            request.addProperty("ph_cj01", ph_cj01.getText().toString());
+            request.addProperty("cj011", cj011.getText().toString());
+            request.addProperty("lote_cj011", lote_cj011.getText().toString());
+            request.addProperty("ph_cj011", ph_cj011.getText().toString());
+            request.addProperty("mp005", ad1.getText().toString());
+            request.addProperty("lote_mp005", lot1.getText().toString());
+            request.addProperty("mp015", ad2.getText().toString());
+            request.addProperty("lote_mp015", lot2.getText().toString());
+            request.addProperty("s0101", ad3.getText().toString());
+            request.addProperty("lote_s0101", lot3.getText().toString());
+            request.addProperty("mp007", ad4.getText().toString());
+            request.addProperty("lote_mp007", lot4.getText().toString());
+            request.addProperty("sa01", sa01.getText().toString());
+            request.addProperty("lote_sa01", lote_sa01.getText().toString());
+            request.addProperty("mp024", mp024.getText().toString());
+            request.addProperty("lote_mp024", lote_mp024.getText().toString());
+            request.addProperty("mp078", mp078.getText().toString());
+            request.addProperty("lote_mp078", lote_mp078.getText().toString());
+            request.addProperty("cj02", cj02.getText().toString());
+            request.addProperty("lote_cj02", lote_cj02.getText().toString());
+            request.addProperty("agua", agua.getText().toString());
+            request.addProperty("tipo_crema", tipo_crema_sel);
+            request.addProperty("lote_tipo_crema", lote_crema.getText().toString());
+            request.addProperty("cantidad_crema", cantidad_crema.getText().toString());
+            request.addProperty("familia_reproceso", btnFamiliaReproceso.getText().toString());
+            request.addProperty("lote_fami_repro", lote_famiRepro.getText().toString());
+            request.addProperty("cantidad_fami_repro", cantidad_reproceso.getText().toString());
+            request.addProperty("temperatura", tempe_final.getText().toString());
+            request.addProperty("peso_total", Peso_tot.getText().toString());
+            request.addProperty("texturizador", texturizador_sel);
+            request.addProperty("lote_texturizador", lote_textu.getText().toString());
+            request.addProperty("cj01_1", cj01_1.getText().toString());
+            request.addProperty("lote_cj01_1", lote_cj01_1.getText().toString());
+            request.addProperty("ph_cj01_1", ph_cj01_1.getText().toString());
+            request.addProperty("cj01_2", cj01_2.getText().toString());
+            request.addProperty("lote_cj01_2", lote_cj01_2.getText().toString());
+            request.addProperty("ph_cj01_2", ph_cj01_2.getText().toString());
+            request.addProperty("tipo_crema2", tipo_crema_sel2);
+            request.addProperty("lote_tipo_crema2", lote_crema2.getText().toString());
+            request.addProperty("cantidad_crema2", cantidad_crema2.getText().toString());
+            request.addProperty("tipo_cuajada_1", tipo_cj_1_sel);
+            request.addProperty("tipo_cuajada_2", tipo_cj_2_sel);
+            request.addProperty("tipo_cuajada_3", tipo_cj_3_sel);
+            request.addProperty("cj01_3", cj01_3.getText().toString());
+            request.addProperty("lote_cj01_3", lote_cj01_3.getText().toString());
+            request.addProperty("ph_cj01_3", ph_cj01_3.getText().toString());
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL,time);
+
+            try
+            {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
+                String mensaje = resultado_xml.toString();
+                //transporte.getConnection().disconnect();
+//transporte.getServiceConnection().disconnect();
+//transporte.reset();
+// transporte.getConnection().disconnect();
+//transporte.getServiceConnection().disconnect();
+//transporte.reset();
+                return mensaje.contentEquals("true");
+
+
+            }
+            catch (Exception e)
+            {
+                Log.i("Error","Error de Sincronizacion:  "+e);
+
+                return false;
+
+            }
+
+
+        }
+
+        protected void onPostExecute(final Boolean success)
+        {
+            if (this.dialog.isShowing())
+            {
+                this.dialog.dismiss();
+            }
+
+            if (success)
+            {
+                Toast.makeText(Fundido.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            else
+            {
+                Toast.makeText(Fundido.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
+            }
+        }}
 }

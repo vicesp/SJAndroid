@@ -541,6 +541,42 @@ public class consultas {
     }
     }
 
+    /*********** Actualizar Familias **************/
+    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar) {
+        boolean check = false;
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+        try{
+
+
+            db.execSQL("UPDATE cat_familias SET codigo_familia = '"+codigo+"', nombre_familia = '"+nombre+"', eliminado = "+eliminar+" WHERE codigo_familia ='"+codigo+"';");
+
+
+            check= true;
+        }
+        catch(Exception e)
+        {
+            check = false;
+        }
+        return check;
+    }
+    /*********** Guardar Nueva Familia **************/
+
+    public boolean DAOGuardarFamilia(String codigo, String nombre)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        try {
+
+            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
+            return true;
+        }
+        catch(Exception e){
+
+            return false;
+        }
+    }
+
     /****************    Consulta para Llenar la lista de lotes Empaque_Realizdo    *************/
     public ArrayList<consultas> DAOListaEmpaqueRealizado(String fecha){
 
@@ -1063,7 +1099,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
 
         try {
-            cursor= db.rawQuery("SELECT "+columna+ " from texturizador_actualizador WHERE id='"+id+"' ", null);
+            cursor= db.rawQuery("SELECT "+columna+ " from texturizador_actualizador WHERE id='"+id+"' AND eliminado=0 ", null);
 
             if (cursor.moveToPosition(0)) {
 
@@ -1915,7 +1951,7 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias " + "", null);
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
