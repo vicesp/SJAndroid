@@ -1831,20 +1831,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
 
         try {
-            Log.i("Query: ", "INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
-                    "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
-                    "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                    "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia) VALUES ('" +
 
-                    fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
-                    codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
-                    observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
-                    fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
-                    observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
-                    grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                    grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+
-
-                    "');");
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
