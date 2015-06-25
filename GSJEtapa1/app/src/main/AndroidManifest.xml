@@ -80,6 +80,10 @@
             android:label="@string/title_activity_registro__familias"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Registro_Texturizador"
+            android:label="@string/title_activity_registro_texturizador" >
+        </activity>
     </application>
 
 </manifest>
