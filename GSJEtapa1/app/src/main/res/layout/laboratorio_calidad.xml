@@ -32,9 +32,9 @@
             android:textSize="25dp"
             android:textColor="@android:color/black"
             android:text="Fecha"
-            android:layout_alignTop="@+id/fechaText1"
-            android:layout_alignLeft="@+id/editText"
-            android:layout_alignStart="@+id/editText" />
+            android:layout_alignBottom="@+id/tvLCLotePendiente"
+            android:layout_alignRight="@+id/checkBox2"
+            android:layout_alignEnd="@+id/checkBox2" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -42,8 +42,11 @@
             android:id="@+id/fechaText1"
             android:textColor="#98002E"
             android:text=""
-            android:layout_toLeftOf="@+id/checkBox3"
-            android:layout_alignTop="@+id/tvLCLote"
+            android:layout_alignTop="@+id/fechaText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/switchSabor"
+            android:layout_alignBottom="@+id/fechaText"
             android:layout_alignLeft="@+id/tvLCProducto1"
             android:layout_alignStart="@+id/tvLCProducto1" />
 
@@ -112,20 +115,21 @@
             android:layout_below="@+id/imageView"
             android:layout_alignLeft="@+id/btnECP"
             android:layout_alignStart="@+id/btnECP"
-            android:layout_alignRight="@+id/btnECP"
-            android:layout_alignEnd="@+id/btnECP" />
+            android:layout_alignRight="@+id/switchApariencia"
+            android:layout_alignEnd="@+id/switchApariencia" />
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Seleccionar Familia"
+            android:text="Seleccionar Prodcuto"
             android:id="@+id/btnECP"
-            android:layout_alignBottom="@+id/tvLCFamilia"
             android:layout_toRightOf="@+id/tvLCCodigo"
-            android:layout_toEndOf="@+id/tvLCCodigo" />
+            android:layout_alignBottom="@+id/tvLCFamilia"
+            android:layout_alignRight="@+id/editText10"
+            android:layout_alignEnd="@+id/editText10" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Familia"
+            android:text="Producto"
             android:id="@+id/tvLCFamilia"
             android:textSize="25dp"
             android:textColor="@android:color/black"
@@ -140,15 +144,15 @@
             android:id="@+id/tvLCProducto"
             android:textSize="25dp"
             android:textColor="@android:color/black"
-            android:text="Producto"
-            android:layout_alignBottom="@+id/tvLCProducto1"
-            android:layout_toLeftOf="@+id/switchSabor"
-            android:layout_toStartOf="@+id/switchSabor" />
+            android:text="Familia"
+            android:layout_alignBottom="@+id/btnECP"
+            android:layout_alignLeft="@+id/fechaText"
+            android:layout_alignStart="@+id/fechaText" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código Familia"
+            android:text="Cod Prod    "
             android:id="@+id/tvLCCodigo"
             android:textSize="25dp"
             android:textColor="@android:color/black"
@@ -157,15 +161,16 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
-        <Button
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Seleccionar Producto"
             android:id="@+id/tvLCProducto1"
-            android:textColor="#ff000000"
-            android:layout_alignTop="@+id/btnECP"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/tvLCProducto"
             android:layout_toRightOf="@+id/textView219"
-            android:layout_toEndOf="@+id/textView219" />
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -232,9 +237,9 @@
             android:id="@+id/switchSabor"
             android:checked="false"
             android:textSize="25dp"
-            android:layout_below="@+id/imageView14"
-            android:layout_toRightOf="@+id/editText"
-            android:layout_toEndOf="@+id/editText" />
+            android:layout_alignTop="@+id/switchApariencia"
+            android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText" />
 
         <Switch
             android:layout_width="wrap_content"
@@ -274,7 +279,7 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Rallado"
+            android:text="Rallado     "
             android:id="@+id/switchRallado"
             android:checked="false"
             android:textSize="25dp"
@@ -364,7 +369,7 @@
         <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hebrado"
+            android:text="Hebrado   "
             android:id="@+id/switchHebrado"
             android:checked="false"
             android:textSize="25dp"
@@ -689,13 +694,13 @@
             android:layout_alignBottom="@+id/textView217"
             android:layout_alignRight="@+id/tvLCProducto1"
             android:layout_alignEnd="@+id/tvLCProducto1"
-            android:layout_alignLeft="@+id/fechaText"
-            android:layout_alignStart="@+id/fechaText" />
+            android:layout_alignLeft="@+id/editText8"
+            android:layout_alignStart="@+id/editText8" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código Producto"
+            android:text="Cod Fam    "
             android:id="@+id/textView219"
             android:textSize="25dp"
             android:textColor="@android:color/black"
@@ -752,8 +757,8 @@
             android:textColor="@android:color/black"
             android:visibility="invisible"
             android:layout_alignTop="@+id/swRalladoQR"
-            android:layout_alignRight="@+id/fechaText"
-            android:layout_alignEnd="@+id/fechaText" />
+            android:layout_alignLeft="@+id/textView112"
+            android:layout_alignStart="@+id/textView112" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -786,9 +791,10 @@
             android:id="@+id/editText20"
             android:textSize="25dp"
             android:layout_alignBottom="@+id/textView228"
-            android:layout_toRightOf="@+id/editText10"
             android:layout_alignRight="@+id/observacionesRalladoQR"
-            android:layout_alignEnd="@+id/observacionesRalladoQR" />
+            android:layout_alignEnd="@+id/observacionesRalladoQR"
+            android:layout_alignLeft="@+id/observacionesRalladoQR"
+            android:layout_alignStart="@+id/observacionesRalladoQR" />
 
 
     </RelativeLayout>

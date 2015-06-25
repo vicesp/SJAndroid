@@ -420,7 +420,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         if (fromWhere == 0) {
-            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias WHERE codigo_familia = '" + codigo_familia + "'", null);
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias", null);
         }
         else {
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
@@ -1831,6 +1831,20 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
 
         try {
+            Log.i("Query: ", "INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+                    "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
+                    "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
+                    "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia) VALUES ('" +
+
+                    fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
+                    codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
+                    observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
+                    fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
+                    observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
+                    grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
+                    grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+
+
+                    "');");
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
@@ -1871,7 +1885,8 @@ public class consultas {
                             "hebrado='"+hebrado+"', observaciones_hebrado='"+observaciones_hebrado+"', grasa_residual='"+grasa_residual+"',"+
                             "humedad='"+humedad+"', ph='"+ph+"', grasa_total='"+grasa_total+"', humedad_remuestreo='"+humedad_remuestreo+"',"+
                             "ph_remuestreo='"+ph_remuestreo+"', grasa_remuestreo='"+grasa_remuestreo+ "',"+"necesidad_remuestreo='"+necesidad_remuestreo+"',"+
-                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"',observaciones_apariencia= "+observaciones_apariencia+"';");
+                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"',observaciones_apariencia= "+observaciones_apariencia+"'" +
+                    "WHERE fecha = '"+fecha+"' AND codigo_prod = '"+codigo_prod+"';");
             myDbHelper.close();
             db.close();
             return true;
@@ -1947,6 +1962,31 @@ public class consultas {
         }
     }
     /****************    Consulta para Obtener Familias     *************/
+    public Cursor DAOGetCursorTodosFamilias(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
+            return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+
+    /****************    Consulta para Obtener Familias     *************/
     public ArrayList<consultas> DAOGetTodosFamilias()
     {
         db = myDbHelper.getWritableDatabase();
@@ -1975,8 +2015,6 @@ public class consultas {
         db.close();
         return productosArray;
     }
-
-
 
 
     /****************    Consulta para Configuracion IP      *************/

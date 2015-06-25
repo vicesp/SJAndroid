@@ -41,8 +41,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static consultas con;
     private static Variables var;
 
-    private TextView Fecha,codigo_prod, codigo_fam, observacionesqr;
-    private Button btn_listviewdialog, btn_listviewdialog1, btnBack;
+    private TextView Fecha,codigo_prod, codigo_fam, observacionesqr,btn_listviewdialog1;
+    private Button btn_listviewdialog, btnBack;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
     private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR;
@@ -71,9 +71,11 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /*********** Text Views **************/
         Fecha = (TextView) findViewById(R.id.fechaText1);
         Fecha.setText(FechaH.Hoy());
-        codigo_fam = (TextView)findViewById(R.id.tvLCCodigoFamilia);
-        codigo_prod=(TextView)findViewById(R.id.tvLCCodigoProducto);
+        codigo_fam = (TextView)findViewById(R.id.tvLCCodigoProducto);
+        codigo_prod=(TextView)findViewById(R.id.tvLCCodigoFamilia);
         observacionesqr=(TextView)findViewById(R.id.textView227);
+        btn_listviewdialog1=(TextView)findViewById(R.id.tvLCProducto1);
+
 
 
 
@@ -115,7 +117,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString(),observaciones_apariencia.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString());
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -131,7 +133,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString());
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -217,16 +219,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             }});
 
         /*********** Buttons *****************/
-        btn_listviewdialog1=(Button)findViewById(R.id.tvLCProducto1);
-        btn_listviewdialog1.setOnClickListener(this);
-        btn_listviewdialog1.setEnabled(false);
-        btn_listviewdialog1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                launchView(1);
-            }});
-
         btn_listviewdialog=(Button)findViewById(R.id.btnECP);
         btn_listviewdialog.setOnClickListener(this);
         btn_listviewdialog.setOnClickListener(new View.OnClickListener() {
@@ -296,44 +288,39 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         myalertDialog.dismiss();
 
 
-        String strName=array_sort.get(position);
+        String strName = array_sort.get(position);
+        codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
+        cursor = con.DAOGetCursorTodosFamilias(codigo_prod.getText().toString());
+        btn_listviewdialog.setText(strName.substring(strName.indexOf('-') + 1, strName.length()));
+        codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_familia")));
+        btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("nombre_familia")));
 
 
-        if (deCual) {
-            codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
-            btn_listviewdialog1.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
 
+        if (codigo_prod.getText().toString().substring(0, 2).equals("QR")) {
 
+            observaciones_ralladoqr.setVisibility(View.VISIBLE);
+            observacionesqr.setVisibility(View.VISIBLE);
+            swRallQR.setVisibility(View.VISIBLE);
 
-            if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
-            {
+            observaciones_rallado.setEnabled(false);
+            swRall.setEnabled(false);
 
-                observaciones_ralladoqr.setVisibility(View.VISIBLE);
-                observacionesqr.setVisibility(View.VISIBLE);
-                swRallQR.setVisibility(View.VISIBLE);
+        } else {
+            observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+            observacionesqr.setVisibility(View.INVISIBLE);
+            swRallQR.setVisibility(View.INVISIBLE);
 
-                observaciones_rallado.setEnabled(false);
-                swRall.setEnabled(false);
-
-            }
-            else{
-                observaciones_ralladoqr.setVisibility(View.INVISIBLE);
-                observacionesqr.setVisibility(View.INVISIBLE);
-                swRallQR.setVisibility(View.INVISIBLE);
-
-                observaciones_rallado.setEnabled(true);
-                swRall.setEnabled(true);
-
-            }
+            observaciones_rallado.setEnabled(true);
+            swRall.setEnabled(true);
 
         }
-        if(!deCual) {
-            codigo_fam.setText(strName.substring(0, strName.indexOf('-')));
-            btn_listviewdialog.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
-            btn_listviewdialog1.setEnabled(true);
-        }
+
+
+
 
     }
+
     @Override
     public void onClick(View v) {
 
@@ -524,14 +511,10 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     public void launchView(int from)
     {
         AlertDialog.Builder myDialog = new AlertDialog.Builder(Laboratorio_Calidad.this);
-        if(from==1) {
+
             Nombre_PT = getProductosArray(con.DAOGetTodosProductos(codigo_fam.getText().toString(),0));
             deCual=true;
-        }
-        else if(from==0){
-            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
-            deCual =false;
-        }
+
 
 
 
@@ -589,7 +572,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     public void vaciarTodo(){
 
         Lote.setText("");
-        Fecha.setText("");
         codigo_prod.setText("");
         observaciones_sabor.setText("");
         observaciones_rallado.setText("");
@@ -609,9 +591,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swHeb.setChecked(false);
         swRem.setChecked(false);
         spinnerDiez.setSelection(0);
-        btn_listviewdialog1.setText("Seleccione un Producto");
-        btn_listviewdialog.setText("Seleccione una Familia");
-        btn_listviewdialog1.setEnabled(false);
+        btn_listviewdialog.setText("Seleccione un Producto");
+        btn_listviewdialog1.setText("");
         codigo_fam.setText("");
         swRallQR.setChecked(false);
         observaciones_ralladoqr.setText("");
