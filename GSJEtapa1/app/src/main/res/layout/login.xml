@@ -53,7 +53,7 @@
         android:layout_toRightOf="@+id/textView25"
         android:layout_alignRight="@+id/imageView6"
         android:layout_alignEnd="@+id/imageView6"
-        android:text="Laboratorio" />
+        android:text="Administrador" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -65,7 +65,8 @@
         android:layout_alignStart="@+id/etUsuario"
         android:layout_alignBottom="@+id/textView28"
         android:layout_alignRight="@+id/imageView6"
-        android:layout_alignEnd="@+id/imageView6" />
+        android:layout_alignEnd="@+id/imageView6"
+        android:text="admin" />
 
     <Button
         android:layout_width="200dp"

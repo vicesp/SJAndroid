@@ -73,6 +73,7 @@ public class Login extends Activity {
                 else if(tipoUsuario==4)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromProducto(false);
                     finish();startActivity(new Intent(Login.this, Producto_Terminado.class));
                 }
                 else if(tipoUsuario==5)

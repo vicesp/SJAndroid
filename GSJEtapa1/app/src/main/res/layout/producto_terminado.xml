@@ -307,12 +307,11 @@
 
     </RelativeLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
+    <ImageButton
+        android:layout_width="210dp"
+        android:layout_height="105dp"
         android:textSize="25dp"
-        android:background="@drawable/guarda"
+        android:background="@drawable/actualizarmenos"
         android:id="@+id/btnSavePT"
         android:layout_alignTop="@+id/tvcentro"
         android:layout_alignParentRight="true"

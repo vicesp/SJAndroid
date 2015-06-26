@@ -94,6 +94,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 var.setFromAdminCuajado(false);
                 var.setFromAdminEmpaque(false);
                 var.setFromAdminTexturizador(false);
+                var.setFromAdminProducto(false);
                 finish();
                 startActivity(new Intent(Realizados.this, Administrador.class));
             }
@@ -117,8 +118,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                     LLena_Lista(con.DAOListaEmpaqueRealizado(fechaSeleccionada(calendario.getDate())));
                 } else if (var.isFromAdminTexturizador()) {
                     LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(calendario.getDate())));
+                } else if (var.isFromAdminProducto()) {
+                    LLena_Lista(con.DAOListaProductoRealizado(fechaSeleccionada(calendario.getDate())));
                 }
-
             }
         });
 
@@ -140,6 +142,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             nombre.setText("FUNDIDO REALIZADOS");
         }
         if(var.isFromAdminCuajado()){
+
             LLena_Lista(con.DAOListaCuajadoRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("CUAJADO REALIZADOS");
         }
@@ -150,6 +153,10 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         if(var.isFromAdminTexturizador()){
             LLena_Lista(con.DAOListaTexturizadorRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("TEXTURIZADOR REALIZADOS");
+        }
+        if(var.isFromAdminProducto()){
+            LLena_Lista(con.DAOListaProductoRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("PRODUCTO TERMINADO REALIZADOS");
         }
     }
 
@@ -220,7 +227,11 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setLoteTexturizador(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
             finish();
             startActivity(new Intent(Realizados.this, Texturizador.class));
-
+        } else if(var.isFromAdminProducto()){
+            var.setFromProducto(true);
+            var.setLoteProducto(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();
+            startActivity(new Intent(Realizados.this, Producto_Terminado.class));
         }
     }
     @Override

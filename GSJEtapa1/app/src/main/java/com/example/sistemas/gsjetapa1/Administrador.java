@@ -72,7 +72,6 @@ public class Administrador extends ActionBarActivity {
         btnTextu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 finish();startActivity(new Intent(Administrador.this, Texturizador_Edit.class));
 
             }
@@ -83,7 +82,8 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-
+                var.setFromAdminProducto(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
 
             }
         });
@@ -116,6 +116,7 @@ public class Administrador extends ActionBarActivity {
 
             }
         });
+
 
         if(var.getNombre_usuario().equals("EL"))
         {

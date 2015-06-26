@@ -145,6 +145,7 @@ public class consultas {
 
         try {
 
+
             cursor= db.rawQuery("select lote from cuajado where lote='"+lote+"'", null);
 
 
@@ -895,7 +896,7 @@ public class consultas {
                                    String mp010,String lote_mp010,String mp025,
                               String lote_mp025,String mp026,String lote_mp026,String mp027,String lote_mp027,
                                    String mp028,String lote_mp028,String mp031,String lote_mp031,String mp012,
-                              String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo){
+                              String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -905,7 +906,7 @@ public class consultas {
             db.execSQL("INSERT INTO texturizador (" +
                     " lote,fecha,texturizador,mp002,lote_mp002,mp003,lote_mp003,mp004,lote_mp004,mp005,lote_mp005,mp006,lote_mp006,mp007,lote_mp007," +
                     "mp008,lote_mp008,mp009,lote_mp009,mp010,lote_mp010,mp025,lote_mp025,mp026,lote_mp026,mp027,lote_mp027,mp028," +
-                    "lote_mp028,mp031,lote_mp031,mp012,lote_mp012,mp013,lote_mp013,mp014,lote_mp014,kilos_totales,num_consecutivo) " +
+                    "lote_mp028,mp031,lote_mp031,mp012,lote_mp012,mp013,lote_mp013,mp014,lote_mp014,kilos_totales,num_consecutivo, fecha_hoy) " +
                     "VALUES ('" + lote + "','"
                     + fecha + "','"
                     + texturizador + "','"
@@ -944,8 +945,9 @@ public class consultas {
                     + mp014 + "','"
                     + lote_mp014 + "','"
                     + kilos_totales + "',"
-                    + num_consecutivo
-                    + ")");
+                    + num_consecutivo+",'"
+                    +fecha_hoy
+                    + "')");
 
             return true;
         }
@@ -1159,7 +1161,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote " +
-                "FROM texturizador WHERE fecha ='" +
+                "FROM texturizador WHERE fecha_hoy ='" +
                 fecha + "'", null);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> pacientesArray = new ArrayList<consultas>();
@@ -1168,12 +1170,12 @@ public class consultas {
             if  (cursor.moveToFirst()) {
                 consultas lista = new consultas();
 
-                lista.lote=new String[cursor.getCount()];
+                lista.empaque=new String[cursor.getCount()];
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
 
-                    lista.lote[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
                     cursor.moveToNext();
                 }
 
@@ -1194,7 +1196,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         try {
             cursor = db.rawQuery("SELECT fecha, lote_mp002, lote_mp003, lote_mp004, lote_mp005, lote_mp006, lote_mp007" +
-                    ", lote_mp008, lote_mp009, lote_mp010, lote_mp021, lote_mp025, lote_mp026, lote_mp027, lote_mp028" +
+                    ", lote_mp008, lote_mp009, lote_mp010, lote_mp025, lote_mp026, lote_mp027, lote_mp028" +
                     ", lote_mp031, lote_mp012, lote_mp013, lote_mp014, kilos_totales " +
                     "FROM texturizador WHERE lote ='" +
                     lote + "'", null);
@@ -1224,22 +1226,42 @@ public class consultas {
     }
 
     /****************    Consulta para Producto Terminado     *************/
-    public boolean DAOPT(String lote,String fecha, String codigo_pt, String num_viaje, String num_piezas, String kilos, String num_fundida){
+    public boolean DAOPT(String lote,String fecha, String codigo_pt, String num_viaje, String num_piezas, String kilos, String num_fundida,String fecha_hora){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
             db.execSQL("INSERT INTO PT (" +
-                    " lote,fecha,codigo_pt,num_viaje,num_piezas,kilos,numero_fundida) " +
+                    " lote,fecha,codigo_pt,num_viaje,num_piezas,kilos,numero_fundida, fecha_hoy) " +
                     "VALUES ('" + lote + "','"
                     + fecha + "','"
                     + codigo_pt + "','"
                     + num_viaje + "','"
                     + num_piezas + "','"
                     + kilos + "','"
-                    + num_fundida
+                    + num_fundida+"','"
+                    +fecha_hora
                     + "')");
 
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+    /****************    Consulta para actualizar Prpducto Terminado   *************/
+
+    public boolean DAOActualizarPT(String lote,String fecha, String codigo_pt,
+                                   String num_viaje, String num_piezas, String kilos,
+                                   String num_fundida){
+
+        db = myDbHelper.getWritableDatabase();
+        try {
+            db.execSQL("UPDATE PT SET fecha = '"+fecha+"', lote = '"+lote+"', codigo_pt='"+codigo_pt+"', num_viaje='"+num_viaje+"',"+
+                    "num_piezas='"+num_piezas+"', kilos='"+kilos+"', numero_fundida='"+num_fundida+"' "+
+                    "WHERE lote ='"+lote+"';");
+            myDbHelper.close();
+            db.close();
             return true;
         }
         catch (Exception e){
@@ -1277,6 +1299,70 @@ public class consultas {
         catch (Exception e){
             return 0;
         }
+    }
+
+    /****************    Consulta para Llenar Producto si se viene de realizados    *************/
+    public Cursor DAOLLenarProducto(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha, codigo_pt, num_viaje, num_piezas, kilos, numero_fundida FROM PT WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+
+    /****************    Consulta para Llenar la lista de lotes TEXTURIZADOR_REALIZADOS    *************/
+    public ArrayList<consultas> DAOListaProductoRealizado(String fecha){
+
+            db = myDbHelper.getWritableDatabase();
+            cursor=null;
+            cursor = db.rawQuery("SELECT lote " +
+                    "FROM PT WHERE fecha ='" +
+                    fecha + "'", null);
+                /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
+            ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+            if (cursor != null ) {
+                if  (cursor.moveToFirst()) {
+                    consultas lista = new consultas();
+
+                    lista.empaque = new String[cursor.getCount()];
+
+                    for(int x=0;x< cursor.getCount();x++)
+                    {
+                        lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                        cursor.moveToNext();
+                    }
+                    empaqueArray.add(lista);
+                }
+            }
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return empaqueArray;
+
     }
 
     /****************    Consulta para Numero Fundida Fundido     *************/
@@ -1646,7 +1732,7 @@ public class consultas {
         cursor = db.rawQuery("SELECT lote " +
                 "FROM cuajado WHERE fecha_hoy ='" +
                 fecha + "'", null);
-        Log.i("",fecha);
+        Log.i("Fecha",fecha);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -1674,7 +1760,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha, fecha, lote, silo, num_equipo, num_tina, familia" +
+            cursor = db.rawQuery("SELECT fecha, fecha_hoy, lote, silo, num_equipo, num_tina, familia" +
                     ", leche_silo, ph_leche, porcen_grasa_leche, porce_proteina, leche_tina, porce_grasa_leche_tina, porce_prot_tina, crema_kilos" +
                     ", porce_grasa_crema, temp_adi_cuajo, ph_pasta_coag, hora_adi_cuajo, temp_cocido, estatus_guardado, estatus_pendiente, hora_inicio_desuerado " +
                     ", litros_suero, ph_desuerado, solidos_totales, pasta_obtenida, numero_moldes, kilos_pendientes, porcentaje_humedad " +
@@ -1825,7 +1911,7 @@ public class consultas {
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
                               String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones,
-                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia)
+                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia, String fecha_hoy)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -1835,7 +1921,7 @@ public class consultas {
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia) VALUES ('" +
+                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia,fecha_hoy) VALUES ('" +
 
                             fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
                             codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
@@ -1843,8 +1929,8 @@ public class consultas {
                             fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
                             observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
                             grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+
-
+                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+"','"
+                            +fecha_hoy+
                             "');"
             );
             return true;
@@ -1890,7 +1976,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote, codigo_prod, producto " +
-                "FROM laboratorio_calidad WHERE fecha ='" +
+                "FROM laboratorio_calidad WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -1921,7 +2007,8 @@ public class consultas {
         try {
             cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia, sabor" +
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
-                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia " +
+                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo," +
+                    " ralladoqr, observaciones_ralladoqr, observaciones_apariencia, fecha_hoy " +
 
                     "FROM laboratorio_calidad WHERE lote ='" + lote + "' AND codigo_prod ='"+codigo_prod+"';", null);
             if (cursor.moveToPosition(0)) {
