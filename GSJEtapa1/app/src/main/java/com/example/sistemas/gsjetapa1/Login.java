@@ -123,6 +123,7 @@ public class Login extends Activity {
                 }
                 else if (tipoUsuario== 13 )
                 {
+                    Variables.setFromLaboratorio(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
