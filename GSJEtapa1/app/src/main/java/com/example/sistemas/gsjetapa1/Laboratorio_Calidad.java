@@ -205,8 +205,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         grasRem=(EditText)findViewById(R.id.editText15);
         phRem=(EditText)findViewById(R.id.editText16);
 
-
-
         /*********** Check Boxes **************/
         check1 =(CheckBox)findViewById(R.id.checkBox);
         check1.setOnClickListener(new View.OnClickListener() {
