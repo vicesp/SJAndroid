@@ -45,6 +45,7 @@ import DTO.Fecha_Hoy;
 import DTO.Variables;
 
 
+
 public class Laboratorio_Calidad extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static Fecha_Hoy FechaH;
@@ -122,6 +123,9 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
                                            if (var.isFromLaboratorio()) {
 
+                                               //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
+
+
                                                boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
                                                        codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
@@ -195,10 +199,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         observaciones_ralladoqr=(EditText)findViewById(R.id.observacionesRalladoQR);
         humedad=(EditText)findViewById(R.id.editText10);
         ph=(EditText)findViewById(R.id.editText11);
+
         grasa_total=(EditText)findViewById(R.id.editText13);
         humRem=(EditText)findViewById(R.id.editText14);
         grasRem=(EditText)findViewById(R.id.editText15);
         phRem=(EditText)findViewById(R.id.editText16);
+
+
 
         /*********** Check Boxes **************/
         check1 =(CheckBox)findViewById(R.id.checkBox);
@@ -716,4 +723,5 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             webSettings.setJavaScriptEnabled(true);
         }
     }
+
 }

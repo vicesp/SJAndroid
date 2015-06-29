@@ -1949,17 +1949,16 @@ public class consultas {
                           String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr, String observaciones_apariencia){
 
         db = myDbHelper.getWritableDatabase();
-        try {
-            db.execSQL("UPDATE laboratorio_calidad SET fecha = '"+fecha+"', lote = '"+lote+"', familia='"+familia+"', producto='"+producto+"',"+
+        try {db.execSQL("UPDATE laboratorio_calidad SET lote = '" + lote + "', familia='" + familia + "', producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', codigo_fam='" + codigo_fam + "', apariencia='" + apariencia + "',sabor='" + sabor + "'," +
+                "color='" + color + "', aroma='" + aroma + "', observaciones_sabor='" + observaciones_sabor + "', rallado='" + rallado + "'," +
+                "observaciones_rallado='" + observaciones_rallado + "', fundido='" + fundido + "', observaciones_fundido='" + observaciones_fundido + "'," +
+                "hebrado='" + hebrado + "', observaciones_hebrado='" + observaciones_hebrado + "', grasa_residual='" + grasa_residual + "'," +
+                "humedad='" + humedad + "', ph='" + ph + "', grasa_total='" + grasa_total + "', humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', grasa_remuestreo='" + grasa_remuestreo + "'," + "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "ralladoqr='" + ralladoqr + "', observaciones_ralladoqr='" + observaciones_ralldoqr + "',observaciones_apariencia='" + observaciones_apariencia + "'" +
+                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "';");
 
-                            "codigo_prod='"+codigo_prod+"', codigo_fam='"+codigo_fam+"', apariencia='"+apariencia+"',sabor='"+sabor+"'," +
-                            "color='"+color+"', aroma='"+aroma+"', observaciones_sabor='"+observaciones_sabor+"', rallado='"+rallado+"',"+
-                            "observaciones_rallado='"+observaciones_rallado+"', fundido='"+fundido+"', observaciones_fundido='"+observaciones_fundido+"'," +
-                            "hebrado='"+hebrado+"', observaciones_hebrado='"+observaciones_hebrado+"', grasa_residual='"+grasa_residual+"',"+
-                            "humedad='"+humedad+"', ph='"+ph+"', grasa_total='"+grasa_total+"', humedad_remuestreo='"+humedad_remuestreo+"',"+
-                            "ph_remuestreo='"+ph_remuestreo+"', grasa_remuestreo='"+grasa_remuestreo+ "',"+"necesidad_remuestreo='"+necesidad_remuestreo+"',"+
-                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"',observaciones_apariencia= "+observaciones_apariencia+"'" +
-                    "WHERE fecha = '"+fecha+"' AND codigo_prod = '"+codigo_prod+"';");
             myDbHelper.close();
             db.close();
             return true;
