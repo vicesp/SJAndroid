@@ -120,6 +120,12 @@ public class Cuajadas_Lab extends ActionBarActivity {
             }
 
         });
+        if (var.isFromCuajadas()){
+
+        }
+        else{
+            guarda.setImageResource(R.drawable.guarda);
+        }
 
     }
         @Override

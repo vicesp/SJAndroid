@@ -89,6 +89,13 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         Regresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(var.isFromAdminCrema()||var.isFromAdminCuajadas()||var.isFromAdminLaboratorio()){
+                    var.setFromAdminCuajadas(true);
+                    var.setFromAdminCrema(true);
+                    var.setFromAdminLaboratorio(true);
+                    finish();startActivity(new Intent(Realizados.this, Panel_Lab.class));
+                }
+                else{
                 var.setFromAdminFundido(false);
                 var.setFromAdminLaboratorio(false);
                 var.setFromAdminCuajado(false);
@@ -96,7 +103,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 var.setFromAdminTexturizador(false);
                 var.setFromAdminProducto(false);
                 finish();
-                startActivity(new Intent(Realizados.this, Administrador.class));
+                startActivity(new Intent(Realizados.this, Administrador.class));}
             }
         });
 

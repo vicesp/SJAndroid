@@ -186,16 +186,6 @@
             android:layout_alignLeft="@+id/editText17"
             android:layout_alignStart="@+id/editText17" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText21"
-            android:textSize="25dp"
-            android:layout_alignRight="@+id/editText17"
-            android:layout_alignEnd="@+id/editText17"
-            android:layout_alignLeft="@+id/editText20"
-            android:layout_alignStart="@+id/editText20" />
-
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="35dp"

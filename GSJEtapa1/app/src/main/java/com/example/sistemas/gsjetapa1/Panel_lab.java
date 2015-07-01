@@ -3,6 +3,7 @@ package com.example.sistemas.gsjetapa1;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,10 +16,11 @@ import DTO.Variables;
 
 public class Panel_Lab extends ActionBarActivity {
 
-    private Button btnPT, btnCrem, btnCuaj;
+    private Button btnPT, btnCrem, btnCuaj, btnBack;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
     private static Variables var;
+    private Boolean flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,20 +28,28 @@ public class Panel_Lab extends ActionBarActivity {
         setContentView(R.layout.panel_lab);
         FechaH=new Fecha_Hoy();
         var= new Variables();
-
+        flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio();
         /******* Text Views ********/
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
 
-
+        Log.i("bandera:", "" + flag);
         /******* Buttons **********/
         btnCrem = (Button)findViewById(R.id.btnCrem);
         btnCrem.setOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        finish();startActivity(new Intent(Panel_Lab.this, Crema_Lab.class));
-                    }
+                        if(flag) {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Realizados.class));
+                            var.setFromAdminLaboratorio(false);var.setFromAdminCuajadas(false);
+                        }
+                        else{
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Crema_Lab.class));
+                        }
+                        }
                 }
         );
         btnCuaj = (Button)findViewById(R.id.btnCuaj);
@@ -47,8 +57,16 @@ public class Panel_Lab extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        finish();startActivity(new Intent(Panel_Lab.this, Cuajadas_Lab.class));
-                    }
+                        if(flag) {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Realizados.class));
+                            var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);
+                        }
+                        else {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Cuajadas_Lab.class));
+                        }
+                        }
                 }
         );
         btnPT = (Button)findViewById(R.id.btnPT);
@@ -56,10 +74,33 @@ public class Panel_Lab extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        finish();startActivity(new Intent(Panel_Lab.this, Laboratorio_Calidad.class));
-                    }
+                        if(flag) {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Realizados.class));
+                            var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);
+                        }
+                        else {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Laboratorio_Calidad.class));
+                        }
+                        }
                 }
         );
+        btnBack=(Button)findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(flag){
+                            var.setFromAdminCuajadas(false);
+                            var.setFromAdminLaboratorio(false);
+                            var.setFromAdminCrema(false);
+                            finish();startActivity(new Intent(Panel_Lab.this, Administrador.class));
+                        }
+                    }});
+
+
+
 
     }
 
