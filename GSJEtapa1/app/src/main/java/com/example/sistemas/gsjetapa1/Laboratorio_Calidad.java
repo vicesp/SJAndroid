@@ -492,7 +492,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         Lote.setEnabled(false);
         btn_listviewdialog1.setEnabled(false);
         btn_listviewdialog.setEnabled(false);
-
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("producto")));
         codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_prod")));

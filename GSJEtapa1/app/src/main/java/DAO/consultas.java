@@ -1952,8 +1952,8 @@ public class consultas {
                             observaciones_ralladoqr + "','" +
                             observaciones_apariencia + "','"
                             + fecha_hoy + "','" +
-                            observaciones_color +"','"+
-                            tajo+
+                            observaciones_color + "','" +
+                            tajo +
                             "');"
             );
             return true;
@@ -2138,16 +2138,16 @@ public class consultas {
     }
 
 
-    /****************    Consulta para Crema lab      *************/
+    /****************    Consulta para Cuajadas lab      *************/
 
-    public Boolean DAOCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+    public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
                                String ac_sue, String st_sue, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
                     "VALUES ('"+
                             lote+"','"+
                             fecha+"','"+
@@ -2165,31 +2165,90 @@ public class consultas {
             return false;
         }
     }
-    /****************    Consulta para Actualizar lab      *************/
+    /****************    Consulta para ActualizarCuajadas lab      *************/
 
-    public Boolean DAOActualizaCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+    public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
                                String ac_sue, String st_sue){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fehca_hoy) " +
-                    "VALUES ('"+
-                    lote+"','"+
-                    fecha+"','"+
-                    hum_cuaj+"','"+
-                    gras_cuaj+"','"+
-                    ph_cuaj+"','"+
-                    ph_sue+"','"+
-                    ac_sue+"','"+
-                    st_sue+"','"+
+            db.execSQL("UPDATE cuajadas_lab SET lote = '"+lote+"'," +
+                    " fecha = '"+fecha+"'," +
+                    " hum_cuaj= '"+hum_cuaj+"'," +
+                    " gras_cuaj= '"+gras_cuaj+"', " +
+                    " ph_cuaj= '"+ph_cuaj+"'," +
+                    " ph_sue='"+ph_sue+"'," +
+                    " ac_sue='"+ac_sue+"'," +
+                    " st_sue='"+st_sue+"'," +
+                    " fecha_hoy='"+fecha+"' WHERE lote = '"+lote+"';" +
+
             "");
             return true;
         }
         catch(SQLException e)
         {
             return false;
+        }
+    }
+    /****************    Consulta para Llenar la lista de lotes Laboratorio Cuajadas   *************/
+    public ArrayList<consultas> DAOListaCuajadasLabRealizado(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM cuajadas_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para LLenar Cuajadas Lab     *************/
+    public Cursor DAOLLenarCuajadasLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue " +
+                    "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
         }
     }
 

@@ -3,6 +3,7 @@ package com.example.sistemas.gsjetapa1;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,6 +27,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
     private static Dia_Juliano DiaJ;
     private static consultas con;
     private static Variables var;
+    private Cursor cursor;
 
     private TextView Fecha;
     private Button btnBack;
@@ -72,8 +74,8 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-                if(var.isFromCrema()) {
-                    boolean exitoso = con.DAOActualizaCremaLab(Lote.getText().toString(),Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
+                if(var.isFromCuajadas()) {
+                    boolean exitoso = con.DAOActualizaCuajadasLab(Lote.getText().toString(),Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString());
                     if (exitoso) {
 
@@ -83,7 +85,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                     }
                 }
                 else {
-                    boolean exitoso = con.DAOCremaLab(Lote.getText().toString(),FechaH.Hoy_hora() ,humCuaj.getText().toString(), grasCuaj.getText().toString(),
+                    boolean exitoso = con.DAOCuajadasLab(Lote.getText().toString(),FechaH.Hoy_hora() ,humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(),
                             stSue.getText().toString(),FechaH.Hoy());
                     if (exitoso) {
@@ -121,6 +123,8 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
         });
         if (var.isFromCuajadas()){
+            Lote.setEnabled(false);
+            llenarValoresBusqueda(var.getLoteCuajadas());
 
         }
         else{
@@ -165,6 +169,23 @@ public class Cuajadas_Lab extends ActionBarActivity {
         });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+
+    }
+    public void llenarValoresBusqueda(String lote) {
+        cursor = con.DAOLLenarCuajadasLab(lote);
+        Lote.setText(lote);
+        //Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        humCuaj.setText(cursor.getString(cursor.getColumnIndex("hum_cuaj")));
+
+        grasCuaj.setText(cursor.getString(cursor.getColumnIndex("gras_cuaj")));
+        if(!(grasCuaj.getText().toString().equals(""))){
+            checkBox.setChecked(true);
+            grasCuaj.setVisibility(View.VISIBLE);
+        }
+        phCuaj.setText(cursor.getString(cursor.getColumnIndex("ph_cuaj")));
+        phSue.setText(cursor.getString(cursor.getColumnIndex("ph_sue")));
+        acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
+        stSue.setText(cursor.getString(cursor.getColumnIndex("st_sue")));
 
     }
 }

@@ -128,6 +128,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 } else if (var.isFromAdminProducto()) {
                     LLena_Lista(con.DAOListaProductoRealizado(fechaSeleccionada(calendario.getDate())));
                 }
+                else if(var.isFromAdminCuajadas()){
+                    LLena_Lista(con.DAOListaCuajadasLabRealizado(fechaSeleccionada(calendario.getDate())));
+                }
             }
         });
 
@@ -164,6 +167,10 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         if(var.isFromAdminProducto()){
             LLena_Lista(con.DAOListaProductoRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("PRODUCTO TERMINADO REALIZADOS");
+        }
+        if(var.isFromAdminCuajadas()){
+            LLena_Lista(con.DAOListaCuajadasLabRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("CUAJADAS LAB REALIZADOS");
         }
     }
 
@@ -239,6 +246,11 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setLoteProducto(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
             finish();
             startActivity(new Intent(Realizados.this, Producto_Terminado.class));
+        }
+        else if(var.isFromAdminCuajadas()){
+            var.setFromCuajadas(true);
+            var.setLoteCuajadas(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();startActivity(new Intent(Realizados.this, Cuajadas_Lab.class));
         }
     }
     @Override
