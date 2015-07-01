@@ -53,6 +53,17 @@ public class Variables {
     private static String loteCuajado;
     private static String loteFundido;
     private static String loteLaboratorio;
+    private static String loteCuajadas;
+
+    public static String getLoteCrema() {
+        return loteCrema;
+    }
+
+    public static void setLoteCrema(String loteCrema) {
+        Variables.loteCrema = loteCrema;
+    }
+
+    private static String loteCrema;
 
     public static String getLoteCuajadas() {
         return loteCuajadas;
@@ -62,7 +73,7 @@ public class Variables {
         Variables.loteCuajadas = loteCuajadas;
     }
 
-    private static String loteCuajadas;
+
 
     public static boolean isFromCrema() {
         return fromCrema;

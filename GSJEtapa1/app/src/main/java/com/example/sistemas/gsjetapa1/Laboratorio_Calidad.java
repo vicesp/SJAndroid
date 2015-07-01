@@ -138,6 +138,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                                                  
                                                } else {
                                                    Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                                                }
@@ -263,7 +264,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             @Override
             public void onClick(View v) {
 
-                Log.i("Lab:", ""+var.isFromLaboratorio());
+
                 if(var.isFromLaboratorio()) {
                     var.setFromAdminLaboratorio(true);
                     finish();
@@ -478,7 +479,11 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog,int id) {
-
+                if(var.isFromLaboratorio()){
+                    var.setFromAdminLaboratorio(true);
+                    finish();
+                    startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class));
+                }
             }
 
         });

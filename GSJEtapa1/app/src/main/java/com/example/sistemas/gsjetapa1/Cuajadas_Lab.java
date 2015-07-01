@@ -78,8 +78,8 @@ public class Cuajadas_Lab extends ActionBarActivity {
                     boolean exitoso = con.DAOActualizaCuajadasLab(Lote.getText().toString(),Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString());
                     if (exitoso) {
-
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
+
                     } else {
                         Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                     }
@@ -163,6 +163,11 @@ public class Cuajadas_Lab extends ActionBarActivity {
         alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog,int id) {
+                if(var.isFromCuajadas()) {
+                    var.setFromAdminCuajadas(true);
+                    finish();
+                    startActivity(new Intent(Cuajadas_Lab.this, Realizados.class));
+                }
 
             }
 
@@ -174,7 +179,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
     public void llenarValoresBusqueda(String lote) {
         cursor = con.DAOLLenarCuajadasLab(lote);
         Lote.setText(lote);
-        //Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         humCuaj.setText(cursor.getString(cursor.getColumnIndex("hum_cuaj")));
 
         grasCuaj.setText(cursor.getString(cursor.getColumnIndex("gras_cuaj")));

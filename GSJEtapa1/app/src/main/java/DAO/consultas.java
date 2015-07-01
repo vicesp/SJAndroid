@@ -120,7 +120,7 @@ public class consultas {
         try {
 
 
-            db.execSQL("DELETE FROM cuajado WHERE lote='"+lote+"'");
+            db.execSQL("DELETE FROM cuajado WHERE lote='" + lote + "'");
 
             return true;
         }
@@ -2138,10 +2138,143 @@ public class consultas {
     }
 
 
+    /****************    Consulta para Crema lab      *************/
+
+    public Boolean DAOCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
+                               String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
+                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, sabor, sabor_observaciones, color, color_observaciones, aroma,aroma_observaciones," +
+                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy" +
+                    ") " +
+                    "VALUES ('"+
+                    lote+"','"+
+                    fecha+"','"+
+                    sabor+"','"+
+                    sabor_observaciones+"','"+
+                    color+"','"+
+                    color_observaciones+"','"+
+                    aroma+"','"+
+                    aroma_observaciones+"','"+
+                    escurrimiento +"','"+
+                    escurrimiento_observaciones+"','"+
+                    fluidez+"','"+
+                    fluidez_observaciones+"','"+
+                    ph+"','"+
+                    solidos+"','"+
+                    acidez+"','"+
+                    grasa+"','"+
+                            fecha_hoy+"')");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para ActualizarCrema lab      *************/
+
+    public Boolean DAOActualizaCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
+                                        String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
+                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("UPDATE crema_lab SET lote = '"+lote+"'," +
+                    " sabor= '"+sabor+"'," +
+                    " sabor_observaciones= '"+sabor_observaciones+"', " +
+                    " color= '"+color+"'," +
+                    " color_observaciones='"+color_observaciones+"'," +
+                    " aroma='"+aroma+"'," +
+                    " aroma_observaciones='"+aroma_observaciones+"'," +
+                    " escurrimiento='"+escurrimiento+"'," +
+                    " escurrimiento_observaciones='"+escurrimiento_observaciones+"'," +
+                    " fluidez='"+fluidez+"'," +
+                    " fluidez_observaciones='"+fluidez_observaciones+"'," +
+                    " ph='"+ph+"'," +
+                    " solidos='"+solidos+"'," +
+                    " acidez='"+acidez+"'," +
+                    " grasa='"+grasa+"' " +
+                    " WHERE lote = '"+lote+"';" +
+
+            "");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para Llenar la lista de lotes Laboratorio Crema   *************/
+    public ArrayList<consultas> DAOListaCremaLabRealizado(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM crema_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para LLenar Crema Lab     *************/
+    public Cursor DAOLLenarCremaLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT  sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, "+
+                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy " +
+                    "FROM crema_lab WHERE lote ='" + lote +"';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
     /****************    Consulta para Cuajadas lab      *************/
 
     public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                               String ac_sue, String st_sue, String fecha_hoy){
+                                  String ac_sue, String st_sue, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2149,15 +2282,15 @@ public class consultas {
 
             db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
                     "VALUES ('"+
-                            lote+"','"+
-                            fecha+"','"+
-                            hum_cuaj+"','"+
-                            gras_cuaj+"','"+
-                            ph_cuaj+"','"+
-                            ph_sue+"','"+
-                            ac_sue+"','"+
-                            st_sue+"','"+
-                            fecha_hoy+"')");
+                    lote+"','"+
+                    fecha+"','"+
+                    hum_cuaj+"','"+
+                    gras_cuaj+"','"+
+                    ph_cuaj+"','"+
+                    ph_sue+"','"+
+                    ac_sue+"','"+
+                    st_sue+"','"+
+                    fecha_hoy+"')");
             return true;
         }
         catch(SQLException e)
@@ -2168,7 +2301,7 @@ public class consultas {
     /****************    Consulta para ActualizarCuajadas lab      *************/
 
     public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                               String ac_sue, String st_sue){
+                                           String ac_sue, String st_sue){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2184,7 +2317,7 @@ public class consultas {
                     " st_sue='"+st_sue+"'," +
                     " fecha_hoy='"+fecha+"' WHERE lote = '"+lote+"';" +
 
-            "");
+                    "");
             return true;
         }
         catch(SQLException e)
