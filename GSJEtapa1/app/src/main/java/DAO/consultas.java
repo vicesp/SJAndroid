@@ -145,6 +145,7 @@ public class consultas {
 
         try {
 
+
             cursor= db.rawQuery("select lote from cuajado where lote='"+lote+"'", null);
 
 
@@ -420,7 +421,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         if (fromWhere == 0) {
-            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias WHERE codigo_familia = '" + codigo_familia + "'", null);
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias", null);
         }
         else {
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
@@ -541,6 +542,42 @@ public class consultas {
     }
     }
 
+    /*********** Actualizar Familias **************/
+    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar) {
+        boolean check = false;
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+        try{
+
+
+            db.execSQL("UPDATE cat_familias SET codigo_familia = '"+codigo+"', nombre_familia = '"+nombre+"', eliminado = "+eliminar+" WHERE codigo_familia ='"+codigo+"';");
+
+
+            check= true;
+        }
+        catch(Exception e)
+        {
+            check = false;
+        }
+        return check;
+    }
+    /*********** Guardar Nueva Familia **************/
+
+    public boolean DAOGuardarFamilia(String codigo, String nombre)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        try {
+
+            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
+            return true;
+        }
+        catch(Exception e){
+
+            return false;
+        }
+    }
+
     /****************    Consulta para Llenar la lista de lotes Empaque_Realizdo    *************/
     public ArrayList<consultas> DAOListaEmpaqueRealizado(String fecha){
 
@@ -619,7 +656,7 @@ public class consultas {
                               String lote_cj02,String agua,String tipo_crema,String lote_tipo_crema,String cantidad_crema,String familia_reproceso,
                               String lote_fami_repro, String cantidad_fami_repro, String temperatura, String peso_total, String texturizador, String lote_texturizador,
                               String cj01_1,String lote_cj01_1,String ph_cj01_1,String cj01_2,String lote_cj01_2,String ph_cj01_2,String tipo_crema2,String lote_crema2,String cantidad_crema2,
-                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy){
+                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy, String tina, int bandera){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -628,7 +665,8 @@ public class consultas {
                     " linea,fecha,num_fundida,lote,familia,cj01,lote_cj01,ph_cj01,cj011,lote_cj011,ph_cj011,mp005,lote_mp005,mp015,lote_mp015," +
                     "s0101,lote_s0101,mp007,lote_mp007,sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,tipo_crema," +
                     "lote_tipo_crema, cantidad_crema, familia_reproceso,lote_fami_repro,cantidad_fami_repro,temperatura,peso_total,texturizador,lote_texturizador," +
-                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3, cj01_3, lote_cj01_3, ph_cj01_3, fecha_hoy) " +
+                    "cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,tipo_crema2,lote_tipo_crema2,cantidad_crema2, tipo_cuajada_1, tipo_cuajada_2, tipo_cuajada_3," +
+                    " cj01_3, lote_cj01_3, ph_cj01_3, fecha_hoy, tina, bandera) " +
                     "VALUES (" + linea + ",'"
                     + fecha + "','"
                     + num_fundida + "','"
@@ -682,7 +720,9 @@ public class consultas {
                     + cj01_3 + "','"
                     + lote_cj01_3 + "','"
                     + ph_cj01_3+"','"
-                    + fecha_hoy+
+                    + fecha_hoy+"','"
+                    +tina+"','"+
+                    +bandera+
                     "')");
 
             return true;
@@ -691,7 +731,89 @@ public class consultas {
             return false;
         }
     }
-    /****************    Consulta para Llenar Fundido de busqueda   *************/
+
+    public boolean DAOActualizarFundido(String lote, String linea,String fecha,String num_fundida,String familia,String cj01,String lote_cj01,
+                              String ph_cj01,String cj011,String lote_cj011, String ph_cj011,
+                              String mp005,String lote_mp005,String mp015,String lote_mp015,
+                              String s0101,String lote_s0101,String mp007,String lote_mp007,
+                              String sa01, String lote_sa01, String mp024, String lote_mp024, String mp078, String lote_mp078, String cj02,
+                              String lote_cj02,String agua,String tipo_crema,String lote_tipo_crema,String cantidad_crema,String familia_reproceso,
+                              String lote_fami_repro, String cantidad_fami_repro, String temperatura, String peso_total, String texturizador, String lote_texturizador,
+                              String cj01_1,String lote_cj01_1,String ph_cj01_1,String cj01_2,String lote_cj01_2,String ph_cj01_2,String tipo_crema2,String lote_crema2,String cantidad_crema2,
+                              String tipo_cuajada_1,String tipo_cuajada_2,String tipo_cuajada_3,String cj01_3,String lote_cj01_3,String ph_cj01_3, String fecha_hoy, String tina, int bandera) {
+
+
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE fundido SET "+
+                     "linea='"+linea+"',"+
+                     "fecha='"+fecha+"',"+
+                     "num_fundida='"+num_fundida+"',"+
+                     "lote='"+lote+"',"+
+                     "familia='"+familia+"',"+
+                     "cj01='"+cj01+"',"+
+                     "lote_cj01='"+lote_cj01+"',"+
+                     "ph_cj01='"+ph_cj01+"',"+
+                     "cj011='"+cj011+"',"+
+                     "lote_cj011='"+lote_cj011+"',"+
+                     "ph_cj011='"+ph_cj011+"',"+
+                     "mp005='"+mp005+"',"+
+                     "lote_mp005='"+lote_mp005+"',"+
+                     "mp015='"+mp015+"',"+
+                     "lote_mp015='"+lote_mp015+"',"+
+                     "s0101='"+s0101+"',"+
+                     "lote_s0101='"+lote_s0101+"',"+
+                     "mp007='"+mp007+"',"+
+                     "lote_mp007='"+lote_mp007+"',"+
+                     "sa01='"+sa01+"',"+
+                     "lote_sa01='"+lote_sa01+"',"+
+                     "mp024='"+mp024+"',"+
+                     "lote_mp024='"+lote_mp024+"',"+
+                     "mp078='"+mp078+"',"+
+                     "lote_mp078='"+lote_mp078+"',"+
+                     "cj02='"+cj02+"',"+
+                     "lote_cj02='"+lote_cj02+"',"+
+                     "agua='"+agua+"',"+
+                     "tipo_crema='"+tipo_crema+"',"+
+                     "lote_tipo_crema='"+lote_tipo_crema+"',"+
+                     "cantidad_crema='"+cantidad_crema+"',"+
+                     "familia_reproceso='"+familia_reproceso+"',"+
+                     "lote_fami_repro='"+lote_fami_repro+"',"+
+                     "cantidad_fami_repro='"+cantidad_fami_repro+"',"+
+                     "temperatura='"+temperatura+"',"+
+                     "peso_total='"+peso_total+"',"+
+                     "texturizador='"+texturizador+"',"+
+                     "lote_texturizador='"+lote_texturizador+"',"+
+                     "cj01_1='"+cj01_1+"',"+
+                     "lote_cj01_1='"+lote_cj01_1+"',"+
+                     "ph_cj01_1='"+ph_cj01_1+"',"+
+                     "cj01_2='"+cj01_2+"',"+
+                     "lote_cj01_2='"+lote_cj01_2+"',"+
+                     "ph_cj01_2='"+ph_cj01_2+"',"+
+                     "tipo_crema2='"+tipo_crema2+"',"+
+                     "lote_tipo_crema2='"+lote_crema2+"',"+
+                     "cantidad_crema2='"+cantidad_crema2+"',"+
+                     "tipo_cuajada_1='"+tipo_cuajada_1+"',"+
+                     "tipo_cuajada_2='"+tipo_cuajada_2+"',"+
+                     "tipo_cuajada_3='"+tipo_cuajada_3+"',"+
+                     "cj01_3='"+cj01_3+"',"+
+                     "lote_cj01_3='"+lote_cj01_3+"',"+
+                     "ph_cj01_3='"+ph_cj01_3+"',"+
+                     "fecha_hoy='"+fecha_hoy+"',"+
+                     "tina='"+tina+"',"+
+                            "bandera='"+bandera+"'"
+            );
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
+        /****************    Consulta para Llenar Fundido de busqueda   *************/
     public Cursor DAOLLenarFundido(String lote) {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
@@ -702,7 +824,7 @@ public class consultas {
                     ", lote_texturizador, tipo_crema, lote_tipo_crema, cantidad_crema, tipo_crema2, lote_tipo_crema2, cantidad_crema2"+
                     ", mp005, mp015, s0101, mp007, sa01, mp024, mp078, cj02, agua, familia_reproceso, lote_fami_repro, cantidad_fami_repro"+
                     ", temperatura, peso_total, lote_mp005, lote_mp015, lote_s0101, lote_mp007, lote_sa01, lote_mp024, lote_mp078"+
-                    ", lote_cj02, fecha_hoy  "+
+                    ", lote_cj02, fecha_hoy, tina, bandera "+
                     "FROM fundido WHERE lote ='" +
                     lote + "'", null);
 
@@ -730,6 +852,8 @@ public class consultas {
 
         }
     }
+
+
 
     /****************    Consulta para Llenar la lista de lotes Fundido-Realizado    *************/
     public ArrayList<consultas> DAOListaFundidoRealizado(String fecha){
@@ -772,7 +896,7 @@ public class consultas {
                                    String mp010,String lote_mp010,String mp025,
                               String lote_mp025,String mp026,String lote_mp026,String mp027,String lote_mp027,
                                    String mp028,String lote_mp028,String mp031,String lote_mp031,String mp012,
-                              String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo){
+                              String lote_mp012,String mp013,String lote_mp013,String mp014,String lote_mp014, String kilos_totales, int num_consecutivo, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -782,7 +906,7 @@ public class consultas {
             db.execSQL("INSERT INTO texturizador (" +
                     " lote,fecha,texturizador,mp002,lote_mp002,mp003,lote_mp003,mp004,lote_mp004,mp005,lote_mp005,mp006,lote_mp006,mp007,lote_mp007," +
                     "mp008,lote_mp008,mp009,lote_mp009,mp010,lote_mp010,mp025,lote_mp025,mp026,lote_mp026,mp027,lote_mp027,mp028," +
-                    "lote_mp028,mp031,lote_mp031,mp012,lote_mp012,mp013,lote_mp013,mp014,lote_mp014,kilos_totales,num_consecutivo) " +
+                    "lote_mp028,mp031,lote_mp031,mp012,lote_mp012,mp013,lote_mp013,mp014,lote_mp014,kilos_totales,num_consecutivo, fecha_hoy) " +
                     "VALUES ('" + lote + "','"
                     + fecha + "','"
                     + texturizador + "','"
@@ -821,8 +945,9 @@ public class consultas {
                     + mp014 + "','"
                     + lote_mp014 + "','"
                     + kilos_totales + "',"
-                    + num_consecutivo
-                    + ")");
+                    + num_consecutivo+",'"
+                    +fecha_hoy
+                    + "')");
 
             return true;
         }
@@ -976,7 +1101,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
 
         try {
-            cursor= db.rawQuery("SELECT "+columna+ " from texturizador_actualizador WHERE id='"+id+"' ", null);
+            cursor= db.rawQuery("SELECT "+columna+ " from texturizador_actualizador WHERE id='"+id+"' AND eliminado=0 ", null);
 
             if (cursor.moveToPosition(0)) {
 
@@ -1036,7 +1161,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote " +
-                "FROM texturizador WHERE fecha ='" +
+                "FROM texturizador WHERE fecha_hoy ='" +
                 fecha + "'", null);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> pacientesArray = new ArrayList<consultas>();
@@ -1045,12 +1170,12 @@ public class consultas {
             if  (cursor.moveToFirst()) {
                 consultas lista = new consultas();
 
-                lista.lote=new String[cursor.getCount()];
+                lista.empaque=new String[cursor.getCount()];
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
 
-                    lista.lote[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
                     cursor.moveToNext();
                 }
 
@@ -1071,7 +1196,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         try {
             cursor = db.rawQuery("SELECT fecha, lote_mp002, lote_mp003, lote_mp004, lote_mp005, lote_mp006, lote_mp007" +
-                    ", lote_mp008, lote_mp009, lote_mp010, lote_mp021, lote_mp025, lote_mp026, lote_mp027, lote_mp028" +
+                    ", lote_mp008, lote_mp009, lote_mp010, lote_mp025, lote_mp026, lote_mp027, lote_mp028" +
                     ", lote_mp031, lote_mp012, lote_mp013, lote_mp014, kilos_totales " +
                     "FROM texturizador WHERE lote ='" +
                     lote + "'", null);
@@ -1101,22 +1226,42 @@ public class consultas {
     }
 
     /****************    Consulta para Producto Terminado     *************/
-    public boolean DAOPT(String lote,String fecha, String codigo_pt, String num_viaje, String num_piezas, String kilos, String num_fundida){
+    public boolean DAOPT(String lote,String fecha, String codigo_pt, String num_viaje, String num_piezas, String kilos, String num_fundida,String fecha_hora){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
             db.execSQL("INSERT INTO PT (" +
-                    " lote,fecha,codigo_pt,num_viaje,num_piezas,kilos,numero_fundida) " +
+                    " lote,fecha,codigo_pt,num_viaje,num_piezas,kilos,numero_fundida, fecha_hoy) " +
                     "VALUES ('" + lote + "','"
                     + fecha + "','"
                     + codigo_pt + "','"
                     + num_viaje + "','"
                     + num_piezas + "','"
                     + kilos + "','"
-                    + num_fundida
+                    + num_fundida+"','"
+                    +fecha_hora
                     + "')");
 
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+    /****************    Consulta para actualizar Prpducto Terminado   *************/
+
+    public boolean DAOActualizarPT(String lote,String fecha, String codigo_pt,
+                                   String num_viaje, String num_piezas, String kilos,
+                                   String num_fundida){
+
+        db = myDbHelper.getWritableDatabase();
+        try {
+            db.execSQL("UPDATE PT SET fecha = '"+fecha+"', lote = '"+lote+"', codigo_pt='"+codigo_pt+"', num_viaje='"+num_viaje+"',"+
+                    "num_piezas='"+num_piezas+"', kilos='"+kilos+"', numero_fundida='"+num_fundida+"' "+
+                    "WHERE lote ='"+lote+"';");
+            myDbHelper.close();
+            db.close();
             return true;
         }
         catch (Exception e){
@@ -1154,6 +1299,70 @@ public class consultas {
         catch (Exception e){
             return 0;
         }
+    }
+
+    /****************    Consulta para Llenar Producto si se viene de realizados    *************/
+    public Cursor DAOLLenarProducto(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha, codigo_pt, num_viaje, num_piezas, kilos, numero_fundida FROM PT WHERE lote ='" +
+                    lote + "'", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+
+    /****************    Consulta para Llenar la lista de lotes TEXTURIZADOR_REALIZADOS    *************/
+    public ArrayList<consultas> DAOListaProductoRealizado(String fecha){
+
+            db = myDbHelper.getWritableDatabase();
+            cursor=null;
+            cursor = db.rawQuery("SELECT lote " +
+                    "FROM PT WHERE fecha ='" +
+                    fecha + "'", null);
+                /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
+            ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+            if (cursor != null ) {
+                if  (cursor.moveToFirst()) {
+                    consultas lista = new consultas();
+
+                    lista.empaque = new String[cursor.getCount()];
+
+                    for(int x=0;x< cursor.getCount();x++)
+                    {
+                        lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                        cursor.moveToNext();
+                    }
+                    empaqueArray.add(lista);
+                }
+            }
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return empaqueArray;
+
     }
 
     /****************    Consulta para Numero Fundida Fundido     *************/
@@ -1523,7 +1732,7 @@ public class consultas {
         cursor = db.rawQuery("SELECT lote " +
                 "FROM cuajado WHERE fecha_hoy ='" +
                 fecha + "'", null);
-        Log.i("",fecha);
+        Log.i("Fecha",fecha);
                 /*"WHERE p.id_sexo=1 order by p.apellido_paterno ASC", null);*/
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -1551,7 +1760,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha, fecha, lote, silo, num_equipo, num_tina, familia" +
+            cursor = db.rawQuery("SELECT fecha, fecha_hoy, lote, silo, num_equipo, num_tina, familia" +
                     ", leche_silo, ph_leche, porcen_grasa_leche, porce_proteina, leche_tina, porce_grasa_leche_tina, porce_prot_tina, crema_kilos" +
                     ", porce_grasa_crema, temp_adi_cuajo, ph_pasta_coag, hora_adi_cuajo, temp_cocido, estatus_guardado, estatus_pendiente, hora_inicio_desuerado " +
                     ", litros_suero, ph_desuerado, solidos_totales, pasta_obtenida, numero_moldes, kilos_pendientes, porcentaje_humedad " +
@@ -1702,25 +1911,49 @@ public class consultas {
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
                               String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones,
-                                         String ralladoqr, String observaciones_ralladoqr)
+                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia, String fecha_hoy, String observaciones_color, String tajo)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
+
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr) VALUES ('" +
+                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia,fecha_hoy, observaciones_color, tajo) VALUES ('" +
 
-                            fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
-                            codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
-                            observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
-                            fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
-                            observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
-                            grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+
-
+                            fecha + "','" +
+                            lote + "','" +
+                            familia + "','" +
+                            producto + "','" +
+                            codigo_prod + "','" +
+                            codigo_fam + "','" +
+                            apariencia + "','" +
+                            sabor + "','" +
+                            color + "','" +
+                            aroma + "','" +
+                            observaciones_sabor + "','" +
+                            rallado + "','" +
+                            observaciones_rallado + "','" +
+                            fundido + "','" +
+                            observaciones_fundido + "','" +
+                            hebrado + "','" +
+                            observaciones_hebrado + "','" +
+                            grasa_residual + "','" +
+                            humedad + "','" +
+                            ph + "','" +
+                            grasa_total + "','" +
+                            humedad_remuestreo + "','" +
+                            ph_remuestreo + "','" +
+                            grasa_remuestreo + "','" +
+                            necesidad_remuestreo + "','" +
+                            ralladoqr + "','" +
+                            observaciones_ralladoqr + "','" +
+                            observaciones_apariencia + "','"
+                            + fecha_hoy + "','" +
+                            observaciones_color +"','"+
+                            tajo+
                             "');"
             );
             return true;
@@ -1732,23 +1965,48 @@ public class consultas {
     }
     /****************    Consulta para actualizar Laboratorio Calidad   *************/
 
-    public boolean DAOActualizarLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,String sabor,
-                          String color,String aroma,String observaciones_sabor, String rallado,
-                          String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
-                          String observaciones_hebrado,String grasa_residual,String humedad,String ph,
-                          String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr){
+    public boolean DAOActualizarLaboratorioCalidad(
+            String fecha, String lote,String familia,String producto,String codigo_prod,
+            String codigo_fam,String apariencia,String sabor,
+            String color,String aroma,String observaciones_sabor, String rallado,
+            String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
+            String observaciones_hebrado,String grasa_residual,String humedad,String ph,
+            String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo,
+            String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr,
+            String observaciones_apariencia, String observaciones_color, String tajo){
 
         db = myDbHelper.getWritableDatabase();
-        try {
-            db.execSQL("UPDATE laboratorio_calidad SET fecha = '"+fecha+"', lote = '"+lote+"', familia='"+familia+"', producto='"+producto+"',"+
+        try {db.execSQL("UPDATE laboratorio_calidad SET " +
+                "lote = '" + lote + "', " +
+                "familia='" + familia + "', " +
+                "producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_fam='" + codigo_fam + "', " +
+                "apariencia='" + apariencia + "'," +
+                "sabor='" + sabor + "'," +
+                "color='" + color + "', " +
+                "aroma='" + aroma + "', " +
+                "observaciones_sabor='" + observaciones_sabor + "', " +
+                "rallado='" + rallado + "'," +
+                "observaciones_rallado='" + observaciones_rallado + "', " +
+                "fundido='" + fundido + "', " +
+                "observaciones_fundido='" + observaciones_fundido + "'," +
+                "hebrado='" + hebrado + "', " +
+                "observaciones_hebrado='" + observaciones_hebrado + "', grasa_residual='" + grasa_residual + "'," +
+                "humedad='" + humedad + "', " +
+                "ph='" + ph + "', " +
+                "grasa_total='" + grasa_total + "', " +
+                "humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', " +
+                "grasa_remuestreo='" + grasa_remuestreo + "'," +
+                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "ralladoqr='" + ralladoqr + "', " +
+                "observaciones_ralladoqr='" + observaciones_ralldoqr + "'," +
+                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
+                "observaciones_color = '"+observaciones_color+ "', " +
+                "tajo = '"+tajo+"'"+
+                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "';");
 
-                            "codigo_prod='"+codigo_prod+"', codigo_fam='"+codigo_fam+"', apariencia='"+apariencia+"',sabor='"+sabor+"'," +
-                            "color='"+color+"', aroma='"+aroma+"', observaciones_sabor='"+observaciones_sabor+"', rallado='"+rallado+"',"+
-                            "observaciones_rallado='"+observaciones_rallado+"', fundido='"+fundido+"', observaciones_fundido='"+observaciones_fundido+"'," +
-                            "hebrado='"+hebrado+"', observaciones_hebrado='"+observaciones_hebrado+"', grasa_residual='"+grasa_residual+"',"+
-                            "humedad='"+humedad+"', ph='"+ph+"', grasa_total='"+grasa_total+"', humedad_remuestreo='"+humedad_remuestreo+"',"+
-                            "ph_remuestreo='"+ph_remuestreo+"', grasa_remuestreo='"+grasa_remuestreo+ "',"+"necesidad_remuestreo='"+necesidad_remuestreo+"',"+
-                            "ralladoqr='"+ralladoqr+"', observaciones_ralladoqr='"+observaciones_ralldoqr+"';");
             myDbHelper.close();
             db.close();
             return true;
@@ -1765,7 +2023,7 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         cursor = db.rawQuery("SELECT lote, codigo_prod, producto " +
-                "FROM laboratorio_calidad WHERE fecha ='" +
+                "FROM laboratorio_calidad WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
 
@@ -1796,7 +2054,8 @@ public class consultas {
         try {
             cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia, sabor" +
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
-                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo, ralladoqr, observaciones_ralladoqr " +
+                    ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo," +
+                    " ralladoqr, observaciones_ralladoqr, observaciones_apariencia, fecha_hoy, observaciones_color, tajo " +
 
                     "FROM laboratorio_calidad WHERE lote ='" + lote + "' AND codigo_prod ='"+codigo_prod+"';", null);
             if (cursor.moveToPosition(0)) {
@@ -1824,11 +2083,36 @@ public class consultas {
         }
     }
     /****************    Consulta para Obtener Familias     *************/
+    public Cursor DAOGetCursorTodosFamilias(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia, tajo FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
+            return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+
+    /****************    Consulta para Obtener Familias     *************/
     public ArrayList<consultas> DAOGetTodosFamilias()
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias " + "", null);
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
@@ -1854,7 +2138,60 @@ public class consultas {
     }
 
 
+    /****************    Consulta para Crema lab      *************/
 
+    public Boolean DAOCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                               String ac_sue, String st_sue, String fecha_hoy){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
+                    "VALUES ('"+
+                            lote+"','"+
+                            fecha+"','"+
+                            hum_cuaj+"','"+
+                            gras_cuaj+"','"+
+                            ph_cuaj+"','"+
+                            ph_sue+"','"+
+                            ac_sue+"','"+
+                            st_sue+"','"+
+                            fecha_hoy+"')");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para Actualizar lab      *************/
+
+    public Boolean DAOActualizaCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                               String ac_sue, String st_sue){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fehca_hoy) " +
+                    "VALUES ('"+
+                    lote+"','"+
+                    fecha+"','"+
+                    hum_cuaj+"','"+
+                    gras_cuaj+"','"+
+                    ph_cuaj+"','"+
+                    ph_sue+"','"+
+                    ac_sue+"','"+
+                    st_sue+"','"+
+            "");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
 
     /****************    Consulta para Configuracion IP      *************/
     public boolean DAOConfigIP(String ip_actual,String fecha){

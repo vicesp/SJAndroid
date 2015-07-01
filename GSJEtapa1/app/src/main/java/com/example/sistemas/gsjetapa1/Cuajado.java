@@ -142,7 +142,7 @@ public class Cuajado extends ActionBarActivity {
         //******************    Text Viewes    ****************//
 
         Fecha=(TextView)findViewById(R.id.tvFechaCuaj);
-        Fecha.setText(FechaH.Hoy_hora());
+        Fecha.setText(FechaH.Hoy());
 
         NumEquipo=(TextView)findViewById(R.id.tvNumequipo);
         NumEquipo.setText(Variables.getEquipo_tina());
@@ -429,7 +429,7 @@ public class Cuajado extends ActionBarActivity {
                             silo_select,
                             NumTina.getText().toString(),
                             familia_select,
-                            FechaH.Hoy_hora(),
+                            Fecha.getText().toString(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                             proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
@@ -572,7 +572,7 @@ public class Cuajado extends ActionBarActivity {
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
                             proteinaTina.getText().toString(), tempCoagulacion.getText().toString(), phPasta.getText().toString(), horaAdicionCuajo.getText().toString(),
-                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0, Fecha.getText().toString());
+                            tempCocido.getText().toString(), NumEquipo.getText().toString(), 1, 0, FechaH.Hoy());
 
                     boolean exitoso_Aditivos = con.DAOCuajadoAditivos(Lote.getText().toString(), adi1.getText().toString(), lote1.getText().toString(), adi2.getText().toString(), lote2.getText().toString(),
                             adi3.getText().toString(), lote3.getText().toString(), adi4.getText().toString(), lote4.getText().toString(), adi5.getText().toString(), lote5.getText().toString(),
@@ -1069,7 +1069,7 @@ public class Cuajado extends ActionBarActivity {
         //btn_listviewdialog.setVisibility(View.INVISIBLE);
 
         cursor = con.DAOLLenarCuajado(lote);
-        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         lecheSilo.setText(cursor.getString(cursor.getColumnIndex("leche_silo")));
         phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
         grasaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porcen_grasa_leche")));

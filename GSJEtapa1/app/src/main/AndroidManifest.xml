@@ -80,6 +80,22 @@
             android:label="@string/title_activity_registro__familias"
             android:screenOrientation="portrait" >
         </activity>
+        <activity
+            android:name=".Registro_Texturizador"
+            android:label="@string/title_activity_registro_texturizador" >
+        </activity>
+        <activity
+            android:name=".Panel_Lab"
+            android:label="@string/title_activity_panel_lab" >
+        </activity>
+        <activity
+            android:name=".Crema_Lab"
+            android:label="@string/title_activity_crema__lab" >
+        </activity>
+        <activity
+            android:name=".Cuajadas_Lab"
+            android:label="@string/title_activity_cuajadas__lab" >
+        </activity>
     </application>
 
 </manifest>

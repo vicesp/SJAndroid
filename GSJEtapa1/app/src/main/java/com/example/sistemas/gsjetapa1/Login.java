@@ -66,12 +66,14 @@ public class Login extends Activity {
                 }
                 else if(tipoUsuario==3)
                    {
+                       Variables.setFromFundido(false);
                        finish();startActivity(new Intent(Login.this, Fundido.class));
                        Variables.setLinea_fundido(1);
                    }
                 else if(tipoUsuario==4)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromProducto(false);
                     finish();startActivity(new Intent(Login.this, Producto_Terminado.class));
                 }
                 else if(tipoUsuario==5)
@@ -83,11 +85,13 @@ public class Login extends Activity {
                 else if(tipoUsuario==6)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromEmpaque(false);
                     finish();startActivity(new Intent(Login.this, Empaque.class));
                 }
                 else if(tipoUsuario==7)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
+                    Variables.setFromFundido(false);
                     finish();startActivity(new Intent(Login.this, Fundido.class));
                     Variables.setLinea_fundido(2);
                 }
@@ -119,14 +123,16 @@ public class Login extends Activity {
                 }
                 else if (tipoUsuario== 13 )
                 {
+                    Variables.setFromLaboratorio(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
                 else if (tipoUsuario==14)
                 {
-
+                    Variables.setFromLaboratorio(false);
+                    Variables.setFromCrema(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Laboratorio_Calidad.class));
+                    finish();startActivity(new Intent(Login.this, Panel_Lab.class));
 
                 }
                 else if (tipoUsuario==15)

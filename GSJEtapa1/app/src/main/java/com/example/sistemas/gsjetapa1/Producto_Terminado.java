@@ -11,6 +11,8 @@ import java.util.Arrays;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.database.Cursor;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -27,21 +30,26 @@ import android.widget.TextView;
 import DAO.consultas;
 import DTO.Dia_Juliano;
 import DTO.Fecha_Hoy;
+import DTO.Variables;
 
 public class Producto_Terminado extends Activity implements OnClickListener, OnItemClickListener{
 
-    private Button btn_listviewdialog=null, guarda;
+    private Button btn_listviewdialog=null;
+    private ImageButton Guardar;
     private int num_viaj_consecutivo=0, piezas;
     private double total;
     private EditText txt_item=null,NumPiezas, codigo_pt, num_fundida;
     private TextView LotePT,fecha,numero_viaje,tot_kil_obt,titulo_num_piezas;
     private String Nombre_PT[];
+    private String[] listaProductos;
     private ArrayList<String> array_sort;
     int textlength=0;
     private AlertDialog myalertDialog=null;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
+    private static Variables var;
+    private static Cursor cursor;
 
 
     @Override
@@ -52,6 +60,7 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
         FechaH=new Fecha_Hoy();
         DiaJ=new Dia_Juliano();
         con=new consultas();
+        var = new Variables();
 
         //******************    Text View    ****************//
 
@@ -210,8 +219,8 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
             }
         });
 
-        guarda=(Button)findViewById(R.id.btnSavePT);
-        guarda.setOnClickListener(new View.OnClickListener() {
+        Guardar=(ImageButton)findViewById(R.id.btnSavePT);
+        Guardar.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
@@ -220,21 +229,37 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
                     Alerta(getResources().getString(R.string.Alerta_PT_campoVacio));
                 }
                 else {
-                    boolean exitoso = con.DAOPT(LotePT.getText().toString(),
-                            fecha.getText().toString(),
-                            codigo_pt.getText().toString().substring(0, 4),
-                            numero_viaje.getText().toString(),
-                            NumPiezas.getText().toString(), tot_kil_obt.getText().toString(), num_fundida.getText().toString());
+                    if(var.isFromProducto()){
+                        boolean exitoso = con.DAOActualizarPT(LotePT.getText().toString(),
+                                fecha.getText().toString(),
+                                codigo_pt.getText().toString(),
+                                numero_viaje.getText().toString(),
+                                NumPiezas.getText().toString(), tot_kil_obt.getText().toString(),
+                                num_fundida.getText().toString());
+                        if(exitoso){
+                            Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                        }
+                        else{
+                            Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                        }
+                    }
+                    else {
+                        boolean exitoso = con.DAOPT(LotePT.getText().toString(),
+                                fecha.getText().toString(),
+                                codigo_pt.getText().toString().substring(0, 4),
+                                numero_viaje.getText().toString(),
+                                NumPiezas.getText().toString(), tot_kil_obt.getText().toString(), num_fundida.getText().toString(), FechaH.Hoy_hora());
 
-                    if (exitoso) {
-                        Alerta(getResources().getString(R.string.Alerta_Guardado));
-                        num_viaj_consecutivo = con.DAOPT_numero_viaje(FechaH.Hoy());
-                        num_viaj_consecutivo += 1;
-                        numero_viaje.setText("" + num_viaj_consecutivo);
-                        NumPiezas.setText("");
-                        tot_kil_obt.setText("");
-                    } else {
-                        Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                        if (exitoso) {
+                            Alerta(getResources().getString(R.string.Alerta_Guardado));
+                            num_viaj_consecutivo = con.DAOPT_numero_viaje(FechaH.Hoy());
+                            num_viaj_consecutivo += 1;
+                            numero_viaje.setText("" + num_viaj_consecutivo);
+                            NumPiezas.setText("");
+                            tot_kil_obt.setText("");
+                        } else {
+                            Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                        }
                     }
                 }
             }
@@ -245,62 +270,24 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder myDialog = new AlertDialog.Builder(Producto_Terminado.this);
-
-                Nombre_PT=getResources().getStringArray(R.array.nombre_PT);
-
-                final EditText editText = new EditText(Producto_Terminado.this);
-                final ListView listview=new ListView(Producto_Terminado.this);
-                editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
-                array_sort=new ArrayList<String> (Arrays.asList(Nombre_PT));
-                LinearLayout layout = new LinearLayout(Producto_Terminado.this);
-                layout.setOrientation(LinearLayout.VERTICAL);
-                layout.addView(editText);
-                layout.addView(listview);
-                myDialog.setView(layout);
-                CustomAlertAdapter arrayAdapter=new CustomAlertAdapter(Producto_Terminado.this, array_sort);
-                listview.setAdapter(arrayAdapter);
-                listview.setOnItemClickListener(Producto_Terminado.this);
-                editText.addTextChangedListener(new TextWatcher()
-                {
-                    public void afterTextChanged(Editable s){
-
-                    }
-                    public void beforeTextChanged(CharSequence s,
-                                                  int start, int count, int after){
-
-                    }
-                    public void onTextChanged(CharSequence s, int start, int before, int count)
-                    {
-                        editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        textlength = editText.getText().length();
-                        array_sort.clear();
-                        for (int i = 0; i < Nombre_PT.length; i++)
-                        {
-                            if (textlength <= Nombre_PT[i].length())
-                            {
-
-                                if(Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim()))
-                                {
-                                    array_sort.add(Nombre_PT[i]);
-                                }
-                            }
-                        }
-                        listview.setAdapter(new CustomAlertAdapter(Producto_Terminado.this, array_sort));
-                    }
-                });
-                myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-
-                myalertDialog=myDialog.show();
+                launchView();
 
             }
         });
+
+
+        if (var.isFromProducto()){
+            btn_listviewdialog.setEnabled(false);
+            NumPiezas.setEnabled(true);
+            titulo_num_piezas.setTextColor(getResources().getColor(R.color.act));
+            llenarValoresBusqueda(var.getLoteProducto());
+
+        }
+        else{
+            Guardar.setImageResource(R.drawable.guarda);
+
+        }
+
 
     }
 
@@ -351,6 +338,90 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
         BigDecimal bd = new BigDecimal(value);
         bd = bd.setScale(places, RoundingMode.HALF_UP);
         return bd.doubleValue();
+    }
+
+    public void llenarValoresBusqueda(String lote){
+        cursor = con.DAOLLenarProducto(lote);
+
+        LotePT.setText(lote);
+        fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        codigo_pt.setText(cursor.getString(cursor.getColumnIndex("codigo_pt")));
+        numero_viaje.setText(cursor.getString(cursor.getColumnIndex("num_viaje")));
+        tot_kil_obt.setText(cursor.getString(cursor.getColumnIndex("kilos")));
+        NumPiezas.setText(cursor.getString(cursor.getColumnIndex("num_piezas")));
+        num_fundida.setText(cursor.getString(cursor.getColumnIndex("numero_fundida")));
+
+
+
+    }
+    public void launchView()
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Producto_Terminado.this);
+
+        Nombre_PT = getProductosArray(con.DAOGetTodosProductos("",1));
+        
+
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Producto_Terminado.this);
+        final ListView listview = new ListView(Producto_Terminado.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Producto_Terminado.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Producto_Terminado.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+
+        listview.setOnItemClickListener(Producto_Terminado.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Producto_Terminado.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
+
+    }
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
     }
 
 

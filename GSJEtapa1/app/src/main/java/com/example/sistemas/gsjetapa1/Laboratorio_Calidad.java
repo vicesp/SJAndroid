@@ -1,9 +1,11 @@
 package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -24,6 +28,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,6 +45,7 @@ import DTO.Fecha_Hoy;
 import DTO.Variables;
 
 
+
 public class Laboratorio_Calidad extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static Fecha_Hoy FechaH;
@@ -41,13 +53,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private static consultas con;
     private static Variables var;
 
-    private TextView Fecha,codigo_prod, codigo_fam, observacionesqr;
-    private Button btn_listviewdialog, btn_listviewdialog1, btnBack;
+    private TextView Fecha,codigo_prod, codigo_fam, observacionesqr,btn_listviewdialog1;
+    private Button btn_listviewdialog, btnBack;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
-    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR;
+    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR, swTaj;
     private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
-            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr;
+            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr, observaciones_apariencia,
+            observaciones_color;
     private Spinner spinnerDiez;
     private boolean deCual;
     private String Nombre_PT[];
@@ -71,9 +84,11 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /*********** Text Views **************/
         Fecha = (TextView) findViewById(R.id.fechaText1);
         Fecha.setText(FechaH.Hoy());
-        codigo_fam = (TextView)findViewById(R.id.tvLCCodigoFamilia);
-        codigo_prod=(TextView)findViewById(R.id.tvLCCodigoProducto);
+        codigo_fam = (TextView)findViewById(R.id.tvLCCodigoProducto);
+        codigo_prod=(TextView)findViewById(R.id.tvLCCodigoFamilia);
         observacionesqr=(TextView)findViewById(R.id.textView227);
+        btn_listviewdialog1=(TextView)findViewById(R.id.tvLCProducto1);
+
 
 
 
@@ -81,6 +96,22 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /********** Spinner ****************/
         spinnerDiez=(Spinner)findViewById(R.id.spinner);
         spinnerFiller();
+        spinnerDiez.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+
+                ((TextView) parent.getChildAt(0)).setTextSize(22);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }
+        });
 
 
 
@@ -93,13 +124,17 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
                                            if (var.isFromLaboratorio()) {
 
+                                               //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
+
+
                                                boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
                                                        codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString(),
+                                                       observaciones_color.getText().toString(),switchTexter(swTaj.isChecked()));
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -109,13 +144,18 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                            } else {
 
 
-                                               boolean exitoso = con.DAOLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
+                                               boolean exitoso = con.DAOLaboratorioCalidad(FechaH.Hoy_hora(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
                                                        codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()),observaciones_ralladoqr.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "",
+                                                       switchTexter(swRallQR.isChecked()),
+                                                       observaciones_ralladoqr.getText().toString(),
+                                                       observaciones_apariencia.getText().toString(),
+                                                       FechaH.Hoy(),
+                                                       observaciones_color.getText().toString(), switchTexter(swTaj.isChecked()));
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -138,6 +178,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swHeb=(Switch)findViewById(R.id.switchHebrado);
         swRallQR=(Switch)findViewById(R.id.swRalladoQR);
         swRem = (Switch)findViewById(R.id.switchRemuestreo);
+        swTaj=(Switch)findViewById(R.id.switchTajo);
         swRem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -159,13 +200,15 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         /************Edit Texts***************/
         Lote =(EditText)findViewById(R.id.tvLCLotePendiente);
         observaciones_sabor=(EditText)findViewById(R.id.editText17);
+        observaciones_apariencia=(EditText)findViewById(R.id.editText20);
+        observaciones_color=(EditText)findViewById(R.id.editText21);
         observaciones_rallado=(EditText)findViewById(R.id.editText7);
         observaciones_fundido=(EditText)findViewById(R.id.editText8);
         observaciones_hebrado=(EditText)findViewById(R.id.editText9);
         observaciones_ralladoqr=(EditText)findViewById(R.id.observacionesRalladoQR);
         humedad=(EditText)findViewById(R.id.editText10);
-        ph=(EditText)findViewById(R.id.editText11);
-        grasa_total=(EditText)findViewById(R.id.editText13);
+        ph=(EditText)findViewById(R.id.editText13);
+        grasa_total=(EditText)findViewById(R.id.editText11);
         humRem=(EditText)findViewById(R.id.editText14);
         grasRem=(EditText)findViewById(R.id.editText15);
         phRem=(EditText)findViewById(R.id.editText16);
@@ -200,18 +243,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             }});
 
         /*********** Buttons *****************/
-        btn_listviewdialog1=(Button)findViewById(R.id.tvLCProducto1);
-        btn_listviewdialog1.setOnClickListener(this);
-        btn_listviewdialog1.setEnabled(false);
-        btn_listviewdialog1.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-
-
-                launchView(1);
-            }});
-
         btn_listviewdialog=(Button)findViewById(R.id.btnECP);
         btn_listviewdialog.setOnClickListener(this);
         btn_listviewdialog.setOnClickListener(new View.OnClickListener() {
@@ -231,10 +262,18 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             @Override
             public void onClick(View v) {
-                var.setFromAdminLaboratorio(true);
-                finish();
-                startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class ));
 
+                Log.i("Lab:", ""+var.isFromLaboratorio());
+                if(var.isFromLaboratorio()) {
+                    var.setFromAdminLaboratorio(true);
+                    finish();
+                    startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class));
+                }
+                else{
+                    finish();
+                    startActivity(new Intent(Laboratorio_Calidad.this, Panel_Lab.class));
+
+                }
 
             }
         });
@@ -242,11 +281,9 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         if(var.isFromLaboratorio())
         {
             llenarValoresBusqueda(var.getLoteLaboratorio(),var.getCodProdLaboratorio());
-
         }
         else {
             Guardar.setImageResource(R.drawable.guarda);
-
         }
 
 
@@ -281,44 +318,46 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         myalertDialog.dismiss();
 
 
-        String strName=array_sort.get(position);
+        String strName = array_sort.get(position);
+        codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
+        cursor = con.DAOGetCursorTodosFamilias(codigo_prod.getText().toString());
+        btn_listviewdialog.setText(strName.substring(strName.indexOf('-') + 1, strName.length()));
+        codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_familia")));
+        btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("nombre_familia")));
 
 
-        if (deCual) {
-            codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
-            btn_listviewdialog1.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
 
+        if (codigo_prod.getText().toString().substring(0, 2).equals("QR")) {
 
+            observaciones_ralladoqr.setVisibility(View.VISIBLE);
+            observacionesqr.setVisibility(View.VISIBLE);
+            swRallQR.setVisibility(View.VISIBLE);
 
-            if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
-            {
+            observaciones_rallado.setEnabled(false);
+            swRall.setEnabled(false);
 
-                observaciones_ralladoqr.setVisibility(View.VISIBLE);
-                observacionesqr.setVisibility(View.VISIBLE);
-                swRallQR.setVisibility(View.VISIBLE);
+        } else {
+            observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+            observacionesqr.setVisibility(View.INVISIBLE);
+            swRallQR.setVisibility(View.INVISIBLE);
 
-                observaciones_rallado.setEnabled(false);
-                swRall.setEnabled(false);
-
-            }
-            else{
-                observaciones_ralladoqr.setVisibility(View.INVISIBLE);
-                observacionesqr.setVisibility(View.INVISIBLE);
-                swRallQR.setVisibility(View.INVISIBLE);
-
-                observaciones_rallado.setEnabled(true);
-                swRall.setEnabled(true);
-
-            }
+            observaciones_rallado.setEnabled(true);
+            swRall.setEnabled(true);
 
         }
-        if(!deCual) {
-            codigo_fam.setText(strName.substring(0, strName.indexOf('-')));
-            btn_listviewdialog.setText(strName.substring(strName.indexOf('-')+1,strName.length()));
-            btn_listviewdialog1.setEnabled(true);
+
+        if (cursor.getInt(cursor.getColumnIndex("tajo"))==1){
+            swTaj.setVisibility(View.VISIBLE);
         }
+        else{
+            swTaj.setVisibility(View.INVISIBLE);
+        }
+
+
+
 
     }
+
     @Override
     public void onClick(View v) {
 
@@ -351,6 +390,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
         // Create the adapter to convert the array to views
         ArrayAdapter adapter = new ArrayAdapter(this,android.R.layout.simple_spinner_item,valuesSpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Attach the adapter to a ListView
         spinnerDiez.setAdapter(adapter);
 
@@ -453,13 +493,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         btn_listviewdialog1.setEnabled(false);
         btn_listviewdialog.setEnabled(false);
 
-        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("producto")));
         codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_prod")));
         observaciones_sabor.setText(cursor.getString(cursor.getColumnIndex("observaciones_sabor")));
         observaciones_rallado.setText(cursor.getString(cursor.getColumnIndex("observaciones_rallado")));
         observaciones_fundido.setText(cursor.getString(cursor.getColumnIndex("observaciones_fundido")));
         observaciones_hebrado.setText(cursor.getString(cursor.getColumnIndex("observaciones_hebrado")));
+        observaciones_color.setText(cursor.getString(cursor.getColumnIndex("observaciones_color")));
         humedad.setText(cursor.getString(cursor.getColumnIndex("humedad")));
         ph.setText(cursor.getString(cursor.getColumnIndex("ph")));
         grasa_total.setText(cursor.getString(cursor.getColumnIndex("grasa_total")));
@@ -477,44 +518,48 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         spinnerDiez.setSelection(getIndex(cursor.getString(cursor.getColumnIndex("fundido"))));
         btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("familia")));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
+        if (cursor.getInt(cursor.getColumnIndex("tajo")) == 1) {
+            swTaj.setChecked(true);
+        }
+        else {
+            swTaj.setChecked(false);
+        }
 
         swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
         observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
+        observaciones_apariencia.setText(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")));
 
-        if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
-        {
+        try {
+            if (codigo_prod.getText().toString().substring(0, 2).equals("QR")) {
 
-            observaciones_ralladoqr.setVisibility(View.VISIBLE);
-            observacionesqr.setVisibility(View.VISIBLE);
-            swRallQR.setVisibility(View.VISIBLE);
+                observaciones_ralladoqr.setVisibility(View.VISIBLE);
+                observacionesqr.setVisibility(View.VISIBLE);
+                swRallQR.setVisibility(View.VISIBLE);
 
-            observaciones_rallado.setEnabled(false);
-            swRall.setEnabled(false);
+                observaciones_rallado.setEnabled(false);
+                swRall.setEnabled(false);
 
+            } else {
+                observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+                observacionesqr.setVisibility(View.INVISIBLE);
+                swRallQR.setVisibility(View.INVISIBLE);
+
+                observaciones_rallado.setEnabled(true);
+                swRall.setEnabled(true);
+
+            }
         }
-        else{
-            observaciones_ralladoqr.setVisibility(View.INVISIBLE);
-            observacionesqr.setVisibility(View.INVISIBLE);
-            swRallQR.setVisibility(View.INVISIBLE);
-
-            observaciones_rallado.setEnabled(true);
-            swRall.setEnabled(true);
-
-        }
+        catch (Exception e){}
 
     }
 
     public void launchView(int from)
     {
         AlertDialog.Builder myDialog = new AlertDialog.Builder(Laboratorio_Calidad.this);
-        if(from==1) {
+
             Nombre_PT = getProductosArray(con.DAOGetTodosProductos(codigo_fam.getText().toString(),0));
             deCual=true;
-        }
-        else if(from==0){
-            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
-            deCual =false;
-        }
+
 
 
 
@@ -572,7 +617,6 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     public void vaciarTodo(){
 
         Lote.setText("");
-        Fecha.setText("");
         codigo_prod.setText("");
         observaciones_sabor.setText("");
         observaciones_rallado.setText("");
@@ -592,15 +636,124 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swHeb.setChecked(false);
         swRem.setChecked(false);
         spinnerDiez.setSelection(0);
-        btn_listviewdialog1.setText("Seleccione un Producto");
-        btn_listviewdialog.setText("Seleccione una Familia");
-        btn_listviewdialog1.setEnabled(false);
+        btn_listviewdialog.setText("Seleccione un Producto");
+        btn_listviewdialog1.setText("");
         codigo_fam.setText("");
         swRallQR.setChecked(false);
         observaciones_ralladoqr.setText("");
+        observaciones_apariencia.setText("");
         check1.setChecked(false);
         check2.setChecked(false);
         check3.setChecked(false);
+        observaciones_color.setText("");
+        swTaj.setChecked(false);
+        swTaj.setVisibility(View.INVISIBLE);
 
     }
+    public class GuardaLaboratorio extends AsyncTask<String, Void, Boolean>
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Laboratorio_Calidad.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Enviando Datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+        {
+            final String NAMESPACE = "http://serv_gsj.net/";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertatexturizador";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("fecha", Fecha.getText().toString());
+            request.addProperty("familia", btn_listviewdialog.getText().toString());
+            request.addProperty("producto", btn_listviewdialog1.getText().toString());
+            request.addProperty("codigo_prod",codigo_prod.getText().toString());
+            request.addProperty("codigo_fam", codigo_fam.getText().toString());
+            request.addProperty("apariencia", switchTexter(swApa.isChecked()));
+            request.addProperty("sabor", switchTexter(swSa.isChecked()));
+            request.addProperty("color", switchTexter(swCo.isChecked()));
+            request.addProperty("aroma", switchTexter(swAro.isChecked()));
+            request.addProperty("observaciones_sabor", observaciones_sabor.getText().toString());
+            request.addProperty("rallado", switchTexter(swRall.isChecked()));
+            request.addProperty("observaciones_rallado", observaciones_rallado.getText().toString());
+            request.addProperty("fundido", spinnerDiez.getSelectedItem().toString());
+            request.addProperty("observaciones_fundido", observaciones_fundido.getText().toString());
+            request.addProperty("hebrado", switchTexter(swHeb.isChecked()));
+            request.addProperty("observaciones_hebrado", observaciones_hebrado.getText().toString());
+            request.addProperty("grasa_residual", grasa_total.getText().toString());
+            request.addProperty("humedad", humedad.getText().toString());
+            request.addProperty("ph", ph.getText().toString());
+            request.addProperty("grasa_total", grasa_total.getText().toString());
+            request.addProperty("humedad_remuestreo", humRem.getText().toString());
+            request.addProperty("ph_remuestreo", phRem.getText().toString());
+            request.addProperty("grasa_remuestreo", grasRem.getText().toString());
+            request.addProperty("necesidad_remuestreo", switchTexter(swRem.isChecked()));
+            request.addProperty("ralladoqr", switchTexter(swRallQR.isChecked()));
+            request.addProperty("observaciones_ralldoqr", observaciones_ralladoqr.getText().toString());
+            request.addProperty("observaciones_apariencia", observaciones_apariencia.getText().toString());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try
+            {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_XML = (SoapPrimitive)envelope.getResponse();
+                String mensaje = resultado_XML.toString();
+
+                if(mensaje.contentEquals("true")){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Log.i("Error", "Error de sincronizacion:  " + e);
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success)
+        {
+            if (this.dialog.isShowing())
+            {
+                this.dialog.dismiss();
+            }
+
+            if (success)
+            {
+                Toast.makeText(Laboratorio_Calidad.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(Laboratorio_Calidad.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void PaginaMonitor()
+        {
+            WebView myWebView = (WebView) findViewById(R.id.webView);
+            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
+    }
+
 }

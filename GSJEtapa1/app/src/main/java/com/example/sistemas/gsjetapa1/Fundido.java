@@ -3,11 +3,10 @@ package com.example.sistemas.gsjetapa1;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
-import android.database.SQLException;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -25,6 +24,8 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -36,52 +37,49 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapPrimitive;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
-import org.xmlpull.v1.XmlPullParserException;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Locale;
+import java.util.Arrays;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
 import DTO.Fecha_Hoy;
 import DTO.ResizeAnimation;
 import DTO.Variables;
-import au.com.bytecode.opencsv.CSVWriter;
-import config.DataBaseHelper;
 
 
-public class Fundido extends ActionBarActivity {
+public class Fundido extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private String [] familia_fundido,tipo_cuajada,tipo_Crema,tipo_Crema2,familia_reprocdso,texturizador,tipo_cuajada_1,tipo_cuajada_2,tipo_cuajada_3;
-    private String familia_sel,tipo_crema_sel,tipo_crema_sel2,familia_repro_sel,texturizador_sel,tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel;
-    private Spinner spFamiliaFun, spTipoCrema, spTipoCrema2, spFamiliaReproceso, spTexturizador,spTipoCuajada1,spTipoCuajada2,spTipoCuajada3;
+    private String [] familia,familia_fundido,tipo_cuajada,tipo_Crema,tipo_Crema2,familia_reprocdso,texturizador,Nombre_PT, listaProductos,tipo_cuajada_1,tipo_cuajada_2,tipo_cuajada_3;
+    private String datos_cambiados,tipo_crema_sel,tipo_crema_sel2,familia_repro_sel,texturizador_sel,tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel;
+    private Spinner spTipoCrema, spTipoCrema2, spTexturizador,spTipoCuajada1,spTipoCuajada2,spTipoCuajada3;
     private TextView Fecha,Lote, Fundida, Linea,Peso_tot,tipo_cre,lote_tipocre,cantidadCrem;
     private TextView tvF1,lote1,tvF2,lote2,tvF3,lote3,tvF4,lote4,tvF5,lote5,tvF6,lote6,tvF7,lote7,tvF8,lote8,tvF9;
     private EditText cj01,lote_cj01,ph_cj01,cj011,lote_cj011,ph_cj011,ad1,lot1,ad2,lot2,ad3,lot3,ad4,lot4,tempe_final,cantidad_reproceso,lote_textu;
     private EditText cj01_1,lote_cj01_1,ph_cj01_1,cj01_2,lote_cj01_2,ph_cj01_2,lote_crema2,cantidad_crema2,cj01_3,lote_cj01_3,ph_cj01_3;
     private EditText sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,lote_crema,cantidad_crema,lote_famiRepro,kilos_FamiRepro;
-    private Button GuardarF,Calcula_peso;
-    private ImageButton AddCuajada;
+    private EditText etObservaciones;
+    private Button Calcula_peso, btnFamiliaFun, btnFamiliaReproceso, Regresar;
+    private ImageButton AddCuajada, GuardarF;
     private double peso_texturizador=0,valor_total=0,cantidad_cj01=0,cantidad_cj01_1=0,cantidad_cj01_2=0,cantidad_cj01_3=0,canti_crema2=0,cantidad_cj011=0,cantidad_mp005=0,cantidad_mp015=0,cantidad_s0101=0,tot_s0101=0,tot_mp015=0,cantidad_mp007=0,cantidad_sa01=0,cantidad_mp024=0,cantidad_int_crema=0,cantidad_familia_repro=0;
-   private Switch tinas;
+    private Switch tinas;
     private int bandera=1;
-    private RelativeLayout rlAddtina;
+    private int btnBandera =0;
+    private RelativeLayout rlAddtina, rlObservaciones;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
     private static Variables var;
+    private static ArrayAdapter adapter;
     protected Cursor cursor;
+    private ArrayList<String> array_sort;
+    private boolean funCheck= true;
+    int textlength=0;
+    private AlertDialog myalertDialog=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +96,7 @@ public class Fundido extends ActionBarActivity {
         Variables.setIp_servidor(con.DAOSelecConfigIP());
 
         rlAddtina=(RelativeLayout)findViewById(R.id.rlCuajadaAdd);
+        rlObservaciones=(RelativeLayout)findViewById(R.id.relativeLayout4);
 
         tipo_cre=(TextView)findViewById(R.id.textView62);
         lote_tipocre=(TextView)findViewById(R.id.textView63);
@@ -105,7 +104,7 @@ public class Fundido extends ActionBarActivity {
 
 
         //******************    Inicio Edit Text    ****************//
-
+        etObservaciones=(EditText)findViewById(R.id.eteObservaciones);
         lote_crema2=(EditText)findViewById(R.id.etLoteCrem2);
         cantidad_crema2=(EditText)findViewById(R.id.etCantidCremaFun2);
 
@@ -213,7 +212,7 @@ public class Fundido extends ActionBarActivity {
         Fundida.setText(""+resul);
 
         Lote=(TextView)findViewById(R.id.tvLoteFundido);
-        Lote.setText(Fundida.getText().toString()+DiaJ.Dame_dia_J_y_anio());
+        Lote.setText(Fundida.getText().toString() + DiaJ.Dame_dia_J_y_anio());
 
         //******************    Inicio Switch     ****************//
 
@@ -229,6 +228,7 @@ public class Fundido extends ActionBarActivity {
 
                 } else {
                     AddCuajada.setVisibility(View.INVISIBLE);
+                    //checarAbiertos(0);
 
                 }
 
@@ -237,6 +237,9 @@ public class Fundido extends ActionBarActivity {
         //******************    Spinners    ****************//
 
         spTipoCuajada1 = (Spinner) findViewById(R.id.spTipoCj1);
+        spTipoCuajada1.setFocusable(true);
+        spTipoCuajada1.setFocusableInTouchMode(true);
+        spTipoCuajada1.requestFocus();
         tipo_cuajada_1=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj1 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_1);
@@ -244,6 +247,9 @@ public class Fundido extends ActionBarActivity {
         spTipoCuajada1.setAdapter(adpcj1);
 
         spTipoCuajada2 = (Spinner) findViewById(R.id.spTipoCj2);
+        spTipoCuajada2.setFocusable(true);
+        spTipoCuajada2.setFocusableInTouchMode(true);
+        spTipoCuajada2.requestFocus();
         tipo_cuajada_2=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_2);
@@ -251,20 +257,19 @@ public class Fundido extends ActionBarActivity {
         spTipoCuajada2.setAdapter(adpcj2);
 
         spTipoCuajada3 = (Spinner) findViewById(R.id.spTipoCj3);
+        spTipoCuajada3.setFocusable(true);
+        spTipoCuajada3.setFocusableInTouchMode(true);
+        spTipoCuajada3.requestFocus();
         tipo_cuajada_3=getResources().getStringArray(R.array.tipo_cuajada);
         ArrayAdapter<String> adpcj3 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_cuajada_3);
         adpcj3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTipoCuajada3.setAdapter(adpcj3);
 
-        spFamiliaFun = (Spinner) findViewById(R.id.spFamiliaFundido);
-        familia_fundido=getResources().getStringArray(R.array.nombre_familia_fundido);
-        ArrayAdapter<String> familiaAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, familia_fundido);
-        familiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spFamiliaFun.setAdapter(familiaAdapter);
-
         spTipoCrema = (Spinner) findViewById(R.id.spTipoCrema);
+        spTipoCrema.setFocusable(true);
+        spTipoCrema.setFocusableInTouchMode(true);
+        spTipoCrema.requestFocus();
         tipo_Crema=getResources().getStringArray(R.array.tipo_crema);
         ArrayAdapter<String> adapt = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_Crema);
@@ -272,26 +277,20 @@ public class Fundido extends ActionBarActivity {
         spTipoCrema.setAdapter(adapt);
 
         spTipoCrema2 = (Spinner) findViewById(R.id.spTipoCrema2);
+        spTipoCrema2.setFocusable(true);
+        spTipoCrema2.setFocusableInTouchMode(true);
+        spTipoCrema2.requestFocus();
         tipo_Crema2=getResources().getStringArray(R.array.tipo_crema2);
         ArrayAdapter<String> adapt2 = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, tipo_Crema2);
         adapt2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spTipoCrema2.setAdapter(adapt2);
 
-
-        spFamiliaReproceso = (Spinner) findViewById(R.id.spFamiliaReproceso);
-        familia_reprocdso=getResources().getStringArray(R.array.nombre_familia_reproceso);
-        ArrayAdapter<String> ad = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, familia_reprocdso);
-        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spFamiliaReproceso.setAdapter(ad);
-
         spTexturizador = (Spinner) findViewById(R.id.spTipoTexturizador);
-        texturizador=getResources().getStringArray(R.array.nombre_familia_texturizador_Fundido);
-        ArrayAdapter<String> adatex = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, texturizador);
-        adatex.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spTexturizador.setAdapter(adatex);
+        spTexturizador.setFocusable(true);
+        spTexturizador.setFocusableInTouchMode(true);
+        spTexturizador.requestFocus();
+        llena_Texturizador(con.DAODescripcionTexturizador());
 
         spTipoCuajada1.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
@@ -332,23 +331,53 @@ public class Fundido extends ActionBarActivity {
         spTexturizador.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                texturizador_sel=texturizador[position];
+                texturizador_sel=familia[position];
                 if(position==0) {
-                peso_texturizador=10.8;
+                    sumarPesoTX("valor1");
+                    Log.i("Peso", ""+peso_texturizador);
                 }
                 else if(position==1) {
-                    peso_texturizador=16.3;
+                    sumarPesoTX("valor2");
                 }
                 else if(position==2) {
-                    peso_texturizador=25.95;
+                    sumarPesoTX("valor3");
                 }
                 else if(position==3) {
-                    peso_texturizador=3.05;
+                    sumarPesoTX("valor4");
                 }
                 else if(position==4) {
-                    peso_texturizador=9.52;
+                    sumarPesoTX("valor5");
+                }
+                else if(position==5) {
+                    sumarPesoTX("valor6");
+                }
+                else if(position==6) {
+                    sumarPesoTX("valor7");
+                }
+                else if(position==7) {
+                    sumarPesoTX("valor8");
+                }
+                else if(position==8) {
+                    sumarPesoTX("valor9");
+                }
+                else if(position==9){
+                    sumarPesoTX("valor10");
                 }
 
+            }
+            public Double sumarPesoTX(String columna){
+                peso_texturizador=0;
+                for(int x=1;x<=18;x++) {
+
+                    try {
+                        peso_texturizador += Double.parseDouble(con.DAOValoresActuales(columna, "" + x));
+                    }
+                    catch (Exception e)
+                    {
+                        Log.i("Error:", e.toString());
+                    }
+                }
+                return peso_texturizador;
             }
 
             @Override
@@ -357,15 +386,16 @@ public class Fundido extends ActionBarActivity {
             }
         });
 
-
-        spFamiliaFun.setOnItemSelectedListener(new OnItemSelectedListener() {
+        /*
+        btnFamiliaFun.setOnItemSelectedListener(new OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
                 // TODO Auto-generated method stub
-
-                spTipoCrema2.setSelection(0);
+                if(!(var.isFromFundido())) {
+                    spTipoCrema2.setSelection(0);
+                }
 
                 ((TextView) parent.getChildAt(0)).setTextSize(22);
                 familia_sel=familia_fundido[position];
@@ -621,7 +651,7 @@ public class Fundido extends ActionBarActivity {
                 // TODO Auto-generated method stub
 
             }
-        });
+        });*/
 
         spTipoCrema.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -661,58 +691,75 @@ public class Fundido extends ActionBarActivity {
             }
         });
 
-        spFamiliaReproceso.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
-
-                ((TextView) parent.getChildAt(0)).setTextSize(22);
-                familia_repro_sel=familia_reprocdso[position];
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         //******************  FIN  Spinners    ****************//
 
         //******************    Inicio Buttons    ****************//
 
+        btnFamiliaReproceso = (Button) findViewById(R.id.spFamiliaReproceso);
+        btnFamiliaReproceso.setFocusable(true);
+        btnFamiliaReproceso.setFocusableInTouchMode(true);
+        btnFamiliaReproceso.requestFocus();
+        btnFamiliaReproceso.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                funCheck = false;
+                launchView();
+
+            }
+        });
+
+        btnFamiliaFun = (Button) findViewById(R.id.spFamiliaFundido);
+        btnFamiliaFun.setFocusable(true);
+        btnFamiliaFun.setFocusableInTouchMode(true);
+        btnFamiliaFun.requestFocus();
+        btnFamiliaFun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                funCheck = true;
+                launchView();
+
+            }
+        });
+
         AddCuajada=(ImageButton)findViewById(R.id.btnAddCuaj);
         AddCuajada.setVisibility(View.INVISIBLE);
+        AddCuajada.setFocusable(true);
+        AddCuajada.setFocusableInTouchMode(true);
+        AddCuajada.requestFocus();
         AddCuajada.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
-                int rr=params.width;
+                checarAbiertos(bandera);
 
-                switch (bandera) {
+               // RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
+                //int rr=params.width;
+
+                /*switch (bandera) {
                     case 0:
                         AddCuajada.setImageResource(R.drawable.add3);
                         ResizeAnimation res = new ResizeAnimation(rlAddtina, params.width, params.height, 1, 1);
                         rlAddtina.startAnimation(res);
 
-                        spTipoCuajada1.setSelection(0);
-                        spTipoCuajada2.setSelection(0);
-                        spTipoCuajada3.setSelection(0);
+                        if(!(var.isFromFundido())) {
+                            spTipoCuajada1.setSelection(0);
+                            spTipoCuajada2.setSelection(0);
+                            spTipoCuajada3.setSelection(0);
 
-                        lote_cj01_1.setText("");
-                        lote_cj01_2.setText("");
-                        lote_cj01_3.setText("");
+                            lote_cj01_1.setText("");
+                            lote_cj01_2.setText("");
+                            lote_cj01_3.setText("");
 
-                        cj01_3.setText("");
-                        cj01_1.setText("");
-                        cj01_2.setText("");
+                            cj01_3.setText("");
+                            cj01_1.setText("");
+                            cj01_2.setText("");
 
-                        ph_cj01_1.setText("");
-                        ph_cj01_2.setText("");
-                        ph_cj01_3.setText("");
+                            ph_cj01_1.setText("");
+                            ph_cj01_2.setText("");
+                            ph_cj01_3.setText("");
+                        }
 
                         bandera=1;
                         break;
@@ -737,7 +784,7 @@ public class Fundido extends ActionBarActivity {
 
                     default:
                         break;
-                }
+                }*/
 
             }
         });
@@ -820,47 +867,88 @@ public class Fundido extends ActionBarActivity {
 
             }
         });
-        GuardarF=(Button)findViewById(R.id.btnGuardaFundido);
+        GuardarF=(ImageButton)findViewById(R.id.btnGuardaFundido);
         GuardarF.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 // TODO Auto-generated method stub
+                if(var.isFromFundido()){
 
-                boolean exitoso= con.DAOFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
-                        familia_sel, cj01.getText().toString(), lote_cj01.getText().toString(), ph_cj01.getText().toString(), cj011.getText().toString(),
+
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Fundido", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
+
+                    boolean exitoso = con.DAOActualizarFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
+                            btnFamiliaFun.getText().toString(), cj01.getText().toString(), lote_cj01.getText().toString(), ph_cj01.getText().toString(), cj011.getText().toString(),
+                            lote_cj011.getText().toString(), ph_cj011.getText().toString(),
+                            ad1.getText().toString(), lot1.getText().toString(), ad2.getText().toString(), lot2.getText().toString(), ad3.getText().toString(), lot3.getText().toString(),
+                            ad4.getText().toString(), lot4.getText().toString(), sa01.getText().toString(), lote_sa01.getText().toString(), mp024.getText().toString(),
+                            lote_mp024.getText().toString(), mp078.getText().toString(), lote_mp078.getText().toString(), cj02.getText().toString(),
+                            lote_cj02.getText().toString(), agua.getText().toString(), tipo_crema_sel, lote_crema.getText().toString(),
+                            cantidad_crema.getText().toString(), btnFamiliaReproceso.getText().toString(), lote_famiRepro.getText().toString(), cantidad_reproceso.getText().toString(),
+                            tempe_final.getText().toString(), Peso_tot.getText().toString(), texturizador_sel, lote_textu.getText().toString(),
+                            cj01_1.getText().toString(), lote_cj01_1.getText().toString(), ph_cj01_1.getText().toString(), cj01_2.getText().toString(), lote_cj01_2.getText().toString(), ph_cj01_2.getText().toString(),
+                            tipo_crema_sel2, lote_crema2.getText().toString(), cantidad_crema2.getText().toString(), tipo_cj_1_sel, tipo_cj_2_sel, tipo_cj_3_sel, cj01_3.getText().toString(),
+                            lote_cj01_3.getText().toString(), ph_cj01_3.getText().toString(), FechaH.Hoy(), switchTexter(tinas.isChecked()),btnBandera);
+
+                    if (exitoso) {
+                        limpia_campos();
+
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+
+                    } else {
+                        Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                    }
+
+                }
+                else{
+                boolean exitoso = con.DAOFundido(Lote.getText().toString(), Linea.getText().toString(), FechaH.Hoy_hora(), Fundida.getText().toString(),
+                        btnFamiliaFun.getText().toString(), cj01.getText().toString(), lote_cj01.getText().toString(), ph_cj01.getText().toString(), cj011.getText().toString(),
                         lote_cj011.getText().toString(), ph_cj011.getText().toString(),
                         ad1.getText().toString(), lot1.getText().toString(), ad2.getText().toString(), lot2.getText().toString(), ad3.getText().toString(), lot3.getText().toString(),
                         ad4.getText().toString(), lot4.getText().toString(), sa01.getText().toString(), lote_sa01.getText().toString(), mp024.getText().toString(),
                         lote_mp024.getText().toString(), mp078.getText().toString(), lote_mp078.getText().toString(), cj02.getText().toString(),
-                        lote_cj02.getText().toString(), agua.getText().toString(),tipo_crema_sel, lote_crema.getText().toString(),
-                        cantidad_crema.getText().toString(), familia_repro_sel, lote_famiRepro.getText().toString(), cantidad_reproceso.getText().toString(),
-                        tempe_final.getText().toString(),Peso_tot.getText().toString(),texturizador_sel,lote_textu.getText().toString(),
-                        cj01_1.getText().toString(),lote_cj01_1.getText().toString(),ph_cj01_1.getText().toString(),cj01_2.getText().toString(),lote_cj01_2.getText().toString(),ph_cj01_2.getText().toString(),
-                        tipo_crema_sel2,lote_crema2.getText().toString(),cantidad_crema2.getText().toString(),tipo_cj_1_sel,tipo_cj_2_sel,tipo_cj_3_sel,cj01_3.getText().toString(),
-                        lote_cj01_3.getText().toString(),ph_cj01_3.getText().toString(), FechaH.Hoy());
+                        lote_cj02.getText().toString(), agua.getText().toString(), tipo_crema_sel, lote_crema.getText().toString(),
+                        cantidad_crema.getText().toString(), btnFamiliaReproceso.getText().toString(), lote_famiRepro.getText().toString(), cantidad_reproceso.getText().toString(),
+                        tempe_final.getText().toString(), Peso_tot.getText().toString(), texturizador_sel, lote_textu.getText().toString(),
+                        cj01_1.getText().toString(), lote_cj01_1.getText().toString(), ph_cj01_1.getText().toString(), cj01_2.getText().toString(), lote_cj01_2.getText().toString(), ph_cj01_2.getText().toString(),
+                        tipo_crema_sel2, lote_crema2.getText().toString(), cantidad_crema2.getText().toString(), tipo_cj_1_sel, tipo_cj_2_sel, tipo_cj_3_sel, cj01_3.getText().toString(),
+                        lote_cj01_3.getText().toString(), ph_cj01_3.getText().toString(), FechaH.Hoy(), switchTexter(tinas.isChecked()),btnBandera);
 
-                if(exitoso){
-                    GuardaFundidoSync task=new GuardaFundidoSync();
+                if (exitoso) {
+                    GuardaFundidoSync task = new GuardaFundidoSync();
                     task.execute();
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
                     PaginaMonitor();
-                    int resul=con.DAOF_num_fundida(Variables.getLinea_fundido(),Fecha.getText().toString());
-                    if (Variables.getLinea_fundido()==1 && resul==0){
-                        resul+=1;
+                    int resul = con.DAOF_num_fundida(Variables.getLinea_fundido(), Fecha.getText().toString());
+                    if (Variables.getLinea_fundido() == 1 && resul == 0) {
+                        resul += 1;
+                    } else if (Variables.getLinea_fundido() == 1 && resul != 0) {
+                        resul += 2;
+                    } else if (Variables.getLinea_fundido() == 2) {
+                        resul += 2;
                     }
-                    else if(Variables.getLinea_fundido()==1 && resul!=0){
-                        resul+=2;
-                    }
-                    else if(Variables.getLinea_fundido()==2){
-                        resul+=2;
-                    }
-                    Fundida.setText(""+resul);
-                    Lote.setText(Fundida.getText().toString()+DiaJ.Dame_dia_J_y_anio());
-                }
-                else{
+                    Fundida.setText("" + resul);
+                    Lote.setText(Fundida.getText().toString() + DiaJ.Dame_dia_J_y_anio());
+                    btnFamiliaReproceso.setText("SELECCIONE FAMILIA");
+                    lote_famiRepro.setText("");
+                    cantidad_reproceso.setText("");
+                } else {
                     Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                 }
+            }
+            }
+        });
+
+        Regresar=(Button)findViewById(R.id.buttonBack);
+        Regresar.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+             if(var.isFromFundido()){
+                var.setFromAdminFundido(true);
+                 finish();startActivity(new Intent(Fundido.this,Realizados.class));
+
+             }
 
             }
         });
@@ -871,6 +959,15 @@ public class Fundido extends ActionBarActivity {
 
     if(var.isFromFundido()){
         llenarValoresBusqueda(var.getLoteFundido());
+        tinas.setEnabled(false);
+        btnFamiliaFun.setEnabled(false);
+    }
+    else{
+        GuardarF.setImageResource(R.drawable.guarda);
+        rlObservaciones.setVisibility(View.INVISIBLE);
+        tinas.setEnabled(true);
+        btnFamiliaFun.setEnabled(true);
+
     }
 
 
@@ -899,6 +996,24 @@ public class Fundido extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
+
+        String strName=array_sort.get(position);
+
+        if(funCheck){
+            btnFamiliaFun.setText(strName);
+        }
+        else {
+            btnFamiliaReproceso.setText(strName);
+        }
+
+        myalertDialog.dismiss();
+    }
+    @Override
+    public void onClick(View v) {
+
     }
 
     public void Alerta(String mensaje){
@@ -976,25 +1091,27 @@ public class Fundido extends ActionBarActivity {
     }
 
     public void limpia_campos(){
-        ad1.setText("");
-        lot1.setText("");
-        ad2.setText("");
-        lot2.setText("");
-        ad3.setText("");
-        lot3.setText("");
-        ad4.setText("");
-        lot4.setText("");
-        sa01.setText("");
-        lote_sa01.setText("");
-        mp024.setText("");
-        lote_mp024.setText("");
-        mp078.setText("");
-        lote_mp078.setText("");
-        cj02.setText("");
-        lote_cj02.setText("");
-        agua.setText("");
-        lote_crema2.setText("");
-        cantidad_crema2.setText("");
+        if(!(var.isFromFundido())) {
+            ad1.setText("");
+            lot1.setText("");
+            ad2.setText("");
+            lot2.setText("");
+            ad3.setText("");
+            lot3.setText("");
+            ad4.setText("");
+            lot4.setText("");
+            sa01.setText("");
+            lote_sa01.setText("");
+            mp024.setText("");
+            lote_mp024.setText("");
+            mp078.setText("");
+            lote_mp078.setText("");
+            cj02.setText("");
+            lote_cj02.setText("");
+            agua.setText("");
+            lote_crema2.setText("");
+            cantidad_crema2.setText("");
+        }
     }
 
     class CurrencyTextWatcher3decimales implements TextWatcher {
@@ -1102,6 +1219,412 @@ public class Fundido extends ActionBarActivity {
         return bd.doubleValue();
     }
 
+
+
+
+    public void PaginaMonitor(){
+
+
+        WebView myWebView = (WebView) findViewById(R.id.webView);
+        myWebView.loadUrl("http://"+Variables.getIp_servidor()+"/SignalRTest/simplechat.aspx?val=123");
+
+
+        WebSettings webSettings = myWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+    }
+    public void llenarValoresBusqueda(String lote) {
+
+        cursor= con.DAOLLenarFundido(lote);
+
+        Lote.setText(cursor.getString(cursor.getColumnIndex("lote")));
+        Linea.setText(cursor.getString(cursor.getColumnIndex("linea")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        Fundida.setText(cursor.getString(cursor.getColumnIndex("num_fundida")));
+        btnFamiliaFun.setText(cursor.getString(cursor.getColumnIndex("familia")));
+        cj01.setText(cursor.getString(cursor.getColumnIndex("cj01")));
+        lote_cj01.setText(cursor.getString(cursor.getColumnIndex("lote_cj01")));
+        ph_cj01.setText(cursor.getString(cursor.getColumnIndex("ph_cj01")));
+        ad1.setText(cursor.getString(cursor.getColumnIndex("mp005")));
+        lot1.setText(cursor.getString(cursor.getColumnIndex("lote_mp005")));
+        ad2.setText(cursor.getString(cursor.getColumnIndex("mp015")));
+        lot2.setText(cursor.getString(cursor.getColumnIndex("lote_mp015")));
+        ad3.setText(cursor.getString(cursor.getColumnIndex("s0101")));
+        lot3.setText(cursor.getString(cursor.getColumnIndex("lote_s0101")));
+        ad4.setText(cursor.getString(cursor.getColumnIndex("mp007")));
+        lot4.setText(cursor.getString(cursor.getColumnIndex("lote_mp007")));
+        sa01.setText(cursor.getString(cursor.getColumnIndex("sa01")));
+        lote_sa01.setText(cursor.getString(cursor.getColumnIndex("lote_sa01")));
+        mp024.setText(cursor.getString(cursor.getColumnIndex("mp024")));
+        lote_mp024.setText(cursor.getString(cursor.getColumnIndex("lote_mp024")));
+        mp078.setText(cursor.getString(cursor.getColumnIndex("mp078")));
+        lote_mp078.setText(cursor.getString(cursor.getColumnIndex("lote_mp078")));
+        cj02.setText(cursor.getString(cursor.getColumnIndex("cj02")));
+        lote_cj02.setText(cursor.getString(cursor.getColumnIndex("lote_cj02")));
+        agua.setText(cursor.getString(cursor.getColumnIndex("agua")));
+        setCrema(cursor.getString(cursor.getColumnIndex("tipo_crema")));
+        lote_crema.setText(cursor.getString(cursor.getColumnIndex("lote_tipo_crema")));
+        cantidad_crema.setText(cursor.getString(cursor.getColumnIndex("cantidad_crema")));
+        btnFamiliaReproceso.setText(cursor.getString(cursor.getColumnIndex("familia_reproceso")));
+        lote_famiRepro.setText(cursor.getString(cursor.getColumnIndex("lote_fami_repro")));
+        cantidad_reproceso.setText(cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")));
+        tempe_final.setText(cursor.getString(cursor.getColumnIndex("temperatura")));
+        Peso_tot.setText(cursor.getString(cursor.getColumnIndex("peso_total")));
+        setTexturizador(cursor.getString(cursor.getColumnIndex("texturizador")));
+        lote_textu.setText(cursor.getString(cursor.getColumnIndex("lote_texturizador")));
+        cj01_1.setText(cursor.getString(cursor.getColumnIndex("cj01_1")));
+        lote_cj01_1.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_1")));
+        ph_cj01_1.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_1")));
+        cj01_2.setText(cursor.getString(cursor.getColumnIndex("cj01_2")));
+        lote_cj01_2.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_2")));
+        ph_cj01_2.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_2")));
+        setCrema2(cursor.getString(cursor.getColumnIndex("tipo_crema2")));
+        lote_crema2.setText(cursor.getString(cursor.getColumnIndex("lote_tipo_crema2")));
+        cantidad_crema2.setText(cursor.getString(cursor.getColumnIndex("cantidad_crema2")));
+        setCuajado1(cursor.getString(cursor.getColumnIndex("tipo_cuajada_1")));
+        setCuajado2(cursor.getString(cursor.getColumnIndex("tipo_cuajada_2")));
+        setCuajado3(cursor.getString(cursor.getColumnIndex("tipo_cuajada_3")));
+        cj01_3.setText(cursor.getString(cursor.getColumnIndex("cj01_3")));
+        lote_cj01_3.setText(cursor.getString(cursor.getColumnIndex("lote_cj01_3")));
+        ph_cj01_3.setText(cursor.getString(cursor.getColumnIndex("ph_cj01_3")));
+        cj011.setText(cursor.getString(cursor.getColumnIndex("cj011")));
+        lote_cj011.setText(cursor.getString(cursor.getColumnIndex("lote_cj011")));
+        ph_cj011.setText(cursor.getString(cursor.getColumnIndex("ph_cj011")));
+        tinas.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("tina"))));
+        checarAbiertos(cursor.getInt(cursor.getColumnIndex("bandera")));
+    }
+
+    public String generarDatosCambiados(){
+
+        if (!(cursor.getString(cursor.getColumnIndex("familia")).equals(btnFamiliaFun.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Familia Fundido Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia")) + ", Valor Nuevo: " + btnFamiliaFun.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01")) + ", Valor Nuevo: " + cj01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_cj01")).equals(cj01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01")) + ", Valor Nuevo: " + lote_cj01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("ph_cj01")).equals(ph_cj01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph_cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_cj01")) + ", Valor Nuevo: " + ph_cj01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("mp005")).equals(ad1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "mp005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp005")) + ", Valor Nuevo: " + ad1.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp005")).equals(lot1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_mp005 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp005")) + ", Valor Nuevo: " + lot1.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("mp015")).equals(ad2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "mp015 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp015")) + ", Valor Nuevo: " + ad2.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp015")).equals(lot2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_mp015 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp015")) + ", Valor Nuevo: " + lot2.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("s0101")).equals(ad3.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "s0101 Valor Previo: " + cursor.getString(cursor.getColumnIndex("s0101")) + ", Valor Nuevo: " + ad3.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_s0101")).equals(lot3.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_s0101 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_s0101")) + ", Valor Nuevo: " + lot3.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("mp007")).equals(ad4.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "mp007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp007")) + ", Valor Nuevo: " + ad4.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp007")).equals(lot4.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_mp007 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp007")) + ", Valor Nuevo: " + lot4.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("sa01")).equals(sa01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "sa01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("sa01")) + ", Valor Nuevo: " + sa01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_sa01")).equals(lote_sa01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_sa01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_sa01")) + ", Valor Nuevo: " + lote_sa01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("mp024")).equals(mp024.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "mp024 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp024")) + ", Valor Nuevo: " + mp024.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp024")).equals(lote_mp024.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_mp024 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp024")) + ", Valor Nuevo: " + lote_mp024.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("mp078")).equals(cj01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "mp078 Valor Previo: " + cursor.getString(cursor.getColumnIndex("mp078")) + ", Valor Nuevo: " + mp078.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_mp078")).equals(lote_mp078.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_mp078 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_mp078")) + ", Valor Nuevo: " + lote_mp078.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("cj02")).equals(cj02.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj02 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj02")) + ", Valor Nuevo: " + cj02.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_cj02")).equals(lote_cj02.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj02 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj02")) + ", Valor Nuevo: " + lote_cj02.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("agua")).equals(agua.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "agua Valor Previo: " + cursor.getString(cursor.getColumnIndex("agua")) + ", Valor Nuevo: " + agua.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("tipo_crema")).equals(tipo_Crema[spTipoCrema.getSelectedItemPosition()]))) {
+            datos_cambiados = datos_cambiados + "tipo_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("tipo_crema")) + ", Valor Nuevo: " + tipo_Crema[spTipoCrema.getSelectedItemPosition()] + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("cj01")).equals(cj01.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01")) + ", Valor Nuevo: " + cj01.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("lote_tipo_crema")).equals(lote_crema.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_tipo_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_tipo_crema")) + ", Valor Nuevo: " + lote_crema.getText().toString() + "; ";
+        }
+         if (!(cursor.getString(cursor.getColumnIndex("cantidad_crema")).equals(cantidad_crema.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cantidad_crema Valor Previo: " + cursor.getString(cursor.getColumnIndex("cantidad_crema")) + ", Valor Nuevo: " + cantidad_crema.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("familia_reproceso")).equals(btnFamiliaReproceso.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "familia_reproceso Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia_reproceso")) + ", Valor Nuevo: " + btnFamiliaReproceso.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_fami_repro")).equals(lote_famiRepro.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_fami_repro Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_fami_repro")) + ", Valor Nuevo: " + lote_famiRepro.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")).equals(cantidad_reproceso.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cantidad_fami_repro Valor Previo: " + cursor.getString(cursor.getColumnIndex("cantidad_fami_repro")) + ", Valor Nuevo: " + cantidad_reproceso.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temperatura")).equals(tempe_final.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temperatura Valor Previo: " + cursor.getString(cursor.getColumnIndex("temperatura")) + ", Valor Nuevo: " + tempe_final.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("peso_total")).equals(Peso_tot.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "peso_total Valor Previo: " + cursor.getString(cursor.getColumnIndex("peso_total")) + ", Valor Nuevo: " + Peso_tot.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("texturizador")).equals(texturizador[spTexturizador.getSelectedItemPosition()]))) {
+            datos_cambiados = datos_cambiados + "texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("texturizador")) + ", Valor Nuevo: " +texturizador[spTexturizador.getSelectedItemPosition()] + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_texturizador")).equals(lote_textu.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_texturizador")) + ", Valor Nuevo: " + lote_textu.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cj01_1")).equals(cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01_1")) + ", Valor Nuevo: " + cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_cj01_1")).equals(lote_cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01_1")) + ", Valor Nuevo: " + lote_cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph_cj01_1")).equals(ph_cj01_1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph_cj01_1 Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_cj01_1")) + ", Valor Nuevo: " + ph_cj01_1.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cj01_2")).equals(cj01_2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cj01_2 Valor Previo: " + cursor.getString(cursor.getColumnIndex("cj01_2")) + ", Valor Nuevo: " + cj01_2.getText().toString() + "; ";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_cj01_2")).equals(lote_cj01_2.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_cj01_2 Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_cj01_2")) + ", Valor Nuevo: " + lote_cj01_2.getText().toString() + "; ";
+        }
+
+
+
+
+
+
+
+        return datos_cambiados;
+    }
+
+    public void llena_Texturizador(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+            adapter= new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, con.producto);
+            familia= con.producto;
+        }
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spTexturizador.setAdapter(adapter);
+    }
+
+    public void setTexturizador(String tx) {
+
+        for (int x = 0; x < familia.length; x++) {
+            if (tx.equals(familia[x])) {
+                spTexturizador.setSelection(x);
+            }
+        }
+    }
+
+    public void setCrema(String tx) {
+
+        for (int x = 0; x < tipo_Crema.length; x++) {
+            if (tx.equals(tipo_Crema[x])) {
+                spTipoCrema.setSelection(x);
+            }
+        }
+    }
+    public void setCrema2(String tx)
+    {
+
+        for(int x = 0;x<tipo_Crema2.length;x++){
+            if(tx.equals(tipo_Crema2[x])){
+                spTipoCrema2.setSelection(x);
+            }
+        }
+
+    }
+    public void setCuajado1(String tx){
+        for(int x = 0;x<tipo_cuajada_1.length;x++){
+            if(tx.equals(tipo_cuajada_1[x])){
+                spTipoCuajada1.setSelection(x);
+            }
+        }
+    }
+    public void setCuajado2(String tx){
+        for(int x = 0;x<tipo_cuajada_2.length;x++){
+            if(tx.equals(tipo_cuajada_2[x])){
+                spTipoCuajada2.setSelection(x);
+            }
+        }
+    }
+    public void setCuajado3(String tx){
+        for(int x = 0;x<tipo_cuajada_3.length;x++){
+            if(tx.equals(tipo_cuajada_3[x])){
+                spTipoCuajada3.setSelection(x);
+            }
+        }
+    }
+    public String switchTexter(boolean val){
+        if(val){
+            return "si";
+        }
+        else{
+            return"no";
+        }
+    }
+    public boolean textSwitcher(String val){
+        if (val.equals("si")){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void checarAbiertos(int val){
+
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) rlAddtina.getLayoutParams();
+        int rr=params.width;
+        switch (val) {
+            case 0:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res = new ResizeAnimation(rlAddtina, params.width, params.height, 1, 1);
+                rlAddtina.startAnimation(res);
+
+                if(!(var.isFromFundido())) {
+                    spTipoCuajada1.setSelection(0);
+                    spTipoCuajada2.setSelection(0);
+                    spTipoCuajada3.setSelection(0);
+
+                    lote_cj01_1.setText("");
+                    lote_cj01_2.setText("");
+                    lote_cj01_3.setText("");
+
+                    cj01_3.setText("");
+                    cj01_1.setText("");
+                    cj01_2.setText("");
+
+                    ph_cj01_1.setText("");
+                    ph_cj01_2.setText("");
+                    ph_cj01_3.setText("");
+                }
+
+                bandera=1;
+                btnBandera = 0;
+                break;
+            case 1:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res1 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 75);
+                rlAddtina.startAnimation(res1);
+                bandera=2;
+                btnBandera=1;
+
+                break;
+            case 2:
+                AddCuajada.setImageResource(R.drawable.add3);
+                ResizeAnimation res2 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 125);
+                rlAddtina.startAnimation(res2);
+                bandera=3;
+                btnBandera=2;
+                break;
+            case 3:
+                AddCuajada.setImageResource(R.drawable.menos);
+                ResizeAnimation res3 = new ResizeAnimation(rlAddtina, params.width, params.height, ViewGroup.LayoutParams.WRAP_CONTENT, 200);
+                rlAddtina.startAnimation(res3);
+                bandera=0;
+                btnBandera=3;
+                break;
+
+            default:
+                break;
+        }
+    }
+    public void launchView()
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Fundido.this);
+
+
+            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
+
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Fundido.this);
+        final ListView listview = new ListView(Fundido.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Fundido.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Fundido.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+        listview.setOnItemClickListener(Fundido.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Fundido.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
+
+    }
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
+
+    }
+
+
+
+
+
+
     public class GuardaFundidoSync extends AsyncTask<String, Void, Boolean>
 
     {
@@ -1136,7 +1659,7 @@ public class Fundido extends ActionBarActivity {
             Log.i("","La fecha es:    "+""+FechaH.Hoy_hora());
             request.addProperty("num_fundida", Fundida.getText().toString());
             request.addProperty("lote", Lote.getText().toString());
-            request.addProperty("familia", familia_sel);
+            request.addProperty("familia", btnFamiliaFun.getText().toString());
             request.addProperty("cj01", cj01.getText().toString());
             request.addProperty("lote_cj01", lote_cj01.getText().toString());
             request.addProperty("ph_cj01", ph_cj01.getText().toString());
@@ -1163,7 +1686,7 @@ public class Fundido extends ActionBarActivity {
             request.addProperty("tipo_crema", tipo_crema_sel);
             request.addProperty("lote_tipo_crema", lote_crema.getText().toString());
             request.addProperty("cantidad_crema", cantidad_crema.getText().toString());
-            request.addProperty("familia_reproceso", familia_repro_sel);
+            request.addProperty("familia_reproceso", btnFamiliaReproceso.getText().toString());
             request.addProperty("lote_fami_repro", lote_famiRepro.getText().toString());
             request.addProperty("cantidad_fami_repro", cantidad_reproceso.getText().toString());
             request.addProperty("temperatura", tempe_final.getText().toString());
@@ -1237,28 +1760,4 @@ public class Fundido extends ActionBarActivity {
                 Toast.makeText(Fundido.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
             }
         }}
-
-
-    public void PaginaMonitor(){
-
-
-        WebView myWebView = (WebView) findViewById(R.id.webView);
-        myWebView.loadUrl("http://"+Variables.getIp_servidor()+"/SignalRTest/simplechat.aspx?val=123");
-
-
-        WebSettings webSettings = myWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-    }
-    public void llenarValoresBusqueda(String lote) {
-
-        cursor= con.DAOLLenarFundido(lote);
-
-        Lote.setText(cursor.getString(cursor.getColumnIndex("lote")));
-        Linea.setText(cursor.getString(cursor.getColumnIndex("linea")));
-        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
-        Fundida.setText(cursor.getString(cursor.getColumnIndex("num_fundida")));
-        cj01.setText(cursor.getString(cursor.getColumnIndex("cj01")));
-
-    }
-
 }

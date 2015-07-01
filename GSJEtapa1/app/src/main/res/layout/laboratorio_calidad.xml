@@ -2,773 +2,836 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@android:color/white"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".Cuajado"
-    android:id="@+id/principal"
-    style="@style/Base.TextAppearance.AppCompat.Headline">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".Cuajado"
+        android:id="@+id/principal"
+        style="@style/Base.TextAppearance.AppCompat.Headline">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText"
-        android:textSize="25dp"
-        android:textColor="#98002E"
-        android:text=""
-        android:layout_marginTop="85dp"
-        android:layout_marginRight="100dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fechaText"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:text="Fecha"
-        android:layout_alignTop="@+id/fechaText1"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/fechaText1"
-        android:textColor="#98002E"
-        android:text=""
-        android:layout_toLeftOf="@+id/checkBox3"
-        android:layout_alignTop="@+id/tvLCLote"
-        android:layout_alignLeft="@+id/tvLCProducto1"
-        android:layout_alignStart="@+id/tvLCProducto1" />
-
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/editText" />
-
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:src="@drawable/log_primero"
-        android:layout_above="@+id/fechaText1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="LABORATORIO CALIDAD"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="32dp"
-        android:id="@+id/textView19"
-        android:layout_below="@+id/btnRegPendiLista"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:id="@+id/btnRegPendiLista"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView2"
-        android:layout_alignEnd="@+id/imageView2" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lote     "
-        android:textColor="@android:color/black"
-        android:textSize="25dp"
-        android:id="@+id/tvLCLote"
-        android:layout_alignBottom="@+id/tvLCLotePendiente"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/tvLCLotePendiente"
-        android:layout_below="@+id/imageView"
-        android:layout_alignLeft="@+id/btnECP"
-        android:layout_alignStart="@+id/btnECP"
-        android:layout_alignRight="@+id/btnECP"
-        android:layout_alignEnd="@+id/btnECP" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seleccionar Familia"
-        android:id="@+id/btnECP"
-        android:layout_alignBottom="@+id/tvLCFamilia"
-        android:layout_toRightOf="@+id/tvLCCodigo"
-        android:layout_toEndOf="@+id/tvLCCodigo" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Familia"
-        android:id="@+id/tvLCFamilia"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/fechaText1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvLCProducto"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:text="Producto"
-        android:layout_alignBottom="@+id/tvLCProducto1"
-        android:layout_toLeftOf="@+id/switchSabor"
-        android:layout_toStartOf="@+id/switchSabor" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Código Familia"
-        android:id="@+id/tvLCCodigo"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/tvLCProducto"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Seleccionar Producto"
-        android:id="@+id/tvLCProducto1"
-        android:textColor="#ff000000"
-        android:layout_alignTop="@+id/btnECP"
-        android:layout_toRightOf="@+id/textView219"
-        android:layout_toEndOf="@+id/textView219" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/tvLCCodigoFamilia"
-        android:textColor="#98002E"
-        android:layout_alignTop="@+id/tvLCCodigo"
-        android:layout_alignLeft="@+id/textView19"
-        android:layout_alignStart="@+id/textView19" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageView14"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/tvLCCodigo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PRUEBAS SENSORIALES"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView136"
-        android:layout_alignTop="@+id/imageView14"
-        android:layout_centerHorizontal="true" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Apariencia     "
-        android:id="@+id/switchApariencia"
-        android:layout_below="@+id/imageView14"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_marginTop="10dp"/>
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Color               "
-        android:id="@+id/switchColor"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/switchApariencia"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:textSize="25dp"
+            android:textColor="#98002E"
+            android:text=""
+            android:layout_marginTop="85dp"
+            android:layout_marginRight="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fechaText"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:text="Fecha"
+            android:layout_alignBottom="@+id/tvLCLotePendiente"
+            android:layout_alignLeft="@+id/tvLCProducto"
+            android:layout_alignStart="@+id/tvLCProducto" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:id="@+id/fechaText1"
+            android:textColor="#98002E"
+            android:text=""
+            android:layout_alignTop="@+id/fechaText"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/switchSabor"
+            android:layout_alignBottom="@+id/fechaText"
+            android:layout_alignLeft="@+id/tvLCProducto1"
+            android:layout_alignStart="@+id/tvLCProducto1" />
 
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sabor    "
-        android:id="@+id/switchSabor"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_below="@+id/imageView14"
-        android:layout_toRightOf="@+id/editText"
-        android:layout_toEndOf="@+id/editText" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/editText" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aroma  "
-        android:id="@+id/switchAroma"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/switchColor"
-        android:layout_alignLeft="@+id/switchSabor"
-        android:layout_alignStart="@+id/switchSabor" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageViewFuncional"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/swRalladoQR"
-        android:layout_marginBottom="30dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/log_primero"
+            android:layout_above="@+id/fechaText1" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PRUEBAS FUNCIONALES"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView137"
-        android:layout_alignTop="@+id/imageViewFuncional"
-        android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LABORATORIO CALIDAD"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="32dp"
+            android:id="@+id/textView19"
+            android:layout_below="@+id/btnRegPendiLista"
+            android:layout_centerHorizontal="true" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rallado"
-        android:id="@+id/switchRallado"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_below="@+id/imageViewFuncional"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="10dp"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/btnRegPendiLista"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"
-        android:id="@+id/textView112"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@+id/switchRallado"
-        android:layout_toRightOf="@+id/switchColor"
-        android:layout_toEndOf="@+id/switchColor" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote     "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/tvLCLote"
+            android:layout_alignBottom="@+id/tvLCLotePendiente"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/tvLCLotePendiente"
+            android:layout_below="@+id/imageView"
+            android:layout_alignLeft="@+id/btnECP"
+            android:layout_alignStart="@+id/btnECP"
+            android:layout_alignRight="@+id/switchApariencia"
+            android:layout_alignEnd="@+id/switchApariencia" />
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Prodcuto"
+            android:id="@+id/btnECP"
+            android:layout_toRightOf="@+id/tvLCCodigo"
+            android:layout_alignBottom="@+id/tvLCFamilia"
+            android:layout_alignRight="@+id/checkBox"
+            android:layout_alignEnd="@+id/checkBox" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Producto"
+            android:id="@+id/tvLCFamilia"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/fechaText1"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText7"
-        android:textSize="25dp"
-        android:layout_alignRight="@+id/editText17"
-        android:layout_alignEnd="@+id/editText17"
-        android:layout_alignBottom="@+id/textView112"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_below="@+id/textView137"
-        android:gravity="bottom" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLCProducto"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:text="Familia"
+            android:layout_alignBottom="@+id/btnECP"
+            android:layout_alignLeft="@+id/textView219"
+            android:layout_alignStart="@+id/textView219" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Fundido"
-        android:id="@+id/switchFundido"
-        android:checked="false"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/switchRallado"
-        android:layout_marginTop="25dp"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cod Prod    "
+            android:id="@+id/tvLCCodigo"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/tvLCProducto"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"
-        android:id="@+id/textView127"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignTop="@+id/switchFundido"
-        android:layout_toRightOf="@+id/switchApariencia"
-        android:layout_toEndOf="@+id/switchApariencia" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvLCProducto1"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/tvLCProducto"
+            android:layout_toRightOf="@+id/textView219"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText8"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/textView127"
-        android:layout_alignRight="@+id/imageViewFuncional"
-        android:layout_alignEnd="@+id/imageViewFuncional"
-        android:layout_below="@+id/editText7"
-        android:layout_toRightOf="@+id/fechaText"
-        android:layout_toEndOf="@+id/fechaText"
-        android:gravity="bottom" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:id="@+id/tvLCCodigoFamilia"
+            android:textColor="#98002E"
+            android:layout_alignTop="@+id/tvLCCodigo"
+            android:layout_alignLeft="@+id/textView19"
+            android:layout_alignStart="@+id/textView19" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView14"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/tvLCCodigo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner"
-        android:textAlignment="center"
-        android:gravity="center"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS SENSORIALES"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView136"
+            android:layout_alignTop="@+id/imageView14"
+            android:layout_centerHorizontal="true" />
 
-        android:layout_alignBottom="@+id/switchFundido"
-        android:layout_alignRight="@+id/switchRallado"
-        android:layout_alignEnd="@+id/switchRallado"
-        android:layout_alignTop="@+id/switchFundido"
-        android:layout_toRightOf="@+id/textView212"
-        android:layout_toEndOf="@+id/textView212" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apariencia     "
+            android:id="@+id/switchApariencia"
+            android:layout_below="@+id/imageView14"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"/>
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hebrado"
-        android:id="@+id/switchHebrado"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/switchFundido"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"
-        android:id="@+id/textView209"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignTop="@+id/switchHebrado"
-        android:layout_alignLeft="@+id/textView127"
-        android:layout_alignStart="@+id/textView127" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText9"
-        android:textSize="25dp"
-        android:layout_alignBottom="@+id/textView209"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_alignRight="@+id/editText8"
-        android:layout_alignEnd="@+id/editText8"
-        android:gravity="bottom" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Grasa Residual"
-        android:id="@+id/textView210"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/editText9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"/>
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+1"
-        android:textSize="25dp"
-        android:id="@+id/checkBox"
-        android:layout_alignTop="@+id/textView210"
-        android:layout_alignLeft="@+id/textView209"
-        android:layout_alignStart="@+id/textView209"
-        android:checked="false" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+2"
-        android:textSize="25dp"
-        android:id="@+id/checkBox2"
-        android:checked="false"
-        android:layout_alignBottom="@+id/textView210"
-        android:layout_alignLeft="@+id/textView213"
-        android:layout_alignStart="@+id/textView213" />
-
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+3"
-        android:textSize="25dp"
-        android:id="@+id/checkBox3"
-        android:layout_alignBottom="@+id/checkBox2"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:checked="false" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageViewFisico"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/textView210"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PRUEBAS FISICO QUIMICAS"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView138"
-        android:layout_alignTop="@+id/imageViewFisico"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Humedad"
-        android:id="@+id/textView211"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/imageViewFisico"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Grasa Total"
-        android:id="@+id/textView212"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/textView211"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pH"
-        android:id="@+id/textView213"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignTop="@+id/textView211"
-        android:layout_alignLeft="@+id/switchAroma"
-        android:layout_alignStart="@+id/switchAroma" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText10"
-        android:numeric="decimal"
-        android:layout_toRightOf="@+id/switchRallado"
-        android:layout_above="@+id/textView212"
-        android:layout_toLeftOf="@+id/textView219"
-        android:layout_toStartOf="@+id/textView219"
-        android:layout_below="@+id/imageViewFisico"
-        android:gravity="bottom" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText11"
-        android:layout_alignTop="@+id/textView212"
-        android:layout_alignLeft="@+id/editText10"
-        android:layout_alignStart="@+id/editText10"
-        android:layout_toLeftOf="@+id/editText"
-        android:layout_toStartOf="@+id/editText"
-        android:numeric="decimal"
-        android:gravity="bottom" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText13"
-        android:numeric="decimal"
-        android:layout_alignBottom="@+id/textView213"
-        android:layout_alignRight="@+id/imageViewFisico"
-        android:layout_alignEnd="@+id/imageViewFisico"
-        android:layout_below="@+id/imageViewFisico"
-        android:layout_toRightOf="@+id/textView137"
-        android:layout_toEndOf="@+id/textView137"
-        android:gravity="bottom" />
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:id="@+id/imageViewRemuestreo"
-        android:layout_marginTop="30dp"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_below="@+id/textView212"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignRight="@+id/imageView"
-        android:layout_alignEnd="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="REMUESTREO"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="25dp"
-        android:id="@+id/textView139"
-        android:layout_alignTop="@+id/imageViewRemuestreo"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Humedad"
-        android:id="@+id/textView214"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/switchRemuestreo"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Grasa Total"
-        android:id="@+id/textView215"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="44dp"
-        android:layout_below="@+id/textView216"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pH"
-        android:id="@+id/textView216"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignTop="@+id/textView214"
-        android:layout_alignLeft="@+id/textView213"
-        android:layout_alignStart="@+id/textView213" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText14"
-        android:layout_above="@+id/textView215"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_alignRight="@+id/editText15"
-        android:layout_alignEnd="@+id/editText15"
-        android:numeric="decimal"
-        android:enabled="false"
-        android:layout_alignTop="@+id/editText16"
-        android:gravity="bottom" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText15"
-        android:numeric="decimal"
-        android:enabled="false"
-        android:layout_alignBottom="@+id/textView215"
-        android:layout_toLeftOf="@+id/fechaText"
-        android:layout_toRightOf="@+id/imageView2"
-        android:layout_toEndOf="@+id/imageView2"
-        android:layout_below="@+id/editText14"
-        android:gravity="bottom" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textColor="#98002E"
-        android:textSize="20dp"
-        android:id="@+id/editText16"
-        android:layout_alignRight="@+id/checkBox3"
-        android:layout_alignEnd="@+id/checkBox3"
-        android:layout_alignLeft="@+id/editText13"
-        android:layout_alignStart="@+id/editText13"
-        android:layout_alignBottom="@+id/textView216"
-        android:numeric="decimal"
-        android:enabled="false"
-        android:layout_below="@+id/switchRemuestreo"
-        android:gravity="bottom" />
-
-    <ImageButton
-        android:layout_width="210dp"
-        android:layout_height="105dp"
-        android:id="@+id/guardarBtn"
-        android:background="@drawable/actualizarmenos"
-        android:layout_alignTop="@+id/textView215"
-        android:layout_toEndOf="@+id/textView19"
-        android:layout_below="@+id/textView216"
-        android:layout_marginTop="100dp"
-        android:layout_toRightOf="@+id/textView19" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Necesidad de remuestreo"
-        android:id="@+id/switchRemuestreo"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:layout_below="@+id/textView139"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones de Sabor"
-        android:id="@+id/textView217"
-        android:textSize="25dp"
-        android:layout_marginTop="25dp"
-        android:textColor="@android:color/black"
-        android:layout_below="@+id/switchColor"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText17"
-        android:textSize="25dp"
-        android:layout_alignLeft="@+id/textView139"
-        android:layout_alignStart="@+id/textView139"
-        android:layout_alignBottom="@+id/textView217"
-        android:layout_alignRight="@+id/tvLCProducto1"
-        android:layout_alignEnd="@+id/tvLCProducto1" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Código Producto"
-        android:id="@+id/textView219"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:layout_alignBottom="@+id/tvLCCodigo"
-        android:layout_alignLeft="@+id/tvLCProducto"
-        android:layout_alignStart="@+id/tvLCProducto" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25dp"
-        android:id="@+id/tvLCCodigoProducto"
-        android:textColor="#98002E"
-        android:layout_alignBottom="@+id/textView219"
-        android:layout_alignRight="@+id/imageView14"
-        android:layout_alignEnd="@+id/imageView14"
-        android:layout_alignTop="@+id/textView219"
-        android:layout_alignLeft="@+id/tvLCProducto1"
-        android:layout_alignStart="@+id/tvLCProducto1"
-        android:layout_marginLeft="5dp"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btnBack"
-        android:background="@android:color/transparent"
-        android:enabled="false"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/imageView"
-        android:layout_toLeftOf="@+id/editText14"
-        android:layout_toStartOf="@+id/editText14" />
-
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/swRalladoQR"
-        android:checked="false"
-        android:textSize="25dp"
-        android:layout_below="@+id/textView217"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:layout_alignRight="@+id/switchColor"
-        android:layout_alignEnd="@+id/switchColor"
-        android:text="Rallado QR"
-        android:visibility="invisible" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Observaciones"
-        android:id="@+id/textView227"
-        android:textSize="25dp"
-        android:textColor="@android:color/black"
-        android:visibility="invisible"
-        android:layout_alignTop="@+id/swRalladoQR"
-        android:layout_alignRight="@+id/fechaText"
-        android:layout_alignEnd="@+id/fechaText" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/observacionesRalladoQR"
-        android:textSize="25dp"
-        android:gravity="bottom"
-        android:layout_alignBottom="@+id/textView227"
-        android:layout_alignRight="@+id/editText17"
-        android:layout_alignEnd="@+id/editText17"
-        android:visibility="invisible"
-        android:layout_toRightOf="@+id/fechaText"
-        android:layout_toEndOf="@+id/fechaText" />
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color               "
+            android:id="@+id/switchColor"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/switchApariencia"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
 
-</RelativeLayout>
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sabor    "
+            android:id="@+id/switchSabor"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_alignTop="@+id/switchApariencia"
+            android:layout_alignLeft="@+id/editText"
+            android:layout_alignStart="@+id/editText" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aroma  "
+            android:id="@+id/switchAroma"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/switchColor"
+            android:layout_alignLeft="@+id/switchSabor"
+            android:layout_alignStart="@+id/switchSabor" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageViewFuncional"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/swRalladoQR"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS FUNCIONALES"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView137"
+            android:layout_alignTop="@+id/imageViewFuncional"
+            android:layout_centerHorizontal="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Rallado     "
+            android:id="@+id/switchRallado"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_below="@+id/imageViewFuncional"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView112"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/switchRallado"
+            android:layout_toRightOf="@+id/switchColor"
+            android:layout_toEndOf="@+id/switchColor" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText7"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/editText17"
+            android:layout_alignEnd="@+id/editText17"
+            android:layout_alignBottom="@+id/textView112"
+            android:layout_alignLeft="@+id/editText8"
+            android:layout_alignStart="@+id/editText8"
+            android:layout_below="@+id/textView137"
+            android:gravity="bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fundido"
+            android:id="@+id/switchFundido"
+            android:checked="false"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/switchRallado"
+            android:layout_marginTop="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView127"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/switchFundido"
+            android:layout_toRightOf="@+id/switchApariencia"
+            android:layout_toEndOf="@+id/switchApariencia" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText8"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView127"
+            android:layout_alignRight="@+id/imageViewFuncional"
+            android:layout_alignEnd="@+id/imageViewFuncional"
+            android:layout_below="@+id/editText7"
+            android:layout_toRightOf="@+id/fechaText"
+            android:layout_toEndOf="@+id/fechaText"
+            android:gravity="bottom" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_alignBottom="@+id/switchFundido"
+            android:layout_alignRight="@+id/switchRallado"
+            android:layout_alignEnd="@+id/switchRallado"
+            android:layout_alignTop="@+id/switchFundido"
+            android:layout_toRightOf="@+id/textView212"
+            android:layout_toEndOf="@+id/textView212" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hebrado   "
+            android:id="@+id/switchHebrado"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/switchFundido"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView209"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/switchHebrado"
+            android:layout_alignLeft="@+id/textView127"
+            android:layout_alignStart="@+id/textView127" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText9"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView209"
+            android:layout_alignLeft="@+id/editText8"
+            android:layout_alignStart="@+id/editText8"
+            android:layout_alignRight="@+id/editText8"
+            android:layout_alignEnd="@+id/editText8"
+            android:gravity="bottom" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grasa Residual"
+            android:id="@+id/textView210"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="74dp"
+            android:layout_below="@+id/editText9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+1"
+            android:textSize="25dp"
+            android:id="@+id/checkBox"
+            android:layout_alignTop="@+id/textView210"
+            android:layout_alignLeft="@+id/textView209"
+            android:layout_alignStart="@+id/textView209"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+2"
+            android:textSize="25dp"
+            android:id="@+id/checkBox2"
+            android:checked="false"
+            android:layout_above="@+id/imageViewFisico"
+            android:layout_toRightOf="@+id/textView213"
+            android:layout_toEndOf="@+id/textView213" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+3"
+            android:textSize="25dp"
+            android:id="@+id/checkBox3"
+            android:layout_alignBottom="@+id/checkBox2"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:checked="false" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageViewFisico"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/textView210"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS FISICO QUIMICAS"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView138"
+            android:layout_alignTop="@+id/imageViewFisico"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humedad"
+            android:id="@+id/textView211"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/imageViewFisico"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grasa Total"
+            android:id="@+id/textView212"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView211"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH"
+            android:id="@+id/textView213"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/editText10"
+            android:layout_toRightOf="@+id/textView139"
+            android:layout_toEndOf="@+id/textView139" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText10"
+            android:numeric="decimal"
+            android:layout_toRightOf="@+id/switchRallado"
+            android:layout_toStartOf="@+id/switchAroma"
+            android:layout_below="@+id/imageViewFisico"
+            android:gravity="bottom"
+            android:layout_alignBottom="@+id/textView211"
+            android:layout_toLeftOf="@+id/switchAroma" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText11"
+            android:layout_alignTop="@+id/textView212"
+            android:layout_alignLeft="@+id/editText10"
+            android:layout_alignStart="@+id/editText10"
+            android:layout_toLeftOf="@+id/editText"
+            android:layout_toStartOf="@+id/editText"
+            android:numeric="decimal"
+            android:gravity="bottom" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText13"
+            android:numeric="decimal"
+            android:layout_alignRight="@+id/imageViewFisico"
+            android:layout_alignEnd="@+id/imageViewFisico"
+            android:layout_below="@+id/imageViewFisico"
+            android:layout_toEndOf="@+id/textView137"
+            android:gravity="bottom"
+            android:layout_above="@+id/textView212"
+            android:layout_alignLeft="@+id/editText16"
+            android:layout_alignStart="@+id/editText16" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageViewRemuestreo"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/textView212"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="REMUESTREO"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView139"
+            android:layout_alignTop="@+id/imageViewRemuestreo"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Humedad"
+            android:id="@+id/textView214"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/switchRemuestreo"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Grasa Total"
+            android:id="@+id/textView215"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="44dp"
+            android:layout_below="@+id/textView216"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="pH"
+            android:id="@+id/textView216"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/textView214"
+            android:layout_alignLeft="@+id/textView213"
+            android:layout_alignStart="@+id/textView213" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText14"
+            android:numeric="decimal"
+            android:enabled="false"
+            android:layout_alignTop="@+id/editText16"
+            android:gravity="bottom"
+            android:layout_alignRight="@+id/editText11"
+            android:layout_alignEnd="@+id/editText11"
+            android:layout_alignBottom="@+id/textView216"
+            android:layout_alignLeft="@+id/editText11"
+            android:layout_alignStart="@+id/editText11" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText15"
+            android:numeric="decimal"
+            android:enabled="false"
+            android:layout_below="@+id/editText14"
+            android:gravity="bottom"
+            android:layout_alignRight="@+id/editText14"
+            android:layout_alignEnd="@+id/editText14"
+            android:layout_alignBottom="@+id/textView215"
+            android:layout_toRightOf="@+id/switchHebrado"
+            android:layout_toEndOf="@+id/switchHebrado" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/editText16"
+            android:layout_alignRight="@+id/checkBox3"
+            android:layout_alignEnd="@+id/checkBox3"
+            android:numeric="decimal"
+            android:enabled="false"
+            android:layout_below="@+id/switchRemuestreo"
+            android:gravity="bottom"
+            android:layout_above="@+id/textView215"
+            android:layout_toRightOf="@+id/switchSabor"
+            android:layout_toEndOf="@+id/switchSabor" />
+
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="105dp"
+            android:id="@+id/guardarBtn"
+            android:background="@drawable/actualizarmenos"
+            android:layout_alignTop="@+id/textView215"
+            android:layout_toEndOf="@+id/textView19"
+            android:layout_below="@+id/textView216"
+            android:layout_marginTop="100dp"
+            android:layout_toRightOf="@+id/textView19" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Necesidad de remuestreo"
+            android:id="@+id/switchRemuestreo"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/textView139"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones de Sabor"
+            android:id="@+id/textView217"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/switchColor"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText17"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView217"
+            android:layout_alignRight="@+id/tvLCProducto1"
+            android:layout_alignEnd="@+id/tvLCProducto1"
+            android:layout_alignLeft="@+id/editText8"
+            android:layout_alignStart="@+id/editText8" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cod Fam    "
+            android:id="@+id/textView219"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/tvLCCodigoFamilia"
+            android:layout_toLeftOf="@+id/checkBox2"
+            android:layout_toStartOf="@+id/checkBox2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:id="@+id/tvLCCodigoProducto"
+            android:textColor="#98002E"
+            android:layout_alignBottom="@+id/textView219"
+            android:layout_alignRight="@+id/imageView14"
+            android:layout_alignEnd="@+id/imageView14"
+            android:layout_alignTop="@+id/textView219"
+            android:layout_alignLeft="@+id/tvLCProducto1"
+            android:layout_alignStart="@+id/tvLCProducto1"
+            android:layout_marginLeft="5dp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBack"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/imageView"
+            android:layout_toLeftOf="@+id/editText14"
+            android:layout_toStartOf="@+id/editText14" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/swRalladoQR"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:text="Rallado QR"
+            android:visibility="invisible"
+            android:layout_below="@+id/textView229"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView227"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:visibility="invisible"
+            android:layout_alignTop="@+id/swRalladoQR"
+            android:layout_alignLeft="@+id/textView112"
+            android:layout_alignStart="@+id/textView112" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/observacionesRalladoQR"
+            android:textSize="25dp"
+            android:gravity="bottom"
+            android:layout_alignBottom="@+id/textView227"
+            android:layout_alignRight="@+id/editText17"
+            android:layout_alignEnd="@+id/editText17"
+            android:visibility="invisible"
+            android:layout_toRightOf="@+id/fechaText"
+            android:layout_toEndOf="@+id/fechaText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones de Apariencia"
+            android:id="@+id/textView228"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView217"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones de Color"
+            android:id="@+id/textView229"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView228"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText20"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView228"
+            android:layout_alignRight="@+id/observacionesRalladoQR"
+            android:layout_alignEnd="@+id/observacionesRalladoQR"
+            android:layout_alignLeft="@+id/observacionesRalladoQR"
+            android:layout_alignStart="@+id/observacionesRalladoQR" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText21"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView229"
+            android:layout_alignRight="@+id/observacionesRalladoQR"
+            android:layout_alignEnd="@+id/observacionesRalladoQR"
+            android:layout_alignLeft="@+id/observacionesRalladoQR"
+            android:layout_alignStart="@+id/observacionesRalladoQR" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tajo          "
+            android:visibility="invisible"
+            android:id="@+id/switchTajo"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/editText9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+    </RelativeLayout>
 </ScrollView>
-

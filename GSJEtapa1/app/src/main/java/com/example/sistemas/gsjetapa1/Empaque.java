@@ -314,7 +314,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
 
                     if(exitoso){
                         limpia_campos();
-                        var.setFromEmpaque(false);
+
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
                     }
                     else{

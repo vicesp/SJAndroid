@@ -14,20 +14,87 @@ public class Variables {
     private static String equipo_tina;
     private static boolean tinaA;
     private static boolean pendiente_tina_A;
-    private static boolean fromSearch, fromEmpaque, fromCuajado,fromFundido, fromLaboratorio;
+    private static boolean fromSearch;
+    private static boolean fromEmpaque;
+    private static boolean fromCuajado;
+    private static boolean fromFundido;
+    private static boolean fromLaboratorio;
+    private static boolean fromProducto;
+    private static boolean fromCrema;
+
+    public static boolean isFromCuajadas() {
+        return fromCuajadas;
+    }
+
+    public static void setFromCuajadas(boolean fromCuajadas) {
+        Variables.fromCuajadas = fromCuajadas;
+    }
+
+    private static boolean fromCuajadas;
     private static boolean fromAdminLaboratorio;
     private static boolean fromAdminEmpaque;
     private static boolean fromAdminCuajado;
     private static boolean fromAdminTexturizador;
     private static boolean fromAdminFundido;
-    public static String loteTexturizador;
-    public static String loteEmpaque;
-    public static String loteCuajado;
-    public static String loteFundido;
-    public static String loteLaboratorio;
+    private static boolean fromAdminProducto;
+    private static boolean fromAdminCrema;
+
+    public static boolean isFromAdminCuajadas() {
+        return fromAdminCuajadas;
+    }
+
+    public static void setFromAdminCuajadas(boolean fromAdminCuajadas) {
+        Variables.fromAdminCuajadas = fromAdminCuajadas;
+    }
+
+    private static boolean fromAdminCuajadas;
+    private static String loteTexturizador;
+    private static String loteEmpaque;
+    private static String loteCuajado;
+    private static String loteFundido;
+    private static String loteLaboratorio;
+
+    public static boolean isFromCrema() {
+        return fromCrema;
+    }
+
+    public static void setFromCrema(boolean fromCrema) {
+        Variables.fromCrema = fromCrema;
+    }
+
+    public static boolean isFromAdminCrema() {
+        return fromAdminCrema;
+    }
+
+    public static void setFromAdminCrema(boolean fromAdminCrema) {
+        Variables.fromAdminCrema = fromAdminCrema;
+    }
+    public static String getLoteProducto() {
+        return loteProducto;
+    }
+
+    public static void setLoteProducto(String loteProducto) {
+        Variables.loteProducto = loteProducto;
+    }
+
+    private static String loteProducto;
     public static String codProdLaboratorio;
 
 
+    public static boolean isFromProducto() {
+        return fromProducto;
+    }
+
+    public static void setFromProducto(boolean fromProducto) {
+        Variables.fromProducto = fromProducto;
+    }
+    public static boolean isFromAdminProducto() {
+        return fromAdminProducto;
+    }
+
+    public static void setFromAdminProducto(boolean fromAdminProducto) {
+        Variables.fromAdminProducto = fromAdminProducto;
+    }
     public static boolean isFromAdminTexturizador() {
         return fromAdminTexturizador;
     }

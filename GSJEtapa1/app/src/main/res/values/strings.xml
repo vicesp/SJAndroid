@@ -28,5 +28,9 @@
     <string name="title_activity_laboratorio__calidad">Laboratorio_Calidad</string>
     <string name="title_activity_realizados">Realizados</string>
     <string name="title_activity_registro__familias">Registro_Familias</string>
+    <string name="title_activity_registro_texturizador">registro_texturizador</string>
+    <string name="title_activity_panel_lab">Panel_lab</string>
+    <string name="title_activity_crema__lab">Crema_Lab</string>
+    <string name="title_activity_cuajadas__lab">Cuajadas_Lab</string>
 
 </resources>

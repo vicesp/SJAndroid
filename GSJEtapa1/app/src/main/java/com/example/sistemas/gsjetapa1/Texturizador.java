@@ -80,6 +80,7 @@ public class Texturizador extends ActionBarActivity {
         con=new consultas();
         var= new Variables();
 
+        Variables.setIp_servidor(con.DAOSelecConfigIP());
 
         datos_cambiados="";
 
@@ -639,7 +640,7 @@ public class Texturizador extends ActionBarActivity {
                 if (var.isFromSearch()) {
 
                     generarDatosCambiados();
-                    Log.i("datos:", datos_cambiados);
+
                     if (datos_cambiados=="")
                     {
                         datos_cambiados="no se hicieron cambios";
@@ -656,11 +657,11 @@ public class Texturizador extends ActionBarActivity {
                 }
 
                 else {
-                    exitoso = con.DAOTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
+                    exitoso = con.DAOTexturizador(Lote.getText().toString(),FechaH.Hoy_hora(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
                             tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
-                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
+                            tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse,FechaH.Hoy());
 
                 }
                 if (exitoso) {
@@ -1121,7 +1122,6 @@ public class Texturizador extends ActionBarActivity {
         lote7.setText(cursor.getString(cursor.getColumnIndex("lote_mp008")));
         lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp009")));
         lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp010")));
-
         lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
         lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp026")));
         lote13.setText(cursor.getString(cursor.getColumnIndex("lote_mp027")));
@@ -1209,10 +1209,10 @@ public class Texturizador extends ActionBarActivity {
         protected Boolean doInBackground(final String... args)
         {
             final String NAMESPACE = "http://serv_gsj.net/";
-            final String URL = "http://" + Variables.getIp_servidor() + "ServidorWebSoap/ServicioClientes.asmx";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
             final String METHOD_NAME = "insertatexturizador";
             final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
-            final int time = 2000, time2 = 190000;
+            final int time = 20000, time2 = 190000;
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
