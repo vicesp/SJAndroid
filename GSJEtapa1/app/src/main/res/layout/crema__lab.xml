@@ -1,0 +1,505 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/white"
+    >
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:background="@android:color/white"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context=".Cuajado"
+        android:id="@+id/principal"
+        style="@style/Base.TextAppearance.AppCompat.Headline">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText"
+            android:textSize="25dp"
+            android:textColor="#98002E"
+            android:text=""
+            android:layout_marginTop="85dp"
+            android:layout_marginRight="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fechaText"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:text="Fecha    "
+            android:layout_above="@+id/imageView14"
+            android:layout_alignLeft="@+id/editText17"
+            android:layout_alignStart="@+id/editText17" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignBottom="@+id/editText" />
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView2"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:src="@drawable/log_primero"
+            android:layout_alignBottom="@+id/imageView" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CREMA LABORATORIO"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="32dp"
+            android:id="@+id/textView19"
+            android:layout_below="@+id/btnRegPendiLista"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:id="@+id/btnRegPendiLista"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lote     "
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/tvLCLote"
+            android:layout_alignBottom="@+id/tvLCLotePendiente"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#98002E"
+            android:textSize="20dp"
+            android:id="@+id/tvLCLotePendiente"
+            android:layout_below="@+id/imageView"
+            android:layout_alignRight="@+id/switchSabor"
+            android:layout_alignEnd="@+id/switchSabor"
+            android:layout_toRightOf="@+id/tvLCLote"
+            android:layout_toEndOf="@+id/tvLCLote" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView14"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_below="@+id/tvLCLote" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS SENSORIALES"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView136"
+            android:layout_alignTop="@+id/imageView14"
+            android:layout_centerHorizontal="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sabor                 "
+            android:id="@+id/switchSabor"
+            android:layout_below="@+id/imageView14"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="10dp"/>
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Color                  "
+            android:id="@+id/switchColor"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/switchSabor"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Aroma                "
+            android:id="@+id/switchAroma"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_below="@+id/switchColor"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="32dp" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageViewFuncional"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_below="@+id/textView229" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS FUNCIONALES"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView137"
+            android:layout_alignTop="@+id/imageViewFuncional"
+            android:layout_centerHorizontal="true" />
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Escurrimiento   "
+            android:id="@+id/switchEscurrimiento"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_below="@+id/imageViewFuncional"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="0dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView112"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/switchEscurrimiento"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText7"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/editText17"
+            android:layout_alignEnd="@+id/editText17"
+            android:layout_alignBottom="@+id/textView112"
+            android:layout_below="@+id/textView137"
+            android:gravity="bottom" />
+
+
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fluidez               "
+            android:id="@+id/switchFluidez"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@id/switchEscurrimiento"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText9"
+            android:textSize="25dp"
+            android:gravity="bottom"
+            android:layout_alignRight="@+id/imageViewFuncional"
+            android:layout_alignEnd="@+id/imageViewFuncional" />
+
+        <ImageButton
+            android:layout_width="210dp"
+            android:layout_height="105dp"
+            android:id="@+id/guardarBtn"
+            android:background="@drawable/actualizarmenos"
+            android:layout_below="@+id/textView235"
+            android:layout_alignRight="@+id/editText23"
+            android:layout_alignEnd="@+id/editText23"
+            android:layout_marginTop="58dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView217"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/switchSabor"
+            android:layout_alignLeft="@+id/textView228"
+            android:layout_alignStart="@+id/textView228" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText17"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/imageView"
+            android:layout_alignEnd="@+id/imageView"
+            android:layout_toEndOf="@+id/editText"
+            android:layout_alignBottom="@+id/textView217"
+            android:layout_toRightOf="@+id/editText" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnBack"
+            android:background="@android:color/transparent"
+            android:enabled="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/tvLCLotePendiente"
+            android:layout_alignParentTop="true"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView228"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_above="@+id/switchAroma"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText20"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/editText17"
+            android:layout_alignEnd="@+id/editText17"
+            android:layout_alignBottom="@+id/textView228"
+            android:layout_alignLeft="@+id/editText17"
+            android:layout_alignStart="@+id/editText17" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView229"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/switchAroma"
+            android:layout_alignLeft="@+id/textView112"
+            android:layout_alignStart="@+id/textView112" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText21"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/editText17"
+            android:layout_alignEnd="@+id/editText17"
+            android:layout_above="@+id/imageViewFuncional"
+            android:layout_alignLeft="@+id/editText20"
+            android:layout_alignStart="@+id/editText20" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones"
+            android:id="@+id/textView230"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/switchFluidez"
+            android:layout_alignLeft="@+id/textView112"
+            android:layout_alignStart="@+id/textView112" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText22"
+            android:textSize="25dp"
+            android:layout_alignLeft="@+id/editText21"
+            android:layout_alignStart="@+id/editText21"
+            android:layout_alignBottom="@+id/textView112"
+            android:layout_alignRight="@+id/imageViewFuncional"
+            android:layout_alignEnd="@+id/imageViewFuncional" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText23"
+            android:textSize="25dp"
+            android:layout_alignLeft="@+id/editText22"
+            android:layout_alignStart="@+id/editText22"
+            android:layout_alignBottom="@+id/textView230"
+            android:layout_alignRight="@+id/imageViewFuncional"
+            android:layout_alignEnd="@+id/imageViewFuncional" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:id="@+id/imageView20"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/madera"
+            android:scaleType="centerCrop"
+            android:layout_below="@+id/textView230"
+            android:layout_alignRight="@+id/imageViewFuncional"
+            android:layout_alignEnd="@+id/imageViewFuncional"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PRUEBAS FISICOQUIMICAS"
+            android:textColor="@android:color/white"
+            android:typeface="monospace"
+            android:textSize="25dp"
+            android:id="@+id/textView231"
+            android:layout_alignTop="@+id/imageView20"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/fechaText1"
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:layout_alignBaseline="@+id/fechaText"
+            android:layout_alignBottom="@+id/fechaText"
+            android:layout_toRightOf="@+id/fechaText"
+            android:layout_toEndOf="@+id/fechaText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ph"
+            android:id="@+id/textView232"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/imageView20"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Solidos Totales"
+            android:id="@+id/textView233"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBaseline="@+id/textView232"
+            android:layout_alignBottom="@+id/textView232"
+            android:layout_alignRight="@+id/textView137"
+            android:layout_alignEnd="@+id/textView137" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Acidez"
+            android:id="@+id/textView234"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView232"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/imageView2"
+            android:layout_alignEnd="@+id/imageView2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="%  Grasa"
+            android:id="@+id/textView235"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/textView234"
+            android:layout_alignLeft="@+id/textView233"
+            android:layout_alignStart="@+id/textView233" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText24"
+            android:textSize="25dp"
+            android:layout_below="@+id/textView231"
+            android:layout_toRightOf="@+id/textView234"
+            android:layout_above="@+id/textView234"
+            android:layout_toLeftOf="@+id/textView230"
+            android:layout_toStartOf="@+id/textView230"
+            android:numeric="decimal" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText25"
+            android:textSize="25dp"
+            android:layout_toRightOf="@+id/textView234"
+            android:layout_alignBottom="@+id/textView234"
+            android:layout_alignRight="@+id/editText24"
+            android:layout_alignEnd="@+id/editText24"
+            android:numeric="decimal" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText26"
+            android:textSize="25dp"
+            android:layout_alignRight="@+id/editText23"
+            android:layout_alignEnd="@+id/editText23"
+            android:layout_alignBottom="@+id/textView233"
+            android:layout_alignLeft="@+id/guardarBtn"
+            android:numeric="decimal" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText27"
+            android:textSize="25dp"
+            android:layout_alignLeft="@+id/editText26"
+            android:layout_alignStart="@+id/editText26"
+            android:layout_alignBottom="@+id/textView235"
+            android:layout_alignRight="@+id/editText26"
+            android:layout_alignEnd="@+id/editText26"
+            android:numeric="decimal" />
+
+
+    </RelativeLayout>
+</ScrollView>

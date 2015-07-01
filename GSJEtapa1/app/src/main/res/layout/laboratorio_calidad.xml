@@ -408,10 +408,10 @@
             android:id="@+id/textView210"
             android:textSize="25dp"
             android:textColor="@android:color/black"
+            android:layout_marginTop="74dp"
             android:layout_below="@+id/editText9"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="25dp"/>
+            android:layout_alignParentStart="true" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -730,7 +730,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/btnBack"
             android:background="@android:color/transparent"
-            android:enabled="false"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -744,10 +743,10 @@
             android:id="@+id/swRalladoQR"
             android:checked="false"
             android:textSize="25dp"
-            android:layout_marginTop="78dp"
+            android:layout_marginTop="25dp"
             android:text="Rallado QR"
             android:visibility="invisible"
-            android:layout_below="@+id/textView217"
+            android:layout_below="@+id/textView229"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -787,6 +786,18 @@
             android:layout_below="@+id/textView217"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Observaciones de Color"
+            android:id="@+id/textView229"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView228"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
 
         <EditText
             android:layout_width="wrap_content"
@@ -798,7 +809,29 @@
             android:layout_alignEnd="@+id/observacionesRalladoQR"
             android:layout_alignLeft="@+id/observacionesRalladoQR"
             android:layout_alignStart="@+id/observacionesRalladoQR" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText21"
+            android:textSize="25dp"
+            android:layout_alignBottom="@+id/textView229"
+            android:layout_alignRight="@+id/observacionesRalladoQR"
+            android:layout_alignEnd="@+id/observacionesRalladoQR"
+            android:layout_alignLeft="@+id/observacionesRalladoQR"
+            android:layout_alignStart="@+id/observacionesRalladoQR" />
 
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tajo          "
+            android:visibility="invisible"
+            android:id="@+id/switchTajo"
+            android:checked="false"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:layout_below="@+id/editText9"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 </ScrollView>

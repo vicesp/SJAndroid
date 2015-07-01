@@ -1911,7 +1911,7 @@ public class consultas {
                               String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
                               String observaciones_hebrado,String grasa_residual,String humedad,String ph,
                               String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones,
-                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia, String fecha_hoy)
+                                         String ralladoqr, String observaciones_ralladoqr, String observaciones_apariencia, String fecha_hoy, String observaciones_color, String tajo)
     {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
@@ -1921,16 +1921,39 @@ public class consultas {
             db.execSQL("INSERT INTO laboratorio_calidad (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                             "color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido," +
                             "hebrado, observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo, grasa_remuestreo," +
-                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia,fecha_hoy) VALUES ('" +
+                            "necesidad_remuestreo, ralladoqr, observaciones_ralladoqr, observaciones_apariencia,fecha_hoy, observaciones_color, tajo) VALUES ('" +
 
-                            fecha + "','" + lote + "','" + familia + "','" + producto + "','" +
-                            codigo_prod + "','" + codigo_fam + "','" + apariencia + "','" + sabor + "','" + color + "','" + aroma + "','" +
-                            observaciones_sabor + "','" + rallado + "','" + observaciones_rallado + "','" +
-                            fundido + "','" + observaciones_fundido + "','" + hebrado + "','" +
-                            observaciones_hebrado + "','" + grasa_residual + "','" + humedad + "','" + ph + "','" +
-                            grasa_total + "','" + humedad_remuestreo + "','" + ph_remuestreo + "','" +
-                            grasa_remuestreo + "','" + necesidad_remuestreo +"','"+ralladoqr+"','"+observaciones_ralladoqr+"','"+observaciones_apariencia+"','"
-                            +fecha_hoy+
+                            fecha + "','" +
+                            lote + "','" +
+                            familia + "','" +
+                            producto + "','" +
+                            codigo_prod + "','" +
+                            codigo_fam + "','" +
+                            apariencia + "','" +
+                            sabor + "','" +
+                            color + "','" +
+                            aroma + "','" +
+                            observaciones_sabor + "','" +
+                            rallado + "','" +
+                            observaciones_rallado + "','" +
+                            fundido + "','" +
+                            observaciones_fundido + "','" +
+                            hebrado + "','" +
+                            observaciones_hebrado + "','" +
+                            grasa_residual + "','" +
+                            humedad + "','" +
+                            ph + "','" +
+                            grasa_total + "','" +
+                            humedad_remuestreo + "','" +
+                            ph_remuestreo + "','" +
+                            grasa_remuestreo + "','" +
+                            necesidad_remuestreo + "','" +
+                            ralladoqr + "','" +
+                            observaciones_ralladoqr + "','" +
+                            observaciones_apariencia + "','"
+                            + fecha_hoy + "','" +
+                            observaciones_color +"','"+
+                            tajo+
                             "');"
             );
             return true;
@@ -1942,21 +1965,46 @@ public class consultas {
     }
     /****************    Consulta para actualizar Laboratorio Calidad   *************/
 
-    public boolean DAOActualizarLaboratorioCalidad(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,String sabor,
-                          String color,String aroma,String observaciones_sabor, String rallado,
-                          String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
-                          String observaciones_hebrado,String grasa_residual,String humedad,String ph,
-                          String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr, String observaciones_apariencia){
+    public boolean DAOActualizarLaboratorioCalidad(
+            String fecha, String lote,String familia,String producto,String codigo_prod,
+            String codigo_fam,String apariencia,String sabor,
+            String color,String aroma,String observaciones_sabor, String rallado,
+            String observaciones_rallado,String fundido,String observaciones_fundido,String hebrado,
+            String observaciones_hebrado,String grasa_residual,String humedad,String ph,
+            String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo,
+            String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr,
+            String observaciones_apariencia, String observaciones_color, String tajo){
 
         db = myDbHelper.getWritableDatabase();
-        try {db.execSQL("UPDATE laboratorio_calidad SET lote = '" + lote + "', familia='" + familia + "', producto='" + producto + "'," +
-                "codigo_prod='" + codigo_prod + "', codigo_fam='" + codigo_fam + "', apariencia='" + apariencia + "',sabor='" + sabor + "'," +
-                "color='" + color + "', aroma='" + aroma + "', observaciones_sabor='" + observaciones_sabor + "', rallado='" + rallado + "'," +
-                "observaciones_rallado='" + observaciones_rallado + "', fundido='" + fundido + "', observaciones_fundido='" + observaciones_fundido + "'," +
-                "hebrado='" + hebrado + "', observaciones_hebrado='" + observaciones_hebrado + "', grasa_residual='" + grasa_residual + "'," +
-                "humedad='" + humedad + "', ph='" + ph + "', grasa_total='" + grasa_total + "', humedad_remuestreo='" + humedad_remuestreo + "'," +
-                "ph_remuestreo='" + ph_remuestreo + "', grasa_remuestreo='" + grasa_remuestreo + "'," + "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
-                "ralladoqr='" + ralladoqr + "', observaciones_ralladoqr='" + observaciones_ralldoqr + "',observaciones_apariencia='" + observaciones_apariencia + "'" +
+        try {db.execSQL("UPDATE laboratorio_calidad SET " +
+                "lote = '" + lote + "', " +
+                "familia='" + familia + "', " +
+                "producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_fam='" + codigo_fam + "', " +
+                "apariencia='" + apariencia + "'," +
+                "sabor='" + sabor + "'," +
+                "color='" + color + "', " +
+                "aroma='" + aroma + "', " +
+                "observaciones_sabor='" + observaciones_sabor + "', " +
+                "rallado='" + rallado + "'," +
+                "observaciones_rallado='" + observaciones_rallado + "', " +
+                "fundido='" + fundido + "', " +
+                "observaciones_fundido='" + observaciones_fundido + "'," +
+                "hebrado='" + hebrado + "', " +
+                "observaciones_hebrado='" + observaciones_hebrado + "', grasa_residual='" + grasa_residual + "'," +
+                "humedad='" + humedad + "', " +
+                "ph='" + ph + "', " +
+                "grasa_total='" + grasa_total + "', " +
+                "humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', " +
+                "grasa_remuestreo='" + grasa_remuestreo + "'," +
+                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "ralladoqr='" + ralladoqr + "', " +
+                "observaciones_ralladoqr='" + observaciones_ralldoqr + "'," +
+                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
+                "observaciones_color = '"+observaciones_color+ "', " +
+                "tajo = '"+tajo+"'"+
                 "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "';");
 
             myDbHelper.close();
@@ -2007,7 +2055,7 @@ public class consultas {
             cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia, sabor" +
                     ", color, aroma, observaciones_sabor, rallado, observaciones_rallado, fundido, observaciones_fundido, hebrado" +
                     ", observaciones_hebrado, grasa_residual, humedad, ph, grasa_total, humedad_remuestreo, ph_remuestreo, grasa_remuestreo, necesidad_remuestreo," +
-                    " ralladoqr, observaciones_ralladoqr, observaciones_apariencia, fecha_hoy " +
+                    " ralladoqr, observaciones_ralladoqr, observaciones_apariencia, fecha_hoy, observaciones_color, tajo " +
 
                     "FROM laboratorio_calidad WHERE lote ='" + lote + "' AND codigo_prod ='"+codigo_prod+"';", null);
             if (cursor.moveToPosition(0)) {
@@ -2039,7 +2087,7 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia, tajo FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
@@ -2089,6 +2137,61 @@ public class consultas {
         return productosArray;
     }
 
+
+    /****************    Consulta para Crema lab      *************/
+
+    public Boolean DAOCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                               String ac_sue, String st_sue, String fecha_hoy){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
+                    "VALUES ('"+
+                            lote+"','"+
+                            fecha+"','"+
+                            hum_cuaj+"','"+
+                            gras_cuaj+"','"+
+                            ph_cuaj+"','"+
+                            ph_sue+"','"+
+                            ac_sue+"','"+
+                            st_sue+"','"+
+                            fecha_hoy+"')");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para Actualizar lab      *************/
+
+    public Boolean DAOActualizaCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                               String ac_sue, String st_sue){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fehca_hoy) " +
+                    "VALUES ('"+
+                    lote+"','"+
+                    fecha+"','"+
+                    hum_cuaj+"','"+
+                    gras_cuaj+"','"+
+                    ph_cuaj+"','"+
+                    ph_sue+"','"+
+                    ac_sue+"','"+
+                    st_sue+"','"+
+            "");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
 
     /****************    Consulta para Configuracion IP      *************/
     public boolean DAOConfigIP(String ip_actual,String fecha){

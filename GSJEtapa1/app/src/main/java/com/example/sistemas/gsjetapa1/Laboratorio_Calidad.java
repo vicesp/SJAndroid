@@ -57,9 +57,10 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     private Button btn_listviewdialog, btnBack;
     private ImageButton Guardar;
     private CheckBox check1, check2, check3;
-    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR;
+    private Switch swApa, swCo, swSa, swAro, swRall, swHeb, swRem, swRallQR, swTaj;
     private EditText Lote, observaciones_sabor, observaciones_rallado, observaciones_fundido, observaciones_hebrado,
-            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr, observaciones_apariencia;
+            humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_ralladoqr, observaciones_apariencia,
+            observaciones_color;
     private Spinner spinnerDiez;
     private boolean deCual;
     private String Nombre_PT[];
@@ -132,7 +133,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString());
+                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString(),
+                                                       observaciones_color.getText().toString(),switchTexter(swTaj.isChecked()));
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -148,7 +150,12 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
-                                                       switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString(),FechaH.Hoy());
+                                                       switchTexter(swRem.isChecked()), "",
+                                                       switchTexter(swRallQR.isChecked()),
+                                                       observaciones_ralladoqr.getText().toString(),
+                                                       observaciones_apariencia.getText().toString(),
+                                                       FechaH.Hoy(),
+                                                       observaciones_color.getText().toString(), switchTexter(swTaj.isChecked()));
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -171,6 +178,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         swHeb=(Switch)findViewById(R.id.switchHebrado);
         swRallQR=(Switch)findViewById(R.id.swRalladoQR);
         swRem = (Switch)findViewById(R.id.switchRemuestreo);
+        swTaj=(Switch)findViewById(R.id.switchTajo);
         swRem.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -193,14 +201,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         Lote =(EditText)findViewById(R.id.tvLCLotePendiente);
         observaciones_sabor=(EditText)findViewById(R.id.editText17);
         observaciones_apariencia=(EditText)findViewById(R.id.editText20);
+        observaciones_color=(EditText)findViewById(R.id.editText21);
         observaciones_rallado=(EditText)findViewById(R.id.editText7);
         observaciones_fundido=(EditText)findViewById(R.id.editText8);
         observaciones_hebrado=(EditText)findViewById(R.id.editText9);
         observaciones_ralladoqr=(EditText)findViewById(R.id.observacionesRalladoQR);
         humedad=(EditText)findViewById(R.id.editText10);
-        ph=(EditText)findViewById(R.id.editText11);
-
-        grasa_total=(EditText)findViewById(R.id.editText13);
+        ph=(EditText)findViewById(R.id.editText13);
+        grasa_total=(EditText)findViewById(R.id.editText11);
         humRem=(EditText)findViewById(R.id.editText14);
         grasRem=(EditText)findViewById(R.id.editText15);
         phRem=(EditText)findViewById(R.id.editText16);
@@ -254,10 +262,18 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             @Override
             public void onClick(View v) {
-                var.setFromAdminLaboratorio(true);
-                finish();
-                startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class ));
 
+                Log.i("Lab:", ""+var.isFromLaboratorio());
+                if(var.isFromLaboratorio()) {
+                    var.setFromAdminLaboratorio(true);
+                    finish();
+                    startActivity(new Intent(Laboratorio_Calidad.this, Realizados.class));
+                }
+                else{
+                    finish();
+                    startActivity(new Intent(Laboratorio_Calidad.this, Panel_Lab.class));
+
+                }
 
             }
         });
@@ -328,6 +344,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             observaciones_rallado.setEnabled(true);
             swRall.setEnabled(true);
 
+        }
+
+        if (cursor.getInt(cursor.getColumnIndex("tajo"))==1){
+            swTaj.setVisibility(View.VISIBLE);
+        }
+        else{
+            swTaj.setVisibility(View.INVISIBLE);
         }
 
 
@@ -477,6 +500,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         observaciones_rallado.setText(cursor.getString(cursor.getColumnIndex("observaciones_rallado")));
         observaciones_fundido.setText(cursor.getString(cursor.getColumnIndex("observaciones_fundido")));
         observaciones_hebrado.setText(cursor.getString(cursor.getColumnIndex("observaciones_hebrado")));
+        observaciones_color.setText(cursor.getString(cursor.getColumnIndex("observaciones_color")));
         humedad.setText(cursor.getString(cursor.getColumnIndex("humedad")));
         ph.setText(cursor.getString(cursor.getColumnIndex("ph")));
         grasa_total.setText(cursor.getString(cursor.getColumnIndex("grasa_total")));
@@ -494,31 +518,38 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         spinnerDiez.setSelection(getIndex(cursor.getString(cursor.getColumnIndex("fundido"))));
         btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("familia")));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
+        if (cursor.getInt(cursor.getColumnIndex("tajo")) == 1) {
+            swTaj.setChecked(true);
+        }
+        else {
+            swTaj.setChecked(false);
+        }
 
         swRallQR.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("ralladoqr"))));
         observaciones_ralladoqr.setText(cursor.getString(cursor.getColumnIndex("observaciones_ralladoqr")));
         observaciones_apariencia.setText(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")));
 
-        if(codigo_prod.getText().toString().substring(0,2).equals("QR"))
-        {
+        try {
+            if (codigo_prod.getText().toString().substring(0, 2).equals("QR")) {
 
-            observaciones_ralladoqr.setVisibility(View.VISIBLE);
-            observacionesqr.setVisibility(View.VISIBLE);
-            swRallQR.setVisibility(View.VISIBLE);
+                observaciones_ralladoqr.setVisibility(View.VISIBLE);
+                observacionesqr.setVisibility(View.VISIBLE);
+                swRallQR.setVisibility(View.VISIBLE);
 
-            observaciones_rallado.setEnabled(false);
-            swRall.setEnabled(false);
+                observaciones_rallado.setEnabled(false);
+                swRall.setEnabled(false);
 
+            } else {
+                observaciones_ralladoqr.setVisibility(View.INVISIBLE);
+                observacionesqr.setVisibility(View.INVISIBLE);
+                swRallQR.setVisibility(View.INVISIBLE);
+
+                observaciones_rallado.setEnabled(true);
+                swRall.setEnabled(true);
+
+            }
         }
-        else{
-            observaciones_ralladoqr.setVisibility(View.INVISIBLE);
-            observacionesqr.setVisibility(View.INVISIBLE);
-            swRallQR.setVisibility(View.INVISIBLE);
-
-            observaciones_rallado.setEnabled(true);
-            swRall.setEnabled(true);
-
-        }
+        catch (Exception e){}
 
     }
 
@@ -614,6 +645,9 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         check1.setChecked(false);
         check2.setChecked(false);
         check3.setChecked(false);
+        observaciones_color.setText("");
+        swTaj.setChecked(false);
+        swTaj.setVisibility(View.INVISIBLE);
 
     }
     public class GuardaLaboratorio extends AsyncTask<String, Void, Boolean>

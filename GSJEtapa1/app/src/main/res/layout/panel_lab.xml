@@ -1,0 +1,263 @@
+
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/white"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".Cuajado"
+    android:id="@+id/principal"
+    style="@style/Base.TextAppearance.AppCompat.Headline">
+
+
+
+
+
+    <TextView android:text="cc" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"
+        android:id="@+id/tvcentro" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText"
+        android:layout_marginTop="85dp"
+        android:text="CC"
+        android:visibility="invisible"
+        android:layout_marginRight="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lote            "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:visibility="invisible"
+        android:id="@+id/textView"
+
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/madera"
+        android:scaleType="centerCrop"
+        android:layout_above="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/log_primero"
+        android:layout_above="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fecha        "
+        android:textColor="@android:color/black"
+        android:textSize="25dp"
+        android:id="@+id/textView3"
+
+        android:layout_below="@+id/imageView"
+        android:layout_toRightOf="@+id/editText"
+        android:layout_toEndOf="@+id/editText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="19/02/2015"
+        android:textColor="#98002E"
+        android:textSize="25dp"
+
+        android:id="@+id/tvExpFecha"
+        android:layout_below="@+id/imageView"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="REGISTRO DE PRODUCCIÓN"
+    android:textColor="@android:color/white"
+    android:typeface="monospace"
+    android:textSize="22dp"
+    android:id="@+id/textView18"
+    android:layout_alignParentTop="true"
+    android:layout_alignLeft="@+id/tvExpFecha"
+    android:layout_alignStart="@+id/tvExpFecha" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PANEL LABORATORIO"
+        android:textColor="@android:color/white"
+        android:typeface="monospace"
+        android:textSize="32dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/textView19"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="300dp"
+        android:layout_marginTop="50dp"
+        android:background="@drawable/plantilla_marco"
+        android:id="@+id/relativeLayout6"
+        android:layout_below="@+id/editText">
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnPT"
+            android:text="PRODUCTO TERMINADO"
+            android:background="@drawable/red_button"
+            android:layout_below="@+id/textView223"
+            android:layout_alignLeft="@+id/textView223"
+            android:layout_alignStart="@+id/textView223" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnCrem"
+            android:background="@drawable/red_button"
+            android:text="CREMA"
+            android:layout_below="@+id/textView224"
+            android:layout_alignRight="@+id/textView224"
+            android:layout_alignEnd="@+id/textView224"
+            android:layout_marginLeft="30dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText18"
+            android:visibility="invisible"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText19"
+            android:visibility="invisible"
+            android:layout_alignBottom="@+id/editText18"
+            android:layout_toLeftOf="@+id/editText18" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView220"
+            android:layout_above="@+id/editText18"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Seccion del Laboratorio"
+            android:textColor="#98002E"
+            android:textSize="30dp"
+            android:layout_marginTop="0dp"
+            android:id="@+id/textView221"
+            android:background="@android:color/white"
+            android:layout_above="@+id/textView222"
+            android:layout_toRightOf="@+id/textView222"
+            android:layout_toEndOf="@+id/textView222" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   "
+            android:textColor="#98002E"
+            android:textSize="25dp"
+            android:id="@+id/textView222"
+            android:layout_below="@+id/editText19" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CUAJADO_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView223"
+            android:layout_below="@+id/textView222"
+            android:layout_toRightOf="@+id/textView222"
+            android:layout_toEndOf="@+id/textView222" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="FUNDIDO_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView224"
+            android:layout_below="@+id/textView222"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EMPAQUE_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView225"
+            android:layout_alignTop="@+id/textView224"
+            android:layout_toLeftOf="@+id/editText19"
+            android:layout_toStartOf="@+id/editText19" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TEXTURIZADOR_A"
+            android:visibility="invisible"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView226"
+            android:layout_below="@+id/btnPT"
+            android:layout_toRightOf="@+id/textView223"
+            android:layout_toEndOf="@+id/textView223"
+            android:layout_marginTop="41dp" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnCuaj"
+            android:background="@drawable/red_button"
+            android:text="CUAJADAS"
+            android:layout_below="@+id/textView225"
+            android:layout_alignRight="@+id/textView225"
+            android:layout_alignEnd="@+id/textView225" />
+
+    </RelativeLayout>
+
+
+</RelativeLayout>
+

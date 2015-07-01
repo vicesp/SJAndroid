@@ -20,18 +20,55 @@ public class Variables {
     private static boolean fromFundido;
     private static boolean fromLaboratorio;
     private static boolean fromProducto;
+    private static boolean fromCrema;
+
+    public static boolean isFromCuajadas() {
+        return fromCuajadas;
+    }
+
+    public static void setFromCuajadas(boolean fromCuajadas) {
+        Variables.fromCuajadas = fromCuajadas;
+    }
+
+    private static boolean fromCuajadas;
     private static boolean fromAdminLaboratorio;
     private static boolean fromAdminEmpaque;
     private static boolean fromAdminCuajado;
     private static boolean fromAdminTexturizador;
     private static boolean fromAdminFundido;
     private static boolean fromAdminProducto;
+    private static boolean fromAdminCrema;
+
+    public static boolean isFromAdminCuajadas() {
+        return fromAdminCuajadas;
+    }
+
+    public static void setFromAdminCuajadas(boolean fromAdminCuajadas) {
+        Variables.fromAdminCuajadas = fromAdminCuajadas;
+    }
+
+    private static boolean fromAdminCuajadas;
     private static String loteTexturizador;
     private static String loteEmpaque;
     private static String loteCuajado;
     private static String loteFundido;
     private static String loteLaboratorio;
 
+    public static boolean isFromCrema() {
+        return fromCrema;
+    }
+
+    public static void setFromCrema(boolean fromCrema) {
+        Variables.fromCrema = fromCrema;
+    }
+
+    public static boolean isFromAdminCrema() {
+        return fromAdminCrema;
+    }
+
+    public static void setFromAdminCrema(boolean fromAdminCrema) {
+        Variables.fromAdminCrema = fromAdminCrema;
+    }
     public static String getLoteProducto() {
         return loteProducto;
     }

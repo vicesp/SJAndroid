@@ -129,9 +129,10 @@ public class Login extends Activity {
                 }
                 else if (tipoUsuario==14)
                 {
-
+                    Variables.setFromLaboratorio(false);
+                    Variables.setFromCrema(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Laboratorio_Calidad.class));
+                    finish();startActivity(new Intent(Login.this, Panel_Lab.class));
 
                 }
                 else if (tipoUsuario==15)
