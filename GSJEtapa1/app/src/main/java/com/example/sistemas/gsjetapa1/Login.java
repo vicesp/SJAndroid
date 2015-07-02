@@ -133,7 +133,7 @@ public class Login extends Activity {
                     Variables.setFromCrema(false);
                     Variables.setFromCuajadas(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Panel_Lab.class));
+                    finish();startActivity(new Intent(Login.this, Detector_Metales.class));
 
                 }
                 else if (tipoUsuario==15)

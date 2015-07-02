@@ -82,19 +82,28 @@
         </activity>
         <activity
             android:name=".Registro_Texturizador"
-            android:label="@string/title_activity_registro_texturizador" >
+            android:label="@string/title_activity_registro_texturizador"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Panel_Lab"
-            android:label="@string/title_activity_panel_lab" >
+            android:label="@string/title_activity_panel_lab"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Crema_Lab"
-            android:label="@string/title_activity_crema__lab" >
+            android:label="@string/title_activity_crema__lab"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Cuajadas_Lab"
-            android:label="@string/title_activity_cuajadas__lab" >
+            android:label="@string/title_activity_cuajadas__lab"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".Detector_Metales"
+            android:label="@string/title_activity_detector__metales"
+            android:screenOrientation="landscape">
         </activity>
     </application>
 
