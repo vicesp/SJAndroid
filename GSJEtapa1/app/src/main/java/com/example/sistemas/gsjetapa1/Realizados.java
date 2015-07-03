@@ -89,10 +89,11 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         Regresa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(var.isFromAdminCrema()||var.isFromAdminCuajadas()||var.isFromAdminLaboratorio()){
+                if(var.isFromAdminCrema()||var.isFromAdminCuajadas()||var.isFromAdminLaboratorio()||var.isFromAdminRequeson()){
                     var.setFromAdminCuajadas(true);
                     var.setFromAdminCrema(true);
                     var.setFromAdminLaboratorio(true);
+                    var.setFromAdminRequeson(true);
                     finish();startActivity(new Intent(Realizados.this, Panel_Lab.class));
                 }
                 else{
@@ -133,6 +134,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 }
                 else if (var.isFromAdminCrema()){
                     LLena_Lista(con.DAOListaCremaLabRealizado(fechaSeleccionada(calendario.getDate())));
+                }
+                else if(var.isFromAdminRequeson()){
+                    LLena_Lista(con.DAOListaRequesonLab(fechaSeleccionada(calendario.getDate())));
                 }
             }
         });
@@ -178,6 +182,10 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
         if(var.isFromAdminCrema()){
             LLena_Lista(con.DAOListaCremaLabRealizado(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("CREMA LAB REALIZADOS");
+        }
+        if(var.isFromAdminRequeson()){
+            LLena_Lista(con.DAOListaRequesonLab(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("REQUESON LAB REALIZADOS");
         }
     }
 
@@ -263,6 +271,11 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setFromCrema(true);
             var.setLoteCrema(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
             finish();startActivity(new Intent(Realizados.this, Crema_Lab.class));
+        }
+        else if(var.isFromAdminRequeson()){
+            var.setFromRequeson(true);
+            var.setLoteRequeson(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();startActivity(new Intent(Realizados.this, Requeson_Lab.class));
         }
     }
     @Override

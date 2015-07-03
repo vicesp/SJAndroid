@@ -22,6 +22,16 @@ public class Variables {
     private static boolean fromProducto;
     private static boolean fromCrema;
 
+    public static boolean isFromRequeson() {
+        return fromRequeson;
+    }
+
+    public static void setFromRequeson(boolean fromRequeson) {
+        Variables.fromRequeson = fromRequeson;
+    }
+
+    private static boolean fromRequeson;
+
     public static boolean isFromCuajadas() {
         return fromCuajadas;
     }
@@ -39,6 +49,16 @@ public class Variables {
     private static boolean fromAdminProducto;
     private static boolean fromAdminCrema;
 
+    public static boolean isFromAdminRequeson() {
+        return fromAdminRequeson;
+    }
+
+    public static void setFromAdminRequeson(boolean fromAdminRequeson) {
+        Variables.fromAdminRequeson = fromAdminRequeson;
+    }
+
+    private static boolean fromAdminRequeson;
+
     public static boolean isFromAdminCuajadas() {
         return fromAdminCuajadas;
     }
@@ -54,6 +74,16 @@ public class Variables {
     private static String loteFundido;
     private static String loteLaboratorio;
     private static String loteCuajadas;
+
+    public static String getLoteRequeson() {
+        return loteRequeson;
+    }
+
+    public static void setLoteRequeson(String loteRequeson) {
+        Variables.loteRequeson = loteRequeson;
+    }
+
+    private static String loteRequeson;
 
     public static String getLoteCrema() {
         return loteCrema;

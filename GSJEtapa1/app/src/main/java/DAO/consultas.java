@@ -2385,6 +2385,184 @@ public class consultas {
         }
     }
 
+    /****************    Consulta para Requeson Lab    *************/
+    public boolean DAORequesonLab(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,
+                                  String sabor, String color,String aroma,String observaciones_sabor,String humedad, String ph, String grasa_total,
+                                  String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo,
+                                  String observaciones_apariencia, String fecha_hoy, String observaciones_color, String untabilidad, String observaciones_untabilidad)
+    {
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO requeson_lab (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+                            "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo," +
+                            " grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color, untabilidad, observaciones_untabilidad) " +
+                            "VALUES ('" +
+
+                            fecha + "','" +
+                            lote + "','" +
+                            familia + "','" +
+                            producto + "','" +
+                            codigo_prod + "','" +
+                            codigo_fam + "','" +
+                            apariencia + "','" +
+                            sabor + "','" +
+                            color + "','" +
+                            aroma + "','" +
+                            observaciones_sabor + "','" +
+                            humedad + "','" +
+                            ph + "','" +
+                            grasa_total + "','" +
+                            humedad_remuestreo + "','" +
+                            ph_remuestreo + "','" +
+                            grasa_remuestreo + "','" +
+                            necesidad_remuestreo + "','" +
+                            observaciones_apariencia + "','" +
+                            fecha_hoy + "','" +
+                            observaciones_color + "','" +
+                            untabilidad+"','" +
+                            observaciones_untabilidad+"'" +
+                            ");"
+            );
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para actualizar RequesonLab  *************/
+
+    public boolean DAOActualizarRequesonLab(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,
+                                            String sabor, String color,String aroma,String observaciones_sabor,String humedad, String ph, String grasa_total,
+                                            String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo,
+                                            String observaciones_apariencia, String observaciones_color, String untabilidad, String observaciones_untabilidad){
+
+        db = myDbHelper.getWritableDatabase();
+        Log.i("Sql", "UPDATE requeson_lab SET " +
+                "lote = '" + lote + "', " +
+                "familia='" + familia + "', " +
+                "producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_fam='" + codigo_fam + "', " +
+                "apariencia='" + apariencia + "'," +
+                "sabor='" + sabor + "'," +
+                "color='" + color + "', " +
+                "aroma='" + aroma + "', " +
+                "observaciones_sabor='" + observaciones_sabor + "', " +
+                "humedad='" + humedad + "', " +
+                "ph='" + ph + "', " +
+                "grasa_total='" + grasa_total + "', " +
+                "humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', " +
+                "grasa_remuestreo='" + grasa_remuestreo + "'," +
+                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
+                "observaciones_color = '"+observaciones_color+ "', " +
+                "untabilidad='"+untabilidad+"','"+
+                "observaciones_untabilidad='"+observaciones_untabilidad+"' "+
+                "WHERE fecha_hoy = '" + fecha +"';");
+        try {db.execSQL("UPDATE requeson_lab SET " +
+                "lote = '" + lote + "', " +
+                "familia='" + familia + "', " +
+                "producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_fam='" + codigo_fam + "', " +
+                "apariencia='" + apariencia + "'," +
+                "sabor='" + sabor + "'," +
+                "color='" + color + "', " +
+                "aroma='" + aroma + "', " +
+                "observaciones_sabor='" + observaciones_sabor + "', " +
+                "humedad='" + humedad + "', " +
+                "ph='" + ph + "', " +
+                "grasa_total='" + grasa_total + "', " +
+                "humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', " +
+                "grasa_remuestreo='" + grasa_remuestreo + "'," +
+                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
+                "observaciones_color = '"+observaciones_color+ "', " +
+                "untabilidad='"+untabilidad+"',"+
+                "observaciones_untabilidad='"+observaciones_untabilidad+"' "+
+                 "WHERE lote = '"+lote+"';");
+
+            myDbHelper.close();
+            db.close();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
+
+    /****************    Consulta para Llenar la lista de Requeson Lab   *************/
+    public ArrayList<consultas> DAOListaRequesonLab(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM requeson_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+
+    /****************    Consulta para LLenar Requeson    *************/
+    public Cursor DAOLLenarRequesonLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+                                    "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo,"+
+                                    "grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color," +
+                                    "untabilidad, observaciones_untabilidad " +
+
+                    "FROM requeson_lab WHERE lote ='" + lote + "';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+
     /****************    Consulta para Configuracion IP      *************/
     public boolean DAOConfigIP(String ip_actual,String fecha){
 

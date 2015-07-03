@@ -94,6 +94,7 @@ public class Administrador extends ActionBarActivity {
                 var.setFromAdminLaboratorio(true);
                 var.setFromAdminCrema(true);
                 var.setFromAdminCuajadas(true);
+                var.setFromAdminRequeson(true);
                 finish();startActivity(new Intent(Administrador.this, Panel_Lab.class));
 
             }

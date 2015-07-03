@@ -124,11 +124,13 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="300dp"
+        android:layout_height="500dp"
         android:layout_marginTop="50dp"
         android:background="@drawable/plantilla_marco"
         android:id="@+id/relativeLayout6"
-        android:layout_below="@+id/editText">
+        android:layout_below="@+id/editText"
+        android:layout_alignRight="@+id/tvExpFecha"
+        android:layout_alignEnd="@+id/tvExpFecha">
 
         <Button
             android:layout_width="150dp"
@@ -255,6 +257,16 @@
             android:layout_below="@+id/textView225"
             android:layout_alignRight="@+id/textView225"
             android:layout_alignEnd="@+id/textView225" />
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnRequeson"
+            android:background="@drawable/red_button"
+            android:text="REQUESON"
+            android:layout_below="@+id/textView226"
+            android:layout_alignLeft="@+id/btnCrem"
+            android:layout_alignStart="@+id/btnCrem" />
 
     </RelativeLayout>
 

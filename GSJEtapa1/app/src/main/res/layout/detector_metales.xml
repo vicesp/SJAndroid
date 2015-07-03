@@ -151,8 +151,7 @@
         android:textColor="@android:color/black"
         android:textSize="25dp"
         android:id="@+id/textView243"
-        android:layout_alignBaseline="@+id/tvNombre"
-        android:layout_alignBottom="@+id/tvNombre"
+        android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -163,30 +162,29 @@
         android:textColor="#98002E"
         android:textSize="25dp"
         android:id="@+id/tvNombre"
-        android:layout_alignBottom="@+id/btnInfo"
+        android:layout_alignTop="@+id/textView243"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Informacion"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:text=""
+        android:background="@drawable/info"
         android:id="@+id/btnInfo"
-        android:layout_below="@+id/imageView"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/imageButton"
+        android:layout_alignStart="@+id/imageButton" />
 
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="1750dp"
-        android:background="@drawable/plantilla_texturizador"
+        android:layout_height="2700dp"
+        android:background="@drawable/detector_layout"
         android:id="@+id/relativeLayout"
-        android:layout_below="@+id/textView243"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginTop="50dp">
+        android:layout_below="@+id/btnInfo">
 
 
         <TextView
@@ -197,9 +195,9 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_marginLeft="58dp"
-            android:layout_marginStart="58dp"
-            android:layout_alignParentTop="true"
+            android:layout_marginLeft="56dp"
+            android:layout_marginStart="56dp"
+            android:layout_alignTop="@+id/textView246"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
 
@@ -211,11 +209,11 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/textView247"
-            android:layout_toStartOf="@+id/textView247"
-            android:layout_marginRight="161dp"
-            android:layout_marginEnd="161dp" />
+            android:layout_marginLeft="167dp"
+            android:layout_marginStart="167dp"
+            android:layout_alignTop="@+id/textView247"
+            android:layout_toRightOf="@+id/textView244"
+            android:layout_toEndOf="@+id/textView244" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -225,7 +223,7 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_alignParentTop="true"
+            android:layout_alignTop="@+id/textView248"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -236,9 +234,9 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_marginRight="72dp"
-            android:layout_marginEnd="72dp"
-            android:layout_alignParentTop="true"
+            android:layout_marginRight="76dp"
+            android:layout_marginEnd="76dp"
+            android:layout_alignTop="@+id/textView245"
             android:layout_toLeftOf="@+id/textView245"
             android:layout_toStartOf="@+id/textView245" />
 
@@ -250,9 +248,9 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_marginRight="55dp"
-            android:layout_marginEnd="55dp"
-            android:layout_alignParentTop="true"
+            android:layout_marginRight="56dp"
+            android:layout_marginEnd="56dp"
+            android:layout_alignTop="@+id/textView249"
             android:layout_toLeftOf="@+id/textView249"
             android:layout_toStartOf="@+id/textView249" />
 
@@ -264,15 +262,18 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
+            android:layout_marginRight="46dp"
+            android:layout_marginEnd="46dp"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="48dp"
-            android:layout_marginEnd="48dp" />
+            android:layout_marginTop="76dp" />
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="59dp"
+    android:layout_marginTop="30dp"
     android:id="@+id/relativeLayout7"
+    android:layout_marginBottom="25dp"
     android:layout_below="@+id/textView244"
     android:layout_alignParentLeft="true"
     android:layout_alignParentStart="true">
@@ -415,6 +416,30 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accion Correctiva"
+        android:textSize="25dp"
+        android:layout_marginTop="15dp"
+        android:textColor="@android:color/black"
+        android:id="@+id/textView250"
+        android:layout_below="@+id/swPacB1"
+        android:layout_alignLeft="@+id/btnHR1"
+        android:layout_alignStart="@+id/btnHR1" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText32"
+        android:layout_alignLeft="@+id/btnProd1"
+        android:layout_alignStart="@+id/btnProd1"
+        android:textSize="25dp"
+        android:layout_below="@+id/swPacB1"
+        android:layout_alignBottom="@+id/textView250"
+        android:layout_alignRight="@+id/swNF3"
+        android:layout_alignEnd="@+id/swNF3" />
+
 </RelativeLayout>
 
         <RelativeLayout
@@ -423,8 +448,7 @@
             android:id="@+id/relativeLayout8"
             android:layout_below="@+id/relativeLayout7"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginTop="25dp">
+            android:layout_alignParentStart="true">
 
             <Button
                 android:layout_width="wrap_content"
@@ -437,6 +461,18 @@
                 android:layout_alignBottom="@+id/switch5"
                 android:layout_toLeftOf="@+id/switch2"
                 android:layout_toStartOf="@+id/switch2" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button2"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button"
+                android:layout_alignBottom="@+id/button"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -554,17 +590,29 @@
                 android:layout_alignLeft="@+id/switch11"
                 android:layout_alignStart="@+id/switch11" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button2"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button"
-                android:layout_alignBottom="@+id/button"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView251"
+                android:layout_below="@+id/switch3"
+                android:layout_alignLeft="@+id/button2"
+                android:layout_alignStart="@+id/button2" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText33"
+                android:layout_alignLeft="@+id/button"
+                android:layout_alignStart="@+id/button"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch3"
+                android:layout_alignRight="@+id/switch12"
+                android:layout_alignEnd="@+id/switch12"
+                android:layout_alignBottom="@+id/textView251" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -587,6 +635,18 @@
                 android:layout_alignBottom="@+id/switch16"
                 android:layout_toLeftOf="@+id/switch13"
                 android:layout_toStartOf="@+id/switch13" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button4"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button3"
+                android:layout_alignBottom="@+id/button3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -704,17 +764,29 @@
                 android:layout_alignLeft="@+id/switch22"
                 android:layout_alignStart="@+id/switch22" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button4"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button3"
-                android:layout_alignBottom="@+id/button3"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView252"
+                android:layout_below="@+id/switch14"
+                android:layout_alignLeft="@+id/button4"
+                android:layout_alignStart="@+id/button4" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText34"
+                android:layout_alignLeft="@+id/button3"
+                android:layout_alignStart="@+id/button3"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch14"
+                android:layout_alignRight="@+id/switch23"
+                android:layout_alignEnd="@+id/switch23"
+                android:layout_alignBottom="@+id/textView252" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -737,6 +809,18 @@
                 android:layout_alignBottom="@+id/switch27"
                 android:layout_toLeftOf="@+id/switch24"
                 android:layout_toStartOf="@+id/switch24" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button6"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button5"
+                android:layout_alignBottom="@+id/button5"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -854,17 +938,29 @@
                 android:layout_alignLeft="@+id/switch33"
                 android:layout_alignStart="@+id/switch33" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button6"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button5"
-                android:layout_alignBottom="@+id/button5"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView253"
+                android:layout_below="@+id/switch25"
+                android:layout_alignLeft="@+id/button6"
+                android:layout_alignStart="@+id/button6" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText35"
+                android:layout_alignLeft="@+id/button5"
+                android:layout_alignStart="@+id/button5"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch25"
+                android:layout_alignRight="@+id/switch34"
+                android:layout_alignEnd="@+id/switch34"
+                android:layout_alignBottom="@+id/textView253" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -887,6 +983,18 @@
                 android:layout_alignBottom="@+id/switch38"
                 android:layout_toLeftOf="@+id/switch35"
                 android:layout_toStartOf="@+id/switch35" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button8"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button7"
+                android:layout_alignBottom="@+id/button7"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1004,17 +1112,29 @@
                 android:layout_alignLeft="@+id/switch44"
                 android:layout_alignStart="@+id/switch44" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button8"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button7"
-                android:layout_alignBottom="@+id/button7"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView254"
+                android:layout_below="@+id/switch36"
+                android:layout_alignLeft="@+id/button8"
+                android:layout_alignStart="@+id/button8" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText36"
+                android:layout_alignLeft="@+id/button7"
+                android:layout_alignStart="@+id/button7"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch36"
+                android:layout_alignRight="@+id/switch45"
+                android:layout_alignEnd="@+id/switch45"
+                android:layout_alignBottom="@+id/textView254" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1037,6 +1157,18 @@
                 android:layout_alignBottom="@+id/switch49"
                 android:layout_toLeftOf="@+id/switch46"
                 android:layout_toStartOf="@+id/switch46" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button10"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button9"
+                android:layout_alignBottom="@+id/button9"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1154,17 +1286,29 @@
                 android:layout_alignLeft="@+id/switch55"
                 android:layout_alignStart="@+id/switch55" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button10"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button9"
-                android:layout_alignBottom="@+id/button9"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView255"
+                android:layout_below="@+id/switch47"
+                android:layout_alignLeft="@+id/button10"
+                android:layout_alignStart="@+id/button10" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText37"
+                android:layout_alignLeft="@+id/button9"
+                android:layout_alignStart="@+id/button9"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch47"
+                android:layout_alignRight="@+id/switch56"
+                android:layout_alignEnd="@+id/switch56"
+                android:layout_alignBottom="@+id/textView255" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1187,6 +1331,18 @@
                 android:layout_alignBottom="@+id/switch60"
                 android:layout_toLeftOf="@+id/switch57"
                 android:layout_toStartOf="@+id/switch57" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button12"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button11"
+                android:layout_alignBottom="@+id/button11"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1304,17 +1460,29 @@
                 android:layout_alignLeft="@+id/switch66"
                 android:layout_alignStart="@+id/switch66" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button12"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button11"
-                android:layout_alignBottom="@+id/button11"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView256"
+                android:layout_below="@+id/switch58"
+                android:layout_alignLeft="@+id/button12"
+                android:layout_alignStart="@+id/button12" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText38"
+                android:layout_alignLeft="@+id/button11"
+                android:layout_alignStart="@+id/button11"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch58"
+                android:layout_alignRight="@+id/switch67"
+                android:layout_alignEnd="@+id/switch67"
+                android:layout_alignBottom="@+id/textView256" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1337,6 +1505,18 @@
                 android:layout_alignBottom="@+id/switch71"
                 android:layout_toLeftOf="@+id/switch68"
                 android:layout_toStartOf="@+id/switch68" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button14"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button13"
+                android:layout_alignBottom="@+id/button13"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1454,17 +1634,29 @@
                 android:layout_alignLeft="@+id/switch77"
                 android:layout_alignStart="@+id/switch77" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button14"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button13"
-                android:layout_alignBottom="@+id/button13"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView257"
+                android:layout_below="@+id/switch69"
+                android:layout_alignLeft="@+id/button14"
+                android:layout_alignStart="@+id/button14" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText39"
+                android:layout_alignLeft="@+id/button13"
+                android:layout_alignStart="@+id/button13"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch69"
+                android:layout_alignRight="@+id/switch78"
+                android:layout_alignEnd="@+id/switch78"
+                android:layout_alignBottom="@+id/textView257" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1487,6 +1679,18 @@
                 android:layout_alignBottom="@+id/switch82"
                 android:layout_toLeftOf="@+id/switch79"
                 android:layout_toStartOf="@+id/switch79" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button16"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button15"
+                android:layout_alignBottom="@+id/button15"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1604,17 +1808,29 @@
                 android:layout_alignLeft="@+id/switch88"
                 android:layout_alignStart="@+id/switch88" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button16"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button15"
-                android:layout_alignBottom="@+id/button15"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView258"
+                android:layout_below="@+id/switch80"
+                android:layout_alignLeft="@+id/button16"
+                android:layout_alignStart="@+id/button16" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText40"
+                android:layout_alignLeft="@+id/button15"
+                android:layout_alignStart="@+id/button15"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch80"
+                android:layout_alignRight="@+id/switch89"
+                android:layout_alignEnd="@+id/switch89"
+                android:layout_alignBottom="@+id/textView258" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1637,6 +1853,18 @@
                 android:layout_alignBottom="@+id/switch93"
                 android:layout_toLeftOf="@+id/switch90"
                 android:layout_toStartOf="@+id/switch90" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button18"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button17"
+                android:layout_alignBottom="@+id/button17"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1754,17 +1982,29 @@
                 android:layout_alignLeft="@+id/switch99"
                 android:layout_alignStart="@+id/switch99" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button18"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button17"
-                android:layout_alignBottom="@+id/button17"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView259"
+                android:layout_below="@+id/switch91"
+                android:layout_alignLeft="@+id/button18"
+                android:layout_alignStart="@+id/button18" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText41"
+                android:layout_alignLeft="@+id/button17"
+                android:layout_alignStart="@+id/button17"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch91"
+                android:layout_alignRight="@+id/switch100"
+                android:layout_alignEnd="@+id/switch100"
+                android:layout_alignBottom="@+id/textView259" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1787,6 +2027,18 @@
                 android:layout_alignBottom="@+id/switch104"
                 android:layout_toLeftOf="@+id/switch101"
                 android:layout_toStartOf="@+id/switch101" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button20"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button19"
+                android:layout_alignBottom="@+id/button19"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1904,17 +2156,29 @@
                 android:layout_alignLeft="@+id/switch110"
                 android:layout_alignStart="@+id/switch110" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button20"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button19"
-                android:layout_alignBottom="@+id/button19"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView260"
+                android:layout_below="@+id/switch102"
+                android:layout_alignLeft="@+id/button20"
+                android:layout_alignStart="@+id/button20" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText42"
+                android:layout_alignLeft="@+id/button19"
+                android:layout_alignStart="@+id/button19"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch102"
+                android:layout_alignRight="@+id/switch111"
+                android:layout_alignEnd="@+id/switch111"
+                android:layout_alignBottom="@+id/textView260" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1937,6 +2201,18 @@
                 android:layout_alignBottom="@+id/switch115"
                 android:layout_toLeftOf="@+id/switch112"
                 android:layout_toStartOf="@+id/switch112" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button22"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button21"
+                android:layout_alignBottom="@+id/button21"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2054,17 +2330,29 @@
                 android:layout_alignLeft="@+id/switch121"
                 android:layout_alignStart="@+id/switch121" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button22"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button21"
-                android:layout_alignBottom="@+id/button21"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView261"
+                android:layout_below="@+id/switch113"
+                android:layout_alignLeft="@+id/button22"
+                android:layout_alignStart="@+id/button22" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText43"
+                android:layout_alignLeft="@+id/button21"
+                android:layout_alignStart="@+id/button21"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch113"
+                android:layout_alignRight="@+id/switch122"
+                android:layout_alignEnd="@+id/switch122"
+                android:layout_alignBottom="@+id/textView261" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2087,6 +2375,18 @@
                 android:layout_alignBottom="@+id/switch126"
                 android:layout_toLeftOf="@+id/switch123"
                 android:layout_toStartOf="@+id/switch123" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button24"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button23"
+                android:layout_alignBottom="@+id/button23"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2204,17 +2504,29 @@
                 android:layout_alignLeft="@+id/switch132"
                 android:layout_alignStart="@+id/switch132" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button24"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button23"
-                android:layout_alignBottom="@+id/button23"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView262"
+                android:layout_below="@+id/switch124"
+                android:layout_alignLeft="@+id/button24"
+                android:layout_alignStart="@+id/button24" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText44"
+                android:layout_alignLeft="@+id/button23"
+                android:layout_alignStart="@+id/button23"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch124"
+                android:layout_alignRight="@+id/switch133"
+                android:layout_alignEnd="@+id/switch133"
+                android:layout_alignBottom="@+id/textView262" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2237,6 +2549,18 @@
                 android:layout_alignBottom="@+id/switch137"
                 android:layout_toLeftOf="@+id/switch134"
                 android:layout_toStartOf="@+id/switch134" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button26"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button25"
+                android:layout_alignBottom="@+id/button25"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2354,17 +2678,29 @@
                 android:layout_alignLeft="@+id/switch143"
                 android:layout_alignStart="@+id/switch143" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button26"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button25"
-                android:layout_alignBottom="@+id/button25"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView263"
+                android:layout_below="@+id/switch135"
+                android:layout_alignLeft="@+id/button26"
+                android:layout_alignStart="@+id/button26" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText45"
+                android:layout_alignLeft="@+id/button25"
+                android:layout_alignStart="@+id/button25"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch135"
+                android:layout_alignRight="@+id/switch144"
+                android:layout_alignEnd="@+id/switch144"
+                android:layout_alignBottom="@+id/textView263" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2375,7 +2711,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="50dp">
+            android:layout_marginBottom="25dp">
+
 
             <Button
                 android:layout_width="wrap_content"
@@ -2388,6 +2725,18 @@
                 android:layout_alignBottom="@+id/switch148"
                 android:layout_toLeftOf="@+id/switch145"
                 android:layout_toStartOf="@+id/switch145" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Obtener hora"
+                android:id="@+id/button28"
+                android:layout_marginLeft="35dp"
+                android:layout_marginStart="29dp"
+                android:layout_alignBaseline="@+id/button27"
+                android:layout_alignBottom="@+id/button27"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2505,17 +2854,29 @@
                 android:layout_alignLeft="@+id/switch154"
                 android:layout_alignStart="@+id/switch154" />
 
-            <Button
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Obtener hora"
-                android:id="@+id/button28"
-                android:layout_marginLeft="35dp"
-                android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button27"
-                android:layout_alignBottom="@+id/button27"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:text="Accion Correctiva"
+                android:textSize="25dp"
+                android:layout_marginTop="15dp"
+                android:textColor="@android:color/black"
+                android:id="@+id/textView264"
+                android:layout_below="@+id/switch146"
+                android:layout_alignLeft="@+id/button28"
+                android:layout_alignStart="@+id/button28" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText46"
+                android:layout_alignLeft="@+id/button27"
+                android:layout_alignStart="@+id/button27"
+                android:textSize="25dp"
+                android:layout_below="@+id/switch146"
+                android:layout_alignRight="@+id/switch155"
+                android:layout_alignEnd="@+id/switch155"
+                android:layout_alignBottom="@+id/textView264" />
         </RelativeLayout>
 
 
@@ -2527,9 +2888,9 @@
 
         android:id="@+id/imageButton"
         android:background="@drawable/actualizarmenos"
-        android:layout_below="@+id/relativeLayout"
-        android:layout_alignRight="@+id/relativeLayout"
-        android:layout_alignEnd="@+id/relativeLayout" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

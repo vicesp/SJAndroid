@@ -16,7 +16,7 @@ import DTO.Variables;
 
 public class Panel_Lab extends ActionBarActivity {
 
-    private Button btnPT, btnCrem, btnCuaj, btnBack;
+    private Button btnPT, btnCrem, btnCuaj, btnBack, btnReq;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
     private static Variables var;
@@ -28,7 +28,7 @@ public class Panel_Lab extends ActionBarActivity {
         setContentView(R.layout.panel_lab);
         FechaH=new Fecha_Hoy();
         var= new Variables();
-        flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio();
+        flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio()&&var.isFromAdminRequeson();
         /******* Text Views ********/
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
@@ -40,16 +40,17 @@ public class Panel_Lab extends ActionBarActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if(flag) {
+                        if (flag) {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
-                            var.setFromAdminLaboratorio(false);var.setFromAdminCuajadas(false);
-                        }
-                        else{
+                            var.setFromAdminLaboratorio(false);
+                            var.setFromAdminCuajadas(false);
+                            var.setFromAdminRequeson(false);
+                        } else {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Crema_Lab.class));
                         }
-                        }
+                    }
                 }
         );
         btnCuaj = (Button)findViewById(R.id.btnCuaj);
@@ -60,7 +61,7 @@ public class Panel_Lab extends ActionBarActivity {
                         if(flag) {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
-                            var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);
+                            var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);var.setFromAdminRequeson(false);
                         }
                         else {
                             finish();
@@ -77,13 +78,30 @@ public class Panel_Lab extends ActionBarActivity {
                         if(flag) {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
-                            var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);
+                            var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);var.setFromAdminRequeson(false);
                         }
                         else {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Laboratorio_Calidad.class));
                         }
                         }
+                }
+        );
+        btnReq = (Button)findViewById(R.id.btnRequeson);
+        btnReq.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(flag) {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Realizados.class));
+                            var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);
+                        }
+                        else {
+                            finish();
+                            startActivity(new Intent(Panel_Lab.this, Requeson_Lab.class));
+                        }
+                    }
                 }
         );
         btnBack=(Button)findViewById(R.id.btnBack);
@@ -95,6 +113,7 @@ public class Panel_Lab extends ActionBarActivity {
                             var.setFromAdminCuajadas(false);
                             var.setFromAdminLaboratorio(false);
                             var.setFromAdminCrema(false);
+                            var.setFromAdminRequeson(false);
                             finish();startActivity(new Intent(Panel_Lab.this, Administrador.class));
                         }
                     }});
