@@ -91,6 +91,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                     if (exitoso) {
 
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
+                        vaciarTodo();
                     } else {
                         Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                     }
@@ -192,5 +193,16 @@ public class Cuajadas_Lab extends ActionBarActivity {
         acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
         stSue.setText(cursor.getString(cursor.getColumnIndex("st_sue")));
 
+    }
+    public void vaciarTodo(){
+        Lote.setText("");
+        humCuaj.setText("");
+        grasCuaj.setText("");
+        grasCuaj.setVisibility(View.INVISIBLE);
+        checkBox.setChecked(false);
+        phCuaj.setText("");
+        phSue.setText("");
+        acSue.setText("");
+        stSue.setText("");
     }
 }

@@ -45,6 +45,7 @@ public class Login extends Activity {
 
                 consultas con = new consultas();
                 tipoUsuario=con.DAOLogin(Usuario.getText().toString(), Clave.getText().toString());
+                Variables.setFromExportador(false);
 
                 if(tipoUsuario==1)
                 {

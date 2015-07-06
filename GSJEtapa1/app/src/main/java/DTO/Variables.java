@@ -21,6 +21,34 @@ public class Variables {
     private static boolean fromLaboratorio;
     private static boolean fromProducto;
     private static boolean fromCrema;
+    private static boolean fromCuajadas;
+    private static boolean fromAdminLaboratorio;
+    private static boolean fromAdminEmpaque;
+    private static boolean fromAdminCuajado;
+    private static boolean fromAdminTexturizador;
+    private static boolean fromAdminFundido;
+    private static boolean fromAdminProducto;
+    private static boolean fromAdminCrema;
+    private static boolean fromAdminCuajadas;
+    private static String loteTexturizador;
+    private static String loteEmpaque;
+    private static String loteCuajado;
+    private static String loteFundido;
+    private static String loteLaboratorio;
+    private static String loteCuajadas;
+
+    public static boolean isFromAdminRequeson() {
+        return fromAdminRequeson;
+    }
+    public static boolean isFromExportador() {
+        return fromExportador;
+    }
+
+    public static void setFromExportador(boolean fromExportador) {
+        Variables.fromExportador = fromExportador;
+    }
+
+    private static boolean fromExportador;
 
     public static boolean isFromRequeson() {
         return fromRequeson;
@@ -40,18 +68,6 @@ public class Variables {
         Variables.fromCuajadas = fromCuajadas;
     }
 
-    private static boolean fromCuajadas;
-    private static boolean fromAdminLaboratorio;
-    private static boolean fromAdminEmpaque;
-    private static boolean fromAdminCuajado;
-    private static boolean fromAdminTexturizador;
-    private static boolean fromAdminFundido;
-    private static boolean fromAdminProducto;
-    private static boolean fromAdminCrema;
-
-    public static boolean isFromAdminRequeson() {
-        return fromAdminRequeson;
-    }
 
     public static void setFromAdminRequeson(boolean fromAdminRequeson) {
         Variables.fromAdminRequeson = fromAdminRequeson;
@@ -66,14 +82,6 @@ public class Variables {
     public static void setFromAdminCuajadas(boolean fromAdminCuajadas) {
         Variables.fromAdminCuajadas = fromAdminCuajadas;
     }
-
-    private static boolean fromAdminCuajadas;
-    private static String loteTexturizador;
-    private static String loteEmpaque;
-    private static String loteCuajado;
-    private static String loteFundido;
-    private static String loteLaboratorio;
-    private static String loteCuajadas;
 
     public static String getLoteRequeson() {
         return loteRequeson;

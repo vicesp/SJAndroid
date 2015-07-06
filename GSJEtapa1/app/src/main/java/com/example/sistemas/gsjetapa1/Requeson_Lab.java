@@ -147,7 +147,8 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Guardado));
-                                                   //vaciarTodo();
+
+                                                   vaciarTodo();
                                                } else {
                                                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                                                }
@@ -408,8 +409,69 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
 
 
     }
+    public void setUntabilidad(String untabilidad){
+        if(untabilidad.equals("Bueno")){
+            check1.setChecked(true);
+
+        }
+        else if(untabilidad.equals("Regular")){
+            check2.setChecked(true);
+        }
+        else{
+            check3.setChecked(true);
+
+        }
+    }
     public void llenarValoresBusqueda(String lote){
+        cursor = con.DAOLLenarRequesonLab(lote);
         Lote.setText(lote);
+
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        btn_listviewdialog.setText(cursor.getString(cursor.getColumnIndex("producto")));
+        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_prod")));
+        familia.setText(cursor.getString(cursor.getColumnIndex("familia")));
+        codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_fam")));
+        observaciones_sabor.setText(cursor.getString(cursor.getColumnIndex("observaciones_sabor")));
+        observaciones_apariencia.setText(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")));
+        observaciones_color.setText(cursor.getString(cursor.getColumnIndex("observaciones_color")));
+        observaciones_untabilidad.setText(cursor.getString(cursor.getColumnIndex("observaciones_untabilidad")));
+        humedad.setText(cursor.getString(cursor.getColumnIndex("humedad")));
+        grasa_total.setText(cursor.getString(cursor.getColumnIndex("grasa_total")));
+        ph.setText(cursor.getString(cursor.getColumnIndex("ph")));
+        humRem.setText(cursor.getString(cursor.getColumnIndex("humedad_remuestreo")));
+        phRem.setText(cursor.getString(cursor.getColumnIndex("ph_remuestreo")));
+        grasRem.setText(cursor.getString(cursor.getColumnIndex("grasa_remuestreo")));
+        swApa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("apariencia"))));
+        swCo.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("color"))));
+        swSa.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("sabor"))));
+        swAro.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("aroma"))));
+        swRem.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("necesidad_remuestreo"))));
+        setUntabilidad(cursor.getString(cursor.getColumnIndex("untabilidad")));
+    }
+    public void vaciarTodo(){
+        Lote.setText("");
+        codigo_prod.setText("");
+        observaciones_sabor.setText("");
+        humedad.setText("");
+        ph.setText("");
+        grasa_total.setText("");
+        humRem.setText("");
+        phRem.setText("");
+        grasRem.setText("");
+        swCo.setChecked(false);
+        swSa.setChecked(false);
+        swAro.setChecked(false);
+        swApa.setChecked(false);
+        swRem.setChecked(false);
+        btn_listviewdialog.setText("Seleccione un Producto");
+        codigo_fam.setText("");
+        observaciones_apariencia.setText("");
+        check1.setChecked(false);
+        check2.setChecked(false);
+        check3.setChecked(false);
+        observaciones_color.setText("");
+        familia.setText(null);
+        observaciones_untabilidad.setText(null);
 
     }
 

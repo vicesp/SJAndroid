@@ -108,6 +108,7 @@ public class Crema_Lab extends ActionBarActivity {
                             solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Fecha.getText().toString());
                 if(exitoso){
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
+                    vaciarTodo();
                 } else {
                     Alerta(getResources().getString(R.string.Alerta_NoGuardado));
 
@@ -215,5 +216,23 @@ public class Crema_Lab extends ActionBarActivity {
         solidos.setText(cursor.getString(cursor.getColumnIndex("solidos")));
         acidez.setText(cursor.getString(cursor.getColumnIndex("acidez")));
         grasa.setText(cursor.getString(cursor.getColumnIndex("grasa")));
+    }
+    public void vaciarTodo(){
+        Lote.setText(null);
+        sabor.setChecked(false);
+        obsSa.setText(null);
+        color.setChecked(false);
+        obsCo.setText(null);
+        aroma.setChecked(false);
+        obsAro.setText(null);
+        escurrimiento.setChecked(false);
+        obsEsc.setText(null);
+        fluidez.setChecked(false);
+        obsFlu.setText(null);
+        ph.setText(null);
+        solidos.setText(null);
+        acidez.setText(null);
+        grasa.setText(null);
+
     }
 }

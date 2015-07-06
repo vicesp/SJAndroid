@@ -2532,7 +2532,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+            cursor = db.rawQuery("SELECT lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
                                     "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo,"+
                                     "grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color," +
                                     "untabilidad, observaciones_untabilidad " +
