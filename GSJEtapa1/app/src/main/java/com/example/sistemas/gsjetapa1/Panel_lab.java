@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import DTO.AlertCalendar;
 import DTO.Fecha_Hoy;
 import DTO.Variables;
 
@@ -20,6 +21,7 @@ public class Panel_Lab extends ActionBarActivity {
     private TextView fecha;
     private static Fecha_Hoy FechaH;
     private static Variables var;
+    private static AlertCalendar AC;
     private Boolean flag;
 
     @Override
@@ -28,12 +30,17 @@ public class Panel_Lab extends ActionBarActivity {
         setContentView(R.layout.panel_lab);
         FechaH=new Fecha_Hoy();
         var= new Variables();
+       // AC =new AlertCalendar();
         flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio()&&var.isFromAdminRequeson();
         /******* Text Views ********/
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
 
         Log.i("bandera:", "" + flag);
+
+            //Variables.setExportar(Panel_Lab.this);
+
+
         /******* Buttons **********/
         btnCrem = (Button)findViewById(R.id.btnCrem);
         btnCrem.setOnClickListener(
@@ -46,7 +53,15 @@ public class Panel_Lab extends ActionBarActivity {
                             var.setFromAdminLaboratorio(false);
                             var.setFromAdminCuajadas(false);
                             var.setFromAdminRequeson(false);
-                        } else {
+                        }
+                        else if(var.isFromExportador()){
+
+                            Variables.setNombre_excel("Crema Lab");
+                            Variables.setNombre_tabla("crema_lab");
+                            Variables.setTipo_consulta(1);
+                            finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
+                        }
+                        else {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Crema_Lab.class));
                         }
@@ -62,6 +77,13 @@ public class Panel_Lab extends ActionBarActivity {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
                             var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);var.setFromAdminRequeson(false);
+                        }
+                        else if(var.isFromExportador()){
+
+                            Variables.setNombre_excel("Cuajadas Lab");
+                            Variables.setNombre_tabla("cuajadas_lab");
+                            finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
+                            //AC.dialogee.show();
                         }
                         else {
                             finish();
@@ -80,6 +102,13 @@ public class Panel_Lab extends ActionBarActivity {
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
                             var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);var.setFromAdminRequeson(false);
                         }
+                        else if(var.isFromExportador()){
+
+                            Variables.setNombre_excel("Laboratorio Calidad");
+                            Variables.setNombre_tabla("laboratorio_calidad");
+                            Variables.setTipo_consulta(1);
+                            finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
+                        }
                         else {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Laboratorio_Calidad.class));
@@ -96,6 +125,13 @@ public class Panel_Lab extends ActionBarActivity {
                             finish();
                             startActivity(new Intent(Panel_Lab.this, Realizados.class));
                             var.setFromAdminCuajadas(false);var.setFromAdminCrema(false);var.setFromAdminLaboratorio(false);
+                        }
+                        else if(var.isFromExportador()){
+
+                            Variables.setNombre_excel("Requeson Lab");
+                            Variables.setNombre_tabla("requeson_lab");
+                            Variables.setTipo_consulta(1);
+                            finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
                         }
                         else {
                             finish();
@@ -115,6 +151,10 @@ public class Panel_Lab extends ActionBarActivity {
                             var.setFromAdminCrema(false);
                             var.setFromAdminRequeson(false);
                             finish();startActivity(new Intent(Panel_Lab.this, Administrador.class));
+                        }
+                        if(var.isFromExportador()){
+                            finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
+                            var.setFromExportador(false);
                         }
                     }});
 

@@ -420,14 +420,21 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        if (fromWhere == 0) {
+       /* if (fromWhere == 0) {
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias", null);
         }
         else {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia IS NOT NULL", null);
+        }*/
+        if (fromWhere==0) {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia IS NOT NULL", null);
+        }
+        else{
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
+
         }
 
-            ArrayList<consultas> productosArray = new ArrayList<consultas>();
+        ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
             if (cursor.moveToFirst()) {
@@ -495,7 +502,7 @@ public class consultas {
         try{
 
 
-                db.execSQL("UPDATE cat_productos SET codigo_producto = '"+codigo+"', nombre_producto = '"+nombre+"', caducidad = '"+caducidad+"', eliminado = "+eliminar+" WHERE codigo_producto ='"+codigo+"';");
+                db.execSQL("UPDATE cat_productos SET codigo_producto = '"+codigo+"', nombre_producto = '"+nombre+"', caducidad = '"+caducidad+"', eliminado = "+eliminar+", codigo_familia = '"+familia+"' WHERE codigo_producto ='"+codigo+"';");
 
 
             check= true;
@@ -568,12 +575,11 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         try {
-
             db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
             return true;
         }
         catch(Exception e){
-
+            Log.i("Error:", e.toString());
             return false;
         }
     }
@@ -2087,7 +2093,7 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia, tajo FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_producto WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
@@ -2274,13 +2280,13 @@ public class consultas {
     /****************    Consulta para Cuajadas lab      *************/
 
     public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                  String ac_sue, String st_sue, String fecha_hoy){
+                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check) " +
                     "VALUES ('"+
                     lote+"','"+
                     fecha+"','"+
@@ -2290,7 +2296,9 @@ public class consultas {
                     ph_sue+"','"+
                     ac_sue+"','"+
                     st_sue+"','"+
-                    fecha_hoy+"')");
+                    fecha_hoy+"','"+
+                    grasa_check+
+                    "')");
             return true;
         }
         catch(SQLException e)
@@ -2301,7 +2309,7 @@ public class consultas {
     /****************    Consulta para ActualizarCuajadas lab      *************/
 
     public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                           String ac_sue, String st_sue){
+                                           String ac_sue, String st_sue, String grasa_check){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2315,6 +2323,7 @@ public class consultas {
                     " ph_sue='"+ph_sue+"'," +
                     " ac_sue='"+ac_sue+"'," +
                     " st_sue='"+st_sue+"'," +
+                    " grasa_check='"+grasa_check+"',"+
                     " fecha_hoy='"+fecha+"' WHERE lote = '"+lote+"';" +
 
                     "");
@@ -2358,7 +2367,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue " +
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check " +
                     "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 

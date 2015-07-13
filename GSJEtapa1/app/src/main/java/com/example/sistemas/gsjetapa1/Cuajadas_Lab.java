@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,9 +75,12 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
+                if(!(checkBox.isChecked())){
+                    grasCuaj.setText("");
+                }
                 if(var.isFromCuajadas()) {
                     boolean exitoso = con.DAOActualizaCuajadasLab(Lote.getText().toString(),Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
-                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString());
+                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(),switchTexter(checkBox.isChecked()));
                     if (exitoso) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
 
@@ -87,7 +91,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                 else {
                     boolean exitoso = con.DAOCuajadasLab(Lote.getText().toString(),FechaH.Hoy_hora() ,humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(),
-                            stSue.getText().toString(),FechaH.Hoy());
+                            stSue.getText().toString(),FechaH.Hoy(), switchTexter(checkBox.isChecked()));
                     if (exitoso) {
 
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -178,16 +182,19 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
     }
     public void llenarValoresBusqueda(String lote) {
+
         cursor = con.DAOLLenarCuajadasLab(lote);
+        Log.i("grasa:", cursor.getString(cursor.getColumnIndex("grasa_check")));
         Lote.setText(lote);
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         humCuaj.setText(cursor.getString(cursor.getColumnIndex("hum_cuaj")));
 
         grasCuaj.setText(cursor.getString(cursor.getColumnIndex("gras_cuaj")));
-        if(!(grasCuaj.getText().toString().equals(""))){
+        if(cursor.getString(cursor.getColumnIndex("grasa_check")).equals("si")){
             checkBox.setChecked(true);
             grasCuaj.setVisibility(View.VISIBLE);
         }
+
         phCuaj.setText(cursor.getString(cursor.getColumnIndex("ph_cuaj")));
         phSue.setText(cursor.getString(cursor.getColumnIndex("ph_sue")));
         acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
@@ -204,5 +211,24 @@ public class Cuajadas_Lab extends ActionBarActivity {
         phSue.setText("");
         acSue.setText("");
         stSue.setText("");
+    }
+    public String switchTexter(boolean affirmation){
+        if(affirmation)
+        {
+            return "si";
+        }
+        else
+        {
+            return "no";
+        }
+    }
+    public boolean textSwithcer(String affirmation)
+    {
+        if(affirmation.equals("si"))
+        {
+            return true;
+        }
+        else{return false;}
+
     }
 }
