@@ -63,7 +63,10 @@ public class Exportar extends ActionBarActivity {
 
         btnCuajado=(Button)findViewById(R.id.btnECuajado);
 
-
+if(Variables.isFromExportador()){
+   AC.dialogee.show();
+    Variables.setFromExportador(false);
+}
 
         btnCuajado.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,11 +138,15 @@ public class Exportar extends ActionBarActivity {
         btnELab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                /*
                 Variables.setNombre_excel("Laboratorio Calidad");
                 Variables.setNombre_tabla("laboratorio_calidad");
                 Variables.setTipo_consulta(1);
                 AC.dialogee.show();
+                */
+                Variables.setFromExportador(true);
+                finish();startActivity(new Intent(Exportar.this, Panel_Lab.class));
+
 
             }
         });

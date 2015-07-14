@@ -239,6 +239,7 @@ AlertaInicial("Que desea hacer?");
         diasCaducidad.setText("");
         descProducto.setText("");
         codigoProducto.setText("");
+        buttonFamilia.setText("Seleccione Familia");
 
 
     }

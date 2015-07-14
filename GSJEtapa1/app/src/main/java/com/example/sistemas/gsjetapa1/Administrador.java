@@ -92,7 +92,10 @@ public class Administrador extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 var.setFromAdminLaboratorio(true);
-                finish();startActivity(new Intent(Administrador.this, Realizados.class));
+                var.setFromAdminCrema(true);
+                var.setFromAdminCuajadas(true);
+                var.setFromAdminRequeson(true);
+                finish();startActivity(new Intent(Administrador.this, Panel_Lab.class));
 
             }
         });

@@ -45,6 +45,7 @@ public class Login extends Activity {
 
                 consultas con = new consultas();
                 tipoUsuario=con.DAOLogin(Usuario.getText().toString(), Clave.getText().toString());
+                Variables.setFromExportador(false);
 
                 if(tipoUsuario==1)
                 {
@@ -131,6 +132,8 @@ public class Login extends Activity {
                 {
                     Variables.setFromLaboratorio(false);
                     Variables.setFromCrema(false);
+                    Variables.setFromCuajadas(false);
+                    Variables.setFromRequeson(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Panel_Lab.class));
 
@@ -145,6 +148,12 @@ public class Login extends Activity {
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
+
+                }
+                else if (tipoUsuario==17)
+                {
+                    Variables.setNombre_usuario(Usuario.getText().toString());
+                    finish();startActivity(new Intent(Login.this, Detector_Metales.class));
 
                 }
 

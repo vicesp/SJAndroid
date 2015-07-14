@@ -120,7 +120,7 @@ public class consultas {
         try {
 
 
-            db.execSQL("DELETE FROM cuajado WHERE lote='"+lote+"'");
+            db.execSQL("DELETE FROM cuajado WHERE lote='" + lote + "'");
 
             return true;
         }
@@ -420,14 +420,21 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        if (fromWhere == 0) {
+       /* if (fromWhere == 0) {
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM familias", null);
         }
         else {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia IS NOT NULL", null);
+        }*/
+        if (fromWhere==0) {
+            cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0 AND codigo_familia IS NOT NULL", null);
+        }
+        else{
             cursor = db.rawQuery("SELECT codigo_producto, nombre_producto FROM cat_productos WHERE eliminado = 0", null);
+
         }
 
-            ArrayList<consultas> productosArray = new ArrayList<consultas>();
+        ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
             if (cursor.moveToFirst()) {
@@ -495,7 +502,7 @@ public class consultas {
         try{
 
 
-                db.execSQL("UPDATE cat_productos SET codigo_producto = '"+codigo+"', nombre_producto = '"+nombre+"', caducidad = '"+caducidad+"', eliminado = "+eliminar+" WHERE codigo_producto ='"+codigo+"';");
+                db.execSQL("UPDATE cat_productos SET codigo_producto = '"+codigo+"', nombre_producto = '"+nombre+"', caducidad = '"+caducidad+"', eliminado = "+eliminar+", codigo_familia = '"+familia+"' WHERE codigo_producto ='"+codigo+"';");
 
 
             check= true;
@@ -568,12 +575,11 @@ public class consultas {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         try {
-
             db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
             return true;
         }
         catch(Exception e){
-
+            Log.i("Error:", e.toString());
             return false;
         }
     }
@@ -1952,8 +1958,8 @@ public class consultas {
                             observaciones_ralladoqr + "','" +
                             observaciones_apariencia + "','"
                             + fecha_hoy + "','" +
-                            observaciones_color +"','"+
-                            tajo+
+                            observaciones_color + "','" +
+                            tajo +
                             "');"
             );
             return true;
@@ -1973,14 +1979,14 @@ public class consultas {
             String observaciones_hebrado,String grasa_residual,String humedad,String ph,
             String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo,
             String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr,
-            String observaciones_apariencia, String observaciones_color, String tajo){
+            String observaciones_apariencia, String observaciones_color, String tajo, String loteNuevo, String codigo_prodNuevo){
 
         db = myDbHelper.getWritableDatabase();
         try {db.execSQL("UPDATE laboratorio_calidad SET " +
-                "lote = '" + lote + "', " +
+                "lote = '" + loteNuevo + "', " +
                 "familia='" + familia + "', " +
                 "producto='" + producto + "'," +
-                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_prod='" + codigo_prodNuevo + "', " +
                 "codigo_fam='" + codigo_fam + "', " +
                 "apariencia='" + apariencia + "'," +
                 "sabor='" + sabor + "'," +
@@ -2005,7 +2011,7 @@ public class consultas {
                 "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
                 "observaciones_color = '"+observaciones_color+ "', " +
                 "tajo = '"+tajo+"'"+
-                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "';");
+                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "' AND lote = '"+lote+"';");
 
             myDbHelper.close();
             db.close();
@@ -2087,13 +2093,39 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia, tajo FROM familias WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, tajo FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
             myDbHelper.close();
             db.close();
+            Log.i("Cursor", cursor.getString(cursor.getColumnIndex("tajo")));
             return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+    /****************    Consulta para Obtener Nombre Familias     *************/
+    public String DAOGetNombreFamilia(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT nombre_familia FROM cat_familias WHERE codigo_familia =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
+
+            return cursor.getString(cursor.getColumnIndex("nombre_familia"));
 
 
 
@@ -2140,23 +2172,34 @@ public class consultas {
 
     /****************    Consulta para Crema lab      *************/
 
-    public Boolean DAOCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                               String ac_sue, String st_sue, String fecha_hoy){
+    public Boolean DAOCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
+                               String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
+                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy) " +
+            db.execSQL("INSERT INTO crema_lab (lote, fecha, sabor, sabor_observaciones, color, color_observaciones, aroma,aroma_observaciones," +
+                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy" +
+                    ") " +
                     "VALUES ('"+
-                            lote+"','"+
-                            fecha+"','"+
-                            hum_cuaj+"','"+
-                            gras_cuaj+"','"+
-                            ph_cuaj+"','"+
-                            ph_sue+"','"+
-                            ac_sue+"','"+
-                            st_sue+"','"+
+                    lote+"','"+
+                    fecha+"','"+
+                    sabor+"','"+
+                    sabor_observaciones+"','"+
+                    color+"','"+
+                    color_observaciones+"','"+
+                    aroma+"','"+
+                    aroma_observaciones+"','"+
+                    escurrimiento +"','"+
+                    escurrimiento_observaciones+"','"+
+                    fluidez+"','"+
+                    fluidez_observaciones+"','"+
+                    ph+"','"+
+                    solidos+"','"+
+                    acidez+"','"+
+                    grasa+"','"+
                             fecha_hoy+"')");
             return true;
         }
@@ -2165,16 +2208,111 @@ public class consultas {
             return false;
         }
     }
-    /****************    Consulta para Actualizar lab      *************/
+    /****************    Consulta para ActualizarCrema lab      *************/
 
-    public Boolean DAOActualizaCremaLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                               String ac_sue, String st_sue){
+    public Boolean DAOActualizaCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
+                                        String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
+                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO crema_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fehca_hoy) " +
+            db.execSQL("UPDATE crema_lab SET lote = '"+loteNuevo+"'," +
+                    " sabor= '"+sabor+"'," +
+                    " sabor_observaciones= '"+sabor_observaciones+"', " +
+                    " color= '"+color+"'," +
+                    " color_observaciones='"+color_observaciones+"'," +
+                    " aroma='"+aroma+"'," +
+                    " aroma_observaciones='"+aroma_observaciones+"'," +
+                    " escurrimiento='"+escurrimiento+"'," +
+                    " escurrimiento_observaciones='"+escurrimiento_observaciones+"'," +
+                    " fluidez='"+fluidez+"'," +
+                    " fluidez_observaciones='"+fluidez_observaciones+"'," +
+                    " ph='"+ph+"'," +
+                    " solidos='"+solidos+"'," +
+                    " acidez='"+acidez+"'," +
+                    " grasa='"+grasa+"' " +
+                    " WHERE lote = '"+lote+"';" +
+
+            "");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para Llenar la lista de lotes Laboratorio Crema   *************/
+    public ArrayList<consultas> DAOListaCremaLabRealizado(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM crema_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para LLenar Crema Lab     *************/
+    public Cursor DAOLLenarCremaLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT  sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, "+
+                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy " +
+                    "FROM crema_lab WHERE lote ='" + lote +"';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+    /****************    Consulta para Cuajadas lab      *************/
+
+    public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tina_suero){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tina_suero) " +
                     "VALUES ('"+
                     lote+"','"+
                     fecha+"','"+
@@ -2184,12 +2322,260 @@ public class consultas {
                     ph_sue+"','"+
                     ac_sue+"','"+
                     st_sue+"','"+
-            "");
+                    fecha_hoy+"','"+
+                    grasa_check+"','"+
+                    tina_cuajada+"','"+
+                    tina_suero+
+                    "')");
             return true;
         }
         catch(SQLException e)
         {
             return false;
+        }
+    }
+    /****************    Consulta para ActualizarCuajadas lab      *************/
+
+    public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
+                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tina_suero,String loteNuevo){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE cuajadas_lab SET " +
+                    " lote = '"+loteNuevo+"'," +
+                    " hum_cuaj= '"+hum_cuaj+"'," +
+                    " gras_cuaj= '"+gras_cuaj+"', " +
+                    " ph_cuaj= '"+ph_cuaj+"'," +
+                    " ph_sue='"+ph_sue+"'," +
+                    " ac_sue='"+ac_sue+"'," +
+                    " st_sue='"+st_sue+"'," +
+                    " grasa_check='"+grasa_check+"',"+
+                    " tina_cuajada='"+tina_cuajada+"',"+
+                    " tina_suero='"+tina_suero+"' "+
+                    "WHERE lote = '"+lote+"';" +
+
+                    "");
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para Llenar la lista de lotes Laboratorio Cuajadas   *************/
+    public ArrayList<consultas> DAOListaCuajadasLabRealizado(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM cuajadas_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para LLenar Cuajadas Lab     *************/
+    public Cursor DAOLLenarCuajadasLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tina_suero, lote " +
+                    "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+
+    /****************    Consulta para Requeson Lab    *************/
+    public boolean DAORequesonLab(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,
+                                  String sabor, String color,String aroma,String observaciones_sabor,String humedad, String ph, String grasa_total,
+                                  String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo,
+                                  String observaciones_apariencia, String fecha_hoy, String observaciones_color, String untabilidad, String observaciones_untabilidad)
+    {
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+
+            db.execSQL("INSERT INTO requeson_lab (fecha, lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+                            "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo," +
+                            " grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color, untabilidad, observaciones_untabilidad) " +
+                            "VALUES ('" +
+
+                            fecha + "','" +
+                            lote + "','" +
+                            familia + "','" +
+                            producto + "','" +
+                            codigo_prod + "','" +
+                            codigo_fam + "','" +
+                            apariencia + "','" +
+                            sabor + "','" +
+                            color + "','" +
+                            aroma + "','" +
+                            observaciones_sabor + "','" +
+                            humedad + "','" +
+                            ph + "','" +
+                            grasa_total + "','" +
+                            humedad_remuestreo + "','" +
+                            ph_remuestreo + "','" +
+                            grasa_remuestreo + "','" +
+                            necesidad_remuestreo + "','" +
+                            observaciones_apariencia + "','" +
+                            fecha_hoy + "','" +
+                            observaciones_color + "','" +
+                            untabilidad+"','" +
+                            observaciones_untabilidad+"'" +
+                            ");"
+            );
+            return true;
+        }
+        catch(SQLException e)
+        {
+            return false;
+        }
+    }
+    /****************    Consulta para actualizar RequesonLab  *************/
+
+    public boolean DAOActualizarRequesonLab(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,
+                                            String sabor, String color,String aroma,String observaciones_sabor,String humedad, String ph, String grasa_total,
+                                            String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo,
+                                            String observaciones_apariencia, String observaciones_color, String untabilidad, String observaciones_untabilidad, String loteNuevo){
+
+        db = myDbHelper.getWritableDatabase();
+
+        try {db.execSQL("UPDATE requeson_lab SET " +
+                "lote = '" + loteNuevo + "', " +
+                "familia='" + familia + "', " +
+                "producto='" + producto + "'," +
+                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_fam='" + codigo_fam + "', " +
+                "apariencia='" + apariencia + "'," +
+                "sabor='" + sabor + "'," +
+                "color='" + color + "', " +
+                "aroma='" + aroma + "', " +
+                "observaciones_sabor='" + observaciones_sabor + "', " +
+                "humedad='" + humedad + "', " +
+                "ph='" + ph + "', " +
+                "grasa_total='" + grasa_total + "', " +
+                "humedad_remuestreo='" + humedad_remuestreo + "'," +
+                "ph_remuestreo='" + ph_remuestreo + "', " +
+                "grasa_remuestreo='" + grasa_remuestreo + "'," +
+                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
+                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
+                "observaciones_color = '"+observaciones_color+ "', " +
+                "untabilidad='"+untabilidad+"',"+
+                "observaciones_untabilidad='"+observaciones_untabilidad+"' "+
+                 "WHERE lote = '"+lote+"';");
+
+            myDbHelper.close();
+            db.close();
+            return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+
+
+    /****************    Consulta para Llenar la lista de Requeson Lab   *************/
+    public ArrayList<consultas> DAOListaRequesonLab(String fecha){
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM requeson_lab WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null ) {
+            if  (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for(int x=0;x< cursor.getCount();x++)
+                {
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+
+    /****************    Consulta para LLenar Requeson    *************/
+    public Cursor DAOLLenarRequesonLab(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT lote, familia, producto, codigo_prod, codigo_fam, apariencia,sabor," +
+                                    "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo,"+
+                                    "grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color," +
+                                    "untabilidad, observaciones_untabilidad " +
+
+                    "FROM requeson_lab WHERE lote ='" + lote + "';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
         }
     }
 

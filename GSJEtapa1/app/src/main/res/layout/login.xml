@@ -65,7 +65,8 @@
         android:layout_alignStart="@+id/etUsuario"
         android:layout_alignBottom="@+id/textView28"
         android:layout_alignRight="@+id/imageView6"
-        android:layout_alignEnd="@+id/imageView6" />
+        android:layout_alignEnd="@+id/imageView6"
+        android:text="lc" />
 
     <Button
         android:layout_width="200dp"
