@@ -63,7 +63,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
             observaciones_color;
     private Spinner spinnerDiez;
     private boolean deCual;
-    private String Nombre_PT[];
+    private String Nombre_PT[], codigoProdActual;
     private String [] listaProductos;
     private ArrayList<String> array_sort;
     int textlength=0;
@@ -127,14 +127,14 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
                                                //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
 
 
-                                               boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
-                                                       codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
+                                               boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), var.getLoteLaboratorio(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
+                                                       codigoProdActual, codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
                                                        switchTexter(swRall.isChecked()), observaciones_rallado.getText().toString(), spinnerDiez.getSelectedItem().toString(), observaciones_fundido.getText().toString(),
                                                        switchTexter(swHeb.isChecked()), observaciones_hebrado.getText().toString(), getGrasa(), humedad.getText().toString(), ph.getText().toString(),
                                                        grasa_total.getText().toString(), humRem.getText().toString(), phRem.getText().toString(), grasRem.getText().toString(),
                                                        switchTexter(swRem.isChecked()), "", switchTexter(swRallQR.isChecked()), observaciones_ralladoqr.getText().toString(), observaciones_apariencia.getText().toString(),
-                                                       observaciones_color.getText().toString(),switchTexter(swTaj.isChecked()));
+                                                       observaciones_color.getText().toString(),switchTexter(swTaj.isChecked()),Lote.getText().toString(), codigo_prod.getText().toString());
                                                if (exitoso) {
 
                                                    Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -494,12 +494,13 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     public void llenarValoresBusqueda(String lote, String cod_prod) {
         cursor = con.DAOLLenarLaboratorio(lote, cod_prod);
         Lote.setText(lote);
-        Lote.setEnabled(false);
-        btn_listviewdialog1.setEnabled(false);
-        btn_listviewdialog.setEnabled(false);
+        //Lote.setEnabled(false);
+        //btn_listviewdialog1.setEnabled(false);
+        //btn_listviewdialog.setEnabled(false);
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("producto")));
         codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_prod")));
+        codigoProdActual = codigo_prod.getText().toString();
         observaciones_sabor.setText(cursor.getString(cursor.getColumnIndex("observaciones_sabor")));
         observaciones_rallado.setText(cursor.getString(cursor.getColumnIndex("observaciones_rallado")));
         observaciones_fundido.setText(cursor.getString(cursor.getColumnIndex("observaciones_fundido")));

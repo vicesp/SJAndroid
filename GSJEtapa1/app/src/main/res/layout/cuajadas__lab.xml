@@ -391,6 +391,64 @@
             android:layout_alignParentEnd="true"
             android:numeric="decimal" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de Tina"
+            android:id="@+id/textView265"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/textView234"
+            android:layout_alignLeft="@+id/textView233"
+            android:layout_alignStart="@+id/textView233" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de Tina"
+            android:id="@+id/textView266"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_above="@+id/guardarBtn"
+            android:layout_toLeftOf="@+id/guardarBtn"
+            android:layout_toStartOf="@+id/guardarBtn" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinCuajada"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_alignBottom="@+id/textView265"
+            android:layout_alignLeft="@+id/fechaText1"
+            android:layout_alignStart="@+id/fechaText1"
+            android:layout_alignTop="@+id/textView265"
+            android:layout_alignRight="@+id/spinSuero"
+            android:layout_alignEnd="@+id/spinSuero"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinSuero"
+            android:textAlignment="center"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:background="#E6E6E6"
+            android:descendantFocusability="beforeDescendants"
+            android:layout_above="@+id/guardarBtn"
+            android:layout_toRightOf="@+id/textView266"
+            android:layout_alignTop="@+id/textView266"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp" />
+
+
 
     </RelativeLayout>
 </ScrollView>

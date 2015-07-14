@@ -120,12 +120,12 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
                                                //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
 
 
-                                               boolean exitoso = con.DAOActualizarRequesonLab(Fecha.getText().toString(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), familia.getText().toString(),
+                                               boolean exitoso = con.DAOActualizarRequesonLab(Fecha.getText().toString(), var.getLoteRequeson(), btn_listviewdialog.getText().toString(), familia.getText().toString(),
                                                        codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),
                                                        humedad.getText().toString(), ph.getText().toString(), grasa_total.getText().toString(), humRem.getText().toString(),
                                                        phRem.getText().toString(), grasRem.getText().toString(), switchTexter(swRem.isChecked()), observaciones_apariencia.getText().toString(),
-                                                       observaciones_color.getText().toString(), getUntabilidad(), observaciones_untabilidad.getText().toString()
+                                                       observaciones_color.getText().toString(), getUntabilidad(), observaciones_untabilidad.getText().toString(),Lote.getText().toString()
                                                );
                                                if (exitoso) {
 
@@ -223,7 +223,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
 
 
         if(var.isFromRequeson()){
-            Lote.setEnabled(false);
+            //Lote.setEnabled(false);
             llenarValoresBusqueda(var.getLoteRequeson());
         }
         else{

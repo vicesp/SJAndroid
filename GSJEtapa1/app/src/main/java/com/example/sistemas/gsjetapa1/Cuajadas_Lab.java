@@ -10,11 +10,16 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
@@ -29,12 +34,14 @@ public class Cuajadas_Lab extends ActionBarActivity {
     private static consultas con;
     private static Variables var;
     private Cursor cursor;
+    private static String tinaSuero, tinaCuajadas;
 
     private TextView Fecha;
     private Button btnBack;
     private ImageButton guarda;
     private CheckBox checkBox;
-    private EditText Lote, humCuaj,grasCuaj,phCuaj, phSue, acSue, stSue;
+    private Spinner spinCuajadas, spinSuero;
+    private EditText Lote, humCuaj, grasCuaj, phCuaj, phSue, acSue, stSue;
 
 
     @Override
@@ -51,7 +58,66 @@ public class Cuajadas_Lab extends ActionBarActivity {
         Fecha = (TextView) findViewById(R.id.fechaText1);
         Fecha.setText(FechaH.Hoy());
 
-        /*********** Buttons **************/
+        /*********** Spinners **************/
+        spinCuajadas = (Spinner) findViewById(R.id.spinCuajada);
+        spinSuero = (Spinner) findViewById(R.id.spinSuero);
+        spinnerFiller();
+        spinCuajadas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+                                                   @Override
+                                                   public void onItemSelected(AdapterView<?> parent, View view,
+                                                                              int position, long id) {
+                                                       // TODO Auto-generated method stub
+
+                                                       ((TextView) parent.getChildAt(0)).setTextSize(22);
+                                                       if(position==0){
+                                                           tinaCuajadas="1";
+                                                       }
+                                                       else if(position==1){
+                                                           tinaCuajadas="2";
+
+                                                       }
+                                                       else{
+                                                            tinaCuajadas="3";
+                                                       }
+
+                                                   }
+
+                                                   @Override
+                                                   public void onNothingSelected(AdapterView<?> parent) {
+                                                       // TODO Auto-generated method stub
+
+                                                   }
+                                               }
+        );
+        spinSuero.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                // TODO Auto-generated method stub
+
+                ((TextView) parent.getChildAt(0)).setTextSize(22);
+                if(position==0){
+                    tinaSuero="1";
+                }
+                else if(position==1){
+                    tinaSuero="2";
+
+                }
+                else{
+                    tinaSuero="3";
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // TODO Auto-generated method stub
+
+            }});
+
+
+            /*********** Buttons **************/
 
         btnBack = (Button) findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
@@ -70,28 +136,27 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
             }
         });
-        guarda=(ImageButton)findViewById(R.id.guardarBtn);
+        guarda = (ImageButton) findViewById(R.id.guardarBtn);
         guarda.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                if(!(checkBox.isChecked())){
+                if (!(checkBox.isChecked())) {
                     grasCuaj.setText("");
                 }
-                if(var.isFromCuajadas()) {
-                    boolean exitoso = con.DAOActualizaCuajadasLab(Lote.getText().toString(),Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
-                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(),switchTexter(checkBox.isChecked()));
+                if (var.isFromCuajadas()) {
+                    boolean exitoso = con.DAOActualizaCuajadasLab(var.getLoteCuajadas(), Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
+                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(), switchTexter(checkBox.isChecked()),tinaCuajadas,tinaSuero,Lote.getText().toString());
                     if (exitoso) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
 
                     } else {
                         Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                     }
-                }
-                else {
-                    boolean exitoso = con.DAOCuajadasLab(Lote.getText().toString(),FechaH.Hoy_hora() ,humCuaj.getText().toString(), grasCuaj.getText().toString(),
+                } else {
+                    boolean exitoso = con.DAOCuajadasLab(Lote.getText().toString(), FechaH.Hoy_hora(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(),
-                            stSue.getText().toString(),FechaH.Hoy(), switchTexter(checkBox.isChecked()));
+                            stSue.getText().toString(), FechaH.Hoy(), switchTexter(checkBox.isChecked()), tinaCuajadas, tinaSuero);
                     if (exitoso) {
 
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -100,15 +165,16 @@ public class Cuajadas_Lab extends ActionBarActivity {
                         Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                     }
                 }
-            }});
+            }
+        });
         /************Edit Texts***************/
-        Lote =(EditText)findViewById(R.id.tvLCLotePendiente);
-        humCuaj =(EditText)findViewById(R.id.editText24);
-        grasCuaj =(EditText)findViewById(R.id.editText7);
-        phCuaj =(EditText)findViewById(R.id.editText25);
-        phSue =(EditText)findViewById(R.id.editText28);
-        acSue =(EditText)findViewById(R.id.editText31);
-        stSue =(EditText)findViewById(R.id.editText30);
+        Lote = (EditText) findViewById(R.id.tvLCLotePendiente);
+        humCuaj = (EditText) findViewById(R.id.editText24);
+        grasCuaj = (EditText) findViewById(R.id.editText7);
+        phCuaj = (EditText) findViewById(R.id.editText25);
+        phSue = (EditText) findViewById(R.id.editText28);
+        acSue = (EditText) findViewById(R.id.editText31);
+        stSue = (EditText) findViewById(R.id.editText30);
 
         /*********** CheckBox *************/
         checkBox = (CheckBox) findViewById(R.id.grasaCB);
@@ -116,59 +182,58 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
             @Override
             public void onClick(View v) {
-            if (checkBox.isChecked())
-            {
-                grasCuaj.setVisibility(View.VISIBLE);
-            }
-                else{
-                grasCuaj.setVisibility(View.INVISIBLE);
-            }
+                if (checkBox.isChecked()) {
+                    grasCuaj.setVisibility(View.VISIBLE);
+                } else {
+                    grasCuaj.setVisibility(View.INVISIBLE);
+                }
 
             }
 
         });
-        if (var.isFromCuajadas()){
-            Lote.setEnabled(false);
+        if (var.isFromCuajadas()) {
+            //Lote.setEnabled(false);
             llenarValoresBusqueda(var.getLoteCuajadas());
 
-        }
-        else{
+        } else {
             guarda.setImageResource(R.drawable.guarda);
         }
 
     }
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu){
-            // Inflate the menu; this adds items to the action bar if it is present.
-            getMenuInflater().inflate(R.menu.menu_cuajadas__lab, menu);
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_cuajadas__lab, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
             return true;
         }
 
-        @Override
-        public boolean onOptionsItemSelected (MenuItem item){
-            // Handle action bar item clicks here. The action bar will
-            // automatically handle clicks on the Home/Up button, so long
-            // as you specify a parent activity in AndroidManifest.xml.
-            int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
+    }
 
-            //noinspection SimplifiableIfStatement
-            if (id == R.id.action_settings) {
-                return true;
-            }
-
-            return super.onOptionsItemSelected(item);
-        }
-    public void Alerta(String mensaje){
+    public void Alerta(String mensaje) {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Cuajadas_Lab.this);
 
         alertDialogBuilder.setTitle("Aviso");
 
         alertDialogBuilder.setMessage(mensaje);
 
-        alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+        alertDialogBuilder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
 
-            public void onClick(DialogInterface dialog,int id) {
-                if(var.isFromCuajadas()) {
+            public void onClick(DialogInterface dialog, int id) {
+                if (var.isFromCuajadas()) {
                     var.setFromAdminCuajadas(true);
                     finish();
                     startActivity(new Intent(Cuajadas_Lab.this, Realizados.class));
@@ -181,16 +246,16 @@ public class Cuajadas_Lab extends ActionBarActivity {
         alertDialog.show();
 
     }
+
     public void llenarValoresBusqueda(String lote) {
 
         cursor = con.DAOLLenarCuajadasLab(lote);
-        Log.i("grasa:", cursor.getString(cursor.getColumnIndex("grasa_check")));
-        Lote.setText(lote);
+        Lote.setText(cursor.getString(cursor.getColumnIndex("lote")));
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         humCuaj.setText(cursor.getString(cursor.getColumnIndex("hum_cuaj")));
 
         grasCuaj.setText(cursor.getString(cursor.getColumnIndex("gras_cuaj")));
-        if(cursor.getString(cursor.getColumnIndex("grasa_check")).equals("si")){
+        if (cursor.getString(cursor.getColumnIndex("grasa_check")).equals("si")) {
             checkBox.setChecked(true);
             grasCuaj.setVisibility(View.VISIBLE);
         }
@@ -199,9 +264,22 @@ public class Cuajadas_Lab extends ActionBarActivity {
         phSue.setText(cursor.getString(cursor.getColumnIndex("ph_sue")));
         acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
         stSue.setText(cursor.getString(cursor.getColumnIndex("st_sue")));
+        spinCuajadas.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_cuajada"))));
+        spinSuero.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_suero"))));
 
     }
-    public void vaciarTodo(){
+    public int getPosition(String value){
+        if(value.equals("1")){
+            return 0;
+        }
+        else if(value.equals("2")){
+            return 1;
+        }
+        else {
+            return 2;
+        }
+    }
+    public void vaciarTodo() {
         Lote.setText("");
         humCuaj.setText("");
         grasCuaj.setText("");
@@ -211,24 +289,42 @@ public class Cuajadas_Lab extends ActionBarActivity {
         phSue.setText("");
         acSue.setText("");
         stSue.setText("");
+        spinCuajadas.setSelection(0);
+        spinSuero.setSelection(0);
     }
-    public String switchTexter(boolean affirmation){
-        if(affirmation)
-        {
+
+    public String switchTexter(boolean affirmation) {
+        if (affirmation) {
             return "si";
-        }
-        else
-        {
+        } else {
             return "no";
         }
     }
-    public boolean textSwithcer(String affirmation)
-    {
-        if(affirmation.equals("si"))
-        {
+
+    public boolean textSwithcer(String affirmation) {
+        if (affirmation.equals("si")) {
             return true;
+        } else {
+            return false;
         }
-        else{return false;}
+
+    }
+
+    private void spinnerFiller() {
+        // Construct the data source
+        ArrayList<String> valuesSpinner = new ArrayList<String>();
+        valuesSpinner.add("1");
+        valuesSpinner.add("2");
+        valuesSpinner.add("3");
+
+
+        // Create the adapter to convert the array to views
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, valuesSpinner);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Attach the adapter to a ListView
+        spinCuajadas.setAdapter(adapter);
+        spinSuero.setAdapter(adapter);
+
 
     }
 }

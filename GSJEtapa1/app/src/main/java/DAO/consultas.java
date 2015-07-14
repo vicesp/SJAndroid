@@ -1979,14 +1979,14 @@ public class consultas {
             String observaciones_hebrado,String grasa_residual,String humedad,String ph,
             String grasa_total, String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo,
             String necesidad_remuestreo, String observaciones, String ralladoqr, String observaciones_ralldoqr,
-            String observaciones_apariencia, String observaciones_color, String tajo){
+            String observaciones_apariencia, String observaciones_color, String tajo, String loteNuevo, String codigo_prodNuevo){
 
         db = myDbHelper.getWritableDatabase();
         try {db.execSQL("UPDATE laboratorio_calidad SET " +
-                "lote = '" + lote + "', " +
+                "lote = '" + loteNuevo + "', " +
                 "familia='" + familia + "', " +
                 "producto='" + producto + "'," +
-                "codigo_prod='" + codigo_prod + "', " +
+                "codigo_prod='" + codigo_prodNuevo + "', " +
                 "codigo_fam='" + codigo_fam + "', " +
                 "apariencia='" + apariencia + "'," +
                 "sabor='" + sabor + "'," +
@@ -2011,7 +2011,7 @@ public class consultas {
                 "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
                 "observaciones_color = '"+observaciones_color+ "', " +
                 "tajo = '"+tajo+"'"+
-                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "';");
+                "WHERE fecha_hoy = '" + fecha + "' AND codigo_prod = '" + codigo_prod + "' AND lote = '"+lote+"';");
 
             myDbHelper.close();
             db.close();
@@ -2212,13 +2212,13 @@ public class consultas {
 
     public Boolean DAOActualizaCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
                                         String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
-                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa){
+                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("UPDATE crema_lab SET lote = '"+lote+"'," +
+            db.execSQL("UPDATE crema_lab SET lote = '"+loteNuevo+"'," +
                     " sabor= '"+sabor+"'," +
                     " sabor_observaciones= '"+sabor_observaciones+"', " +
                     " color= '"+color+"'," +
@@ -2306,13 +2306,13 @@ public class consultas {
     /****************    Consulta para Cuajadas lab      *************/
 
     public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check){
+                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tina_suero){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check) " +
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tina_suero) " +
                     "VALUES ('"+
                     lote+"','"+
                     fecha+"','"+
@@ -2323,7 +2323,9 @@ public class consultas {
                     ac_sue+"','"+
                     st_sue+"','"+
                     fecha_hoy+"','"+
-                    grasa_check+
+                    grasa_check+"','"+
+                    tina_cuajada+"','"+
+                    tina_suero+
                     "')");
             return true;
         }
@@ -2335,14 +2337,13 @@ public class consultas {
     /****************    Consulta para ActualizarCuajadas lab      *************/
 
     public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                           String ac_sue, String st_sue, String grasa_check){
+                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tina_suero,String loteNuevo){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
-
-            db.execSQL("UPDATE cuajadas_lab SET lote = '"+lote+"'," +
-                    " fecha = '"+fecha+"'," +
+            db.execSQL("UPDATE cuajadas_lab SET " +
+                    " lote = '"+loteNuevo+"'," +
                     " hum_cuaj= '"+hum_cuaj+"'," +
                     " gras_cuaj= '"+gras_cuaj+"', " +
                     " ph_cuaj= '"+ph_cuaj+"'," +
@@ -2350,7 +2351,9 @@ public class consultas {
                     " ac_sue='"+ac_sue+"'," +
                     " st_sue='"+st_sue+"'," +
                     " grasa_check='"+grasa_check+"',"+
-                    " fecha_hoy='"+fecha+"' WHERE lote = '"+lote+"';" +
+                    " tina_cuajada='"+tina_cuajada+"',"+
+                    " tina_suero='"+tina_suero+"' "+
+                    "WHERE lote = '"+lote+"';" +
 
                     "");
             return true;
@@ -2393,7 +2396,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check " +
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tina_suero, lote " +
                     "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 
@@ -2473,34 +2476,12 @@ public class consultas {
     public boolean DAOActualizarRequesonLab(String fecha, String lote,String familia,String producto,String codigo_prod, String codigo_fam,String apariencia,
                                             String sabor, String color,String aroma,String observaciones_sabor,String humedad, String ph, String grasa_total,
                                             String humedad_remuestreo, String ph_remuestreo, String grasa_remuestreo, String necesidad_remuestreo,
-                                            String observaciones_apariencia, String observaciones_color, String untabilidad, String observaciones_untabilidad){
+                                            String observaciones_apariencia, String observaciones_color, String untabilidad, String observaciones_untabilidad, String loteNuevo){
 
         db = myDbHelper.getWritableDatabase();
-        Log.i("Sql", "UPDATE requeson_lab SET " +
-                "lote = '" + lote + "', " +
-                "familia='" + familia + "', " +
-                "producto='" + producto + "'," +
-                "codigo_prod='" + codigo_prod + "', " +
-                "codigo_fam='" + codigo_fam + "', " +
-                "apariencia='" + apariencia + "'," +
-                "sabor='" + sabor + "'," +
-                "color='" + color + "', " +
-                "aroma='" + aroma + "', " +
-                "observaciones_sabor='" + observaciones_sabor + "', " +
-                "humedad='" + humedad + "', " +
-                "ph='" + ph + "', " +
-                "grasa_total='" + grasa_total + "', " +
-                "humedad_remuestreo='" + humedad_remuestreo + "'," +
-                "ph_remuestreo='" + ph_remuestreo + "', " +
-                "grasa_remuestreo='" + grasa_remuestreo + "'," +
-                "necesidad_remuestreo='" + necesidad_remuestreo + "'," +
-                "observaciones_apariencia='" + observaciones_apariencia + "'" + ", " +
-                "observaciones_color = '"+observaciones_color+ "', " +
-                "untabilidad='"+untabilidad+"','"+
-                "observaciones_untabilidad='"+observaciones_untabilidad+"' "+
-                "WHERE fecha_hoy = '" + fecha +"';");
+
         try {db.execSQL("UPDATE requeson_lab SET " +
-                "lote = '" + lote + "', " +
+                "lote = '" + loteNuevo + "', " +
                 "familia='" + familia + "', " +
                 "producto='" + producto + "'," +
                 "codigo_prod='" + codigo_prod + "', " +

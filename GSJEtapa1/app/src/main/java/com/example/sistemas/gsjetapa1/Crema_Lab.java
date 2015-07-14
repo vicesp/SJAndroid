@@ -92,9 +92,9 @@ public class Crema_Lab extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if(var.isFromCrema()){
-                    boolean exitoso = con.DAOActualizaCremaLab(Lote.getText().toString(),Fecha.getText().toString(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
+                    boolean exitoso = con.DAOActualizaCremaLab(var.getLoteCrema(),Fecha.getText().toString(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
                             switchTexter(aroma.isChecked()),obsAro.getText().toString(),switchTexter(escurrimiento.isChecked()), obsEsc.getText().toString(), switchTexter(fluidez.isChecked()), obsFlu.getText().toString(),ph.getText().toString(),
-                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString());
+                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Lote.getText().toString());
 
                     if(exitoso){
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -125,7 +125,7 @@ public class Crema_Lab extends ActionBarActivity {
         fluidez = (Switch)findViewById(R.id.switchFluidez);
 
         if(var.isFromCrema()){
-            Lote.setEnabled(false);
+            //Lote.setEnabled(false);
             llenarValoresBusqueda(var.getLoteCrema());
         }
         else{
