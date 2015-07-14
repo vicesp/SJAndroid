@@ -261,9 +261,10 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         String strName = array_sort.get(position);
         codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
         cursor = con.DAOGetCursorTodosFamilias(codigo_prod.getText().toString());
+
         btn_listviewdialog.setText(strName.substring(strName.indexOf('-') + 1, strName.length()));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_familia")));
-        familia.setText(cursor.getString(cursor.getColumnIndex("nombre_familia")));
+        familia.setText(con.DAOGetNombreFamilia(codigo_fam.getText().toString()));
 
 
 

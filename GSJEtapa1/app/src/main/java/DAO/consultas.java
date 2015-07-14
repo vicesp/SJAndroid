@@ -2093,13 +2093,39 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_producto WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, tajo FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
             myDbHelper.close();
             db.close();
+            Log.i("Cursor", cursor.getString(cursor.getColumnIndex("tajo")));
             return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+    /****************    Consulta para Obtener Nombre Familias     *************/
+    public String DAOGetNombreFamilia(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT nombre_familia FROM cat_familias WHERE codigo_familia =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
+
+            return cursor.getString(cursor.getColumnIndex("nombre_familia"));
 
 
 

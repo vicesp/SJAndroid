@@ -324,7 +324,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         cursor = con.DAOGetCursorTodosFamilias(codigo_prod.getText().toString());
         btn_listviewdialog.setText(strName.substring(strName.indexOf('-') + 1, strName.length()));
         codigo_fam.setText(cursor.getString(cursor.getColumnIndex("codigo_familia")));
-        btn_listviewdialog1.setText(cursor.getString(cursor.getColumnIndex("nombre_familia")));
+        btn_listviewdialog1.setText(con.DAOGetNombreFamilia(codigo_fam.getText().toString()));
 
 
 
