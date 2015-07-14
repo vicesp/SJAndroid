@@ -31,7 +31,7 @@ public class Panel_Lab extends ActionBarActivity {
         FechaH=new Fecha_Hoy();
         var= new Variables();
        // AC =new AlertCalendar();
-        flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio()&&var.isFromAdminRequeson();
+        flag = var.isFromAdminCrema()&&var.isFromAdminCuajadas()&&var.isFromAdminLaboratorio()&&var.isFromAdminRequeson()&&!(var.isFromExportador());
         /******* Text Views ********/
         fecha=(TextView)findViewById(R.id.tvExpFecha);
         fecha.setText(FechaH.Hoy());
