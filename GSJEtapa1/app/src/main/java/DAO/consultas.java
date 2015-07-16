@@ -550,32 +550,28 @@ public class consultas {
     }
 
     /*********** Actualizar Familias **************/
-    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar) {
-        boolean check = false;
-        cursor=null;
+    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar, int cuajado, int fundido, String codigoNuevo) {
         db = myDbHelper.getWritableDatabase();
-        try{
-
-
-            db.execSQL("UPDATE cat_familias SET codigo_familia = '"+codigo+"', nombre_familia = '"+nombre+"', eliminado = "+eliminar+" WHERE codigo_familia ='"+codigo+"';");
-
-
-            check= true;
+        cursor=null;
+try {
+            db.execSQL("UPDATE cat_familias SET codigo_familia = '" + codigoNuevo + "', nombre_familia = '" + nombre + "', eliminado = " + eliminar + ", cuajado = " + cuajado + ", fundido = " + fundido + " WHERE codigo_familia ='" + codigo + "';");
+            return true;
         }
         catch(Exception e)
         {
-            check = false;
+            return false;
         }
-        return check;
+
     }
     /*********** Guardar Nueva Familia **************/
 
-    public boolean DAOGuardarFamilia(String codigo, String nombre)
+    public boolean DAOGuardarFamilia(String codigo, String nombre, int cuajado, int fundido)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         try {
-            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
+
+            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia, cuajado, fundido) VALUES ('" + codigo + "','" + nombre + "','"+cuajado+"','"+fundido+"' );" );
             return true;
         }
         catch(Exception e){
@@ -2093,13 +2089,37 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, tajo FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, tajo  FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
             myDbHelper.close();
             db.close();
             Log.i("Cursor", cursor.getString(cursor.getColumnIndex("tajo")));
+            return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+    /****************    Consulta para Obtener Familias     *************/
+    public Cursor DAOGetCursorFamilia(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT cuajado, fundido  FROM cat_familias WHERE codigo_familia =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
             return cursor;
 
 
@@ -2140,11 +2160,19 @@ public class consultas {
     }
 
     /****************    Consulta para Obtener Familias     *************/
-    public ArrayList<consultas> DAOGetTodosFamilias()
+    public ArrayList<consultas> DAOGetTodosFamilias(boolean forFundido, boolean forCuajado)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
+        if(forFundido){
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 AND fundido =1 " + "", null);
+        }
+        else if(forCuajado){
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 AND cuajado = 1 " + "", null);
+        }
+        else {
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
+        }
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {

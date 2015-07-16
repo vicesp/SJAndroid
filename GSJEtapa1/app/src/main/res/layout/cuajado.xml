@@ -198,15 +198,15 @@
         android:layout_alignLeft="@+id/tvNumTina"
         android:layout_alignStart="@+id/tvNumTina" />
 
-    <Spinner
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:id="@+id/spFamilia"
         android:background="#E6E6E6"
+        android:text="Seleccione Familia"
         android:layout_alignTop="@+id/textView6"
         android:layout_alignLeft="@+id/tvLoteCuajado"
         android:layout_alignStart="@+id/tvLoteCuajado"
-        android:spinnerMode="dialog"
         android:layout_alignRight="@+id/imageView3"
         android:layout_alignEnd="@+id/imageView3" />
 

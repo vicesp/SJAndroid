@@ -1555,7 +1555,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         AlertDialog.Builder myDialog = new AlertDialog.Builder(Fundido.this);
 
 
-            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
+            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias(true, false));
 
 
 

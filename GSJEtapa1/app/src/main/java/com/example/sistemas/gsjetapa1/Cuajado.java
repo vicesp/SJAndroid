@@ -21,6 +21,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -42,6 +44,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -53,25 +57,26 @@ import au.com.bytecode.opencsv.CSVWriter;
 import config.DataBaseHelper;
 
 
-public class Cuajado extends ActionBarActivity {
+public class Cuajado extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private String [] silo, familia_cuajado;
-    private String silo_select,familia_select;
-    private Spinner spSilo, spFamiliaCuaj;
+    private String [] silo, familia_cuajado, Nombre_PT, listaProductos;
+    private String silo_select;
+    private Spinner spSilo;
     private TextView Fecha,Lote,NumTina,NumEquipo;
-    private Button  Guarda2,Regresar;
+    private Button  Guarda2,Regresar, btnFamiliaCuaj;
     private ImageButton Guarda1;
     private int num_tina_consec;
     private EditText lecheSilo,phLeche,grasaLecheSilo,grasaLecheTina,proteinaLecheSilo,lecheTina,proteinaTina;
     private EditText adi1,lote1,adi2,lote2,adi3,lote3,adi4,lote4,adi5,lote5,adi6,lote6,adi7,lote7,adi8,lote8,adi9,lote9,adi10,lote10,adi11,lote11,adi12,lote12,adi13,lote13,adi14,lote14;
     private EditText tempCoagulacion,phPasta,horaAdicionCuajo,tempCocido;
     private double num_phleche;
-
+    private ArrayList<String> array_sort;
+    int textlength=0;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
     private static Variables var;
-
+    private AlertDialog myalertDialog=null;
     DataBaseHelper myDbHelper = new DataBaseHelper(Variables.getContextoGral());
     protected SQLiteDatabase db;
     protected Cursor cursor;
@@ -358,12 +363,8 @@ public class Cuajado extends ActionBarActivity {
         spSilo.setAdapter(siloAdapter);
 
 
-        spFamiliaCuaj = (Spinner) findViewById(R.id.spFamilia);
-        familia_cuajado=getResources().getStringArray(R.array.nombre_familia_cuajado);
-        ArrayAdapter<String> familiaAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, familia_cuajado);
-        familiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spFamiliaCuaj.setAdapter(familiaAdapter);
+        
+        
 
         spSilo.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -383,24 +384,8 @@ public class Cuajado extends ActionBarActivity {
             }
         });
 
-        spFamiliaCuaj.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
 
-                ((TextView) parent.getChildAt(0)).setTextSize(22);
-                familia_select=familia_cuajado[position];
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         //******************    Inicio Buttons    ****************//
         Guarda1=(ImageButton)findViewById(R.id.btnGuardaCuajo1);
@@ -428,7 +413,7 @@ public class Cuajado extends ActionBarActivity {
                     boolean exitoso = con.DAOActualizarCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
-                            familia_select,
+                            btnFamiliaCuaj.getText().toString(),
                             Fecha.getText().toString(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -567,7 +552,7 @@ public class Cuajado extends ActionBarActivity {
                     boolean exitoso = con.DAOCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
-                            familia_select,
+                            btnFamiliaCuaj.getText().toString(),
                             FechaH.Hoy_hora(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -708,7 +693,7 @@ public class Cuajado extends ActionBarActivity {
                 boolean exitoso=con.DAOCuajado(Lote.getText().toString(),
                         silo_select,
                         NumTina.getText().toString(),
-                        familia_select,
+                        btnFamiliaCuaj.getText().toString(),
                         FechaH.Hoy_hora(),
                         lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                         lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -750,6 +735,16 @@ public class Cuajado extends ActionBarActivity {
                 finish();
             }
         });
+        btnFamiliaCuaj = (Button) findViewById(R.id.spFamilia);
+        btnFamiliaCuaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView();
+            }
+        });
+
+        
+        
 
         //******************    Fin Buttons   ****************//
 
@@ -789,6 +784,19 @@ public class Cuajado extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
+
+        String strName=array_sort.get(position);
+        btnFamiliaCuaj.setText(strName);
+
+
+        myalertDialog.dismiss();
+    }
+    @Override
+    public void onClick(View v) {
+
     }
 
     class CurrencyTextWatcher implements TextWatcher {
@@ -952,7 +960,7 @@ public class Cuajado extends ActionBarActivity {
             request.addProperty("lote", Lote.getText().toString());
             request.addProperty("silo", ""+silo_select);
             request.addProperty("num_tina", NumTina.getText().toString());
-            request.addProperty("familia", familia_select);
+            request.addProperty("familia", btnFamiliaCuaj.getText().toString());
             request.addProperty("fecha", FechaH.Hoy_hora());
             request.addProperty("leche_silo", lecheSilo.getText().toString());
             request.addProperty("grasa_leche_silo", grasaLecheSilo.getText().toString());
@@ -1069,6 +1077,7 @@ public class Cuajado extends ActionBarActivity {
         //btn_listviewdialog.setVisibility(View.INVISIBLE);
 
         cursor = con.DAOLLenarCuajado(lote);
+        btnFamiliaCuaj.setText(cursor.getString(cursor.getColumnIndex("familia")));
         Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
         lecheSilo.setText(cursor.getString(cursor.getColumnIndex("leche_silo")));
         phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
@@ -1101,47 +1110,6 @@ public class Cuajado extends ActionBarActivity {
             spSilo.setSelection(2);
         }
 
-
-        if(familia_cuajado[0].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(0);
-        }
-        else if(familia_cuajado[1].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(1);
-        }
-        else if(familia_cuajado[2].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(2);
-        }
-        else if(familia_cuajado[3].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(3);
-        }
-        else if(familia_cuajado[4].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(4);
-        }
-        else if(familia_cuajado[5].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(5);
-        }
-        else if(familia_cuajado[6].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(6);
-        }
-        else if(familia_cuajado[7].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(7);
-        }
-        else if(familia_cuajado[8].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(8);
-        }
-        else
-        {
-            spFamiliaCuaj.setSelection(9);
-        }
 
     }
 
@@ -1181,6 +1149,7 @@ public class Cuajado extends ActionBarActivity {
 
 
 
+
     }
     public void limpia_campos()
     {
@@ -1196,6 +1165,7 @@ public class Cuajado extends ActionBarActivity {
         horaAdicionCuajo.setText("");
         tempCocido.setText("");
         phPasta.setText("");
+        btnFamiliaCuaj.setText("Seleccione Familia");
 
         NumEquipo.setText("");
         NumTina.setText("");
@@ -1231,6 +1201,76 @@ public class Cuajado extends ActionBarActivity {
         lote13.setText("");
         lote14.setText("");
     }
+    public void launchView()
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Cuajado.this);
+
+
+        Nombre_PT = getProductosArray(con.DAOGetTodosFamilias(false, true));
+
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Cuajado.this);
+        final ListView listview = new ListView(Cuajado.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Cuajado.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Cuajado.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+        listview.setOnItemClickListener(Cuajado.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Cuajado.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
+
+    }
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
+
+    }
+
 
 
 }
