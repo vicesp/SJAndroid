@@ -21,5 +21,11 @@ public class Fecha_Hoy {
         String hoyConFormato_hora = df_hora.format(c.getTime());
         return hoyConFormato_hora;
     }
+    public String Hora(){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df_hora = new SimpleDateFormat("HH:mm:ss");
+        String hoyConFormato_hora = df_hora.format(c.getTime());
+        return hoyConFormato_hora;
+    }
 
 }
