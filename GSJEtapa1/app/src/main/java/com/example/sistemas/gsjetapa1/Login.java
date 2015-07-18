@@ -138,18 +138,13 @@ public class Login extends Activity {
                     finish();startActivity(new Intent(Login.this, Panel_Lab.class));
 
                 }
-                else if (tipoUsuario==15)
+                else if (tipoUsuario==15||tipoUsuario==18||tipoUsuario==16)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
 
                 }
-                else if (tipoUsuario==16)
-                {
-                    Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Administrador.class));
 
-                }
                 else if (tipoUsuario==17)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());

@@ -104,7 +104,7 @@
         android:text="DETECTOR DE METALES"
         android:textColor="@android:color/white"
         android:typeface="monospace"
-        android:textSize="32dp"
+        android:textSize="45dp"
         android:id="@+id/textView19"
         android:layout_alignTop="@+id/imageView"
         android:layout_centerHorizontal="true"
@@ -169,7 +169,6 @@
     <Button
         android:layout_width="70dp"
         android:layout_height="70dp"
-        android:text=""
         android:background="@drawable/info"
         android:id="@+id/btnInfo"
         android:layout_below="@+id/textView3"
@@ -179,7 +178,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="2700dp"
+        android:layout_height="2530dp"
         android:background="@drawable/detector_layout"
         android:id="@+id/relativeLayout"
         android:layout_alignParentRight="true"
@@ -454,23 +453,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button"
+                android:id="@+id/btnProd2"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch5"
-                android:layout_alignBottom="@+id/switch5"
-                android:layout_toLeftOf="@+id/switch2"
-                android:layout_toStartOf="@+id/switch2" />
+                android:layout_alignBaseline="@+id/swAI5"
+                android:layout_alignBottom="@+id/swAI5"
+                android:layout_toLeftOf="@+id/swPacA2"
+                android:layout_toStartOf="@+id/swPacA2" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button2"
+                android:id="@+id/btnHR2"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button"
-                android:layout_alignBottom="@+id/button"
+                android:layout_alignBaseline="@+id/btnProd2"
+                android:layout_alignBottom="@+id/btnProd2"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -478,53 +477,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch2"
+                android:id="@+id/swPacA2"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch4"
-                android:layout_alignBottom="@+id/switch4"
+                android:layout_alignBaseline="@+id/swAI4"
+                android:layout_alignBottom="@+id/swAI4"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch3"
+                android:id="@+id/swPacB2"
                 android:checked="false"
-                android:layout_below="@+id/button"
-                android:layout_alignLeft="@+id/switch2"
-                android:layout_alignStart="@+id/switch2" />
+                android:layout_below="@+id/btnProd2"
+                android:layout_alignLeft="@+id/swPacA2"
+                android:layout_alignStart="@+id/swPacA2" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch4"
+                android:id="@+id/swAI4"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch2"
-                android:layout_toEndOf="@+id/switch2" />
+                android:layout_toRightOf="@+id/swPacA2"
+                android:layout_toEndOf="@+id/swPacA2" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch5"
+                android:id="@+id/swAI5"
                 android:checked="false"
-                android:layout_below="@+id/switch4"
-                android:layout_alignLeft="@+id/switch4"
-                android:layout_alignStart="@+id/switch4" />
+                android:layout_below="@+id/swAI4"
+                android:layout_alignLeft="@+id/swAI4"
+                android:layout_alignStart="@+id/swAI4" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch6"
+                android:id="@+id/swAI6"
                 android:checked="false"
-                android:layout_below="@+id/switch5"
-                android:layout_alignLeft="@+id/switch5"
-                android:layout_alignStart="@+id/switch5" />
+                android:layout_below="@+id/swAI5"
+                android:layout_alignLeft="@+id/swAI5"
+                android:layout_alignStart="@+id/swAI5" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -535,8 +534,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch4"
-                android:layout_toEndOf="@+id/switch4" />
+                android:layout_toRightOf="@+id/swAI4"
+                android:layout_toEndOf="@+id/swAI4" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -598,18 +597,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView251"
-                android:layout_below="@+id/switch3"
-                android:layout_alignLeft="@+id/button2"
-                android:layout_alignStart="@+id/button2" />
+                android:layout_below="@+id/swPacB2"
+                android:layout_alignLeft="@+id/btnHR2"
+                android:layout_alignStart="@+id/btnHR2" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText33"
-                android:layout_alignLeft="@+id/button"
-                android:layout_alignStart="@+id/button"
+                android:layout_alignLeft="@+id/btnProd2"
+                android:layout_alignStart="@+id/btnProd2"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch3"
+                android:layout_below="@+id/swPacB2"
                 android:layout_alignRight="@+id/switch12"
                 android:layout_alignEnd="@+id/switch12"
                 android:layout_alignBottom="@+id/textView251" />
@@ -628,23 +627,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button3"
+                android:id="@+id/btnProd3"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch16"
-                android:layout_alignBottom="@+id/switch16"
-                android:layout_toLeftOf="@+id/switch13"
-                android:layout_toStartOf="@+id/switch13" />
+                android:layout_alignBaseline="@+id/swAI8"
+                android:layout_alignBottom="@+id/swAI8"
+                android:layout_toLeftOf="@+id/swPacA3"
+                android:layout_toStartOf="@+id/swPacA3" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button4"
+                android:id="@+id/btnHR3"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button3"
-                android:layout_alignBottom="@+id/button3"
+                android:layout_alignBaseline="@+id/btnProd3"
+                android:layout_alignBottom="@+id/btnProd3"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -652,53 +651,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch13"
+                android:id="@+id/swPacA3"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch15"
-                android:layout_alignBottom="@+id/switch15"
+                android:layout_alignBaseline="@+id/swAI6"
+                android:layout_alignBottom="@+id/swAI6"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch14"
+                android:id="@+id/swPacB3"
                 android:checked="false"
-                android:layout_below="@+id/button3"
-                android:layout_alignLeft="@+id/switch13"
-                android:layout_alignStart="@+id/switch13" />
+                android:layout_below="@+id/btnProd3"
+                android:layout_alignLeft="@+id/swPacA3"
+                android:layout_alignStart="@+id/swPacA3" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch15"
+                android:id="@+id/swAI7"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch13"
-                android:layout_toEndOf="@+id/switch13" />
+                android:layout_toRightOf="@+id/swPacA3"
+                android:layout_toEndOf="@+id/swPacA3" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch16"
+                android:id="@+id/swAI8"
                 android:checked="false"
-                android:layout_below="@+id/switch15"
-                android:layout_alignLeft="@+id/switch15"
-                android:layout_alignStart="@+id/switch15" />
+                android:layout_below="@+id/swAI7"
+                android:layout_alignLeft="@+id/swAI7"
+                android:layout_alignStart="@+id/swAI7" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch17"
+                android:id="@+id/swAI9"
                 android:checked="false"
-                android:layout_below="@+id/switch16"
-                android:layout_alignLeft="@+id/switch16"
-                android:layout_alignStart="@+id/switch16" />
+                android:layout_below="@+id/swAI8"
+                android:layout_alignLeft="@+id/swAI8"
+                android:layout_alignStart="@+id/swAI8" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -709,8 +708,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch15"
-                android:layout_toEndOf="@+id/switch15" />
+                android:layout_toRightOf="@+id/swAI7"
+                android:layout_toEndOf="@+id/swAI7" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -772,18 +771,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView252"
-                android:layout_below="@+id/switch14"
-                android:layout_alignLeft="@+id/button4"
-                android:layout_alignStart="@+id/button4" />
+                android:layout_below="@+id/swPacB3"
+                android:layout_alignLeft="@+id/btnHR3"
+                android:layout_alignStart="@+id/btnHR3" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText34"
-                android:layout_alignLeft="@+id/button3"
-                android:layout_alignStart="@+id/button3"
+                android:layout_alignLeft="@+id/btnProd3"
+                android:layout_alignStart="@+id/btnProd3"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch14"
+                android:layout_below="@+id/swPacB3"
                 android:layout_alignRight="@+id/switch23"
                 android:layout_alignEnd="@+id/switch23"
                 android:layout_alignBottom="@+id/textView252" />
@@ -802,23 +801,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button5"
+                android:id="@+id/btnProd4"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch27"
-                android:layout_alignBottom="@+id/switch27"
-                android:layout_toLeftOf="@+id/switch24"
-                android:layout_toStartOf="@+id/switch24" />
+                android:layout_alignBaseline="@+id/swAI11"
+                android:layout_alignBottom="@+id/swAI11"
+                android:layout_toLeftOf="@+id/swPacA4"
+                android:layout_toStartOf="@+id/swPacA4" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button6"
+                android:id="@+id/btnHR4"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button5"
-                android:layout_alignBottom="@+id/button5"
+                android:layout_alignBaseline="@+id/btnProd4"
+                android:layout_alignBottom="@+id/btnProd4"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -826,53 +825,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch24"
+                android:id="@+id/swPacA4"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch26"
-                android:layout_alignBottom="@+id/switch26"
+                android:layout_alignBaseline="@+id/swAI10"
+                android:layout_alignBottom="@+id/swAI10"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch25"
+                android:id="@+id/swPacB4"
                 android:checked="false"
-                android:layout_below="@+id/button5"
-                android:layout_alignLeft="@+id/switch24"
-                android:layout_alignStart="@+id/switch24" />
+                android:layout_below="@+id/btnProd4"
+                android:layout_alignLeft="@+id/swPacA4"
+                android:layout_alignStart="@+id/swPacA4" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch26"
+                android:id="@+id/swAI10"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch24"
-                android:layout_toEndOf="@+id/switch24" />
+                android:layout_toRightOf="@+id/swPacA4"
+                android:layout_toEndOf="@+id/swPacA4" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch27"
+                android:id="@+id/swAI11"
                 android:checked="false"
-                android:layout_below="@+id/switch26"
-                android:layout_alignLeft="@+id/switch26"
-                android:layout_alignStart="@+id/switch26" />
+                android:layout_below="@+id/swAI10"
+                android:layout_alignLeft="@+id/swAI10"
+                android:layout_alignStart="@+id/swAI10" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch28"
+                android:id="@+id/swAI12"
                 android:checked="false"
-                android:layout_below="@+id/switch27"
-                android:layout_alignLeft="@+id/switch27"
-                android:layout_alignStart="@+id/switch27" />
+                android:layout_below="@+id/swAI11"
+                android:layout_alignLeft="@+id/swAI11"
+                android:layout_alignStart="@+id/swAI11" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -883,8 +882,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch26"
-                android:layout_toEndOf="@+id/switch26" />
+                android:layout_toRightOf="@+id/swAI10"
+                android:layout_toEndOf="@+id/swAI10" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -946,18 +945,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView253"
-                android:layout_below="@+id/switch25"
-                android:layout_alignLeft="@+id/button6"
-                android:layout_alignStart="@+id/button6" />
+                android:layout_below="@+id/swPacB4"
+                android:layout_alignLeft="@+id/btnHR4"
+                android:layout_alignStart="@+id/btnHR4" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText35"
-                android:layout_alignLeft="@+id/button5"
-                android:layout_alignStart="@+id/button5"
+                android:layout_alignLeft="@+id/btnProd4"
+                android:layout_alignStart="@+id/btnProd4"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch25"
+                android:layout_below="@+id/swPacB4"
                 android:layout_alignRight="@+id/switch34"
                 android:layout_alignEnd="@+id/switch34"
                 android:layout_alignBottom="@+id/textView253" />
@@ -976,23 +975,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button7"
+                android:id="@+id/btnProd5"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch38"
-                android:layout_alignBottom="@+id/switch38"
-                android:layout_toLeftOf="@+id/switch35"
-                android:layout_toStartOf="@+id/switch35" />
+                android:layout_alignBaseline="@+id/swAI14"
+                android:layout_alignBottom="@+id/swAI14"
+                android:layout_toLeftOf="@+id/swPacA5"
+                android:layout_toStartOf="@+id/swPacA5" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button8"
+                android:id="@+id/btnHR5"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button7"
-                android:layout_alignBottom="@+id/button7"
+                android:layout_alignBaseline="@+id/btnProd5"
+                android:layout_alignBottom="@+id/btnProd5"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1000,53 +999,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch35"
+                android:id="@+id/swPacA5"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch37"
-                android:layout_alignBottom="@+id/switch37"
+                android:layout_alignBaseline="@+id/swAI13"
+                android:layout_alignBottom="@+id/swAI13"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch36"
+                android:id="@+id/swPacB5"
                 android:checked="false"
-                android:layout_below="@+id/button7"
-                android:layout_alignLeft="@+id/switch35"
-                android:layout_alignStart="@+id/switch35" />
+                android:layout_below="@+id/btnProd5"
+                android:layout_alignLeft="@+id/swPacA5"
+                android:layout_alignStart="@+id/swPacA5" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch37"
+                android:id="@+id/swAI13"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch35"
-                android:layout_toEndOf="@+id/switch35" />
+                android:layout_toRightOf="@+id/swPacA5"
+                android:layout_toEndOf="@+id/swPacA5" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch38"
+                android:id="@+id/swAI14"
                 android:checked="false"
-                android:layout_below="@+id/switch37"
-                android:layout_alignLeft="@+id/switch37"
-                android:layout_alignStart="@+id/switch37" />
+                android:layout_below="@+id/swAI13"
+                android:layout_alignLeft="@+id/swAI13"
+                android:layout_alignStart="@+id/swAI13" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch39"
+                android:id="@+id/swAI15"
                 android:checked="false"
-                android:layout_below="@+id/switch38"
-                android:layout_alignLeft="@+id/switch38"
-                android:layout_alignStart="@+id/switch38" />
+                android:layout_below="@+id/swAI14"
+                android:layout_alignLeft="@+id/swAI14"
+                android:layout_alignStart="@+id/swAI14" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1057,8 +1056,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch37"
-                android:layout_toEndOf="@+id/switch37" />
+                android:layout_toRightOf="@+id/swAI13"
+                android:layout_toEndOf="@+id/swAI13" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1120,18 +1119,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView254"
-                android:layout_below="@+id/switch36"
-                android:layout_alignLeft="@+id/button8"
-                android:layout_alignStart="@+id/button8" />
+                android:layout_below="@+id/swPacB5"
+                android:layout_alignLeft="@+id/btnHR5"
+                android:layout_alignStart="@+id/btnHR5" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText36"
-                android:layout_alignLeft="@+id/button7"
-                android:layout_alignStart="@+id/button7"
+                android:layout_alignLeft="@+id/btnProd5"
+                android:layout_alignStart="@+id/btnProd5"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch36"
+                android:layout_below="@+id/swPacB5"
                 android:layout_alignRight="@+id/switch45"
                 android:layout_alignEnd="@+id/switch45"
                 android:layout_alignBottom="@+id/textView254" />
@@ -1150,23 +1149,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button9"
+                android:id="@+id/btnProd6"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch49"
-                android:layout_alignBottom="@+id/switch49"
-                android:layout_toLeftOf="@+id/switch46"
-                android:layout_toStartOf="@+id/switch46" />
+                android:layout_alignBaseline="@+id/swAI17"
+                android:layout_alignBottom="@+id/swAI17"
+                android:layout_toLeftOf="@+id/swPacA6"
+                android:layout_toStartOf="@+id/swPacA6" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button10"
+                android:id="@+id/btnHR6"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button9"
-                android:layout_alignBottom="@+id/button9"
+                android:layout_alignBaseline="@+id/btnProd6"
+                android:layout_alignBottom="@+id/btnProd6"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1174,53 +1173,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch46"
+                android:id="@+id/swPacA6"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch48"
-                android:layout_alignBottom="@+id/switch48"
+                android:layout_alignBaseline="@+id/swAI16"
+                android:layout_alignBottom="@+id/swAI16"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch47"
+                android:id="@+id/swPacB6"
                 android:checked="false"
-                android:layout_below="@+id/button9"
-                android:layout_alignLeft="@+id/switch46"
-                android:layout_alignStart="@+id/switch46" />
+                android:layout_below="@+id/btnProd6"
+                android:layout_alignLeft="@+id/swPacA6"
+                android:layout_alignStart="@+id/swPacA6" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch48"
+                android:id="@+id/swAI16"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch46"
-                android:layout_toEndOf="@+id/switch46" />
+                android:layout_toRightOf="@+id/swPacA6"
+                android:layout_toEndOf="@+id/swPacA6" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch49"
+                android:id="@+id/swAI17"
                 android:checked="false"
-                android:layout_below="@+id/switch48"
-                android:layout_alignLeft="@+id/switch48"
-                android:layout_alignStart="@+id/switch48" />
+                android:layout_below="@+id/swAI16"
+                android:layout_alignLeft="@+id/swAI16"
+                android:layout_alignStart="@+id/swAI16" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch50"
+                android:id="@+id/swAI18"
                 android:checked="false"
-                android:layout_below="@+id/switch49"
-                android:layout_alignLeft="@+id/switch49"
-                android:layout_alignStart="@+id/switch49" />
+                android:layout_below="@+id/swAI17"
+                android:layout_alignLeft="@+id/swAI17"
+                android:layout_alignStart="@+id/swAI17" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1231,8 +1230,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch48"
-                android:layout_toEndOf="@+id/switch48" />
+                android:layout_toRightOf="@+id/swAI16"
+                android:layout_toEndOf="@+id/swAI16" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1294,18 +1293,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView255"
-                android:layout_below="@+id/switch47"
-                android:layout_alignLeft="@+id/button10"
-                android:layout_alignStart="@+id/button10" />
+                android:layout_below="@+id/swPacB6"
+                android:layout_alignLeft="@+id/btnHR6"
+                android:layout_alignStart="@+id/btnHR6" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText37"
-                android:layout_alignLeft="@+id/button9"
-                android:layout_alignStart="@+id/button9"
+                android:layout_alignLeft="@+id/btnProd6"
+                android:layout_alignStart="@+id/btnProd6"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch47"
+                android:layout_below="@+id/swPacB6"
                 android:layout_alignRight="@+id/switch56"
                 android:layout_alignEnd="@+id/switch56"
                 android:layout_alignBottom="@+id/textView255" />
@@ -1324,23 +1323,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button11"
+                android:id="@+id/btnProd7"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch60"
-                android:layout_alignBottom="@+id/switch60"
-                android:layout_toLeftOf="@+id/switch57"
-                android:layout_toStartOf="@+id/switch57" />
+                android:layout_alignBaseline="@+id/swAI20"
+                android:layout_alignBottom="@+id/swAI20"
+                android:layout_toLeftOf="@+id/swPacA7"
+                android:layout_toStartOf="@+id/swPacA7" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button12"
+                android:id="@+id/btnHR7"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button11"
-                android:layout_alignBottom="@+id/button11"
+                android:layout_alignBaseline="@+id/btnProd7"
+                android:layout_alignBottom="@+id/btnProd7"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1348,53 +1347,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch57"
+                android:id="@+id/swPacA7"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch59"
-                android:layout_alignBottom="@+id/switch59"
+                android:layout_alignBaseline="@+id/swAI19"
+                android:layout_alignBottom="@+id/swAI19"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch58"
+                android:id="@+id/swPacB7"
                 android:checked="false"
-                android:layout_below="@+id/button11"
-                android:layout_alignLeft="@+id/switch57"
-                android:layout_alignStart="@+id/switch57" />
+                android:layout_below="@+id/btnProd7"
+                android:layout_alignLeft="@+id/swPacA7"
+                android:layout_alignStart="@+id/swPacA7" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch59"
+                android:id="@+id/swAI19"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch57"
-                android:layout_toEndOf="@+id/switch57" />
+                android:layout_toRightOf="@+id/swPacA7"
+                android:layout_toEndOf="@+id/swPacA7" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch60"
+                android:id="@+id/swAI20"
                 android:checked="false"
-                android:layout_below="@+id/switch59"
-                android:layout_alignLeft="@+id/switch59"
-                android:layout_alignStart="@+id/switch59" />
+                android:layout_below="@+id/swAI19"
+                android:layout_alignLeft="@+id/swAI19"
+                android:layout_alignStart="@+id/swAI19" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch61"
+                android:id="@+id/swAI21"
                 android:checked="false"
-                android:layout_below="@+id/switch60"
-                android:layout_alignLeft="@+id/switch60"
-                android:layout_alignStart="@+id/switch60" />
+                android:layout_below="@+id/swAI20"
+                android:layout_alignLeft="@+id/swAI20"
+                android:layout_alignStart="@+id/swAI20" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1405,8 +1404,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch59"
-                android:layout_toEndOf="@+id/switch59" />
+                android:layout_toRightOf="@+id/swAI19"
+                android:layout_toEndOf="@+id/swAI19" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1468,18 +1467,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView256"
-                android:layout_below="@+id/switch58"
-                android:layout_alignLeft="@+id/button12"
-                android:layout_alignStart="@+id/button12" />
+                android:layout_below="@+id/swPacB7"
+                android:layout_alignLeft="@+id/btnHR7"
+                android:layout_alignStart="@+id/btnHR7" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText38"
-                android:layout_alignLeft="@+id/button11"
-                android:layout_alignStart="@+id/button11"
+                android:layout_alignLeft="@+id/btnProd7"
+                android:layout_alignStart="@+id/btnProd7"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch58"
+                android:layout_below="@+id/swPacB7"
                 android:layout_alignRight="@+id/switch67"
                 android:layout_alignEnd="@+id/switch67"
                 android:layout_alignBottom="@+id/textView256" />
@@ -1498,23 +1497,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button13"
+                android:id="@+id/btnProd8"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch71"
-                android:layout_alignBottom="@+id/switch71"
-                android:layout_toLeftOf="@+id/switch68"
-                android:layout_toStartOf="@+id/switch68" />
+                android:layout_alignBaseline="@+id/swAI23"
+                android:layout_alignBottom="@+id/swAI23"
+                android:layout_toLeftOf="@+id/swPacA8"
+                android:layout_toStartOf="@+id/swPacA8" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button14"
+                android:id="@+id/btnHR8"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button13"
-                android:layout_alignBottom="@+id/button13"
+                android:layout_alignBaseline="@+id/btnProd8"
+                android:layout_alignBottom="@+id/btnProd8"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1522,53 +1521,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch68"
+                android:id="@+id/swPacA8"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch70"
-                android:layout_alignBottom="@+id/switch70"
+                android:layout_alignBaseline="@+id/swAI22"
+                android:layout_alignBottom="@+id/swAI22"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch69"
+                android:id="@+id/swPacB8"
                 android:checked="false"
-                android:layout_below="@+id/button13"
-                android:layout_alignLeft="@+id/switch68"
-                android:layout_alignStart="@+id/switch68" />
+                android:layout_below="@+id/btnProd8"
+                android:layout_alignLeft="@+id/swPacA8"
+                android:layout_alignStart="@+id/swPacA8" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch70"
+                android:id="@+id/swAI22"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch68"
-                android:layout_toEndOf="@+id/switch68" />
+                android:layout_toRightOf="@+id/swPacA8"
+                android:layout_toEndOf="@+id/swPacA8" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch71"
+                android:id="@+id/swAI23"
                 android:checked="false"
-                android:layout_below="@+id/switch70"
-                android:layout_alignLeft="@+id/switch70"
-                android:layout_alignStart="@+id/switch70" />
+                android:layout_below="@+id/swAI22"
+                android:layout_alignLeft="@+id/swAI22"
+                android:layout_alignStart="@+id/swAI22" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch72"
+                android:id="@+id/swAI24"
                 android:checked="false"
-                android:layout_below="@+id/switch71"
-                android:layout_alignLeft="@+id/switch71"
-                android:layout_alignStart="@+id/switch71" />
+                android:layout_below="@+id/swAI23"
+                android:layout_alignLeft="@+id/swAI23"
+                android:layout_alignStart="@+id/swAI23" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1579,8 +1578,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch70"
-                android:layout_toEndOf="@+id/switch70" />
+                android:layout_toRightOf="@+id/swAI22"
+                android:layout_toEndOf="@+id/swAI22" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1642,18 +1641,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView257"
-                android:layout_below="@+id/switch69"
-                android:layout_alignLeft="@+id/button14"
-                android:layout_alignStart="@+id/button14" />
+                android:layout_below="@+id/swPacB8"
+                android:layout_alignLeft="@+id/btnHR8"
+                android:layout_alignStart="@+id/btnHR8" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText39"
-                android:layout_alignLeft="@+id/button13"
-                android:layout_alignStart="@+id/button13"
+                android:layout_alignLeft="@+id/btnProd8"
+                android:layout_alignStart="@+id/btnProd8"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch69"
+                android:layout_below="@+id/swPacB8"
                 android:layout_alignRight="@+id/switch78"
                 android:layout_alignEnd="@+id/switch78"
                 android:layout_alignBottom="@+id/textView257" />
@@ -1672,23 +1671,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button15"
+                android:id="@+id/btnProd9"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch82"
-                android:layout_alignBottom="@+id/switch82"
-                android:layout_toLeftOf="@+id/switch79"
-                android:layout_toStartOf="@+id/switch79" />
+                android:layout_alignBaseline="@+id/swAI26"
+                android:layout_alignBottom="@+id/swAI26"
+                android:layout_toLeftOf="@+id/swPacA9"
+                android:layout_toStartOf="@+id/swPacA9" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button16"
+                android:id="@+id/btnHR9"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button15"
-                android:layout_alignBottom="@+id/button15"
+                android:layout_alignBaseline="@+id/btnProd9"
+                android:layout_alignBottom="@+id/btnProd9"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1696,53 +1695,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch79"
+                android:id="@+id/swPacA9"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch81"
-                android:layout_alignBottom="@+id/switch81"
+                android:layout_alignBaseline="@+id/swAI25"
+                android:layout_alignBottom="@+id/swAI25"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch80"
+                android:id="@+id/swPacB9"
                 android:checked="false"
-                android:layout_below="@+id/button15"
-                android:layout_alignLeft="@+id/switch79"
-                android:layout_alignStart="@+id/switch79" />
+                android:layout_below="@+id/btnProd9"
+                android:layout_alignLeft="@+id/swPacA9"
+                android:layout_alignStart="@+id/swPacA9" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch81"
+                android:id="@+id/swAI25"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch79"
-                android:layout_toEndOf="@+id/switch79" />
+                android:layout_toRightOf="@+id/swPacA9"
+                android:layout_toEndOf="@+id/swPacA9" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch82"
+                android:id="@+id/swAI26"
                 android:checked="false"
-                android:layout_below="@+id/switch81"
-                android:layout_alignLeft="@+id/switch81"
-                android:layout_alignStart="@+id/switch81" />
+                android:layout_below="@+id/swAI25"
+                android:layout_alignLeft="@+id/swAI25"
+                android:layout_alignStart="@+id/swAI25" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch83"
+                android:id="@+id/swAI27"
                 android:checked="false"
-                android:layout_below="@+id/switch82"
-                android:layout_alignLeft="@+id/switch82"
-                android:layout_alignStart="@+id/switch82" />
+                android:layout_below="@+id/swAI26"
+                android:layout_alignLeft="@+id/swAI26"
+                android:layout_alignStart="@+id/swAI26" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1753,8 +1752,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch81"
-                android:layout_toEndOf="@+id/switch81" />
+                android:layout_toRightOf="@+id/swAI25"
+                android:layout_toEndOf="@+id/swAI25" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1816,18 +1815,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView258"
-                android:layout_below="@+id/switch80"
-                android:layout_alignLeft="@+id/button16"
-                android:layout_alignStart="@+id/button16" />
+                android:layout_below="@+id/swPacB9"
+                android:layout_alignLeft="@+id/btnHR9"
+                android:layout_alignStart="@+id/btnHR9" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText40"
-                android:layout_alignLeft="@+id/button15"
-                android:layout_alignStart="@+id/button15"
+                android:layout_alignLeft="@+id/btnProd9"
+                android:layout_alignStart="@+id/btnProd9"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch80"
+                android:layout_below="@+id/swPacB9"
                 android:layout_alignRight="@+id/switch89"
                 android:layout_alignEnd="@+id/switch89"
                 android:layout_alignBottom="@+id/textView258" />
@@ -1846,23 +1845,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button17"
+                android:id="@+id/btnProd10"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch93"
-                android:layout_alignBottom="@+id/switch93"
-                android:layout_toLeftOf="@+id/switch90"
-                android:layout_toStartOf="@+id/switch90" />
+                android:layout_alignBaseline="@+id/swAI29"
+                android:layout_alignBottom="@+id/swAI29"
+                android:layout_toLeftOf="@+id/swPacA10"
+                android:layout_toStartOf="@+id/swPacA10" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button18"
+                android:id="@+id/btnHR10"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button17"
-                android:layout_alignBottom="@+id/button17"
+                android:layout_alignBaseline="@+id/btnProd10"
+                android:layout_alignBottom="@+id/btnProd10"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -1870,53 +1869,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch90"
+                android:id="@+id/swPacA10"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch92"
-                android:layout_alignBottom="@+id/switch92"
+                android:layout_alignBaseline="@+id/swAI28"
+                android:layout_alignBottom="@+id/swAI28"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch91"
+                android:id="@+id/swPacB10"
                 android:checked="false"
-                android:layout_below="@+id/button17"
-                android:layout_alignLeft="@+id/switch90"
-                android:layout_alignStart="@+id/switch90" />
+                android:layout_below="@+id/btnProd10"
+                android:layout_alignLeft="@+id/swPacA10"
+                android:layout_alignStart="@+id/swPacA10" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch92"
+                android:id="@+id/swAI28"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch90"
-                android:layout_toEndOf="@+id/switch90" />
+                android:layout_toRightOf="@+id/swPacA10"
+                android:layout_toEndOf="@+id/swPacA10" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch93"
+                android:id="@+id/swAI29"
                 android:checked="false"
-                android:layout_below="@+id/switch92"
-                android:layout_alignLeft="@+id/switch92"
-                android:layout_alignStart="@+id/switch92" />
+                android:layout_below="@+id/swAI28"
+                android:layout_alignLeft="@+id/swAI28"
+                android:layout_alignStart="@+id/swAI28" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch94"
+                android:id="@+id/swAI30"
                 android:checked="false"
-                android:layout_below="@+id/switch93"
-                android:layout_alignLeft="@+id/switch93"
-                android:layout_alignStart="@+id/switch93" />
+                android:layout_below="@+id/swAI29"
+                android:layout_alignLeft="@+id/swAI29"
+                android:layout_alignStart="@+id/swAI29" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1927,8 +1926,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch92"
-                android:layout_toEndOf="@+id/switch92" />
+                android:layout_toRightOf="@+id/swAI28"
+                android:layout_toEndOf="@+id/swAI28" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -1990,18 +1989,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView259"
-                android:layout_below="@+id/switch91"
-                android:layout_alignLeft="@+id/button18"
-                android:layout_alignStart="@+id/button18" />
+                android:layout_below="@+id/swPacB10"
+                android:layout_alignLeft="@+id/btnHR10"
+                android:layout_alignStart="@+id/btnHR10" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText41"
-                android:layout_alignLeft="@+id/button17"
-                android:layout_alignStart="@+id/button17"
+                android:layout_alignLeft="@+id/btnProd10"
+                android:layout_alignStart="@+id/btnProd10"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch91"
+                android:layout_below="@+id/swPacB10"
                 android:layout_alignRight="@+id/switch100"
                 android:layout_alignEnd="@+id/switch100"
                 android:layout_alignBottom="@+id/textView259" />
@@ -2020,23 +2019,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button19"
+                android:id="@+id/btnProd11"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch104"
-                android:layout_alignBottom="@+id/switch104"
-                android:layout_toLeftOf="@+id/switch101"
-                android:layout_toStartOf="@+id/switch101" />
+                android:layout_alignBaseline="@+id/swAI32"
+                android:layout_alignBottom="@+id/swAI32"
+                android:layout_toLeftOf="@+id/swPacA11"
+                android:layout_toStartOf="@+id/swPacA11" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button20"
+                android:id="@+id/btnHR11"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button19"
-                android:layout_alignBottom="@+id/button19"
+                android:layout_alignBaseline="@+id/btnProd11"
+                android:layout_alignBottom="@+id/btnProd11"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -2044,53 +2043,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch101"
+                android:id="@+id/swPacA11"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch103"
-                android:layout_alignBottom="@+id/switch103"
+                android:layout_alignBaseline="@+id/swAI31"
+                android:layout_alignBottom="@+id/swAI31"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch102"
+                android:id="@+id/swPacB11"
                 android:checked="false"
-                android:layout_below="@+id/button19"
-                android:layout_alignLeft="@+id/switch101"
-                android:layout_alignStart="@+id/switch101" />
+                android:layout_below="@+id/btnProd11"
+                android:layout_alignLeft="@+id/swPacA11"
+                android:layout_alignStart="@+id/swPacA11" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch103"
+                android:id="@+id/swAI31"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch101"
-                android:layout_toEndOf="@+id/switch101" />
+                android:layout_toRightOf="@+id/swPacA11"
+                android:layout_toEndOf="@+id/swPacA11" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch104"
+                android:id="@+id/swAI32"
                 android:checked="false"
-                android:layout_below="@+id/switch103"
-                android:layout_alignLeft="@+id/switch103"
-                android:layout_alignStart="@+id/switch103" />
+                android:layout_below="@+id/swAI31"
+                android:layout_alignLeft="@+id/swAI31"
+                android:layout_alignStart="@+id/swAI31" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch105"
+                android:id="@+id/swAI33"
                 android:checked="false"
-                android:layout_below="@+id/switch104"
-                android:layout_alignLeft="@+id/switch104"
-                android:layout_alignStart="@+id/switch104" />
+                android:layout_below="@+id/swAI32"
+                android:layout_alignLeft="@+id/swAI32"
+                android:layout_alignStart="@+id/swAI32" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2101,8 +2100,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch103"
-                android:layout_toEndOf="@+id/switch103" />
+                android:layout_toRightOf="@+id/swAI31"
+                android:layout_toEndOf="@+id/swAI31" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2164,18 +2163,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView260"
-                android:layout_below="@+id/switch102"
-                android:layout_alignLeft="@+id/button20"
-                android:layout_alignStart="@+id/button20" />
+                android:layout_below="@+id/swPacB11"
+                android:layout_alignLeft="@+id/btnHR11"
+                android:layout_alignStart="@+id/btnHR11" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText42"
-                android:layout_alignLeft="@+id/button19"
-                android:layout_alignStart="@+id/button19"
+                android:layout_alignLeft="@+id/btnProd11"
+                android:layout_alignStart="@+id/btnProd11"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch102"
+                android:layout_below="@+id/swPacB11"
                 android:layout_alignRight="@+id/switch111"
                 android:layout_alignEnd="@+id/switch111"
                 android:layout_alignBottom="@+id/textView260" />
@@ -2194,23 +2193,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button21"
+                android:id="@+id/btnProd12"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch115"
-                android:layout_alignBottom="@+id/switch115"
-                android:layout_toLeftOf="@+id/switch112"
-                android:layout_toStartOf="@+id/switch112" />
+                android:layout_alignBaseline="@+id/swAI35"
+                android:layout_alignBottom="@+id/swAI35"
+                android:layout_toLeftOf="@+id/swPacA13"
+                android:layout_toStartOf="@+id/swPacA13" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button22"
+                android:id="@+id/btnHR12"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button21"
-                android:layout_alignBottom="@+id/button21"
+                android:layout_alignBaseline="@+id/btnProd12"
+                android:layout_alignBottom="@+id/btnProd12"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -2218,53 +2217,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch112"
+                android:id="@+id/swPacA13"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch114"
-                android:layout_alignBottom="@+id/switch114"
+                android:layout_alignBaseline="@+id/swAI34"
+                android:layout_alignBottom="@+id/swAI34"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch113"
+                android:id="@+id/swPacB13"
                 android:checked="false"
-                android:layout_below="@+id/button21"
-                android:layout_alignLeft="@+id/switch112"
-                android:layout_alignStart="@+id/switch112" />
+                android:layout_below="@+id/btnProd12"
+                android:layout_alignLeft="@+id/swPacA13"
+                android:layout_alignStart="@+id/swPacA13" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch114"
+                android:id="@+id/swAI34"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch112"
-                android:layout_toEndOf="@+id/switch112" />
+                android:layout_toRightOf="@+id/swPacA13"
+                android:layout_toEndOf="@+id/swPacA13" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch115"
+                android:id="@+id/swAI35"
                 android:checked="false"
-                android:layout_below="@+id/switch114"
-                android:layout_alignLeft="@+id/switch114"
-                android:layout_alignStart="@+id/switch114" />
+                android:layout_below="@+id/swAI34"
+                android:layout_alignLeft="@+id/swAI34"
+                android:layout_alignStart="@+id/swAI34" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch116"
+                android:id="@+id/swAI36"
                 android:checked="false"
-                android:layout_below="@+id/switch115"
-                android:layout_alignLeft="@+id/switch115"
-                android:layout_alignStart="@+id/switch115" />
+                android:layout_below="@+id/swAI35"
+                android:layout_alignLeft="@+id/swAI35"
+                android:layout_alignStart="@+id/swAI35" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2275,8 +2274,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch114"
-                android:layout_toEndOf="@+id/switch114" />
+                android:layout_toRightOf="@+id/swAI34"
+                android:layout_toEndOf="@+id/swAI34" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2338,18 +2337,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView261"
-                android:layout_below="@+id/switch113"
-                android:layout_alignLeft="@+id/button22"
-                android:layout_alignStart="@+id/button22" />
+                android:layout_below="@+id/swPacB13"
+                android:layout_alignLeft="@+id/btnHR12"
+                android:layout_alignStart="@+id/btnHR12" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText43"
-                android:layout_alignLeft="@+id/button21"
-                android:layout_alignStart="@+id/button21"
+                android:layout_alignLeft="@+id/btnProd12"
+                android:layout_alignStart="@+id/btnProd12"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch113"
+                android:layout_below="@+id/swPacB13"
                 android:layout_alignRight="@+id/switch122"
                 android:layout_alignEnd="@+id/switch122"
                 android:layout_alignBottom="@+id/textView261" />
@@ -2368,23 +2367,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button23"
+                android:id="@+id/btnProd13"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch126"
-                android:layout_alignBottom="@+id/switch126"
-                android:layout_toLeftOf="@+id/switch123"
-                android:layout_toStartOf="@+id/switch123" />
+                android:layout_alignBaseline="@+id/swAI38"
+                android:layout_alignBottom="@+id/swAI38"
+                android:layout_toLeftOf="@+id/swPacA14"
+                android:layout_toStartOf="@+id/swPacA14" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button24"
+                android:id="@+id/btnHR13"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button23"
-                android:layout_alignBottom="@+id/button23"
+                android:layout_alignBaseline="@+id/btnProd13"
+                android:layout_alignBottom="@+id/btnProd13"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -2392,53 +2391,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch123"
+                android:id="@+id/swPacA14"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch125"
-                android:layout_alignBottom="@+id/switch125"
+                android:layout_alignBaseline="@+id/swAI37"
+                android:layout_alignBottom="@+id/swAI37"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch124"
+                android:id="@+id/swPacB14"
                 android:checked="false"
-                android:layout_below="@+id/button23"
-                android:layout_alignLeft="@+id/switch123"
-                android:layout_alignStart="@+id/switch123" />
+                android:layout_below="@+id/btnProd13"
+                android:layout_alignLeft="@+id/swPacA14"
+                android:layout_alignStart="@+id/swPacA14" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch125"
+                android:id="@+id/swAI37"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch123"
-                android:layout_toEndOf="@+id/switch123" />
+                android:layout_toRightOf="@+id/swPacA14"
+                android:layout_toEndOf="@+id/swPacA14" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch126"
+                android:id="@+id/swAI38"
                 android:checked="false"
-                android:layout_below="@+id/switch125"
-                android:layout_alignLeft="@+id/switch125"
-                android:layout_alignStart="@+id/switch125" />
+                android:layout_below="@+id/swAI37"
+                android:layout_alignLeft="@+id/swAI37"
+                android:layout_alignStart="@+id/swAI37" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch127"
+                android:id="@+id/swAI39"
                 android:checked="false"
-                android:layout_below="@+id/switch126"
-                android:layout_alignLeft="@+id/switch126"
-                android:layout_alignStart="@+id/switch126" />
+                android:layout_below="@+id/swAI38"
+                android:layout_alignLeft="@+id/swAI38"
+                android:layout_alignStart="@+id/swAI38" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2449,8 +2448,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch125"
-                android:layout_toEndOf="@+id/switch125" />
+                android:layout_toRightOf="@+id/swAI37"
+                android:layout_toEndOf="@+id/swAI37" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2512,18 +2511,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView262"
-                android:layout_below="@+id/switch124"
-                android:layout_alignLeft="@+id/button24"
-                android:layout_alignStart="@+id/button24" />
+                android:layout_below="@+id/swPacB14"
+                android:layout_alignLeft="@+id/btnHR13"
+                android:layout_alignStart="@+id/btnHR13" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText44"
-                android:layout_alignLeft="@+id/button23"
-                android:layout_alignStart="@+id/button23"
+                android:layout_alignLeft="@+id/btnProd13"
+                android:layout_alignStart="@+id/btnProd13"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch124"
+                android:layout_below="@+id/swPacB14"
                 android:layout_alignRight="@+id/switch133"
                 android:layout_alignEnd="@+id/switch133"
                 android:layout_alignBottom="@+id/textView262" />
@@ -2542,23 +2541,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button25"
+                android:id="@+id/btnProd14"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch137"
-                android:layout_alignBottom="@+id/switch137"
-                android:layout_toLeftOf="@+id/switch134"
-                android:layout_toStartOf="@+id/switch134" />
+                android:layout_alignBaseline="@+id/swAI41"
+                android:layout_alignBottom="@+id/swAI41"
+                android:layout_toLeftOf="@+id/swPacA15"
+                android:layout_toStartOf="@+id/swPacA15" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button26"
+                android:id="@+id/btnHR14"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button25"
-                android:layout_alignBottom="@+id/button25"
+                android:layout_alignBaseline="@+id/btnProd14"
+                android:layout_alignBottom="@+id/btnProd14"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -2566,53 +2565,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch134"
+                android:id="@+id/swPacA15"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch136"
-                android:layout_alignBottom="@+id/switch136"
+                android:layout_alignBaseline="@+id/swAI40"
+                android:layout_alignBottom="@+id/swAI40"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch135"
+                android:id="@+id/swPacB15"
                 android:checked="false"
-                android:layout_below="@+id/button25"
-                android:layout_alignLeft="@+id/switch134"
-                android:layout_alignStart="@+id/switch134" />
+                android:layout_below="@+id/btnProd14"
+                android:layout_alignLeft="@+id/swPacA15"
+                android:layout_alignStart="@+id/swPacA15" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch136"
+                android:id="@+id/swAI40"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch134"
-                android:layout_toEndOf="@+id/switch134" />
+                android:layout_toRightOf="@+id/swPacA15"
+                android:layout_toEndOf="@+id/swPacA15" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch137"
+                android:id="@+id/swAI41"
                 android:checked="false"
-                android:layout_below="@+id/switch136"
-                android:layout_alignLeft="@+id/switch136"
-                android:layout_alignStart="@+id/switch136" />
+                android:layout_below="@+id/swAI40"
+                android:layout_alignLeft="@+id/swAI40"
+                android:layout_alignStart="@+id/swAI40" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch138"
+                android:id="@+id/swAI42"
                 android:checked="false"
-                android:layout_below="@+id/switch137"
-                android:layout_alignLeft="@+id/switch137"
-                android:layout_alignStart="@+id/switch137" />
+                android:layout_below="@+id/swAI41"
+                android:layout_alignLeft="@+id/swAI41"
+                android:layout_alignStart="@+id/swAI41" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2623,8 +2622,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch136"
-                android:layout_toEndOf="@+id/switch136" />
+                android:layout_toRightOf="@+id/swAI40"
+                android:layout_toEndOf="@+id/swAI40" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2686,18 +2685,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView263"
-                android:layout_below="@+id/switch135"
-                android:layout_alignLeft="@+id/button26"
-                android:layout_alignStart="@+id/button26" />
+                android:layout_below="@+id/swPacB15"
+                android:layout_alignLeft="@+id/btnHR14"
+                android:layout_alignStart="@+id/btnHR14" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText45"
-                android:layout_alignLeft="@+id/button25"
-                android:layout_alignStart="@+id/button25"
+                android:layout_alignLeft="@+id/btnProd14"
+                android:layout_alignStart="@+id/btnProd14"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch135"
+                android:layout_below="@+id/swPacB15"
                 android:layout_alignRight="@+id/switch144"
                 android:layout_alignEnd="@+id/switch144"
                 android:layout_alignBottom="@+id/textView263" />
@@ -2718,23 +2717,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seleccionar Producto"
-                android:id="@+id/button27"
+                android:id="@+id/btnProd15"
                 android:layout_marginRight="72dp"
                 android:layout_marginEnd="72dp"
-                android:layout_alignBaseline="@+id/switch148"
-                android:layout_alignBottom="@+id/switch148"
-                android:layout_toLeftOf="@+id/switch145"
-                android:layout_toStartOf="@+id/switch145" />
+                android:layout_alignBaseline="@+id/swAI44"
+                android:layout_alignBottom="@+id/swAI44"
+                android:layout_toLeftOf="@+id/swPacA16"
+                android:layout_toStartOf="@+id/swPacA16" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Obtener hora"
-                android:id="@+id/button28"
+                android:id="@+id/btnHR15"
                 android:layout_marginLeft="35dp"
                 android:layout_marginStart="29dp"
-                android:layout_alignBaseline="@+id/button27"
-                android:layout_alignBottom="@+id/button27"
+                android:layout_alignBaseline="@+id/btnProd15"
+                android:layout_alignBottom="@+id/btnProd15"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -2742,53 +2741,53 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="A"
-                android:id="@+id/switch145"
+                android:id="@+id/swPacA16"
                 android:checked="false"
-                android:layout_alignBaseline="@+id/switch147"
-                android:layout_alignBottom="@+id/switch147"
+                android:layout_alignBaseline="@+id/swAI43"
+                android:layout_alignBottom="@+id/swAI43"
                 android:layout_centerHorizontal="true" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="B"
-                android:id="@+id/switch146"
+                android:id="@+id/swPacB16"
                 android:checked="false"
-                android:layout_below="@+id/button27"
-                android:layout_alignLeft="@+id/switch145"
-                android:layout_alignStart="@+id/switch145" />
+                android:layout_below="@+id/btnProd15"
+                android:layout_alignLeft="@+id/swPacA16"
+                android:layout_alignStart="@+id/swPacA16" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="1"
-                android:id="@+id/switch147"
+                android:id="@+id/swAI43"
                 android:layout_marginLeft="37dp"
                 android:layout_marginStart="37dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch145"
-                android:layout_toEndOf="@+id/switch145" />
+                android:layout_toRightOf="@+id/swPacA16"
+                android:layout_toEndOf="@+id/swPacA16" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="2"
-                android:id="@+id/switch148"
+                android:id="@+id/swAI44"
                 android:checked="false"
-                android:layout_below="@+id/switch147"
-                android:layout_alignLeft="@+id/switch147"
-                android:layout_alignStart="@+id/switch147" />
+                android:layout_below="@+id/swAI43"
+                android:layout_alignLeft="@+id/swAI43"
+                android:layout_alignStart="@+id/swAI43" />
 
             <Switch
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:id="@+id/switch149"
+                android:id="@+id/swAI45"
                 android:checked="false"
-                android:layout_below="@+id/switch148"
-                android:layout_alignLeft="@+id/switch148"
-                android:layout_alignStart="@+id/switch148" />
+                android:layout_below="@+id/swAI44"
+                android:layout_alignLeft="@+id/swAI44"
+                android:layout_alignStart="@+id/swAI44" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2799,8 +2798,8 @@
                 android:layout_marginStart="20dp"
                 android:checked="false"
                 android:layout_alignParentTop="true"
-                android:layout_toRightOf="@+id/switch147"
-                android:layout_toEndOf="@+id/switch147" />
+                android:layout_toRightOf="@+id/swAI43"
+                android:layout_toEndOf="@+id/swAI43" />
 
             <Switch
                 android:layout_width="wrap_content"
@@ -2862,18 +2861,18 @@
                 android:layout_marginTop="15dp"
                 android:textColor="@android:color/black"
                 android:id="@+id/textView264"
-                android:layout_below="@+id/switch146"
-                android:layout_alignLeft="@+id/button28"
-                android:layout_alignStart="@+id/button28" />
+                android:layout_below="@+id/swPacB16"
+                android:layout_alignLeft="@+id/btnHR15"
+                android:layout_alignStart="@+id/btnHR15" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText46"
-                android:layout_alignLeft="@+id/button27"
-                android:layout_alignStart="@+id/button27"
+                android:layout_alignLeft="@+id/btnProd15"
+                android:layout_alignStart="@+id/btnProd15"
                 android:textSize="25dp"
-                android:layout_below="@+id/switch146"
+                android:layout_below="@+id/swPacB16"
                 android:layout_alignRight="@+id/switch155"
                 android:layout_alignEnd="@+id/switch155"
                 android:layout_alignBottom="@+id/textView264" />
@@ -2888,9 +2887,10 @@
 
         android:id="@+id/imageButton"
         android:background="@drawable/actualizarmenos"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/relativeLayout"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3"
+        android:layout_marginTop="40dp" />
 
 
 </RelativeLayout>

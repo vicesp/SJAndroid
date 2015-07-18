@@ -269,15 +269,26 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
     }
     public int getPosition(String value){
-        if(value.equals("1")){
-            return 0;
-        }
-        else if(value.equals("2")){
-            return 1;
-        }
-        else {
-            return 2;
-        }
+      switch (value){
+          case "1":return 0;
+          case "2":return 1;
+          case "3":return 2;
+          case "4":return 3;
+          case "5":return 4;
+          case "6":return 5;
+          case "7":return 6;
+          case "8":return 7;
+          case "9":return 8;
+          case "10":return 9;
+          case "11":return 10;
+          case "12":return 11;
+          case "13":return 12;
+          case "14":return 13;
+          case "15":return 14;
+
+
+          default:return 0;
+      }
     }
     public void vaciarTodo() {
         Lote.setText("");
@@ -316,6 +327,18 @@ public class Cuajadas_Lab extends ActionBarActivity {
         valuesSpinner.add("1");
         valuesSpinner.add("2");
         valuesSpinner.add("3");
+        valuesSpinner.add("4");
+        valuesSpinner.add("5");
+        valuesSpinner.add("6");
+        valuesSpinner.add("7");
+        valuesSpinner.add("8");
+        valuesSpinner.add("9");
+        valuesSpinner.add("10");
+        valuesSpinner.add("11");
+        valuesSpinner.add("12");
+        valuesSpinner.add("13");
+        valuesSpinner.add("14");
+        valuesSpinner.add("15");
 
 
         // Create the adapter to convert the array to views

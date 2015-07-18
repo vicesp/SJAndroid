@@ -1,16 +1,21 @@
 package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,6 +27,13 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,7 +58,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
     private EditText Lote, observaciones_sabor,
             humedad, ph, grasa_total, humRem, phRem, grasRem, observaciones_apariencia,
             observaciones_color,observaciones_untabilidad;
-    private String Nombre_PT[];
+    private String Nombre_PT[], Requeson_PT[];
     private String [] listaProductos;
     private ArrayList<String> array_sort;
     int textlength=0;
@@ -287,7 +299,20 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         AlertDialog.Builder myDialog = new AlertDialog.Builder(Requeson_Lab.this);
 
         Nombre_PT = getProductosArray(con.DAOGetTodosProductos(codigo_fam.getText().toString(),0));
-
+        int x = 0;
+        for(int i =0; i<Nombre_PT.length; i++){
+            if(Nombre_PT[i].substring(0,2).equals("RE")){
+                x++;
+            }
+        }
+        Requeson_PT = new String[x];
+        x=0;
+        for(int i =0; i<Nombre_PT.length; i++){
+            if(Nombre_PT[i].substring(0,2).equals("RE")){
+                Requeson_PT[x]=Nombre_PT[i];
+                x++;
+            }
+        }
 
 
 
@@ -296,7 +321,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         final EditText editText = new EditText(Requeson_Lab.this);
         final ListView listview = new ListView(Requeson_Lab.this);
         editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
-        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        array_sort = new ArrayList<String>(Arrays.asList(Requeson_PT));
         LinearLayout layout = new LinearLayout(Requeson_Lab.this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.addView(editText);
@@ -320,11 +345,11 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
                 editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 textlength = editText.getText().length();
                 array_sort.clear();
-                for (int i = 0; i < Nombre_PT.length; i++) {
-                    if (textlength <= Nombre_PT[i].length()) {
+                for (int i = 0; i < Requeson_PT.length; i++) {
+                    if (textlength <= Requeson_PT[i].length()) {
 
-                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
-                            array_sort.add(Nombre_PT[i]);
+                        if (Requeson_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Requeson_PT[i]);
                         }
                     }
                 }
@@ -474,6 +499,103 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         familia.setText(null);
         observaciones_untabilidad.setText(null);
 
+    }
+    public class GuardaLaboratorio extends AsyncTask<String, Void, Boolean>
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Requeson_Lab.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Enviando Datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+        {
+            final String NAMESPACE = "http://serv_gsj.net/";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertarequesonlab";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("fecha", Fecha.getText().toString());
+            request.addProperty("familia", btn_listviewdialog.getText().toString());
+            request.addProperty("producto", btn_listviewdialog.getText().toString());
+            request.addProperty("apariencia", switchTexter(swApa.isChecked()));
+            request.addProperty("sabor", switchTexter(swSa.isChecked()));
+            request.addProperty("color", switchTexter(swCo.isChecked()));
+            request.addProperty("aroma", switchTexter(swAro.isChecked()));
+            request.addProperty("observaciones_sabor", observaciones_sabor.getText().toString());
+            request.addProperty("humedad", humedad.getText().toString());
+            request.addProperty("ph", ph.getText().toString());
+            request.addProperty("grasa_total", grasa_total.getText().toString());
+            request.addProperty("humedad_remuestreo", humRem.getText().toString());
+            request.addProperty("ph_remuestreo", phRem.getText().toString());
+            request.addProperty("grasa_remuestreo", grasRem.getText().toString());
+            request.addProperty("necesidad_remuestreo", switchTexter(swRem.isChecked()));
+            request.addProperty("observaciones_apariencia", observaciones_apariencia.getText().toString());
+            request.addProperty("observaciones_color", observaciones_color.getText().toString());
+            request.addProperty("untabilidad", getUntabilidad());
+            request.addProperty("observaciones_untabilidad", observaciones_untabilidad);
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try
+            {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_XML = (SoapPrimitive)envelope.getResponse();
+                String mensaje = resultado_XML.toString();
+
+                if(mensaje.contentEquals("true")){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Log.i("Error", "Error de sincronizacion:  " + e);
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success)
+        {
+            if (this.dialog.isShowing())
+            {
+                this.dialog.dismiss();
+            }
+
+            if (success)
+            {
+                Toast.makeText(Requeson_Lab.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(Requeson_Lab.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void PaginaMonitor()
+        {
+            WebView myWebView = (WebView) findViewById(R.id.webView);
+            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
     }
 
 }

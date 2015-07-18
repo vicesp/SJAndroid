@@ -121,7 +121,7 @@ public class Administrador extends ActionBarActivity {
         });
 
 
-        if(var.getNombre_usuario().equals("EL"))
+        if(var.getNombre_usuario().equals("EL")||var.getNombre_usuario().equals("Esthela"))
         {
 
             btnFamilias.setEnabled(false);

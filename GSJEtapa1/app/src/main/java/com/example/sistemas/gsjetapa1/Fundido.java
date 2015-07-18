@@ -4,6 +4,8 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +46,8 @@ import java.text.DecimalFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
@@ -64,7 +68,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
     private EditText sa01,lote_sa01,mp024,lote_mp024,mp078,lote_mp078,cj02,lote_cj02,agua,lote_crema,cantidad_crema,lote_famiRepro,kilos_FamiRepro;
     private EditText etObservaciones;
     private Button Calcula_peso, btnFamiliaFun, btnFamiliaReproceso, Regresar;
-    private ImageButton AddCuajada, GuardarF;
+    private ImageButton AddCuajada, GuardarF, Calculadora;
     private double peso_texturizador=0,valor_total=0,cantidad_cj01=0,cantidad_cj01_1=0,cantidad_cj01_2=0,cantidad_cj01_3=0,canti_crema2=0,cantidad_cj011=0,cantidad_mp005=0,cantidad_mp015=0,cantidad_s0101=0,tot_s0101=0,tot_mp015=0,cantidad_mp007=0,cantidad_sa01=0,cantidad_mp024=0,cantidad_int_crema=0,cantidad_familia_repro=0;
     private Switch tinas;
     private int bandera=1;
@@ -696,6 +700,36 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         //******************  FIN  Spinners    ****************//
 
         //******************    Inicio Buttons    ****************//
+
+        Calculadora=(ImageButton)findViewById(R.id.btnCalcu);
+        Calculadora.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+                //PackageManager pm;
+                final PackageManager pm = getPackageManager();
+                List<PackageInfo> packs = pm.getInstalledPackages(0);
+                for (PackageInfo pi : packs) {
+                    if (pi.packageName.toString().toLowerCase().contains("calcul")) {
+                        HashMap<String, Object> map = new HashMap<String, Object>();
+                        map.put("appName", pi.applicationInfo.loadLabel(pm));
+                        map.put("packageName", pi.packageName);
+                        items.add(map);
+                    }
+                }
+                if (items.size() >= 1) {
+                    String packageName = (String) items.get(0).get("packageName");
+                    Intent i = pm.getLaunchIntentForPackage(packageName);
+
+                    if (i != null) {
+                        startActivity(i);
+                    } else {
+                        // Application not found
+                    }
+                }
+            }
+        });
 
         btnFamiliaReproceso = (Button) findViewById(R.id.spFamiliaReproceso);
         btnFamiliaReproceso.setFocusable(true);

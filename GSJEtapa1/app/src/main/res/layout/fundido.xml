@@ -1660,6 +1660,14 @@
             android:layout_alignLeft="@+id/textView12"
             android:layout_alignStart="@+id/textView12" />
 
+        <ImageButton
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/btnCalcu"
+            android:background="@drawable/calculadora"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" />
+
     </RelativeLayout>
 
 

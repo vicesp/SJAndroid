@@ -2202,14 +2202,15 @@ try {
 
     public Boolean DAOCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
                                String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
-                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy){
+                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy,
+                               String producto, String codigo_producto){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
             db.execSQL("INSERT INTO crema_lab (lote, fecha, sabor, sabor_observaciones, color, color_observaciones, aroma,aroma_observaciones," +
-                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy" +
+                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy, producto, codigo_producto" +
                     ") " +
                     "VALUES ('"+
                     lote+"','"+
@@ -2228,7 +2229,11 @@ try {
                     solidos+"','"+
                     acidez+"','"+
                     grasa+"','"+
-                            fecha_hoy+"')");
+                    fecha_hoy+"','"+
+                    producto+"','"+
+                    codigo_producto+
+
+                    "')");
             return true;
         }
         catch(SQLException e)
@@ -2240,7 +2245,8 @@ try {
 
     public Boolean DAOActualizaCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
                                         String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
-                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo){
+                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo,
+                                        String producto, String codigo_producto){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2260,7 +2266,10 @@ try {
                     " ph='"+ph+"'," +
                     " solidos='"+solidos+"'," +
                     " acidez='"+acidez+"'," +
-                    " grasa='"+grasa+"' " +
+                    " grasa='"+grasa +"'," +
+                    " producto='"+producto+"'," +
+                    " codigo_producto='"+codigo_producto+
+                    "' " +
                     " WHERE lote = '"+lote+"';" +
 
             "");
@@ -2275,7 +2284,7 @@ try {
     public ArrayList<consultas> DAOListaCremaLabRealizado(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, codigo_producto, producto " +
                 "FROM crema_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2288,7 +2297,7 @@ try {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_producto"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
@@ -2305,7 +2314,8 @@ try {
         db = myDbHelper.getWritableDatabase();
         try {
             cursor = db.rawQuery("SELECT  sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, "+
-                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy " +
+                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy," +
+                    "producto, codigo_producto " +
                     "FROM crema_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 
@@ -2547,7 +2557,7 @@ try {
     public ArrayList<consultas> DAOListaRequesonLab(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, codigo_prod, producto " +
                 "FROM requeson_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2560,7 +2570,8 @@ try {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_prod"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
+
                 }
                 empaqueArray.add(lista);
             }
