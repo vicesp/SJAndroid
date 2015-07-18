@@ -19,6 +19,8 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -44,10 +46,10 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
 
     int prodButton;
 
-    private TextView Fecha;
+    private TextView Fecha, Usuario;
 
     private EditText etAC1, etAC2, etAC3, etAC4, etAC5, etAC6, etAC7, etAC8, etAC9, etAC10, etAC11, etAC12, etAC13, etAC14, etAC15;
-    private Button btnHR1, btnHR2, btnHR3, btnHR4, btnHR5, btnHR6, btnHR7, btnHR8, btnHR9, btnHR10, btnHR11, btnHR12, btnHR13, btnHR14, btnHR15,btnProd1, btnProd2,
+    private Button btnInfo, btnHR1, btnHR2, btnHR3, btnHR4, btnHR5, btnHR6, btnHR7, btnHR8, btnHR9, btnHR10, btnHR11, btnHR12, btnHR13, btnHR14, btnHR15,btnProd1, btnProd2,
             btnProd3, btnProd4, btnProd5, btnProd6, btnProd7, btnProd8, btnProd9, btnProd10, btnProd11, btnProd12, btnProd13, btnProd14, btnProd15;
     private Switch swPacA1, swPacA2, swPacA3, swPacA4, swPacA5, swPacA6, swPacA7, swPacA8, swPacA9, swPacA10, swPacA11, swPacA12, swPacA13, swPacA14, swPacA15,
             swPacB1, swPacB2, swPacB3, swPacB4, swPacB5, swPacB6, swPacB7, swPacB8, swPacB9, swPacB10, swPacB11, swPacB12, swPacB13, swPacB14, swPacB15, swAI1,
@@ -72,6 +74,8 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         /*********** Text Views **************/
         Fecha = (TextView) findViewById(R.id.tvExpFecha);
         Fecha.setText(FechaH.Hoy());
+        Usuario=(TextView)findViewById(R.id.tvNombre);
+        Usuario.setText(var.getNombre_usuario());
 
         /***************** Switches ********************/
         swPacA1 = (Switch) findViewById(R.id.swPacA1);
@@ -245,6 +249,13 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swNF45 = (Switch) findViewById(R.id.swNF45);
 
         //******************    Button    ****************//
+        btnInfo=(Button)findViewById(R.id.btnInfo);
+        btnInfo.setOnClickListener(new View.OnClickListener(){@Override
+        public void onClick(View v){
+
+        }
+        });
+
         btnHR1=(Button)findViewById(R.id.btnHR1);
         btnHR2=(Button)findViewById(R.id.btnHR2);
         btnHR3=(Button)findViewById(R.id.btnHR3);
@@ -701,6 +712,22 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swPacB13.setEnabled(false);
         swPacB14.setEnabled(false);
         swPacB15.setEnabled(false);
+
+        etAC2.setEnabled(false);
+        etAC3.setEnabled(false);
+        etAC4.setEnabled(false);
+        etAC5.setEnabled(false);
+        etAC6.setEnabled(false);
+        etAC7.setEnabled(false);
+        etAC8.setEnabled(false);
+        etAC9.setEnabled(false);
+        etAC10.setEnabled(false);
+        etAC11.setEnabled(false);
+        etAC12.setEnabled(false);
+        etAC13.setEnabled(false);
+        etAC14.setEnabled(false);
+        etAC15.setEnabled(false);
+
     }
 }
 
