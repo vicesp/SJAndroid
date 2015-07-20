@@ -257,57 +257,109 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         Guardar.setOnClickListener(new View.OnClickListener(){
             @Override
         public void onClick(View v){
-                boolean exitoso =con.DAODetectorMetales(etLote.getText().toString(),Usuario.getText().toString(),FechaH.Hoy(),FechaH.Hoy_hora(),btnHR1.getText().toString(),btnHR2.getText().toString()
-                        ,btnHR3.getText().toString(),btnHR4.getText().toString(),btnHR5.getText().toString(),btnHR6.getText().toString(),btnHR7.getText().toString()
-                        ,btnHR8.getText().toString(),btnHR9.getText().toString(),btnHR10.getText().toString(),btnHR11.getText().toString(),btnHR12.getText().toString()
-                        ,btnHR13.getText().toString(),btnHR14.getText().toString(),btnHR15.getText().toString(),btnProd1.getText().toString(),btnProd2.getText().toString()
-                        ,btnProd3.getText().toString(),btnProd4.getText().toString(),btnProd5.getText().toString(),btnProd6.getText().toString(),btnProd7.getText().toString()
-                        ,btnProd8.getText().toString(),btnProd9.getText().toString(),btnProd10.getText().toString(),btnProd11.getText().toString(),btnProd12.getText().toString()
-                        ,btnProd13.getText().toString(),btnProd14.getText().toString(),btnProd15.getText().toString(),switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
-                        ,switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
-                        ,switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
-                        ,switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
-                        switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
-                        switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
-                        switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
-                        switchTexter(swPacB15.isChecked()),switchTexter(swAI1.isChecked()), switchTexter(swAI2.isChecked()), switchTexter(swAI3.isChecked()), switchTexter(swAI4.isChecked()),
-                        switchTexter(swAI5.isChecked()), switchTexter(swAI6.isChecked()), switchTexter(swAI7.isChecked()), switchTexter(swAI8.isChecked()), switchTexter(swAI9.isChecked()),
-                        switchTexter(swAI10.isChecked()), switchTexter(swAI11.isChecked()), switchTexter(swAI12.isChecked()), switchTexter(swAI13.isChecked()), switchTexter(swAI14.isChecked()),
-                        switchTexter(swAI15.isChecked()), switchTexter(swAI16.isChecked()), switchTexter(swAI17.isChecked()), switchTexter(swAI18.isChecked()), switchTexter(swAI19.isChecked()),
-                        switchTexter(swAI20.isChecked()), switchTexter(swAI21.isChecked()), switchTexter(swAI22.isChecked()), switchTexter(swAI23.isChecked()), switchTexter(swAI24.isChecked()),
-                        switchTexter(swAI25.isChecked()), switchTexter(swAI26.isChecked()), switchTexter(swAI27.isChecked()), switchTexter(swAI28.isChecked()), switchTexter(swAI29.isChecked()),
-                        switchTexter(swAI30.isChecked()), switchTexter(swAI31.isChecked()), switchTexter(swAI32.isChecked()), switchTexter(swAI33.isChecked()), switchTexter(swAI34.isChecked()),
-                        switchTexter(swAI35.isChecked()), switchTexter(swAI36.isChecked()), switchTexter(swAI37.isChecked()), switchTexter(swAI38.isChecked()), switchTexter(swAI39.isChecked()),
-                        switchTexter(swAI40.isChecked()), switchTexter(swAI41.isChecked()), switchTexter(swAI42.isChecked()), switchTexter(swAI43.isChecked()),
-                        switchTexter(swAI44.isChecked()), switchTexter(swAI45.isChecked()),switchTexter(swF1.isChecked()), switchTexter(swF2.isChecked()), switchTexter(swF3.isChecked()),
-                        switchTexter(swF4.isChecked()), switchTexter(swF5.isChecked()), switchTexter(swF6.isChecked()), switchTexter(swF7.isChecked()), switchTexter(swF8.isChecked()),
-                        switchTexter(swF9.isChecked()), switchTexter(swF10.isChecked()), switchTexter(swF11.isChecked()), switchTexter(swF12.isChecked()), switchTexter(swF13.isChecked()),
-                        switchTexter(swF14.isChecked()), switchTexter(swF15.isChecked()), switchTexter(swF16.isChecked()), switchTexter(swF17.isChecked()), switchTexter(swF18.isChecked()),
-                        switchTexter(swF19.isChecked()), switchTexter(swF20.isChecked()), switchTexter(swF21.isChecked()), switchTexter(swF22.isChecked()), switchTexter(swF23.isChecked()),
-                        switchTexter(swF24.isChecked()), switchTexter(swF25.isChecked()), switchTexter(swF26.isChecked()), switchTexter(swF27.isChecked()), switchTexter(swF28.isChecked()),
-                        switchTexter(swF29.isChecked()), switchTexter(swF30.isChecked()), switchTexter(swF31.isChecked()), switchTexter(swF32.isChecked()), switchTexter(swF33.isChecked()),
-                        switchTexter(swF34.isChecked()), switchTexter(swF35.isChecked()), switchTexter(swF36.isChecked()), switchTexter(swF37.isChecked()), switchTexter(swF38.isChecked()),
-                        switchTexter(swF39.isChecked()), switchTexter(swF40.isChecked()), switchTexter(swF41.isChecked()), switchTexter(swF42.isChecked()), switchTexter(swF43.isChecked()),
-                        switchTexter(swF44.isChecked()), switchTexter(swF45.isChecked()),switchTexter(swNF1.isChecked()), switchTexter(swNF2.isChecked()), switchTexter(swNF3.isChecked()),
-                        switchTexter(swNF4.isChecked()), switchTexter(swNF5.isChecked()), switchTexter(swNF6.isChecked()), switchTexter(swNF7.isChecked()), switchTexter(swNF8.isChecked()),
-                        switchTexter(swNF9.isChecked()), switchTexter(swNF10.isChecked()), switchTexter(swNF11.isChecked()), switchTexter(swNF12.isChecked()), switchTexter(swNF13.isChecked()),
-                        switchTexter(swNF14.isChecked()), switchTexter(swNF15.isChecked()), switchTexter(swNF16.isChecked()), switchTexter(swNF17.isChecked()), switchTexter(swNF18.isChecked()),
-                        switchTexter(swNF19.isChecked()), switchTexter(swNF20.isChecked()), switchTexter(swNF21.isChecked()), switchTexter(swNF22.isChecked()), switchTexter(swNF23.isChecked()),
-                        switchTexter(swNF24.isChecked()), switchTexter(swNF25.isChecked()), switchTexter(swNF26.isChecked()), switchTexter(swNF27.isChecked()), switchTexter(swNF28.isChecked()),
-                        switchTexter(swNF29.isChecked()), switchTexter(swNF30.isChecked()), switchTexter(swNF31.isChecked()), switchTexter(swNF32.isChecked()), switchTexter(swNF33.isChecked()),
-                        switchTexter(swNF34.isChecked()), switchTexter(swNF35.isChecked()), switchTexter(swNF36.isChecked()), switchTexter(swNF37.isChecked()), switchTexter(swNF38.isChecked()),
-                        switchTexter(swNF39.isChecked()), switchTexter(swNF40.isChecked()), switchTexter(swNF41.isChecked()), switchTexter(swNF42.isChecked()), switchTexter(swNF43.isChecked()),
-                        switchTexter(swNF44.isChecked()), switchTexter(swNF45.isChecked()),etAC1.getText().toString(),etAC2.getText().toString(),etAC3.getText().toString(),etAC4.getText().toString(),
-                        etAC5.getText().toString(),etAC6.getText().toString(),etAC7.getText().toString(),etAC8.getText().toString(),etAC9.getText().toString(),etAC10.getText().toString(),
-                        etAC11.getText().toString(),etAC12.getText().toString(),etAC13.getText().toString(),etAC14.getText().toString(),etAC15.getText().toString(),"","","");
-                if (exitoso) {
+                if (var.isFromDetector()) {
+                    boolean exitoso = con.DAOActualizarDetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString()
+                            , btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString()
+                            , btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString()
+                            , btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString()
+                            , btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString()
+                            , btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString()
+                            , btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
+                            , switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
+                            , switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
+                            , switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
+                            switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
+                            switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
+                            switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
+                            switchTexter(swPacB15.isChecked()), switchTexter(swAI1.isChecked()), switchTexter(swAI2.isChecked()), switchTexter(swAI3.isChecked()), switchTexter(swAI4.isChecked()),
+                            switchTexter(swAI5.isChecked()), switchTexter(swAI6.isChecked()), switchTexter(swAI7.isChecked()), switchTexter(swAI8.isChecked()), switchTexter(swAI9.isChecked()),
+                            switchTexter(swAI10.isChecked()), switchTexter(swAI11.isChecked()), switchTexter(swAI12.isChecked()), switchTexter(swAI13.isChecked()), switchTexter(swAI14.isChecked()),
+                            switchTexter(swAI15.isChecked()), switchTexter(swAI16.isChecked()), switchTexter(swAI17.isChecked()), switchTexter(swAI18.isChecked()), switchTexter(swAI19.isChecked()),
+                            switchTexter(swAI20.isChecked()), switchTexter(swAI21.isChecked()), switchTexter(swAI22.isChecked()), switchTexter(swAI23.isChecked()), switchTexter(swAI24.isChecked()),
+                            switchTexter(swAI25.isChecked()), switchTexter(swAI26.isChecked()), switchTexter(swAI27.isChecked()), switchTexter(swAI28.isChecked()), switchTexter(swAI29.isChecked()),
+                            switchTexter(swAI30.isChecked()), switchTexter(swAI31.isChecked()), switchTexter(swAI32.isChecked()), switchTexter(swAI33.isChecked()), switchTexter(swAI34.isChecked()),
+                            switchTexter(swAI35.isChecked()), switchTexter(swAI36.isChecked()), switchTexter(swAI37.isChecked()), switchTexter(swAI38.isChecked()), switchTexter(swAI39.isChecked()),
+                            switchTexter(swAI40.isChecked()), switchTexter(swAI41.isChecked()), switchTexter(swAI42.isChecked()), switchTexter(swAI43.isChecked()),
+                            switchTexter(swAI44.isChecked()), switchTexter(swAI45.isChecked()), switchTexter(swF1.isChecked()), switchTexter(swF2.isChecked()), switchTexter(swF3.isChecked()),
+                            switchTexter(swF4.isChecked()), switchTexter(swF5.isChecked()), switchTexter(swF6.isChecked()), switchTexter(swF7.isChecked()), switchTexter(swF8.isChecked()),
+                            switchTexter(swF9.isChecked()), switchTexter(swF10.isChecked()), switchTexter(swF11.isChecked()), switchTexter(swF12.isChecked()), switchTexter(swF13.isChecked()),
+                            switchTexter(swF14.isChecked()), switchTexter(swF15.isChecked()), switchTexter(swF16.isChecked()), switchTexter(swF17.isChecked()), switchTexter(swF18.isChecked()),
+                            switchTexter(swF19.isChecked()), switchTexter(swF20.isChecked()), switchTexter(swF21.isChecked()), switchTexter(swF22.isChecked()), switchTexter(swF23.isChecked()),
+                            switchTexter(swF24.isChecked()), switchTexter(swF25.isChecked()), switchTexter(swF26.isChecked()), switchTexter(swF27.isChecked()), switchTexter(swF28.isChecked()),
+                            switchTexter(swF29.isChecked()), switchTexter(swF30.isChecked()), switchTexter(swF31.isChecked()), switchTexter(swF32.isChecked()), switchTexter(swF33.isChecked()),
+                            switchTexter(swF34.isChecked()), switchTexter(swF35.isChecked()), switchTexter(swF36.isChecked()), switchTexter(swF37.isChecked()), switchTexter(swF38.isChecked()),
+                            switchTexter(swF39.isChecked()), switchTexter(swF40.isChecked()), switchTexter(swF41.isChecked()), switchTexter(swF42.isChecked()), switchTexter(swF43.isChecked()),
+                            switchTexter(swF44.isChecked()), switchTexter(swF45.isChecked()), switchTexter(swNF1.isChecked()), switchTexter(swNF2.isChecked()), switchTexter(swNF3.isChecked()),
+                            switchTexter(swNF4.isChecked()), switchTexter(swNF5.isChecked()), switchTexter(swNF6.isChecked()), switchTexter(swNF7.isChecked()), switchTexter(swNF8.isChecked()),
+                            switchTexter(swNF9.isChecked()), switchTexter(swNF10.isChecked()), switchTexter(swNF11.isChecked()), switchTexter(swNF12.isChecked()), switchTexter(swNF13.isChecked()),
+                            switchTexter(swNF14.isChecked()), switchTexter(swNF15.isChecked()), switchTexter(swNF16.isChecked()), switchTexter(swNF17.isChecked()), switchTexter(swNF18.isChecked()),
+                            switchTexter(swNF19.isChecked()), switchTexter(swNF20.isChecked()), switchTexter(swNF21.isChecked()), switchTexter(swNF22.isChecked()), switchTexter(swNF23.isChecked()),
+                            switchTexter(swNF24.isChecked()), switchTexter(swNF25.isChecked()), switchTexter(swNF26.isChecked()), switchTexter(swNF27.isChecked()), switchTexter(swNF28.isChecked()),
+                            switchTexter(swNF29.isChecked()), switchTexter(swNF30.isChecked()), switchTexter(swNF31.isChecked()), switchTexter(swNF32.isChecked()), switchTexter(swNF33.isChecked()),
+                            switchTexter(swNF34.isChecked()), switchTexter(swNF35.isChecked()), switchTexter(swNF36.isChecked()), switchTexter(swNF37.isChecked()), switchTexter(swNF38.isChecked()),
+                            switchTexter(swNF39.isChecked()), switchTexter(swNF40.isChecked()), switchTexter(swNF41.isChecked()), switchTexter(swNF42.isChecked()), switchTexter(swNF43.isChecked()),
+                            switchTexter(swNF44.isChecked()), switchTexter(swNF45.isChecked()), etAC1.getText().toString(), etAC2.getText().toString(), etAC3.getText().toString(), etAC4.getText().toString(),
+                            etAC5.getText().toString(), etAC6.getText().toString(), etAC7.getText().toString(), etAC8.getText().toString(), etAC9.getText().toString(), etAC10.getText().toString(),
+                            etAC11.getText().toString(), etAC12.getText().toString(), etAC13.getText().toString(), etAC14.getText().toString(), etAC15.getText().toString(), "", "", "");
+                    if (exitoso) {
 
-                    Alerta(getResources().getString(R.string.Alerta_Guardado));
-                    confInicial();
+                        Alerta(getResources().getString(R.string.Alerta_Actualizado));
+                        confInicial();
+                    } else {
+                        Alerta(getResources().getString(R.string.Alerta_NoActualizado));
+                    }
                 } else {
-                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
-                }
+                    boolean exitoso = con.DAODetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString()
+                            , btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString()
+                            , btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString()
+                            , btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString()
+                            , btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString()
+                            , btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString()
+                            , btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
+                            , switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
+                            , switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
+                            , switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
+                            switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
+                            switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
+                            switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
+                            switchTexter(swPacB15.isChecked()), switchTexter(swAI1.isChecked()), switchTexter(swAI2.isChecked()), switchTexter(swAI3.isChecked()), switchTexter(swAI4.isChecked()),
+                            switchTexter(swAI5.isChecked()), switchTexter(swAI6.isChecked()), switchTexter(swAI7.isChecked()), switchTexter(swAI8.isChecked()), switchTexter(swAI9.isChecked()),
+                            switchTexter(swAI10.isChecked()), switchTexter(swAI11.isChecked()), switchTexter(swAI12.isChecked()), switchTexter(swAI13.isChecked()), switchTexter(swAI14.isChecked()),
+                            switchTexter(swAI15.isChecked()), switchTexter(swAI16.isChecked()), switchTexter(swAI17.isChecked()), switchTexter(swAI18.isChecked()), switchTexter(swAI19.isChecked()),
+                            switchTexter(swAI20.isChecked()), switchTexter(swAI21.isChecked()), switchTexter(swAI22.isChecked()), switchTexter(swAI23.isChecked()), switchTexter(swAI24.isChecked()),
+                            switchTexter(swAI25.isChecked()), switchTexter(swAI26.isChecked()), switchTexter(swAI27.isChecked()), switchTexter(swAI28.isChecked()), switchTexter(swAI29.isChecked()),
+                            switchTexter(swAI30.isChecked()), switchTexter(swAI31.isChecked()), switchTexter(swAI32.isChecked()), switchTexter(swAI33.isChecked()), switchTexter(swAI34.isChecked()),
+                            switchTexter(swAI35.isChecked()), switchTexter(swAI36.isChecked()), switchTexter(swAI37.isChecked()), switchTexter(swAI38.isChecked()), switchTexter(swAI39.isChecked()),
+                            switchTexter(swAI40.isChecked()), switchTexter(swAI41.isChecked()), switchTexter(swAI42.isChecked()), switchTexter(swAI43.isChecked()),
+                            switchTexter(swAI44.isChecked()), switchTexter(swAI45.isChecked()), switchTexter(swF1.isChecked()), switchTexter(swF2.isChecked()), switchTexter(swF3.isChecked()),
+                            switchTexter(swF4.isChecked()), switchTexter(swF5.isChecked()), switchTexter(swF6.isChecked()), switchTexter(swF7.isChecked()), switchTexter(swF8.isChecked()),
+                            switchTexter(swF9.isChecked()), switchTexter(swF10.isChecked()), switchTexter(swF11.isChecked()), switchTexter(swF12.isChecked()), switchTexter(swF13.isChecked()),
+                            switchTexter(swF14.isChecked()), switchTexter(swF15.isChecked()), switchTexter(swF16.isChecked()), switchTexter(swF17.isChecked()), switchTexter(swF18.isChecked()),
+                            switchTexter(swF19.isChecked()), switchTexter(swF20.isChecked()), switchTexter(swF21.isChecked()), switchTexter(swF22.isChecked()), switchTexter(swF23.isChecked()),
+                            switchTexter(swF24.isChecked()), switchTexter(swF25.isChecked()), switchTexter(swF26.isChecked()), switchTexter(swF27.isChecked()), switchTexter(swF28.isChecked()),
+                            switchTexter(swF29.isChecked()), switchTexter(swF30.isChecked()), switchTexter(swF31.isChecked()), switchTexter(swF32.isChecked()), switchTexter(swF33.isChecked()),
+                            switchTexter(swF34.isChecked()), switchTexter(swF35.isChecked()), switchTexter(swF36.isChecked()), switchTexter(swF37.isChecked()), switchTexter(swF38.isChecked()),
+                            switchTexter(swF39.isChecked()), switchTexter(swF40.isChecked()), switchTexter(swF41.isChecked()), switchTexter(swF42.isChecked()), switchTexter(swF43.isChecked()),
+                            switchTexter(swF44.isChecked()), switchTexter(swF45.isChecked()), switchTexter(swNF1.isChecked()), switchTexter(swNF2.isChecked()), switchTexter(swNF3.isChecked()),
+                            switchTexter(swNF4.isChecked()), switchTexter(swNF5.isChecked()), switchTexter(swNF6.isChecked()), switchTexter(swNF7.isChecked()), switchTexter(swNF8.isChecked()),
+                            switchTexter(swNF9.isChecked()), switchTexter(swNF10.isChecked()), switchTexter(swNF11.isChecked()), switchTexter(swNF12.isChecked()), switchTexter(swNF13.isChecked()),
+                            switchTexter(swNF14.isChecked()), switchTexter(swNF15.isChecked()), switchTexter(swNF16.isChecked()), switchTexter(swNF17.isChecked()), switchTexter(swNF18.isChecked()),
+                            switchTexter(swNF19.isChecked()), switchTexter(swNF20.isChecked()), switchTexter(swNF21.isChecked()), switchTexter(swNF22.isChecked()), switchTexter(swNF23.isChecked()),
+                            switchTexter(swNF24.isChecked()), switchTexter(swNF25.isChecked()), switchTexter(swNF26.isChecked()), switchTexter(swNF27.isChecked()), switchTexter(swNF28.isChecked()),
+                            switchTexter(swNF29.isChecked()), switchTexter(swNF30.isChecked()), switchTexter(swNF31.isChecked()), switchTexter(swNF32.isChecked()), switchTexter(swNF33.isChecked()),
+                            switchTexter(swNF34.isChecked()), switchTexter(swNF35.isChecked()), switchTexter(swNF36.isChecked()), switchTexter(swNF37.isChecked()), switchTexter(swNF38.isChecked()),
+                            switchTexter(swNF39.isChecked()), switchTexter(swNF40.isChecked()), switchTexter(swNF41.isChecked()), switchTexter(swNF42.isChecked()), switchTexter(swNF43.isChecked()),
+                            switchTexter(swNF44.isChecked()), switchTexter(swNF45.isChecked()), etAC1.getText().toString(), etAC2.getText().toString(), etAC3.getText().toString(), etAC4.getText().toString(),
+                            etAC5.getText().toString(), etAC6.getText().toString(), etAC7.getText().toString(), etAC8.getText().toString(), etAC9.getText().toString(), etAC10.getText().toString(),
+                            etAC11.getText().toString(), etAC12.getText().toString(), etAC13.getText().toString(), etAC14.getText().toString(), etAC15.getText().toString(), "", "", "");
+                    if (exitoso) {
 
+                        Alerta(getResources().getString(R.string.Alerta_Guardado));
+                        confInicial();
+                    } else {
+                        Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                    }
+                }
 
             }
         });

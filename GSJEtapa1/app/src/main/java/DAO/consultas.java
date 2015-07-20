@@ -2758,6 +2758,271 @@ try {
         }
     }
 
+    /**
+     * *************    Consulta para Actualizar Detector de Metales    ************
+     */
+
+    public boolean DAOActualizarDetectorMetales(String lote, String usuario, String fecha_hoy, String fecha, String hr_campo1, String hr_campo2, String hr_campo3, String hr_campo4,
+                                                String hr_campo5, String hr_campo6, String hr_campo7, String hr_campo8, String hr_campo9, String hr_campo10, String hr_campo11,
+                                                String hr_campo12, String hr_campo13, String hr_campo14, String hr_campo15, String prod_campo1, String prod_campo2, String prod_campo3,
+                                                String prod_campo4, String prod_campo5, String prod_campo6, String prod_campo7, String prod_campo8, String prod_campo9, String prod_campo10,
+                                                String prod_campo11, String prod_campo12, String prod_campo13, String prod_campo14, String prod_campo15, String paquete_a_campo1,
+                                                String paquete_b_campo1, String paquete_a_campo2, String paquete_b_campo2, String paquete_a_campo3, String paquete_b_campo3, String paquete_a_campo4,
+                                                String paquete_b_campo4, String paquete_a_campo5, String paquete_b_campo5, String paquete_a_campo6, String paquete_b_campo6, String paquete_a_campo7,
+                                                String paquete_b_campo7, String paquete_a_campo8, String paquete_b_campo8, String paquete_a_campo9, String paquete_b_campo9, String paquete_a_campo10,
+                                                String paquete_b_campo10, String paquete_a_campo11, String paquete_b_campo11, String paquete_a_campo12, String paquete_b_campo12, String paquete_a_campo13,
+                                                String paquete_b_campo13, String paquete_a_campo14, String paquete_b_campo14, String paquete_a_campo15, String paquete_b_campo15, String ac_inox_campo1,
+                                                String ac_inox_campo2, String ac_inox_campo3, String ac_inox_campo4, String ac_inox_campo5, String ac_inox_campo6, String ac_inox_campo7, String ac_inox_campo8,
+                                                String ac_inox_campo9, String ac_inox_campo10, String ac_inox_campo11, String ac_inox_campo12, String ac_inox_campo13, String ac_inox_campo14, String ac_inox_campo15,
+                                                String ac_inox_campo16, String ac_inox_campo17, String ac_inox_campo18, String ac_inox_campo19, String ac_inox_campo20, String ac_inox_campo21, String ac_inox_campo22,
+                                                String ac_inox_campo23, String ac_inox_campo24, String ac_inox_campo25, String ac_inox_campo26, String ac_inox_campo27, String ac_inox_campo28, String ac_inox_campo29,
+                                                String ac_inox_campo30, String ac_inox_campo31, String ac_inox_campo32, String ac_inox_campo33, String ac_inox_campo34, String ac_inox_campo35, String ac_inox_campo36,
+                                                String ac_inox_campo37, String ac_inox_campo38, String ac_inox_campo39, String ac_inox_campo40, String ac_inox_campo41, String ac_inox_campo42, String ac_inox_campo43,
+                                                String ac_inox_campo44, String ac_inox_campo45, String ferroso_campo1, String ferroso_campo2, String ferroso_campo3, String ferroso_campo4, String ferroso_campo5,
+                                                String ferroso_campo6, String ferroso_campo7, String ferroso_campo8, String ferroso_campo9, String ferroso_campo10, String ferroso_campo11, String ferroso_campo12,
+                                                String ferroso_campo13, String ferroso_campo14, String ferroso_campo15, String ferroso_campo16, String ferroso_campo17, String ferroso_campo18, String ferroso_campo19,
+                                                String ferroso_campo20, String ferroso_campo21, String ferroso_campo22, String ferroso_campo23, String ferroso_campo24, String ferroso_campo25, String ferroso_campo26,
+                                                String ferroso_campo27, String ferroso_campo28, String ferroso_campo29, String ferroso_campo30, String ferroso_campo31, String ferroso_campo32, String ferroso_campo33,
+                                                String ferroso_campo34, String ferroso_campo35, String ferroso_campo36, String ferroso_campo37, String ferroso_campo38, String ferroso_campo39, String ferroso_campo40,
+                                                String ferroso_campo41, String ferroso_campo42, String ferroso_campo43, String ferroso_campo44, String ferroso_campo45, String no_ferroso_campo1, String no_ferroso_campo2,
+                                                String no_ferroso_campo3, String no_ferroso_campo4, String no_ferroso_campo5, String no_ferroso_campo6, String no_ferroso_campo7, String no_ferroso_campo8,
+                                                String no_ferroso_campo9, String no_ferroso_campo10, String no_ferroso_campo11, String no_ferroso_campo12, String no_ferroso_campo13, String no_ferroso_campo14,
+                                                String no_ferroso_campo15, String no_ferroso_campo16, String no_ferroso_campo17, String no_ferroso_campo18, String no_ferroso_campo19, String no_ferroso_campo20,
+                                                String no_ferroso_campo21, String no_ferroso_campo22, String no_ferroso_campo23, String no_ferroso_campo24, String no_ferroso_campo25, String no_ferroso_campo26,
+                                                String no_ferroso_campo27, String no_ferroso_campo28, String no_ferroso_campo29, String no_ferroso_campo30, String no_ferroso_campo31, String no_ferroso_campo32,
+                                                String no_ferroso_campo33, String no_ferroso_campo34, String no_ferroso_campo35, String no_ferroso_campo36, String no_ferroso_campo37, String no_ferroso_campo38,
+                                                String no_ferroso_campo39, String no_ferroso_campo40, String no_ferroso_campo41, String no_ferroso_campo42, String no_ferroso_campo43, String no_ferroso_campo44,
+                                                String no_ferroso_campo45, String accion_correctiva_campo1, String accion_correctiva_campo2, String accion_correctiva_campo3, String accion_correctiva_campo4,
+                                                String accion_correctiva_campo5, String accion_correctiva_campo6, String accion_correctiva_campo7, String accion_correctiva_campo8, String accion_correctiva_campo9,
+                                                String accion_correctiva_campo10, String accion_correctiva_campo11, String accion_correctiva_campo12, String accion_correctiva_campo13, String accion_correctiva_campo14,
+                                                String accion_correctiva_campo15, String codigo, String actualizacion, String vigencia) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE detector_metales SET " +
+                    "usuario='" + usuario + "'," +
+                    "fecha_hoy='" + fecha_hoy + "'," +
+                    "fecha='" + fecha + "'," +
+                    "hr_campo1='" + hr_campo1 + "'," +
+                    "hr_campo2='" + hr_campo2 + "'," +
+                    "hr_campo3='" + hr_campo3 + "'," +
+                    "hr_campo4='" + hr_campo4 + "'," +
+                    "hr_campo5='" + hr_campo5 + "'," +
+                    "hr_campo6='" + hr_campo6 + "'," +
+                    "hr_campo7='" + hr_campo7 + "'," +
+                    "hr_campo8='" + hr_campo8 + "'," +
+                    "hr_campo9='" + hr_campo9 + "'," +
+                    "hr_campo10='" + hr_campo10 + "'," +
+                    "hr_campo11='" + hr_campo11 + "'," +
+                    "hr_campo12='" + hr_campo12 + "'," +
+                    "hr_campo13='" + hr_campo13 + "'," +
+                    "hr_campo14='" + hr_campo14 + "'," +
+                    "hr_campo15='" + hr_campo15 + "'," +
+                    "prod_campo1='" + prod_campo1 + "'," +
+                    "prod_campo2='" + prod_campo2 + "'," +
+                    "prod_campo3='" + prod_campo3 + "'," +
+                    "prod_campo4='" + prod_campo4 + "'," +
+                    "prod_campo5='" + prod_campo5 + "'," +
+                    "prod_campo6='" + prod_campo6 + "'," +
+                    "prod_campo7='" + prod_campo7 + "'," +
+                    "prod_campo8='" + prod_campo8 + "'," +
+                    "prod_campo9='" + prod_campo9 + "'," +
+                    "prod_campo10='" + prod_campo10 + "'," +
+                    "prod_campo11='" + prod_campo11 + "'," +
+                    "prod_campo12='" + prod_campo12 + "'," +
+                    "prod_campo13='" + prod_campo13 + "'," +
+                    "prod_campo14='" + prod_campo14 + "'," +
+                    "prod_campo15='" + prod_campo15 + "'," +
+                    "paquete_a_campo1='" + paquete_a_campo1 + "'," +
+                    "paquete_b_campo1='" + paquete_b_campo1 + "'," +
+                    "paquete_a_campo2='" + paquete_a_campo2 + "'," +
+                    "paquete_b_campo2='" + paquete_b_campo2 + "'," +
+                    "paquete_a_campo3='" + paquete_a_campo3 + "'," +
+                    "paquete_b_campo3='" + paquete_b_campo3 + "'," +
+                    "paquete_a_campo4='" + paquete_a_campo4 + "'," +
+                    "paquete_b_campo4='" + paquete_b_campo4 + "'," +
+                    "paquete_a_campo5='" + paquete_a_campo5 + "'," +
+                    "paquete_b_campo5='" + paquete_b_campo5 + "'," +
+                    "paquete_a_campo6='" + paquete_a_campo6 + "'," +
+                    "paquete_b_campo6='" + paquete_b_campo6 + "'," +
+                    "paquete_a_campo7='" + paquete_a_campo7 + "'," +
+                    "paquete_b_campo7='" + paquete_b_campo7 + "'," +
+                    "paquete_a_campo8='" + paquete_a_campo8 + "'," +
+                    "paquete_b_campo8='" + paquete_b_campo8 + "'," +
+                    "paquete_a_campo9='" + paquete_a_campo9 + "'," +
+                    "paquete_b_campo9='" + paquete_b_campo9 + "'," +
+                    "paquete_a_campo10='" + paquete_a_campo10 + "'," +
+                    "paquete_b_campo10='" + paquete_b_campo10 + "'," +
+                    "paquete_a_campo11='" + paquete_a_campo11 + "'," +
+                    "paquete_b_campo11='" + paquete_b_campo11 + "'," +
+                    "paquete_a_campo12='" + paquete_a_campo12 + "'," +
+                    "paquete_b_campo12='" + paquete_b_campo12 + "'," +
+                    "paquete_a_campo13='" + paquete_a_campo13 + "'," +
+                    "paquete_b_campo13='" + paquete_b_campo13 + "'," +
+                    "paquete_a_campo14='" + paquete_a_campo14 + "'," +
+                    "paquete_b_campo14='" + paquete_b_campo14 + "'," +
+                    "paquete_a_campo15='" + paquete_a_campo15 + "'," +
+                    "paquete_b_campo15='" + paquete_b_campo15 + "'," +
+                    "ac_inox_campo1='" + ac_inox_campo1 + "'," +
+                    "ac_inox_campo2='" + ac_inox_campo2 + "'," +
+                    "ac_inox_campo3='" + ac_inox_campo3 + "'," +
+                    "ac_inox_campo4='" + ac_inox_campo4 + "'," +
+                    "ac_inox_campo5='" + ac_inox_campo5 + "'," +
+                    "ac_inox_campo6='" + ac_inox_campo6 + "'," +
+                    "ac_inox_campo7='" + ac_inox_campo7 + "'," +
+                    "ac_inox_campo8='" + ac_inox_campo8 + "'," +
+                    "ac_inox_campo9='" + ac_inox_campo9 + "'," +
+                    "ac_inox_campo10='" + ac_inox_campo10 + "'," +
+                    "ac_inox_campo11='" + ac_inox_campo11 + "'," +
+                    "ac_inox_campo12='" + ac_inox_campo12 + "'," +
+                    "ac_inox_campo13='" + ac_inox_campo13 + "'," +
+                    "ac_inox_campo14='" + ac_inox_campo14 + "'," +
+                    "ac_inox_campo15='" + ac_inox_campo15 + "'," +
+                    "ac_inox_campo16='" + ac_inox_campo16 + "'," +
+                    "ac_inox_campo17='" + ac_inox_campo17 + "'," +
+                    "ac_inox_campo18='" + ac_inox_campo18 + "'," +
+                    "ac_inox_campo19='" + ac_inox_campo19 + "'," +
+                    "ac_inox_campo20='" + ac_inox_campo20 + "'," +
+                    "ac_inox_campo21='" + ac_inox_campo21 + "'," +
+                    "ac_inox_campo22='" + ac_inox_campo22 + "'," +
+                    "ac_inox_campo23='" + ac_inox_campo23 + "'," +
+                    "ac_inox_campo24='" + ac_inox_campo24 + "'," +
+                    "ac_inox_campo25='" + ac_inox_campo25 + "'," +
+                    "ac_inox_campo26='" + ac_inox_campo26 + "'," +
+                    "ac_inox_campo27='" + ac_inox_campo27 + "'," +
+                    "ac_inox_campo28='" + ac_inox_campo28 + "'," +
+                    "ac_inox_campo29='" + ac_inox_campo29 + "'," +
+                    "ac_inox_campo30='" + ac_inox_campo30 + "'," +
+                    "ac_inox_campo31='" + ac_inox_campo31 + "'," +
+                    "ac_inox_campo32='" + ac_inox_campo32 + "'," +
+                    "ac_inox_campo33='" + ac_inox_campo33 + "'," +
+                    "ac_inox_campo34='" + ac_inox_campo34 + "'," +
+                    "ac_inox_campo35='" + ac_inox_campo35 + "'," +
+                    "ac_inox_campo36='" + ac_inox_campo36 + "'," +
+                    "ac_inox_campo37='" + ac_inox_campo37 + "'," +
+                    "ac_inox_campo38='" + ac_inox_campo38 + "'," +
+                    "ac_inox_campo39='" + ac_inox_campo39 + "'," +
+                    "ac_inox_campo40='" + ac_inox_campo40 + "'," +
+                    "ac_inox_campo41='" + ac_inox_campo41 + "'," +
+                    "ac_inox_campo42='" + ac_inox_campo42 + "'," +
+                    "ac_inox_campo43='" + ac_inox_campo43 + "'," +
+                    "ac_inox_campo44='" + ac_inox_campo44 + "'," +
+                    "ac_inox_campo45='" + ac_inox_campo45 + "'," +
+                    "ferroso_campo1='" + ferroso_campo1 + "'," +
+                    "ferroso_campo2='" + ferroso_campo2 + "'," +
+                    "ferroso_campo3='" + ferroso_campo3 + "'," +
+                    "ferroso_campo4='" + ferroso_campo4 + "'," +
+                    "ferroso_campo5='" + ferroso_campo5 + "'," +
+                    "ferroso_campo6='" + ferroso_campo6 + "'," +
+                    "ferroso_campo7='" + ferroso_campo7 + "'," +
+                    "ferroso_campo8='" + ferroso_campo8 + "'," +
+                    "ferroso_campo9='" + ferroso_campo9 + "'," +
+                    "ferroso_campo10='" + ferroso_campo10 + "'," +
+                    "ferroso_campo11='" + ferroso_campo11 + "'," +
+                    "ferroso_campo12='" + ferroso_campo12 + "'," +
+                    "ferroso_campo13='" + ferroso_campo13 + "'," +
+                    "ferroso_campo14='" + ferroso_campo14 + "'," +
+                    "ferroso_campo15='" + ferroso_campo15 + "'," +
+                    "ferroso_campo16='" + ferroso_campo16 + "'," +
+                    "ferroso_campo17='" + ferroso_campo17 + "'," +
+                    "ferroso_campo18='" + ferroso_campo18 + "'," +
+                    "ferroso_campo19='" + ferroso_campo19 + "'," +
+                    "ferroso_campo20='" + ferroso_campo20 + "'," +
+                    "ferroso_campo21='" + ferroso_campo21 + "'," +
+                    "ferroso_campo22='" + ferroso_campo22 + "'," +
+                    "ferroso_campo23='" + ferroso_campo23 + "'," +
+                    "ferroso_campo24='" + ferroso_campo24 + "'," +
+                    "ferroso_campo25='" + ferroso_campo25 + "'," +
+                    "ferroso_campo26='" + ferroso_campo26 + "'," +
+                    "ferroso_campo27='" + ferroso_campo27 + "'," +
+                    "ferroso_campo28='" + ferroso_campo28 + "'," +
+                    "ferroso_campo29='" + ferroso_campo29 + "'," +
+                    "ferroso_campo30='" + ferroso_campo30 + "'," +
+                    "ferroso_campo31='" + ferroso_campo31 + "'," +
+                    "ferroso_campo32='" + ferroso_campo32 + "'," +
+                    "ferroso_campo33='" + ferroso_campo33 + "'," +
+                    "ferroso_campo34='" + ferroso_campo34 + "'," +
+                    "ferroso_campo35='" + ferroso_campo35 + "'," +
+                    "ferroso_campo36='" + ferroso_campo36 + "'," +
+                    "ferroso_campo37='" + ferroso_campo37 + "'," +
+                    "ferroso_campo38='" + ferroso_campo38 + "'," +
+                    "ferroso_campo39='" + ferroso_campo39 + "'," +
+                    "ferroso_campo40='" + ferroso_campo40 + "'," +
+                    "ferroso_campo41='" + ferroso_campo41 + "'," +
+                    "ferroso_campo42='" + ferroso_campo42 + "'," +
+                    "ferroso_campo43='" + ferroso_campo43 + "'," +
+                    "ferroso_campo44='" + ferroso_campo44 + "'," +
+                    "ferroso_campo45='" + ferroso_campo45 + "'," +
+                    "no_ferroso_campo1='" + no_ferroso_campo1 + "'," +
+                    "no_ferroso_campo2='" + no_ferroso_campo2 + "'," +
+                    "no_ferroso_campo3='" + no_ferroso_campo3 + "'," +
+                    "no_ferroso_campo4='" + no_ferroso_campo4 + "'," +
+                    "no_ferroso_campo5='" + no_ferroso_campo5 + "'," +
+                    "no_ferroso_campo6='" + no_ferroso_campo6 + "'," +
+                    "no_ferroso_campo7='" + no_ferroso_campo7 + "'," +
+                    "no_ferroso_campo8='" + no_ferroso_campo8 + "'," +
+                    "no_ferroso_campo9='" + no_ferroso_campo9 + "'," +
+                    "no_ferroso_campo10='" + no_ferroso_campo10 + "'," +
+                    "no_ferroso_campo11='" + no_ferroso_campo11 + "'," +
+                    "no_ferroso_campo12='" + no_ferroso_campo12 + "'," +
+                    "no_ferroso_campo13='" + no_ferroso_campo13 + "'," +
+                    "no_ferroso_campo14='" + no_ferroso_campo14 + "'," +
+                    "no_ferroso_campo15='" + no_ferroso_campo15 + "'," +
+                    "no_ferroso_campo16='" + no_ferroso_campo16 + "'," +
+                    "no_ferroso_campo17='" + no_ferroso_campo17 + "'," +
+                    "no_ferroso_campo18='" + no_ferroso_campo18 + "'," +
+                    "no_ferroso_campo19='" + no_ferroso_campo19 + "'," +
+                    "no_ferroso_campo20='" + no_ferroso_campo20 + "'," +
+                    "no_ferroso_campo21='" + no_ferroso_campo21 + "'," +
+                    "no_ferroso_campo22='" + no_ferroso_campo22 + "'," +
+                    "no_ferroso_campo23='" + no_ferroso_campo23 + "'," +
+                    "no_ferroso_campo24='" + no_ferroso_campo24 + "'," +
+                    "no_ferroso_campo25='" + no_ferroso_campo25 + "'," +
+                    "no_ferroso_campo26='" + no_ferroso_campo26 + "'," +
+                    "no_ferroso_campo27='" + no_ferroso_campo27 + "'," +
+                    "no_ferroso_campo28='" + no_ferroso_campo28 + "'," +
+                    "no_ferroso_campo29='" + no_ferroso_campo29 + "'," +
+                    "no_ferroso_campo30='" + no_ferroso_campo30 + "'," +
+                    "no_ferroso_campo31='" + no_ferroso_campo31 + "'," +
+                    "no_ferroso_campo32='" + no_ferroso_campo32 + "'," +
+                    "no_ferroso_campo33='" + no_ferroso_campo33 + "'," +
+                    "no_ferroso_campo34='" + no_ferroso_campo34 + "'," +
+                    "no_ferroso_campo35='" + no_ferroso_campo35 + "'," +
+                    "no_ferroso_campo36='" + no_ferroso_campo36 + "'," +
+                    "no_ferroso_campo37='" + no_ferroso_campo37 + "'," +
+                    "no_ferroso_campo38='" + no_ferroso_campo38 + "'," +
+                    "no_ferroso_campo39='" + no_ferroso_campo39 + "'," +
+                    "no_ferroso_campo40='" + no_ferroso_campo40 + "'," +
+                    "no_ferroso_campo41='" + no_ferroso_campo41 + "'," +
+                    "no_ferroso_campo42='" + no_ferroso_campo42 + "'," +
+                    "no_ferroso_campo43='" + no_ferroso_campo43 + "'," +
+                    "no_ferroso_campo44='" + no_ferroso_campo44 + "'," +
+                    "no_ferroso_campo45='" + no_ferroso_campo45 + "'," +
+                    "accion_correctiva_campo1='" + accion_correctiva_campo1 + "'," +
+                    "accion_correctiva_campo2='" + accion_correctiva_campo2 + "'," +
+                    "accion_correctiva_campo3='" + accion_correctiva_campo3 + "'," +
+                    "accion_correctiva_campo4='" + accion_correctiva_campo4 + "'," +
+                    "accion_correctiva_campo5='" + accion_correctiva_campo5 + "'," +
+                    "accion_correctiva_campo6='" + accion_correctiva_campo6 + "'," +
+                    "accion_correctiva_campo7='" + accion_correctiva_campo7 + "'," +
+                    "accion_correctiva_campo8='" + accion_correctiva_campo8 + "'," +
+                    "accion_correctiva_campo9='" + accion_correctiva_campo9 + "'," +
+                    "accion_correctiva_campo10='" + accion_correctiva_campo10 + "'," +
+                    "accion_correctiva_campo11='" + accion_correctiva_campo11 + "'," +
+                    "accion_correctiva_campo12='" + accion_correctiva_campo12 + "'," +
+                    "accion_correctiva_campo13='" + accion_correctiva_campo13 + "'," +
+                    "accion_correctiva_campo14='" + accion_correctiva_campo14 + "'," +
+                    "accion_correctiva_campo15='" + accion_correctiva_campo15 + "'," +
+                    "codigo='" + codigo + "'," +
+                    "actualizacion='" + actualizacion + "'," +
+                    "vigencia='" + vigencia + "' WHERE lote = " + lote);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
     /****************    Consulta para Llenar la lista de lotes Detector de Metales *************/
     public ArrayList<consultas> DAOListaDetectorRealizado(String fecha) {
         db = myDbHelper.getWritableDatabase();
