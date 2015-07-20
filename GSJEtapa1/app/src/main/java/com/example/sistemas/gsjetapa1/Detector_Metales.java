@@ -335,70 +335,446 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         btnHR14=(Button)findViewById(R.id.btnHR14);
         btnHR15=(Button)findViewById(R.id.btnHR15);
 
-        btnHR1.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR1.setText(FechaH.Hora());
-            btnHR1.setEnabled(false);
-            btnHR2.setEnabled(true);
-            btnProd2.setEnabled(true);
-        }});
-        btnHR2.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR2.setText(FechaH.Hora());
-        }});
-        btnHR3.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR3.setText(FechaH.Hora());
-        }});
-        btnHR4.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR4.setText(FechaH.Hora());
-        }});
-        btnHR5.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR5.setText(FechaH.Hora());
-        }});
-        btnHR6.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR6.setText(FechaH.Hora());
-        }});
-        btnHR7.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR7.setText(FechaH.Hora());
-        }});
-        btnHR8.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR8.setText(FechaH.Hora());
-        }});
-        btnHR9.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR9.setText(FechaH.Hora());
-        }});
-        btnHR10.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR10.setText(FechaH.Hora());
-        }});
-        btnHR11.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR11.setText(FechaH.Hora());
-        }});
-        btnHR12.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR12.setText(FechaH.Hora());
-        }});
-        btnHR13.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR13.setText(FechaH.Hora());
-        }});
-        btnHR14.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR14.setText(FechaH.Hora());
-        }});
-        btnHR15.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
-            btnHR15.setText(FechaH.Hora());
-        }});
+        btnHR1.setFocusable(true);
+        btnHR1.setFocusableInTouchMode(true);
+        btnHR1.requestFocus();
+        btnHR1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR1.setText(FechaH.Hora());
+                btnHR1.setEnabled(false);
+                btnHR2.setEnabled(true);
+                btnProd2.setEnabled(true);
+                etAC2.setEnabled(true);
+                swPacA2.setEnabled(true);
+                swPacB2.setEnabled(true);
+                swAI4.setEnabled(true);
+                swAI5.setEnabled(true);
+                swAI6.setEnabled(true);
+                swF4.setEnabled(true);
+                swF5.setEnabled(true);
+                swF6.setEnabled(true);
+                swNF4.setEnabled(true);
+                swNF5.setEnabled(true);
+                swNF6.setEnabled(true);
+            }
+        });
+
+        btnHR2.setFocusable(true);
+        btnHR2.setFocusableInTouchMode(true);
+        btnHR2.requestFocus();
+        btnHR2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                btnHR2.setText(FechaH.Hora());
+                btnHR2.setEnabled(false);
+                btnHR3.setEnabled(true);
+                btnProd3.setEnabled(true);
+                etAC3.setEnabled(true);
+                swPacA3.setEnabled(true);
+                swPacB3.setEnabled(true);
+                swAI7.setEnabled(true);
+                swAI8.setEnabled(true);
+                swAI9.setEnabled(true);
+                swF7.setEnabled(true);
+                swF8.setEnabled(true);
+                swF9.setEnabled(true);
+                swNF7.setEnabled(true);
+                swNF8.setEnabled(true);
+                swNF9.setEnabled(true);
+            }
+        });
+        btnHR3.setFocusable(true);
+        btnHR3.setFocusableInTouchMode(true);
+        btnHR3.requestFocus();
+        btnHR3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR3.setText(FechaH.Hora());
+                btnHR3.setEnabled(false);
+                btnHR4.setEnabled(true);
+                btnProd4.setEnabled(true);
+                etAC4.setEnabled(true);
+                swPacA4.setEnabled(true);
+                swPacB4.setEnabled(true);
+                swAI10.setEnabled(true);
+                swAI11.setEnabled(true);
+                swAI12.setEnabled(true);
+                swF10.setEnabled(true);
+                swF11.setEnabled(true);
+                swF12.setEnabled(true);
+                swNF10.setEnabled(true);
+                swNF11.setEnabled(true);
+                swNF12.setEnabled(true);
+            }
+        });
+        btnHR4.setFocusable(true);
+        btnHR4.setFocusableInTouchMode(true);
+        btnHR4.requestFocus();
+        btnHR4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR4.setText(FechaH.Hora());
+                btnHR4.setEnabled(false);
+                btnHR5.setEnabled(true);
+                btnProd5.setEnabled(true);
+                etAC5.setEnabled(true);
+                swPacA5.setEnabled(true);
+                swPacB5.setEnabled(true);
+                swAI13.setEnabled(true);
+                swAI14.setEnabled(true);
+                swAI15.setEnabled(true);
+                swF13.setEnabled(true);
+                swF14.setEnabled(true);
+                swF15.setEnabled(true);
+                swNF13.setEnabled(true);
+                swNF14.setEnabled(true);
+                swNF15.setEnabled(true);
+            }
+        });
+        btnHR5.setFocusable(true);
+        btnHR5.setFocusableInTouchMode(true);
+        btnHR5.requestFocus();
+        btnHR5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR5.setText(FechaH.Hora());
+                btnHR5.setEnabled(false);
+                btnHR6.setEnabled(true);
+                btnProd6.setEnabled(true);
+                etAC6.setEnabled(true);
+                swPacA6.setEnabled(true);
+                swPacB6.setEnabled(true);
+                swAI16.setEnabled(true);
+                swAI17.setEnabled(true);
+                swAI18.setEnabled(true);
+                swF16.setEnabled(true);
+                swF17.setEnabled(true);
+                swF18.setEnabled(true);
+                swNF16.setEnabled(true);
+                swNF17.setEnabled(true);
+                swNF18.setEnabled(true);
+            }
+        });
+        btnHR6.setFocusable(true);
+        btnHR6.setFocusableInTouchMode(true);
+        btnHR6.requestFocus();
+        btnHR6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR6.setText(FechaH.Hora());
+                btnHR6.setEnabled(false);
+                btnHR7.setEnabled(true);
+                btnProd7.setEnabled(true);
+                etAC7.setEnabled(true);
+                swPacA7.setEnabled(true);
+                swPacB7.setEnabled(true);
+                swAI19.setEnabled(true);
+                swAI20.setEnabled(true);
+                swAI21.setEnabled(true);
+                swF19.setEnabled(true);
+                swF20.setEnabled(true);
+                swF21.setEnabled(true);
+                swNF19.setEnabled(true);
+                swNF20.setEnabled(true);
+                swNF21.setEnabled(true);
+            }
+        });
+        btnHR7.setFocusable(true);
+        btnHR7.setFocusableInTouchMode(true);
+        btnHR7.requestFocus();
+        btnHR7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR7.setText(FechaH.Hora());
+                btnHR7.setEnabled(false);
+                btnHR8.setEnabled(true);
+                btnProd8.setEnabled(true);
+                etAC8.setEnabled(true);
+                swPacA8.setEnabled(true);
+                swPacB8.setEnabled(true);
+                swAI22.setEnabled(true);
+                swAI23.setEnabled(true);
+                swAI24.setEnabled(true);
+                swF22.setEnabled(true);
+                swF23.setEnabled(true);
+                swF24.setEnabled(true);
+                swNF22.setEnabled(true);
+                swNF23.setEnabled(true);
+                swNF24.setEnabled(true);
+            }
+        });
+        btnHR8.setFocusable(true);
+        btnHR8.setFocusableInTouchMode(true);
+        btnHR8.requestFocus();
+        btnHR8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR8.setText(FechaH.Hora());
+                btnHR8.setEnabled(false);
+                btnHR9.setEnabled(true);
+                btnProd9.setEnabled(true);
+                etAC9.setEnabled(true);
+                swPacA9.setEnabled(true);
+                swPacB9.setEnabled(true);
+                swAI25.setEnabled(true);
+                swAI26.setEnabled(true);
+                swAI27.setEnabled(true);
+                swF25.setEnabled(true);
+                swF26.setEnabled(true);
+                swF27.setEnabled(true);
+                swNF25.setEnabled(true);
+                swNF26.setEnabled(true);
+                swNF27.setEnabled(true);
+
+            }
+        });
+        btnHR9.setFocusable(true);
+        btnHR9.setFocusableInTouchMode(true);
+        btnHR9.requestFocus();
+        btnHR9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR9.setText(FechaH.Hora());
+                btnHR9.setEnabled(false);
+                btnHR10.setEnabled(true);
+                btnProd10.setEnabled(true);
+                etAC10.setEnabled(true);
+                swPacA10.setEnabled(true);
+                swPacB10.setEnabled(true);
+                swAI28.setEnabled(true);
+                swAI29.setEnabled(true);
+                swAI30.setEnabled(true);
+                swF28.setEnabled(true);
+                swF29.setEnabled(true);
+                swF30.setEnabled(true);
+                swNF28.setEnabled(true);
+                swNF29.setEnabled(true);
+                swNF30.setEnabled(true);
+            }
+        });
+        btnHR10.setFocusable(true);
+        btnHR10.setFocusableInTouchMode(true);
+        btnHR10.requestFocus();
+        btnHR10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR10.setText(FechaH.Hora());
+                btnHR10.setEnabled(false);
+                btnHR11.setEnabled(true);
+                btnProd11.setEnabled(true);
+                etAC11.setEnabled(true);
+                swPacA11.setEnabled(true);
+                swPacB11.setEnabled(true);
+                swAI31.setEnabled(true);
+                swAI32.setEnabled(true);
+                swAI33.setEnabled(true);
+                swF31.setEnabled(true);
+                swF32.setEnabled(true);
+                swF33.setEnabled(true);
+                swNF31.setEnabled(true);
+                swNF32.setEnabled(true);
+                swNF33.setEnabled(true);
+            }
+        });
+        btnHR11.setFocusable(true);
+        btnHR11.setFocusableInTouchMode(true);
+        btnHR11.requestFocus();
+        btnHR11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR11.setText(FechaH.Hora());
+                btnHR11.setEnabled(false);
+                btnHR12.setEnabled(true);
+                btnProd12.setEnabled(true);
+                etAC12.setEnabled(true);
+                swPacA12.setEnabled(true);
+                swPacB12.setEnabled(true);
+                swAI34.setEnabled(true);
+                swAI35.setEnabled(true);
+                swAI36.setEnabled(true);
+                swF34.setEnabled(true);
+                swF35.setEnabled(true);
+                swF36.setEnabled(true);
+                swNF34.setEnabled(true);
+                swNF35.setEnabled(true);
+                swNF36.setEnabled(true);
+            }
+        });
+        btnHR12.setFocusable(true);
+        btnHR12.setFocusableInTouchMode(true);
+        btnHR12.requestFocus();
+        btnHR12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR12.setText(FechaH.Hora());
+                btnHR12.setEnabled(false);
+                btnHR13.setEnabled(true);
+                btnProd13.setEnabled(true);
+                etAC13.setEnabled(true);
+                swPacA13.setEnabled(true);
+                swPacB13.setEnabled(true);
+                swAI37.setEnabled(true);
+                swAI38.setEnabled(true);
+                swAI39.setEnabled(true);
+                swF37.setEnabled(true);
+                swF38.setEnabled(true);
+                swF39.setEnabled(true);
+                swNF37.setEnabled(true);
+                swNF38.setEnabled(true);
+                swNF39.setEnabled(true);
+            }
+        });
+        btnHR13.setFocusable(true);
+        btnHR13.setFocusableInTouchMode(true);
+        btnHR13.requestFocus();
+        btnHR13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR13.setText(FechaH.Hora());
+                btnHR13.setEnabled(false);
+                btnHR14.setEnabled(true);
+                btnProd14.setEnabled(true);
+                etAC14.setEnabled(true);
+                swPacA14.setEnabled(true);
+                swPacB14.setEnabled(true);
+                swAI40.setEnabled(true);
+                swAI41.setEnabled(true);
+                swAI42.setEnabled(true);
+                swF40.setEnabled(true);
+                swF41.setEnabled(true);
+                swF42.setEnabled(true);
+                swNF40.setEnabled(true);
+                swNF41.setEnabled(true);
+                swNF42.setEnabled(true);
+            }
+        });
+        btnHR14.setFocusable(true);
+        btnHR14.setFocusableInTouchMode(true);
+        btnHR14.requestFocus();
+        btnHR14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR14.setText(FechaH.Hora());
+                btnHR14.setEnabled(false);
+                btnHR15.setEnabled(true);
+                btnProd15.setEnabled(true);
+                etAC15.setEnabled(true);
+                swPacA15.setEnabled(true);
+                swPacB15.setEnabled(true);
+                swAI43.setEnabled(true);
+                swAI44.setEnabled(true);
+                swAI45.setEnabled(true);
+                swF43.setEnabled(true);
+                swF44.setEnabled(true);
+                swF45.setEnabled(true);
+                swNF43.setEnabled(true);
+                swNF44.setEnabled(true);
+                swNF45.setEnabled(true);
+            }
+        });
+        btnHR15.setFocusable(true);
+        btnHR15.setFocusableInTouchMode(true);
+        btnHR15.requestFocus();
+        btnHR15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                btnHR15.setText(FechaH.Hora());
+                btnHR15.setEnabled(false);
+
+            }
+        });
 
         btnProd1=(Button)findViewById(R.id.btnProd1);
+        btnProd1.setFocusable(true);
+        btnProd1.setFocusableInTouchMode(true);
+        btnProd1.requestFocus();
+
+
         btnProd2=(Button)findViewById(R.id.btnProd2);
+        btnProd2.setFocusable(true);
+        btnProd2.setFocusableInTouchMode(true);
+        btnProd2.requestFocus();
+
+
         btnProd3=(Button)findViewById(R.id.btnProd3);
+        btnProd3.setFocusable(true);
+        btnProd3.setFocusableInTouchMode(true);
+        btnProd3.requestFocus();
+
+
         btnProd4=(Button)findViewById(R.id.btnProd4);
+        btnProd4.setFocusable(true);
+        btnProd4.setFocusableInTouchMode(true);
+        btnProd4.requestFocus();
+
+
         btnProd5=(Button)findViewById(R.id.btnProd5);
+        btnProd5.setFocusable(true);
+        btnProd5.setFocusableInTouchMode(true);
+        btnProd5.requestFocus();
+
+
         btnProd6=(Button)findViewById(R.id.btnProd6);
+        btnProd6.setFocusable(true);
+        btnProd6.setFocusableInTouchMode(true);
+        btnProd6.requestFocus();
+
+
         btnProd7=(Button)findViewById(R.id.btnProd7);
+        btnProd7.setFocusable(true);
+        btnProd7.setFocusableInTouchMode(true);
+        btnProd7.requestFocus();
+
+
         btnProd8=(Button)findViewById(R.id.btnProd8);
+        btnProd8.setFocusable(true);
+        btnProd8.setFocusableInTouchMode(true);
+        btnProd8.requestFocus();
+
+
         btnProd9=(Button)findViewById(R.id.btnProd9);
+        btnProd9.setFocusable(true);
+        btnProd9.setFocusableInTouchMode(true);
+        btnProd9.requestFocus();
+
+
         btnProd10=(Button)findViewById(R.id.btnProd10);
+        btnProd10.setFocusable(true);
+        btnProd10.setFocusableInTouchMode(true);
+        btnProd10.requestFocus();
+
+
         btnProd11=(Button)findViewById(R.id.btnProd11);
+        btnProd11.setFocusable(true);
+        btnProd11.setFocusableInTouchMode(true);
+        btnProd11.requestFocus();
+
+
         btnProd12=(Button)findViewById(R.id.btnProd12);
+        btnProd12.setFocusable(true);
+        btnProd12.setFocusableInTouchMode(true);
+        btnProd12.requestFocus();
+
+
         btnProd13=(Button)findViewById(R.id.btnProd13);
+        btnProd13.setFocusable(true);
+        btnProd13.setFocusableInTouchMode(true);
+        btnProd13.requestFocus();
+
+
         btnProd14=(Button)findViewById(R.id.btnProd14);
+        btnProd14.setFocusable(true);
+        btnProd14.setFocusableInTouchMode(true);
+        btnProd14.requestFocus();
+
+
         btnProd15=(Button)findViewById(R.id.btnProd15);
+        btnProd15.setFocusable(true);
+        btnProd15.setFocusableInTouchMode(true);
+        btnProd15.requestFocus();
+
 
         btnProd1.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(1);}});
         btnProd2.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(2);}});
@@ -434,13 +810,14 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         etAC15=(EditText)findViewById(R.id.etAC15);
         etLote=(EditText)findViewById(R.id.etLote);
 
-        confInicial();
 
         if(var.isFromDetector()){
             llenarValoresBusqueda(var.getLoteDetector());
+
         }
         else {
-
+            Guardar.setImageResource(R.drawable.guarda);
+            confInicial();
         }
 
     }
@@ -874,20 +1251,20 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         btnProd14.setText(cursor.getString(cursor.getColumnIndex("prod_campo14")));
         btnProd15.setText(cursor.getString(cursor.getColumnIndex("prod_campo15")));
         etAC1.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo1")));
-        etAC2.setText(cursor.getString(cursor.getColumnIndex("prod_campo2")));
-        etAC3.setText(cursor.getString(cursor.getColumnIndex("prod_campo3")));
-        etAC4.setText(cursor.getString(cursor.getColumnIndex("prod_campo4")));
-        etAC5.setText(cursor.getString(cursor.getColumnIndex("prod_campo5")));
-        etAC6.setText(cursor.getString(cursor.getColumnIndex("prod_campo6")));
-        etAC7.setText(cursor.getString(cursor.getColumnIndex("prod_campo7")));
-        etAC8.setText(cursor.getString(cursor.getColumnIndex("prod_campo8")));
-        etAC9.setText(cursor.getString(cursor.getColumnIndex("prod_campo9")));
-        etAC10.setText(cursor.getString(cursor.getColumnIndex("prod_campo10")));
-        etAC11.setText(cursor.getString(cursor.getColumnIndex("prod_campo11")));
-        etAC12.setText(cursor.getString(cursor.getColumnIndex("prod_campo12")));
-        etAC13.setText(cursor.getString(cursor.getColumnIndex("prod_campo13")));
-        etAC14.setText(cursor.getString(cursor.getColumnIndex("prod_campo14")));
-        etAC15.setText(cursor.getString(cursor.getColumnIndex("prod_campo15")));
+        etAC2.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo2")));
+        etAC3.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo3")));
+        etAC4.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo4")));
+        etAC5.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo5")));
+        etAC6.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo6")));
+        etAC7.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo7")));
+        etAC8.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo8")));
+        etAC9.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo9")));
+        etAC10.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo10")));
+        etAC11.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo11")));
+        etAC12.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo12")));
+        etAC13.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo13")));
+        etAC14.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo14")));
+        etAC15.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo15")));
         swAI1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo1"))));
         swAI2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo2"))));
         swAI3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo3"))));
@@ -1023,7 +1400,36 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swNF43.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo43"))));
         swNF44.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo44"))));
         swNF45.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo45"))));
-
+        swPacA1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo1"))));
+        swPacA2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo2"))));
+        swPacA3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo3"))));
+        swPacA4.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo4"))));
+        swPacA5.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo5"))));
+        swPacA6.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo6"))));
+        swPacA7.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo7"))));
+        swPacA8.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo8"))));
+        swPacA9.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo9"))));
+        swPacA10.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo10"))));
+        swPacA11.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo11"))));
+        swPacA12.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo12"))));
+        swPacA13.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo13"))));
+        swPacA14.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo14"))));
+        swPacA15.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_a_campo15"))));
+        swPacB1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo1"))));
+        swPacB2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo2"))));
+        swPacB3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo3"))));
+        swPacB4.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo4"))));
+        swPacB5.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo5"))));
+        swPacB6.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo6"))));
+        swPacB7.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo7"))));
+        swPacB8.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo8"))));
+        swPacB9.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo9"))));
+        swPacB10.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo10"))));
+        swPacB11.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo11"))));
+        swPacB12.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo12"))));
+        swPacB13.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo13"))));
+        swPacB14.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo14"))));
+        swPacB15.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("paquete_b_campo15"))));
     }
 }
 
