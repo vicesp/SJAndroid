@@ -258,16 +258,16 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
             @Override
         public void onClick(View v){
                 if (var.isFromDetector()) {
-                    boolean exitoso = con.DAOActualizarDetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString()
-                            , btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString()
-                            , btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString()
-                            , btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString()
-                            , btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString()
-                            , btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString()
-                            , btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
-                            , switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
-                            , switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
-                            , switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
+                    boolean exitoso = con.DAOActualizarDetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString(),
+                            btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString(),
+                            btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString(),
+                            btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString(),
+                            btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString(),
+                            btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString(),
+                            btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked()),
+                            switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked()),
+                            switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked()),
+                            switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
                             switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
                             switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
                             switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
@@ -309,16 +309,16 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                         Alerta(getResources().getString(R.string.Alerta_NoActualizado));
                     }
                 } else {
-                    boolean exitoso = con.DAODetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString()
-                            , btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString()
-                            , btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString()
-                            , btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString()
-                            , btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString()
-                            , btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString()
-                            , btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
-                            , switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
-                            , switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
-                            , switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
+                    boolean exitoso = con.DAODetectorMetales(etLote.getText().toString(), Usuario.getText().toString(), FechaH.Hoy(), FechaH.Hoy_hora(), btnHR1.getText().toString(), btnHR2.getText().toString(),
+                            btnHR3.getText().toString(), btnHR4.getText().toString(), btnHR5.getText().toString(), btnHR6.getText().toString(), btnHR7.getText().toString(),
+                            btnHR8.getText().toString(), btnHR9.getText().toString(), btnHR10.getText().toString(), btnHR11.getText().toString(), btnHR12.getText().toString(),
+                            btnHR13.getText().toString(), btnHR14.getText().toString(), btnHR15.getText().toString(), btnProd1.getText().toString(), btnProd2.getText().toString(),
+                            btnProd3.getText().toString(), btnProd4.getText().toString(), btnProd5.getText().toString(), btnProd6.getText().toString(), btnProd7.getText().toString(),
+                            btnProd8.getText().toString(), btnProd9.getText().toString(), btnProd10.getText().toString(), btnProd11.getText().toString(), btnProd12.getText().toString(),
+                            btnProd13.getText().toString(), btnProd14.getText().toString(), btnProd15.getText().toString(), switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked()),
+                            switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked()),
+                            switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked()),
+                            switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
                             switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
                             switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
                             switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
