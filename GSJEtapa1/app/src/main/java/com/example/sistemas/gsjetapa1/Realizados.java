@@ -103,6 +103,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 var.setFromAdminEmpaque(false);
                 var.setFromAdminTexturizador(false);
                 var.setFromAdminProducto(false);
+                    var.setFromAdminDetector(false);
                 finish();
                 startActivity(new Intent(Realizados.this, Administrador.class));}
             }
@@ -137,6 +138,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
                 }
                 else if(var.isFromAdminRequeson()){
                     LLena_Lista(con.DAOListaRequesonLab(fechaSeleccionada(calendario.getDate())));
+                }
+                else if(var.isFromAdminDetector()){
+                    LLena_Lista(con.DAOListaDetectorRealizado(fechaSeleccionada(calendario.getDate())));
                 }
             }
         });
@@ -187,6 +191,10 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             LLena_Lista(con.DAOListaRequesonLab(fechaSeleccionada(c.getTimeInMillis())));
             nombre.setText("REQUESON LAB REALIZADOS");
         }
+        if(var.isFromAdminDetector()){
+            LLena_Lista(con.DAOListaDetectorRealizado(fechaSeleccionada(c.getTimeInMillis())));
+            nombre.setText("DETECTOR METALES REALIZADOS");
+        }
     }
 
 
@@ -219,7 +227,7 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-
+        Log.i("Funcionamiento positivo","");
 
         if(var.isFromAdminLaboratorio()) {
             String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
@@ -276,6 +284,12 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             var.setFromRequeson(true);
             var.setLoteRequeson(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
             finish();startActivity(new Intent(Realizados.this, Requeson_Lab.class));
+        }
+        else if(var.isFromAdminDetector()){
+            var.setFromDetector(true);
+            var.setLoteDetector(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            finish();startActivity(new Intent(Realizados.this, Detector_Metales.class));
+
         }
     }
     @Override

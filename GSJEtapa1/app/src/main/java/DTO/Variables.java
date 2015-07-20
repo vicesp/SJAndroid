@@ -22,6 +22,7 @@ public class Variables {
     private static boolean fromProducto;
     private static boolean fromCrema;
     private static boolean fromCuajadas;
+    private static boolean fromDetector;
     private static boolean fromAdminLaboratorio;
     private static boolean fromAdminEmpaque;
     private static boolean fromAdminCuajado;
@@ -30,6 +31,7 @@ public class Variables {
     private static boolean fromAdminProducto;
     private static boolean fromAdminCrema;
     private static boolean fromAdminCuajadas;
+    private static boolean fromAdminDetector;
     private static String loteTexturizador;
     private static String loteEmpaque;
     private static String loteCuajado;
@@ -37,6 +39,23 @@ public class Variables {
     private static String loteLaboratorio;
     private static String loteCuajadas;
 
+    public static String getLoteDetector() {
+        return loteDetector;
+    }
+
+    public static void setLoteDetector(String loteDetector) {
+        Variables.loteDetector = loteDetector;
+    }
+
+    private static String loteDetector;
+
+    public static boolean isFromDetector() {
+        return fromDetector;
+    }
+
+    public static void setFromDetector(boolean fromDetector) {
+        Variables.fromDetector = fromDetector;
+    }
     public static boolean isFromAdminRequeson() {
         return fromAdminRequeson;
     }
@@ -44,6 +63,13 @@ public class Variables {
         return fromExportador;
     }
 
+    public static boolean isFromAdminDetector() {
+        return fromAdminDetector;
+    }
+
+    public static void setFromAdminDetector(boolean fromAdminDetector) {
+        Variables.fromAdminDetector = fromAdminDetector;
+    }
     public static void setFromExportador(boolean fromExportador) {
         Variables.fromExportador = fromExportador;
     }

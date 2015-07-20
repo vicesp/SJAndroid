@@ -2,6 +2,7 @@ package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.security.Guard;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -48,7 +51,8 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
 
     private TextView Fecha, Usuario;
 
-    private EditText etAC1, etAC2, etAC3, etAC4, etAC5, etAC6, etAC7, etAC8, etAC9, etAC10, etAC11, etAC12, etAC13, etAC14, etAC15;
+    private EditText etAC1, etAC2, etAC3, etAC4, etAC5, etAC6, etAC7, etAC8, etAC9, etAC10, etAC11, etAC12, etAC13, etAC14, etAC15, etLote;
+    private ImageButton Guardar;
     private Button btnInfo, btnHR1, btnHR2, btnHR3, btnHR4, btnHR5, btnHR6, btnHR7, btnHR8, btnHR9, btnHR10, btnHR11, btnHR12, btnHR13, btnHR14, btnHR15,btnProd1, btnProd2,
             btnProd3, btnProd4, btnProd5, btnProd6, btnProd7, btnProd8, btnProd9, btnProd10, btnProd11, btnProd12, btnProd13, btnProd14, btnProd15;
     private Switch swPacA1, swPacA2, swPacA3, swPacA4, swPacA5, swPacA6, swPacA7, swPacA8, swPacA9, swPacA10, swPacA11, swPacA12, swPacA13, swPacA14, swPacA15,
@@ -249,6 +253,65 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swNF45 = (Switch) findViewById(R.id.swNF45);
 
         //******************    Button    ****************//
+        Guardar=(ImageButton)findViewById(R.id.btnGuardar);
+        Guardar.setOnClickListener(new View.OnClickListener(){
+            @Override
+        public void onClick(View v){
+                boolean exitoso =con.DAODetectorMetales(etLote.getText().toString(),Usuario.getText().toString(),FechaH.Hoy(),FechaH.Hoy_hora(),btnHR1.getText().toString(),btnHR2.getText().toString()
+                        ,btnHR3.getText().toString(),btnHR4.getText().toString(),btnHR5.getText().toString(),btnHR6.getText().toString(),btnHR7.getText().toString()
+                        ,btnHR8.getText().toString(),btnHR9.getText().toString(),btnHR10.getText().toString(),btnHR11.getText().toString(),btnHR12.getText().toString()
+                        ,btnHR13.getText().toString(),btnHR14.getText().toString(),btnHR15.getText().toString(),btnProd1.getText().toString(),btnProd2.getText().toString()
+                        ,btnProd3.getText().toString(),btnProd4.getText().toString(),btnProd5.getText().toString(),btnProd6.getText().toString(),btnProd7.getText().toString()
+                        ,btnProd8.getText().toString(),btnProd9.getText().toString(),btnProd10.getText().toString(),btnProd11.getText().toString(),btnProd12.getText().toString()
+                        ,btnProd13.getText().toString(),btnProd14.getText().toString(),btnProd15.getText().toString(),switchTexter(swPacA1.isChecked()), switchTexter(swPacB1.isChecked())
+                        ,switchTexter(swPacA2.isChecked()), switchTexter(swPacB2.isChecked()), switchTexter(swPacA3.isChecked()), switchTexter(swPacB3.isChecked()), switchTexter(swPacA4.isChecked())
+                        ,switchTexter(swPacB4.isChecked()), switchTexter(swPacA5.isChecked()), switchTexter(swPacB5.isChecked()), switchTexter(swPacA6.isChecked())
+                        ,switchTexter(swPacB6.isChecked()), switchTexter(swPacA7.isChecked()), switchTexter(swPacB7.isChecked()), switchTexter(swPacA8.isChecked()),
+                        switchTexter(swPacB8.isChecked()), switchTexter(swPacA9.isChecked()), switchTexter(swPacB9.isChecked()), switchTexter(swPacA10.isChecked()), switchTexter(swPacB10.isChecked()),
+                        switchTexter(swPacA11.isChecked()), switchTexter(swPacB11.isChecked()), switchTexter(swPacA12.isChecked()), switchTexter(swPacB12.isChecked()), switchTexter(swPacA13.isChecked()),
+                        switchTexter(swPacB13.isChecked()), switchTexter(swPacA14.isChecked()), switchTexter(swPacB14.isChecked()), switchTexter(swPacA15.isChecked()),
+                        switchTexter(swPacB15.isChecked()),switchTexter(swAI1.isChecked()), switchTexter(swAI2.isChecked()), switchTexter(swAI3.isChecked()), switchTexter(swAI4.isChecked()),
+                        switchTexter(swAI5.isChecked()), switchTexter(swAI6.isChecked()), switchTexter(swAI7.isChecked()), switchTexter(swAI8.isChecked()), switchTexter(swAI9.isChecked()),
+                        switchTexter(swAI10.isChecked()), switchTexter(swAI11.isChecked()), switchTexter(swAI12.isChecked()), switchTexter(swAI13.isChecked()), switchTexter(swAI14.isChecked()),
+                        switchTexter(swAI15.isChecked()), switchTexter(swAI16.isChecked()), switchTexter(swAI17.isChecked()), switchTexter(swAI18.isChecked()), switchTexter(swAI19.isChecked()),
+                        switchTexter(swAI20.isChecked()), switchTexter(swAI21.isChecked()), switchTexter(swAI22.isChecked()), switchTexter(swAI23.isChecked()), switchTexter(swAI24.isChecked()),
+                        switchTexter(swAI25.isChecked()), switchTexter(swAI26.isChecked()), switchTexter(swAI27.isChecked()), switchTexter(swAI28.isChecked()), switchTexter(swAI29.isChecked()),
+                        switchTexter(swAI30.isChecked()), switchTexter(swAI31.isChecked()), switchTexter(swAI32.isChecked()), switchTexter(swAI33.isChecked()), switchTexter(swAI34.isChecked()),
+                        switchTexter(swAI35.isChecked()), switchTexter(swAI36.isChecked()), switchTexter(swAI37.isChecked()), switchTexter(swAI38.isChecked()), switchTexter(swAI39.isChecked()),
+                        switchTexter(swAI40.isChecked()), switchTexter(swAI41.isChecked()), switchTexter(swAI42.isChecked()), switchTexter(swAI43.isChecked()),
+                        switchTexter(swAI44.isChecked()), switchTexter(swAI45.isChecked()),switchTexter(swF1.isChecked()), switchTexter(swF2.isChecked()), switchTexter(swF3.isChecked()),
+                        switchTexter(swF4.isChecked()), switchTexter(swF5.isChecked()), switchTexter(swF6.isChecked()), switchTexter(swF7.isChecked()), switchTexter(swF8.isChecked()),
+                        switchTexter(swF9.isChecked()), switchTexter(swF10.isChecked()), switchTexter(swF11.isChecked()), switchTexter(swF12.isChecked()), switchTexter(swF13.isChecked()),
+                        switchTexter(swF14.isChecked()), switchTexter(swF15.isChecked()), switchTexter(swF16.isChecked()), switchTexter(swF17.isChecked()), switchTexter(swF18.isChecked()),
+                        switchTexter(swF19.isChecked()), switchTexter(swF20.isChecked()), switchTexter(swF21.isChecked()), switchTexter(swF22.isChecked()), switchTexter(swF23.isChecked()),
+                        switchTexter(swF24.isChecked()), switchTexter(swF25.isChecked()), switchTexter(swF26.isChecked()), switchTexter(swF27.isChecked()), switchTexter(swF28.isChecked()),
+                        switchTexter(swF29.isChecked()), switchTexter(swF30.isChecked()), switchTexter(swF31.isChecked()), switchTexter(swF32.isChecked()), switchTexter(swF33.isChecked()),
+                        switchTexter(swF34.isChecked()), switchTexter(swF35.isChecked()), switchTexter(swF36.isChecked()), switchTexter(swF37.isChecked()), switchTexter(swF38.isChecked()),
+                        switchTexter(swF39.isChecked()), switchTexter(swF40.isChecked()), switchTexter(swF41.isChecked()), switchTexter(swF42.isChecked()), switchTexter(swF43.isChecked()),
+                        switchTexter(swF44.isChecked()), switchTexter(swF45.isChecked()),switchTexter(swNF1.isChecked()), switchTexter(swNF2.isChecked()), switchTexter(swNF3.isChecked()),
+                        switchTexter(swNF4.isChecked()), switchTexter(swNF5.isChecked()), switchTexter(swNF6.isChecked()), switchTexter(swNF7.isChecked()), switchTexter(swNF8.isChecked()),
+                        switchTexter(swNF9.isChecked()), switchTexter(swNF10.isChecked()), switchTexter(swNF11.isChecked()), switchTexter(swNF12.isChecked()), switchTexter(swNF13.isChecked()),
+                        switchTexter(swNF14.isChecked()), switchTexter(swNF15.isChecked()), switchTexter(swNF16.isChecked()), switchTexter(swNF17.isChecked()), switchTexter(swNF18.isChecked()),
+                        switchTexter(swNF19.isChecked()), switchTexter(swNF20.isChecked()), switchTexter(swNF21.isChecked()), switchTexter(swNF22.isChecked()), switchTexter(swNF23.isChecked()),
+                        switchTexter(swNF24.isChecked()), switchTexter(swNF25.isChecked()), switchTexter(swNF26.isChecked()), switchTexter(swNF27.isChecked()), switchTexter(swNF28.isChecked()),
+                        switchTexter(swNF29.isChecked()), switchTexter(swNF30.isChecked()), switchTexter(swNF31.isChecked()), switchTexter(swNF32.isChecked()), switchTexter(swNF33.isChecked()),
+                        switchTexter(swNF34.isChecked()), switchTexter(swNF35.isChecked()), switchTexter(swNF36.isChecked()), switchTexter(swNF37.isChecked()), switchTexter(swNF38.isChecked()),
+                        switchTexter(swNF39.isChecked()), switchTexter(swNF40.isChecked()), switchTexter(swNF41.isChecked()), switchTexter(swNF42.isChecked()), switchTexter(swNF43.isChecked()),
+                        switchTexter(swNF44.isChecked()), switchTexter(swNF45.isChecked()),etAC1.getText().toString(),etAC2.getText().toString(),etAC3.getText().toString(),etAC4.getText().toString(),
+                        etAC5.getText().toString(),etAC6.getText().toString(),etAC7.getText().toString(),etAC8.getText().toString(),etAC9.getText().toString(),etAC10.getText().toString(),
+                        etAC11.getText().toString(),etAC12.getText().toString(),etAC13.getText().toString(),etAC14.getText().toString(),etAC15.getText().toString(),"","","");
+                if (exitoso) {
+
+                    Alerta(getResources().getString(R.string.Alerta_Guardado));
+                    confInicial();
+                } else {
+                    Alerta(getResources().getString(R.string.Alerta_NoGuardado));
+                }
+
+
+            }
+        });
+
         btnInfo=(Button)findViewById(R.id.btnInfo);
         btnInfo.setOnClickListener(new View.OnClickListener(){@Override
         public void onClick(View v){
@@ -274,6 +337,9 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
 
         btnHR1.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
             btnHR1.setText(FechaH.Hora());
+            btnHR1.setEnabled(false);
+            btnHR2.setEnabled(true);
+            btnProd2.setEnabled(true);
         }});
         btnHR2.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){
             btnHR2.setText(FechaH.Hora());
@@ -366,9 +432,16 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         etAC13=(EditText)findViewById(R.id.etAC13);
         etAC14=(EditText)findViewById(R.id.etAC14);
         etAC15=(EditText)findViewById(R.id.etAC15);
+        etLote=(EditText)findViewById(R.id.etLote);
 
         confInicial();
 
+        if(var.isFromDetector()){
+            llenarValoresBusqueda(var.getLoteDetector());
+        }
+        else {
+
+        }
 
     }
 
@@ -727,6 +800,229 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         etAC13.setEnabled(false);
         etAC14.setEnabled(false);
         etAC15.setEnabled(false);
+
+    }
+    public String switchTexter(boolean affirmation){
+        if(affirmation)
+        {
+            return "si";
+        }
+        else
+        {
+            return "no";
+        }
+    }
+    public boolean textSwitcher(String affirmation)
+    {
+        if(affirmation.equals("si"))
+        {
+            return true;
+        }
+        else{return false;}
+
+    }
+    public void Alerta(String mensaje){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(Detector_Metales.this);
+
+        alertDialogBuilder.setTitle("Aviso");
+
+        alertDialogBuilder.setMessage(mensaje);
+
+        alertDialogBuilder.setPositiveButton("Aceptar",new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog,int id) {
+
+            }
+
+        });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
+    }
+    public void llenarValoresBusqueda(String lote){
+
+        cursor = con.DAOLLenarDetector(lote);
+        etLote.setText(lote);
+        btnHR1.setText(cursor.getString(cursor.getColumnIndex("hr_campo1")));
+        btnHR2.setText(cursor.getString(cursor.getColumnIndex("hr_campo2")));
+        btnHR3.setText(cursor.getString(cursor.getColumnIndex("hr_campo3")));
+        btnHR4.setText(cursor.getString(cursor.getColumnIndex("hr_campo4")));
+        btnHR5.setText(cursor.getString(cursor.getColumnIndex("hr_campo5")));
+        btnHR6.setText(cursor.getString(cursor.getColumnIndex("hr_campo6")));
+        btnHR7.setText(cursor.getString(cursor.getColumnIndex("hr_campo7")));
+        btnHR8.setText(cursor.getString(cursor.getColumnIndex("hr_campo8")));
+        btnHR9.setText(cursor.getString(cursor.getColumnIndex("hr_campo9")));
+        btnHR10.setText(cursor.getString(cursor.getColumnIndex("hr_campo10")));
+        btnHR11.setText(cursor.getString(cursor.getColumnIndex("hr_campo11")));
+        btnHR12.setText(cursor.getString(cursor.getColumnIndex("hr_campo12")));
+        btnHR13.setText(cursor.getString(cursor.getColumnIndex("hr_campo13")));
+        btnHR14.setText(cursor.getString(cursor.getColumnIndex("hr_campo14")));
+        btnHR15.setText(cursor.getString(cursor.getColumnIndex("hr_campo15")));
+        btnProd1.setText(cursor.getString(cursor.getColumnIndex("prod_campo1")));
+        btnProd2.setText(cursor.getString(cursor.getColumnIndex("prod_campo2")));
+        btnProd3.setText(cursor.getString(cursor.getColumnIndex("prod_campo3")));
+        btnProd4.setText(cursor.getString(cursor.getColumnIndex("prod_campo4")));
+        btnProd5.setText(cursor.getString(cursor.getColumnIndex("prod_campo5")));
+        btnProd6.setText(cursor.getString(cursor.getColumnIndex("prod_campo6")));
+        btnProd7.setText(cursor.getString(cursor.getColumnIndex("prod_campo7")));
+        btnProd8.setText(cursor.getString(cursor.getColumnIndex("prod_campo8")));
+        btnProd9.setText(cursor.getString(cursor.getColumnIndex("prod_campo9")));
+        btnProd10.setText(cursor.getString(cursor.getColumnIndex("prod_campo10")));
+        btnProd11.setText(cursor.getString(cursor.getColumnIndex("prod_campo11")));
+        btnProd12.setText(cursor.getString(cursor.getColumnIndex("prod_campo12")));
+        btnProd13.setText(cursor.getString(cursor.getColumnIndex("prod_campo13")));
+        btnProd14.setText(cursor.getString(cursor.getColumnIndex("prod_campo14")));
+        btnProd15.setText(cursor.getString(cursor.getColumnIndex("prod_campo15")));
+        etAC1.setText(cursor.getString(cursor.getColumnIndex("accion_correctiva_campo1")));
+        etAC2.setText(cursor.getString(cursor.getColumnIndex("prod_campo2")));
+        etAC3.setText(cursor.getString(cursor.getColumnIndex("prod_campo3")));
+        etAC4.setText(cursor.getString(cursor.getColumnIndex("prod_campo4")));
+        etAC5.setText(cursor.getString(cursor.getColumnIndex("prod_campo5")));
+        etAC6.setText(cursor.getString(cursor.getColumnIndex("prod_campo6")));
+        etAC7.setText(cursor.getString(cursor.getColumnIndex("prod_campo7")));
+        etAC8.setText(cursor.getString(cursor.getColumnIndex("prod_campo8")));
+        etAC9.setText(cursor.getString(cursor.getColumnIndex("prod_campo9")));
+        etAC10.setText(cursor.getString(cursor.getColumnIndex("prod_campo10")));
+        etAC11.setText(cursor.getString(cursor.getColumnIndex("prod_campo11")));
+        etAC12.setText(cursor.getString(cursor.getColumnIndex("prod_campo12")));
+        etAC13.setText(cursor.getString(cursor.getColumnIndex("prod_campo13")));
+        etAC14.setText(cursor.getString(cursor.getColumnIndex("prod_campo14")));
+        etAC15.setText(cursor.getString(cursor.getColumnIndex("prod_campo15")));
+        swAI1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo1"))));
+        swAI2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo2"))));
+        swAI3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo3"))));
+        swAI4.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo4"))));
+        swAI5.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo5"))));
+        swAI6.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo6"))));
+        swAI7.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo7"))));
+        swAI8.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo8"))));
+        swAI9.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo9"))));
+        swAI10.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo10"))));
+        swAI11.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo11"))));
+        swAI12.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo12"))));
+        swAI13.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo13"))));
+        swAI14.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo14"))));
+        swAI15.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo15"))));
+        swAI16.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo16"))));
+        swAI17.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo17"))));
+        swAI18.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo18"))));
+        swAI19.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo19"))));
+        swAI20.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo20"))));
+        swAI21.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo21"))));
+        swAI22.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo22"))));
+        swAI23.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo23"))));
+        swAI24.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo24"))));
+        swAI25.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo25"))));
+        swAI26.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo26"))));
+        swAI27.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo27"))));
+        swAI28.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo28"))));
+        swAI29.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo29"))));
+        swAI30.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo30"))));
+        swAI31.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo31"))));
+        swAI32.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo32"))));
+        swAI33.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo33"))));
+        swAI34.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo34"))));
+        swAI35.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo35"))));
+        swAI36.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo36"))));
+        swAI37.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo37"))));
+        swAI38.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo38"))));
+        swAI39.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo39"))));
+        swAI40.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo40"))));
+        swAI41.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo41"))));
+        swAI42.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo42"))));
+        swAI43.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo43"))));
+        swAI44.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo44"))));
+        swAI45.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ac_inox_campo45"))));
+        swF1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo1"))));
+        swF2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo2"))));
+        swF3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo3"))));
+        swF4.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo4"))));
+        swF5.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo5"))));
+        swF6.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo6"))));
+        swF7.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo7"))));
+        swF8.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo8"))));
+        swF9.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo9"))));
+        swF10.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo10"))));
+        swF11.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo11"))));
+        swF12.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo12"))));
+        swF13.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo13"))));
+        swF14.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo14"))));
+        swF15.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo15"))));
+        swF16.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo16"))));
+        swF17.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo17"))));
+        swF18.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo18"))));
+        swF19.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo19"))));
+        swF20.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo20"))));
+        swF21.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo21"))));
+        swF22.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo22"))));
+        swF23.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo23"))));
+        swF24.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo24"))));
+        swF25.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo25"))));
+        swF26.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo26"))));
+        swF27.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo27"))));
+        swF28.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo28"))));
+        swF29.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo29"))));
+        swF30.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo30"))));
+        swF31.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo31"))));
+        swF32.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo32"))));
+        swF33.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo33"))));
+        swF34.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo34"))));
+        swF35.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo35"))));
+        swF36.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo36"))));
+        swF37.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo37"))));
+        swF38.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo38"))));
+        swF39.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo39"))));
+        swF40.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo40"))));
+        swF41.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo41"))));
+        swF42.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo42"))));
+        swF43.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo43"))));
+        swF44.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo44"))));
+        swF45.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("ferroso_campo45"))));
+        swNF1.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo1"))));
+        swNF2.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo2"))));
+        swNF3.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo3"))));
+        swNF4.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo4"))));
+        swNF5.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo5"))));
+        swNF6.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo6"))));
+        swNF7.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo7"))));
+        swNF8.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo8"))));
+        swNF9.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo9"))));
+        swNF10.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo10"))));
+        swNF11.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo11"))));
+        swNF12.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo12"))));
+        swNF13.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo13"))));
+        swNF14.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo14"))));
+        swNF15.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo15"))));
+        swNF16.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo16"))));
+        swNF17.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo17"))));
+        swNF18.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo18"))));
+        swNF19.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo19"))));
+        swNF20.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo20"))));
+        swNF21.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo21"))));
+        swNF22.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo22"))));
+        swNF23.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo23"))));
+        swNF24.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo24"))));
+        swNF25.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo25"))));
+        swNF26.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo26"))));
+        swNF27.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo27"))));
+        swNF28.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo28"))));
+        swNF29.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo29"))));
+        swNF30.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo30"))));
+        swNF31.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo31"))));
+        swNF32.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo32"))));
+        swNF33.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo33"))));
+        swNF34.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo34"))));
+        swNF35.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo35"))));
+        swNF36.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo36"))));
+        swNF37.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo37"))));
+        swNF38.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo38"))));
+        swNF39.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo39"))));
+        swNF40.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo40"))));
+        swNF41.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo41"))));
+        swNF42.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo42"))));
+        swNF43.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo43"))));
+        swNF44.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo44"))));
+        swNF45.setChecked(textSwitcher(cursor.getString(cursor.getColumnIndex("no_ferroso_campo45"))));
 
     }
 }
