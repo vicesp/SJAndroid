@@ -151,6 +151,7 @@ public class Panel_Lab extends ActionBarActivity {
                             var.setFromAdminLaboratorio(false);
                             var.setFromAdminCrema(false);
                             var.setFromAdminRequeson(false);
+
                             finish();startActivity(new Intent(Panel_Lab.this, Administrador.class));
                         }
                         if(var.isFromExportador()){

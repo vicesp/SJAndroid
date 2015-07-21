@@ -2723,7 +2723,9 @@
                 android:layout_alignBaseline="@+id/swAI44"
                 android:layout_alignBottom="@+id/swAI44"
                 android:layout_toLeftOf="@+id/swPacA15"
-                android:layout_toStartOf="@+id/swPacA15" />
+                android:layout_toStartOf="@+id/swPacA15"
+                android:focusableInTouchMode="false"
+                android:focusable="false" />
 
             <Button
                 android:layout_width="wrap_content"

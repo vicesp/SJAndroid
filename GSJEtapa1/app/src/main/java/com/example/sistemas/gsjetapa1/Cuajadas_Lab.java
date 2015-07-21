@@ -40,7 +40,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
     private Button btnBack;
     private ImageButton guarda;
     private CheckBox checkBox;
-    private Spinner spinCuajadas, spinSuero;
+    private Spinner spinCuajadas;
     private EditText Lote, humCuaj, grasCuaj, phCuaj, phSue, acSue, stSue;
 
 
@@ -60,7 +60,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
 
         /*********** Spinners **************/
         spinCuajadas = (Spinner) findViewById(R.id.spinCuajada);
-        spinSuero = (Spinner) findViewById(R.id.spinSuero);
+
         spinnerFiller();
         spinCuajadas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -90,31 +90,8 @@ public class Cuajadas_Lab extends ActionBarActivity {
                                                    }
                                                }
         );
-        spinSuero.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
 
-                ((TextView) parent.getChildAt(0)).setTextSize(22);
-                if(position==0){
-                    tinaSuero="1";
-                }
-                else if(position==1){
-                    tinaSuero="2";
-
-                }
-                else{
-                    tinaSuero="3";
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }});
 
 
             /*********** Buttons **************/
@@ -265,7 +242,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
         acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
         stSue.setText(cursor.getString(cursor.getColumnIndex("st_sue")));
         spinCuajadas.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_cuajada"))));
-        spinSuero.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_suero"))));
+
 
     }
     public int getPosition(String value){
@@ -301,7 +278,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
         acSue.setText("");
         stSue.setText("");
         spinCuajadas.setSelection(0);
-        spinSuero.setSelection(0);
+
     }
 
     public String switchTexter(boolean affirmation) {
@@ -346,7 +323,6 @@ public class Cuajadas_Lab extends ActionBarActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Attach the adapter to a ListView
         spinCuajadas.setAdapter(adapter);
-        spinSuero.setAdapter(adapter);
 
 
     }

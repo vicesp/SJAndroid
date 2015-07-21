@@ -413,9 +413,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF4.setEnabled(true);
                 swNF5.setEnabled(true);
                 swNF6.setEnabled(true);
+                etAC1.requestFocus();
 
                 if (var.isFromDetector()) {
                     timeSetter(1);
+                    btnHR1.setEnabled(true);
                 }
 
             }
@@ -444,6 +446,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF7.setEnabled(true);
                 swNF8.setEnabled(true);
                 swNF9.setEnabled(true);
+                etAC2.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(2);
+                    btnHR2.setEnabled(true);
+                }
             }
         });
         btnHR3.setFocusable(true);
@@ -468,6 +475,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF10.setEnabled(true);
                 swNF11.setEnabled(true);
                 swNF12.setEnabled(true);
+                etAC3.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(3);
+                    btnHR3.setEnabled(true);
+                }
             }
         });
         btnHR4.setFocusable(true);
@@ -492,6 +504,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF13.setEnabled(true);
                 swNF14.setEnabled(true);
                 swNF15.setEnabled(true);
+                etAC4.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(4);
+                    btnHR4.setEnabled(true);
+                }
             }
         });
         btnHR5.setFocusable(true);
@@ -516,6 +533,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF16.setEnabled(true);
                 swNF17.setEnabled(true);
                 swNF18.setEnabled(true);
+                etAC5.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(5);
+                    btnHR5.setEnabled(true);
+                }
             }
         });
         btnHR6.setFocusable(true);
@@ -540,6 +562,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF19.setEnabled(true);
                 swNF20.setEnabled(true);
                 swNF21.setEnabled(true);
+                etAC6.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(6);
+                    btnHR6.setEnabled(true);
+                }
             }
         });
         btnHR7.setFocusable(true);
@@ -564,6 +591,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF22.setEnabled(true);
                 swNF23.setEnabled(true);
                 swNF24.setEnabled(true);
+                etAC7.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(7);
+                    btnHR7.setEnabled(true);
+                }
             }
         });
         btnHR8.setFocusable(true);
@@ -588,6 +620,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF25.setEnabled(true);
                 swNF26.setEnabled(true);
                 swNF27.setEnabled(true);
+                etAC8.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(8);
+                    btnHR8.setEnabled(true);
+                }
 
             }
         });
@@ -613,6 +650,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF28.setEnabled(true);
                 swNF29.setEnabled(true);
                 swNF30.setEnabled(true);
+                etAC9.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(9);
+                    btnHR9.setEnabled(true);
+                }
             }
         });
         btnHR10.setFocusable(true);
@@ -637,6 +679,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF31.setEnabled(true);
                 swNF32.setEnabled(true);
                 swNF33.setEnabled(true);
+                etAC10.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(10);
+                    btnHR10.setEnabled(true);
+                }
             }
         });
         btnHR11.setFocusable(true);
@@ -661,6 +708,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF34.setEnabled(true);
                 swNF35.setEnabled(true);
                 swNF36.setEnabled(true);
+                etAC11.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(11);
+                    btnHR11.setEnabled(true);
+                }
             }
         });
         btnHR12.setFocusable(true);
@@ -685,6 +737,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF37.setEnabled(true);
                 swNF38.setEnabled(true);
                 swNF39.setEnabled(true);
+                etAC12.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(12);
+                    btnHR12.setEnabled(true);
+                }
             }
         });
         btnHR13.setFocusable(true);
@@ -709,6 +766,11 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF40.setEnabled(true);
                 swNF41.setEnabled(true);
                 swNF42.setEnabled(true);
+                etAC13.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(13);
+                    btnHR13.setEnabled(true);
+                }
             }
         });
         btnHR14.setFocusable(true);
@@ -733,135 +795,166 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                 swNF43.setEnabled(true);
                 swNF44.setEnabled(true);
                 swNF45.setEnabled(true);
+                etAC14.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(14);
+                    btnHR14.setEnabled(true);
+                }
             }
         });
-        btnHR15.setFocusable(true);
-        //btnHR15.setFocusableInTouchMode(true);
-        //btnHR15.requestFocus();
         btnHR15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 btnHR15.setText(FechaH.Hora());
                 btnHR15.setEnabled(false);
+                etAC15.requestFocus();
+                if (var.isFromDetector()) {
+                    timeSetter(15);
+                    btnHR15.setEnabled(true);
+                }
+
 
             }
         });
 
         btnProd1=(Button)findViewById(R.id.btnProd1);
-        btnProd1.setFocusable(true);
-        //btnProd1.setFocusableInTouchMode(true);
-        //btnProd1.requestFocus();
-
 
         btnProd2=(Button)findViewById(R.id.btnProd2);
-        btnProd2.setFocusable(true);
-        //btnProd2.setFocusableInTouchMode(true);
-        //btnProd2.requestFocus();
-
 
         btnProd3=(Button)findViewById(R.id.btnProd3);
-        btnProd3.setFocusable(true);
-        //btnProd3.setFocusableInTouchMode(true);
-        //btnProd3.requestFocus();
-
 
         btnProd4=(Button)findViewById(R.id.btnProd4);
-        btnProd4.setFocusable(true);
-        //btnProd4.setFocusableInTouchMode(true);
-        //btnProd4.requestFocus();
-
 
         btnProd5=(Button)findViewById(R.id.btnProd5);
-        btnProd5.setFocusable(true);
-        //btnProd5.setFocusableInTouchMode(true);
-        //btnProd5.requestFocus();
-
 
         btnProd6=(Button)findViewById(R.id.btnProd6);
-        btnProd6.setFocusable(true);
-        //btnProd6.setFocusableInTouchMode(true);
-        //btnProd6.requestFocus();
-
 
         btnProd7=(Button)findViewById(R.id.btnProd7);
-        btnProd7.setFocusable(true);
-        // btnProd7.setFocusableInTouchMode(true);
-        //   btnProd7.requestFocus();
-
 
         btnProd8=(Button)findViewById(R.id.btnProd8);
-        btnProd8.setFocusable(true);
-        //btnProd8.setFocusableInTouchMode(true);
-        //  btnProd8.requestFocus();
-
 
         btnProd9=(Button)findViewById(R.id.btnProd9);
-        btnProd9.setFocusable(true);
-        // btnProd9.setFocusableInTouchMode(true);
-        // btnProd9.requestFocus();
-
 
         btnProd10=(Button)findViewById(R.id.btnProd10);
-        btnProd10.setFocusable(true);
-        // btnProd10.setFocusableInTouchMode(true);
-        // btnProd10.requestFocus();
-
 
         btnProd11=(Button)findViewById(R.id.btnProd11);
-        btnProd11.setFocusable(true);
-        //btnProd11.setFocusableInTouchMode(true);
-        //btnProd11.requestFocus();
-
 
         btnProd12=(Button)findViewById(R.id.btnProd12);
-        btnProd12.setFocusable(true);
-        //btnProd12.setFocusableInTouchMode(true);
-        //btnProd12.requestFocus();
-
 
         btnProd13=(Button)findViewById(R.id.btnProd13);
-        btnProd13.setFocusable(true);
-        //btnProd13.setFocusableInTouchMode(true);
-        //btnProd13.requestFocus();
-
 
         btnProd14=(Button)findViewById(R.id.btnProd14);
-        btnProd14.setFocusable(true);
-        //     btnProd14.setFocusableInTouchMode(true);
-        //   btnProd14.requestFocus();
+
+        btnProd15 = (Button) findViewById(R.id.btnProd15);
 
 
-        btnProd15=(Button)findViewById(R.id.btnProd15);
-        btnProd15.setFocusable(true);
-        // btnProd15.setFocusableInTouchMode(true);
-        btnProd15.requestFocus();
+        btnProd1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(1);
+                etAC1.requestFocus();
+            }
+        });
+        btnProd2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(2);
+                etAC2.requestFocus();
+            }
+        });
+        btnProd3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(3);
+                etAC3.requestFocus();
+            }
+        });
+        btnProd4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(4);
+                etAC4.requestFocus();
+            }
+        });
+        btnProd5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(5);
+                etAC5.requestFocus();
+            }
+        });
+        btnProd6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(6);
+                etAC6.requestFocus();
+            }
+        });
+        btnProd7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(7);
+                etAC7.requestFocus();
+            }
+        });
+        btnProd8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(8);
+                etAC8.requestFocus();
+            }
+        });
+        btnProd9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(9);
+                etAC9.requestFocus();
+            }
+        });
+        btnProd10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(10);
+                etAC10.requestFocus();
+            }
+        });
+        btnProd11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(11);
+                etAC11.requestFocus();
+            }
+        });
+        btnProd12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(12);
+                etAC12.requestFocus();
+            }
+        });
+        btnProd13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(13);
+                etAC13.requestFocus();
+            }
+        });
+        btnProd14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView(14);
+                etAC14.requestFocus();
+            }
+        });
         btnProd15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 launchView(15);
-                Log.i("is focused:", "" + btnProd15.hasFocus());
-
+                etAC15.requestFocus();
 
             }
         });
 
-
-
-
-        btnProd1.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(1);}});
-        btnProd2.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(2);}});
-        btnProd3.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(3);}});
-        btnProd4.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(4);}});
-        btnProd5.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(5);}});
-        btnProd6.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(6);}});
-        btnProd7.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(7);}});
-        btnProd8.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(8);}});
-        btnProd9.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(9);}});
-        btnProd10.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(10);}});
-        btnProd11.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(11);}});
-        btnProd12.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(12);}});
-        btnProd13.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(13);}});
-        btnProd14.setOnClickListener(new View.OnClickListener() { @Override public void onClick(View v){launchView(14);}});
 
 
         /******** Edit Text *******/
@@ -881,6 +974,7 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         etAC14=(EditText)findViewById(R.id.etAC14);
         etAC15=(EditText)findViewById(R.id.etAC15);
         etLote=(EditText)findViewById(R.id.etLote);
+
 
         etAC1.setFocusable(true);
         etAC2.setFocusable(true);
@@ -1528,9 +1622,14 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(Detector_Metales.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
-            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                if (selectedMinute < 10) {
-
+            public void onTimeSet(TimePicker timePicker, int Hour, int Minute) {
+                String selectedMinute = "" + Minute;
+                String selectedHour = "" + Hour;
+                if (Minute < 10) {
+                    selectedMinute = "0" + selectedMinute;
+                }
+                if (Hour < 10) {
+                    selectedHour = "0" + selectedHour;
                 }
                 switch (which) {
 

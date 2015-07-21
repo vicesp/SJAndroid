@@ -276,18 +276,21 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             finish();startActivity(new Intent(Realizados.this, Cuajadas_Lab.class));
         }
         else if(var.isFromAdminCrema()){
+            String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
             var.setFromCrema(true);
-            var.setLoteCrema(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setLoteCrema(texto.substring(0, texto.indexOf('-')).trim());
             finish();startActivity(new Intent(Realizados.this, Crema_Lab.class));
         }
         else if(var.isFromAdminRequeson()){
+            String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
             var.setFromRequeson(true);
-            var.setLoteRequeson(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setLoteRequeson(texto.substring(0, texto.indexOf('-')).trim());
             finish();startActivity(new Intent(Realizados.this, Requeson_Lab.class));
         }
         else if(var.isFromAdminDetector()){
             var.setFromDetector(true);
             var.setLoteDetector(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setFromAdminDetector(false);
             finish();startActivity(new Intent(Realizados.this, Detector_Metales.class));
 
         }

@@ -912,7 +912,6 @@
             android:layout_alignStart="@+id/spTipoCrema"
             android:layout_alignRight="@+id/spTipoCrema"
             android:background="#E6E6E6"
-
             android:layout_alignEnd="@+id/spTipoCrema" />
 
         <TextView

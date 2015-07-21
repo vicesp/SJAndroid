@@ -149,6 +149,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
                                            } else {
 
 
+                                               Log.i("Requeson guardado", Lote.getText().toString());
                                                boolean exitoso = con.DAORequesonLab(FechaH.Hoy_hora(), Lote.getText().toString(), btn_listviewdialog.getText().toString(), familia.getText().toString(),
                                                        codigo_prod.getText().toString(), codigo_fam.getText().toString(), switchTexter(swApa.isChecked()), switchTexter(swSa.isChecked()),
                                                        switchTexter(swCo.isChecked()), switchTexter(swAro.isChecked()), observaciones_sabor.getText().toString(),

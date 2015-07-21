@@ -2477,6 +2477,7 @@ try {
                             " grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color, untabilidad, observaciones_untabilidad) " +
                             "VALUES ('" +
 
+
                             fecha + "','" +
                             lote + "','" +
                             familia + "','" +
@@ -2571,7 +2572,7 @@ try {
                 for(int x=0;x< cursor.getCount();x++)
                 {
                     lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_prod"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
-
+                    cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
             }

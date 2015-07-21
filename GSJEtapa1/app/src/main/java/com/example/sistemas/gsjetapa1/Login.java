@@ -147,6 +147,7 @@ public class Login extends Activity {
 
                 else if (tipoUsuario==17)
                 {
+                    Variables.setFromDetector(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Detector_Metales.class));
 
