@@ -23,7 +23,7 @@ public class Fecha_Hoy {
     }
     public String Hora(){
         Calendar c = Calendar.getInstance();
-        SimpleDateFormat df_hora = new SimpleDateFormat("HH:mm:ss");
+        SimpleDateFormat df_hora = new SimpleDateFormat("HH:mm");
         String hoyConFormato_hora = df_hora.format(c.getTime());
         return hoyConFormato_hora;
     }
