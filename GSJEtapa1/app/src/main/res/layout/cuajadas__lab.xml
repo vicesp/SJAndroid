@@ -147,7 +147,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:id="@+id/imageView20"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="65dp"
             android:src="@drawable/madera"
             android:scaleType="centerCrop"
             android:layout_below="@id/textView286"
@@ -383,6 +383,69 @@
             android:layout_above="@+id/imageView20"
             android:layout_alignRight="@+id/textView236"
             android:layout_alignEnd="@+id/textView236" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manchego"
+            android:id="@+id/textView265"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/textView286"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="25dp" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/manCheck"
+            android:checked="false"
+            android:layout_alignBaseline="@+id/textView265"
+            android:layout_alignBottom="@+id/textView265"
+            android:layout_alignRight="@+id/textView234"
+            android:layout_alignEnd="@+id/textView234" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cheddar"
+            android:id="@+id/textView266"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignTop="@+id/textView265"
+            android:layout_alignRight="@+id/editText"
+            android:layout_alignEnd="@+id/editText" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/chedCheck"
+            android:checked="false"
+            android:layout_alignTop="@+id/textView266"
+            android:layout_alignRight="@+id/textView1"
+            android:layout_alignEnd="@+id/textView1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="STI 0%"
+            android:id="@+id/textView287"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_alignBottom="@+id/manCheck"
+            android:layout_toLeftOf="@+id/stiCheck"
+            android:layout_toStartOf="@+id/stiCheck" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/stiCheck"
+            android:checked="false"
+            android:layout_alignBaseline="@+id/chedCheck"
+            android:layout_alignBottom="@+id/chedCheck"
+            android:layout_alignRight="@+id/imageView20"
+            android:layout_alignEnd="@+id/imageView20" />
 
 
     </RelativeLayout>

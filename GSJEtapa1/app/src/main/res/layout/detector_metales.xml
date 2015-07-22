@@ -59,9 +59,9 @@
         android:scaleType="centerCrop"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_alignBottom="@+id/imageView2"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/tvExpFecha" />
 
     <ImageView
         android:layout_width="150dp"
@@ -71,7 +71,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/log_primero"
-        android:layout_alignBottom="@+id/textView" />
+        android:layout_above="@+id/tvNombre" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -83,7 +83,8 @@
 
         android:layout_below="@+id/editText"
         android:layout_alignLeft="@+id/textView240"
-        android:layout_alignStart="@+id/textView240" />
+        android:layout_alignStart="@+id/textView240"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -117,7 +118,8 @@
         android:id="@+id/textView240"
         android:textColor="@android:color/white"
         android:textSize="25dp"
-        android:layout_alignTop="@+id/imageView"
+        android:layout_alignBaseline="@+id/editText32"
+        android:layout_alignBottom="@+id/editText32"
         android:layout_alignRight="@+id/textView241"
         android:layout_alignEnd="@+id/textView241" />
 
@@ -128,8 +130,7 @@
         android:id="@+id/textView241"
         android:textColor="@android:color/white"
         android:textSize="25dp"
-        android:layout_marginBottom="10dp"
-        android:layout_above="@+id/textView242"
+        android:layout_above="@+id/textView"
         android:layout_toLeftOf="@+id/tvExpFecha"
         android:layout_toStartOf="@+id/tvExpFecha" />
 
@@ -140,7 +141,8 @@
         android:id="@+id/textView242"
         android:textColor="@android:color/white"
         android:textSize="25dp"
-        android:layout_alignBottom="@+id/imageView"
+        android:layout_alignBaseline="@+id/editText34"
+        android:layout_alignBottom="@+id/editText34"
         android:layout_alignRight="@+id/textView241"
         android:layout_alignEnd="@+id/textView241" />
 
@@ -153,7 +155,8 @@
         android:id="@+id/textView243"
         android:layout_below="@+id/editText"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -171,9 +174,9 @@
         android:layout_height="70dp"
         android:background="@drawable/info"
         android:id="@+id/btnInfo"
-        android:layout_below="@+id/textView3"
-        android:layout_alignLeft="@+id/btnGuardar"
-        android:layout_alignStart="@+id/btnGuardar" />
+        android:layout_below="@+id/tvExpFecha"
+        android:layout_alignRight="@+id/relativeLayout"
+        android:layout_alignEnd="@+id/relativeLayout" />
 
 
     <RelativeLayout
@@ -247,8 +250,8 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_marginRight="56dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginRight="70dp"
+            android:layout_marginEnd="70dp"
             android:layout_alignTop="@+id/textView249"
             android:layout_toLeftOf="@+id/textView249"
             android:layout_toStartOf="@+id/textView249" />
@@ -261,12 +264,12 @@
             android:textSize="20dp"
             android:background="@android:color/white"
             android:textColor="@android:color/holo_red_dark"
-            android:layout_marginRight="46dp"
-            android:layout_marginEnd="46dp"
+            android:layout_marginRight="37dp"
+            android:layout_marginEnd="37dp"
+            android:layout_marginTop="74dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginTop="76dp" />
+            android:layout_alignParentEnd="true" />
 <RelativeLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -431,13 +434,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/etAC1"
-        android:layout_alignLeft="@+id/btnProd1"
-        android:layout_alignStart="@+id/btnProd1"
         android:textSize="25dp"
         android:layout_below="@+id/swPacB1"
         android:layout_alignBottom="@+id/textView250"
         android:layout_alignRight="@+id/swNF3"
-        android:layout_alignEnd="@+id/swNF3" />
+        android:layout_alignEnd="@+id/swNF3"
+        android:layout_toRightOf="@+id/textView250"
+        android:layout_toEndOf="@+id/textView250" />
 
 </RelativeLayout>
 
@@ -605,13 +608,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC2"
-                android:layout_alignLeft="@+id/btnProd2"
-                android:layout_alignStart="@+id/btnProd2"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB2"
                 android:layout_alignRight="@+id/swNF6"
                 android:layout_alignEnd="@+id/swNF6"
-                android:layout_alignBottom="@+id/textView251" />
+                android:layout_alignBottom="@+id/textView251"
+                android:layout_toRightOf="@+id/textView251"
+                android:layout_toEndOf="@+id/textView251" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -779,13 +782,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC3"
-                android:layout_alignLeft="@+id/btnProd3"
-                android:layout_alignStart="@+id/btnProd3"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB3"
                 android:layout_alignRight="@+id/swNF9"
                 android:layout_alignEnd="@+id/swNF9"
-                android:layout_alignBottom="@+id/textView252" />
+                android:layout_alignBottom="@+id/textView252"
+                android:layout_toRightOf="@+id/textView252"
+                android:layout_toEndOf="@+id/textView252" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -953,13 +956,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC4"
-                android:layout_alignLeft="@+id/btnProd4"
-                android:layout_alignStart="@+id/btnProd4"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB4"
                 android:layout_alignRight="@+id/swNF12"
                 android:layout_alignEnd="@+id/swNF12"
-                android:layout_alignBottom="@+id/textView253" />
+                android:layout_alignBottom="@+id/textView253"
+                android:layout_toRightOf="@+id/textView253"
+                android:layout_toEndOf="@+id/textView253" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1127,13 +1130,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC5"
-                android:layout_alignLeft="@+id/btnProd5"
-                android:layout_alignStart="@+id/btnProd5"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB5"
                 android:layout_alignRight="@+id/swNF15"
                 android:layout_alignEnd="@+id/swNF15"
-                android:layout_alignBottom="@+id/textView254" />
+                android:layout_alignBottom="@+id/textView254"
+                android:layout_toRightOf="@+id/textView254"
+                android:layout_toEndOf="@+id/textView254" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1301,13 +1304,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC6"
-                android:layout_alignLeft="@+id/btnProd6"
-                android:layout_alignStart="@+id/btnProd6"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB6"
                 android:layout_alignRight="@+id/swNF18"
                 android:layout_alignEnd="@+id/swNF18"
-                android:layout_alignBottom="@+id/textView255" />
+                android:layout_alignBottom="@+id/textView255"
+                android:layout_toRightOf="@+id/textView255"
+                android:layout_toEndOf="@+id/textView255" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1475,13 +1478,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC7"
-                android:layout_alignLeft="@+id/btnProd7"
-                android:layout_alignStart="@+id/btnProd7"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB7"
                 android:layout_alignRight="@+id/swNF21"
                 android:layout_alignEnd="@+id/swNF21"
-                android:layout_alignBottom="@+id/textView256" />
+                android:layout_alignBottom="@+id/textView256"
+                android:layout_toRightOf="@+id/textView256"
+                android:layout_toEndOf="@+id/textView256" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1649,13 +1652,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC8"
-                android:layout_alignLeft="@+id/btnProd8"
-                android:layout_alignStart="@+id/btnProd8"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB8"
                 android:layout_alignRight="@+id/swNF24"
                 android:layout_alignEnd="@+id/swNF24"
-                android:layout_alignBottom="@+id/textView257" />
+                android:layout_alignBottom="@+id/textView257"
+                android:layout_toRightOf="@+id/textView257"
+                android:layout_toEndOf="@+id/textView257" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1823,13 +1826,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC9"
-                android:layout_alignLeft="@+id/btnProd9"
-                android:layout_alignStart="@+id/btnProd9"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB9"
                 android:layout_alignRight="@+id/swNF27"
                 android:layout_alignEnd="@+id/swNF27"
-                android:layout_alignBottom="@+id/textView258" />
+                android:layout_alignBottom="@+id/textView258"
+                android:layout_toRightOf="@+id/textView258"
+                android:layout_toEndOf="@+id/textView258" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -1997,13 +2000,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC10"
-                android:layout_alignLeft="@+id/btnProd10"
-                android:layout_alignStart="@+id/btnProd10"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB10"
                 android:layout_alignRight="@+id/swNF30"
                 android:layout_alignEnd="@+id/swNF30"
-                android:layout_alignBottom="@+id/textView259" />
+                android:layout_alignBottom="@+id/textView259"
+                android:layout_toRightOf="@+id/textView259"
+                android:layout_toEndOf="@+id/textView259" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2171,13 +2174,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC11"
-                android:layout_alignLeft="@+id/btnProd11"
-                android:layout_alignStart="@+id/btnProd11"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB11"
                 android:layout_alignRight="@+id/swNF33"
                 android:layout_alignEnd="@+id/swNF33"
-                android:layout_alignBottom="@+id/textView260" />
+                android:layout_alignBottom="@+id/textView260"
+                android:layout_toRightOf="@+id/textView260"
+                android:layout_toEndOf="@+id/textView260" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2345,13 +2348,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC12"
-                android:layout_alignLeft="@+id/btnProd12"
-                android:layout_alignStart="@+id/btnProd12"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB12"
                 android:layout_alignRight="@+id/swNF36"
                 android:layout_alignEnd="@+id/swNF36"
-                android:layout_alignBottom="@+id/textView261" />
+                android:layout_alignBottom="@+id/textView261"
+                android:layout_toRightOf="@+id/textView261"
+                android:layout_toEndOf="@+id/textView261" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2519,13 +2522,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC13"
-                android:layout_alignLeft="@+id/btnProd13"
-                android:layout_alignStart="@+id/btnProd13"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB13"
                 android:layout_alignRight="@+id/swNF39"
                 android:layout_alignEnd="@+id/swNF39"
-                android:layout_alignBottom="@+id/textView262" />
+                android:layout_alignBottom="@+id/textView262"
+                android:layout_toRightOf="@+id/textView262"
+                android:layout_toEndOf="@+id/textView262" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2693,13 +2696,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC14"
-                android:layout_alignLeft="@+id/btnProd14"
-                android:layout_alignStart="@+id/btnProd14"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB14"
                 android:layout_alignRight="@+id/swNF42"
                 android:layout_alignEnd="@+id/swNF42"
-                android:layout_alignBottom="@+id/textView263" />
+                android:layout_alignBottom="@+id/textView263"
+                android:layout_toRightOf="@+id/textView263"
+                android:layout_toEndOf="@+id/textView263" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -2873,13 +2876,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/etAC15"
-                android:layout_alignLeft="@+id/btnProd15"
-                android:layout_alignStart="@+id/btnProd15"
                 android:textSize="25dp"
                 android:layout_below="@+id/swPacB15"
                 android:layout_alignRight="@+id/swNF45"
                 android:layout_alignEnd="@+id/swNF45"
-                android:layout_alignBottom="@+id/textView264" />
+                android:layout_alignBottom="@+id/textView264"
+                android:layout_toRightOf="@+id/textView264"
+                android:layout_toEndOf="@+id/textView264" />
         </RelativeLayout>
 
 
@@ -2905,7 +2908,8 @@
         android:id="@+id/textView269"
         android:layout_below="@+id/textView243"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -2914,8 +2918,48 @@
         android:layout_alignLeft="@+id/tvNombre"
         android:layout_alignStart="@+id/tvNombre"
         android:layout_alignBottom="@+id/textView269"
-        android:layout_alignRight="@+id/tvNombre"
-        android:layout_alignEnd="@+id/tvNombre" />
+        android:layout_toLeftOf="@+id/textView19"
+        android:layout_toStartOf="@+id/textView19" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText32"
+        android:text="REC13"
+        android:textColor="@android:color/white"
+        android:textSize="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView240"
+        android:layout_above="@+id/editText33"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:enabled="false" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText33"
+        android:text="ENERO 2014"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
+        android:layout_alignTop="@+id/textView241"
+        android:layout_alignLeft="@+id/editText34"
+        android:layout_alignStart="@+id/editText34"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText34"
+        android:text="1 AÑO"
+        android:textColor="@android:color/white"
+        android:textSize="25dp"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:layout_alignBottom="@+id/imageView"
+        android:layout_toRightOf="@+id/textView242"
+        android:layout_toEndOf="@+id/textView242" />
 
 
 </RelativeLayout>

@@ -2344,13 +2344,13 @@ try {
     /****************    Consulta para Cuajadas lab      *************/
 
     public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tina_suero){
+                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tipo_cuajada) {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tina_suero) " +
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tipo_cuajada) " +
                     "VALUES ('"+
                     lote+"','"+
                     fecha+"','"+
@@ -2363,7 +2363,7 @@ try {
                     fecha_hoy+"','"+
                     grasa_check+"','"+
                     tina_cuajada+"','"+
-                    tina_suero+
+                    tipo_cuajada +
                     "')");
             return true;
         }
@@ -2375,7 +2375,7 @@ try {
     /****************    Consulta para ActualizarCuajadas lab      *************/
 
     public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tina_suero,String loteNuevo){
+                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tipo_cuajada, String loteNuevo) {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2390,7 +2390,7 @@ try {
                     " st_sue='"+st_sue+"'," +
                     " grasa_check='"+grasa_check+"',"+
                     " tina_cuajada='"+tina_cuajada+"',"+
-                    " tina_suero='"+tina_suero+"' "+
+                    " tipo_cuajada='" + tipo_cuajada + "' " +
                     "WHERE lote = '"+lote+"';" +
 
                     "");
@@ -2405,7 +2405,7 @@ try {
     public ArrayList<consultas> DAOListaCuajadasLabRealizado(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, tina_cuajada " +
                 "FROM cuajadas_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2418,7 +2418,7 @@ try {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x] = cursor.getString(cursor.getColumnIndex("lote")) + "-Tina No. " + cursor.getString(cursor.getColumnIndex("tina_cuajada"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
@@ -2434,7 +2434,7 @@ try {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tina_suero, lote " +
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tipo_cuajada, lote " +
                     "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 

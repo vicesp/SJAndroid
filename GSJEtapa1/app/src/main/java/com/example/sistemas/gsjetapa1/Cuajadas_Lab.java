@@ -34,12 +34,12 @@ public class Cuajadas_Lab extends ActionBarActivity {
     private static consultas con;
     private static Variables var;
     private Cursor cursor;
-    private static String tinaSuero, tinaCuajadas;
+    private static String tinaCuajadas;
 
     private TextView Fecha;
     private Button btnBack;
     private ImageButton guarda;
-    private CheckBox checkBox;
+    private CheckBox checkBox, manCheck, chedCheck, stiCheck;
     private Spinner spinCuajadas;
     private EditText Lote, humCuaj, grasCuaj, phCuaj, phSue, acSue, stSue;
 
@@ -70,15 +70,57 @@ public class Cuajadas_Lab extends ActionBarActivity {
                                                        // TODO Auto-generated method stub
 
                                                        ((TextView) parent.getChildAt(0)).setTextSize(22);
-                                                       if(position==0){
-                                                           tinaCuajadas="1";
-                                                       }
-                                                       else if(position==1){
-                                                           tinaCuajadas="2";
+                                                       switch (position) {
+                                                           case 0:
+                                                               tinaCuajadas = "1";
+                                                               break;
+                                                           case 1:
+                                                               tinaCuajadas = "2";
+                                                               break;
+                                                           case 2:
+                                                               tinaCuajadas = "3";
+                                                               break;
+                                                           case 3:
+                                                               tinaCuajadas = "4";
+                                                               break;
+                                                           case 4:
+                                                               tinaCuajadas = "5";
+                                                               break;
+                                                           case 5:
+                                                               tinaCuajadas = "6";
+                                                               break;
+                                                           case 6:
+                                                               tinaCuajadas = "7";
+                                                               break;
+                                                           case 7:
+                                                               tinaCuajadas = "8";
+                                                               break;
+                                                           case 8:
+                                                               tinaCuajadas = "9";
+                                                               break;
+                                                           case 9:
+                                                               tinaCuajadas = "10";
+                                                               break;
+                                                           case 10:
+                                                               tinaCuajadas = "11";
+                                                               break;
+                                                           case 11:
+                                                               tinaCuajadas = "12";
+                                                               break;
+                                                           case 12:
+                                                               tinaCuajadas = "13";
+                                                               break;
+                                                           case 13:
+                                                               tinaCuajadas = "14";
+                                                               break;
+                                                           case 14:
+                                                               tinaCuajadas = "15";
+                                                               break;
+                                                           case 15:
+                                                               tinaCuajadas = "16";
+                                                               break;
 
-                                                       }
-                                                       else{
-                                                            tinaCuajadas="3";
+
                                                        }
 
                                                    }
@@ -123,7 +165,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                 }
                 if (var.isFromCuajadas()) {
                     boolean exitoso = con.DAOActualizaCuajadasLab(var.getLoteCuajadas(), Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
-                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(), switchTexter(checkBox.isChecked()),tinaCuajadas,tinaSuero,Lote.getText().toString());
+                            phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(), switchTexter(checkBox.isChecked()), tinaCuajadas, checkTexters(), Lote.getText().toString());
                     if (exitoso) {
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
 
@@ -133,7 +175,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                 } else {
                     boolean exitoso = con.DAOCuajadasLab(Lote.getText().toString(), FechaH.Hoy_hora(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(),
-                            stSue.getText().toString(), FechaH.Hoy(), switchTexter(checkBox.isChecked()), tinaCuajadas, tinaSuero);
+                            stSue.getText().toString(), FechaH.Hoy(), switchTexter(checkBox.isChecked()), tinaCuajadas, checkTexters());
                     if (exitoso) {
 
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
@@ -168,6 +210,46 @@ public class Cuajadas_Lab extends ActionBarActivity {
             }
 
         });
+        manCheck = (CheckBox) findViewById(R.id.manCheck);
+        manCheck.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                stiCheck.setChecked(false);
+                chedCheck.setChecked(false);
+                manCheck.setChecked(true);
+
+            }
+
+        });
+        chedCheck = (CheckBox) findViewById(R.id.chedCheck);
+        chedCheck.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                stiCheck.setChecked(false);
+                chedCheck.setChecked(true);
+                manCheck.setChecked(false);
+
+            }
+
+        });
+        stiCheck = (CheckBox) findViewById(R.id.stiCheck);
+        stiCheck.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                stiCheck.setChecked(true);
+                chedCheck.setChecked(false);
+                manCheck.setChecked(false);
+
+
+            }
+
+        });
+
+
         if (var.isFromCuajadas()) {
             //Lote.setEnabled(false);
             llenarValoresBusqueda(var.getLoteCuajadas());
@@ -242,7 +324,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
         acSue.setText(cursor.getString(cursor.getColumnIndex("ac_sue")));
         stSue.setText(cursor.getString(cursor.getColumnIndex("st_sue")));
         spinCuajadas.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_cuajada"))));
-
+        textCheckers(cursor.getString(cursor.getColumnIndex("tipo_cuajada")));
 
     }
     public int getPosition(String value){
@@ -260,7 +342,8 @@ public class Cuajadas_Lab extends ActionBarActivity {
           case "11":return 10;
           case "12":return 11;
           case "13":return 12;
-          case "14":return 13;
+          case "14":
+              return 13;
           case "15":return 14;
 
 
@@ -278,6 +361,9 @@ public class Cuajadas_Lab extends ActionBarActivity {
         acSue.setText("");
         stSue.setText("");
         spinCuajadas.setSelection(0);
+        manCheck.setChecked(false);
+        chedCheck.setChecked(false);
+        stiCheck.setChecked(false);
 
     }
 
@@ -287,15 +373,6 @@ public class Cuajadas_Lab extends ActionBarActivity {
         } else {
             return "no";
         }
-    }
-
-    public boolean textSwithcer(String affirmation) {
-        if (affirmation.equals("si")) {
-            return true;
-        } else {
-            return false;
-        }
-
     }
 
     private void spinnerFiller() {
@@ -325,5 +402,29 @@ public class Cuajadas_Lab extends ActionBarActivity {
         spinCuajadas.setAdapter(adapter);
 
 
+    }
+
+    public String checkTexters() {
+        if (manCheck.isChecked()) {
+            return "Manchego";
+        } else if (chedCheck.isChecked()) {
+            return "Cheddar";
+        } else if (stiCheck.isChecked()) {
+            return "STI 0%";
+        } else {
+            return null;
+        }
+    }
+
+    public void textCheckers(String value) {
+        if (value.equals("Manchego")) {
+            manCheck.setChecked(true);
+        } else if (value.equals("Cheddar")) {
+            chedCheck.setChecked(true);
+        } else if (value.equals("STI 0%")) {
+            stiCheck.setChecked(true);
+        } else {
+            //posible impletacion de alguna alerta
+        }
     }
 }

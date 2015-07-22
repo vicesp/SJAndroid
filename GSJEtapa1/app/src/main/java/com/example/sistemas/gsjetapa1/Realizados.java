@@ -271,8 +271,9 @@ public class Realizados extends Activity implements AdapterView.OnItemClickListe
             startActivity(new Intent(Realizados.this, Producto_Terminado.class));
         }
         else if(var.isFromAdminCuajadas()){
+            String texto = ((TextView) view.findViewById(R.id.tvItem)).getText().toString();
             var.setFromCuajadas(true);
-            var.setLoteCuajadas(((TextView) view.findViewById(R.id.tvItem)).getText().toString());
+            var.setLoteCuajadas(texto.substring(0, texto.indexOf('-')).trim());
             finish();startActivity(new Intent(Realizados.this, Cuajadas_Lab.class));
         }
         else if(var.isFromAdminCrema()){
