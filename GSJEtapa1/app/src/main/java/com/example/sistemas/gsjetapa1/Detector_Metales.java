@@ -101,6 +101,7 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swPacA14 = (Switch) findViewById(R.id.swPacA14);
         swPacA15 = (Switch) findViewById(R.id.swPacA15);
 
+
         swPacB1 = (Switch) findViewById(R.id.swPacB1);
         swPacB2 = (Switch) findViewById(R.id.swPacB2);
         swPacB3 = (Switch) findViewById(R.id.swPacB3);
@@ -116,6 +117,188 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         swPacB13 = (Switch) findViewById(R.id.swPacB13);
         swPacB14 = (Switch) findViewById(R.id.swPacB14);
         swPacB15 = (Switch) findViewById(R.id.swPacB15);
+
+        swPacA1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB1.setChecked(false);
+            }
+        });
+        swPacA2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB2.setChecked(false);
+            }
+        });
+        swPacA3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB3.setChecked(false);
+            }
+        });
+        swPacA4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB4.setChecked(false);
+            }
+        });
+        swPacA5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB5.setChecked(false);
+            }
+        });
+        swPacA6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB6.setChecked(false);
+            }
+        });
+        swPacA7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB7.setChecked(false);
+            }
+        });
+        swPacA8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB8.setChecked(false);
+            }
+        });
+        swPacA9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB9.setChecked(false);
+            }
+        });
+        swPacA10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB10.setChecked(false);
+            }
+        });
+        swPacA11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB11.setChecked(false);
+            }
+        });
+        swPacA12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB12.setChecked(false);
+            }
+        });
+        swPacA13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB13.setChecked(false);
+            }
+        });
+        swPacA14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB14.setChecked(false);
+            }
+        });
+        swPacA15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacB15.setChecked(false);
+            }
+        });
+
+        swPacB1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA1.setChecked(false);
+            }
+        });
+        swPacB2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA2.setChecked(false);
+            }
+        });
+        swPacB3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA3.setChecked(false);
+            }
+        });
+        swPacB4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA4.setChecked(false);
+            }
+        });
+        swPacB5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA5.setChecked(false);
+            }
+        });
+        swPacB6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA6.setChecked(false);
+            }
+        });
+        swPacB7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA7.setChecked(false);
+            }
+        });
+        swPacB8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA8.setChecked(false);
+            }
+        });
+        swPacB9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA9.setChecked(false);
+            }
+        });
+        swPacB10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA10.setChecked(false);
+            }
+        });
+        swPacB11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA11.setChecked(false);
+            }
+        });
+        swPacB12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA12.setChecked(false);
+            }
+        });
+        swPacB13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA13.setChecked(false);
+            }
+        });
+        swPacB14.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA14.setChecked(false);
+            }
+        });
+        swPacB15.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                swPacA15.setChecked(false);
+            }
+        });
 
         swAI1 = (Switch) findViewById(R.id.swAI1);
         swAI2 = (Switch) findViewById(R.id.swAI2);
@@ -358,7 +541,7 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
                     if (exitoso) {
 
                         Alerta(getResources().getString(R.string.Alerta_Guardado));
-                        confInicial();
+                        //confInicial();
                     } else {
                         Alerta(getResources().getString(R.string.Alerta_NoGuardado));
                     }

@@ -7,10 +7,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import DTO.Fecha_Hoy;
 
 
 public class Info_Detector extends ActionBarActivity {
     private Button regresar;
+    private TextView Fecha;
+    private Fecha_Hoy fecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +34,11 @@ public class Info_Detector extends ActionBarActivity {
                     }
                 }
         );
+        Fecha_Hoy fecha = new Fecha_Hoy();
+        Fecha = (TextView) findViewById(R.id.tvptFecha);
+        Fecha.setText(fecha.Hoy());
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

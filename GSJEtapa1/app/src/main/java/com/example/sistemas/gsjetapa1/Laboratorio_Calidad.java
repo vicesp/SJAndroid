@@ -336,6 +336,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             observaciones_rallado.setEnabled(false);
             swRall.setEnabled(false);
+            swHeb.setEnabled(false);
+            observaciones_hebrado.setEnabled(false);
 
         } else {
             observaciones_ralladoqr.setVisibility(View.INVISIBLE);
@@ -344,6 +346,8 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
             observaciones_rallado.setEnabled(true);
             swRall.setEnabled(true);
+            swHeb.setEnabled(true);
+            observaciones_hebrado.setEnabled(true);
 
         }
 

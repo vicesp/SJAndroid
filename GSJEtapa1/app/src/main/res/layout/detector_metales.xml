@@ -2930,7 +2930,6 @@
         android:textSize="25dp"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView240"
-        android:layout_above="@+id/editText33"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
         android:enabled="false" />

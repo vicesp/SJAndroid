@@ -259,6 +259,9 @@ public class Cuajadas_Lab extends ActionBarActivity {
         }
 
     }
+    //16 y 20 cuajadas
+    //16 crema
+    //22 17 16
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

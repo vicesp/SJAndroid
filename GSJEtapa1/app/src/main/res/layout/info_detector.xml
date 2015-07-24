@@ -302,10 +302,10 @@
         android:scaleType="centerCrop"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/tvcentro"
         android:layout_alignLeft="@+id/textView274"
         android:layout_alignStart="@+id/textView274"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView274" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -328,7 +328,7 @@
         android:layout_below="@+id/imageView22"
         android:layout_alignLeft="@+id/imageView22"
         android:layout_alignStart="@+id/imageView22"
-        android:layout_marginTop="25dp" />
+        android:layout_marginTop="35dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -361,20 +361,9 @@
         android:id="@+id/textView284"
         android:textSize="25dp"
         android:textColor="#ff020000"
+        android:layout_marginTop="25dp"
         android:layout_below="@+id/imageView23"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp" />
+        android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="_____________________________________________________"
-        android:id="@+id/textView285"
-        android:textSize="25dp"
-        android:textColor="#ff020000"
-        android:layout_above="@+id/textView276"
-        android:layout_toRightOf="@+id/tvptLote"
-        android:layout_toEndOf="@+id/tvptLote"
-        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>

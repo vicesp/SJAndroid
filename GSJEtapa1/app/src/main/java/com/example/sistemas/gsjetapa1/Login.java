@@ -101,30 +101,8 @@ public class Login extends Activity {
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Configuracion.class));
 
-                }
-                else if (tipoUsuario==9)
+                } else if (tipoUsuario == 9 || tipoUsuario == 10 || tipoUsuario == 11 || tipoUsuario == 12 || tipoUsuario == 13)
                 {
-                    Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Administrador.class));
-                }
-                else if (tipoUsuario== 10 )
-                {
-                    Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Administrador.class));
-                }
-                else if (tipoUsuario== 11 )
-                {
-                    Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Administrador.class));
-                }
-                else if (tipoUsuario== 12 )
-                {
-                    Variables.setNombre_usuario(Usuario.getText().toString());
-                    finish();startActivity(new Intent(Login.this, Administrador.class));
-                }
-                else if (tipoUsuario== 13 )
-                {
-                    Variables.setFromLaboratorio(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
                 }
@@ -136,27 +114,17 @@ public class Login extends Activity {
                     Variables.setFromRequeson(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Panel_Lab.class));
-
-                }
-                else if (tipoUsuario==15||tipoUsuario==18||tipoUsuario==16)
+                } else if (tipoUsuario == 15 || tipoUsuario == 16 || tipoUsuario == 18)
                 {
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Administrador.class));
-
-                }
-
-                else if (tipoUsuario==17)
+                } else if (tipoUsuario == 17 || tipoUsuario == 19 || tipoUsuario == 20 || tipoUsuario == 21)
                 {
                     Variables.setFromDetector(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Detector_Metales.class));
-
                 }
-
-
-
                 else {Alerta();}
-
             }
         });
 
