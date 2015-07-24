@@ -35,5 +35,6 @@
     <string name="title_activity_detector__metales">Detector_Metales</string>
     <string name="title_activity_requeson__lab">Requeson_Lab</string>
     <string name="title_activity_info__detector">Info_Detector</string>
+    <string name="title_activity_calculadora">Calculadora</string>
 
 </resources>

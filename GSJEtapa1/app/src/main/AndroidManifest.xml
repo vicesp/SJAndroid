@@ -108,11 +108,14 @@
         <activity
             android:name=".Requeson_Lab"
             android:label="@string/title_activity_requeson__lab"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Info_Detector"
             android:label="@string/title_activity_info__detector"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"></activity>
+        <activity
+            android:name=".Calculadora"
+            android:label="@string/title_activity_calculadora">
         </activity>
     </application>
 
