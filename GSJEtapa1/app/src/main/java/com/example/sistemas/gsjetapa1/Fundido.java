@@ -706,7 +706,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
             @Override
             public void onClick(View v) {
 
-                ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
+               /* ArrayList<HashMap<String, Object>> items = new ArrayList<HashMap<String, Object>>();
                 //PackageManager pm;
                 final PackageManager pm = getPackageManager();
                 List<PackageInfo> packs = pm.getInstalledPackages(0);
@@ -727,7 +727,11 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
                     } else {
                         // Application not found
                     }
-                }
+                }*/
+
+                Intent intent = new Intent(Fundido.this, Calculadora.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
 

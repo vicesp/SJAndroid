@@ -136,7 +136,7 @@ public void onClick(View v){
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();startActivity(new Intent(Calculadora.this, Fundido.class));
+                finish();
 
             }
         });

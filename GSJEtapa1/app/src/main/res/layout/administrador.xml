@@ -304,7 +304,7 @@
             android:layout_height="150dp"
             android:id="@+id/btnDet"
             android:textSize="30dp"
-            android:text="r"
+            android:text=""
             android:background="@drawable/ic_dm"
             android:layout_below="@+id/btnLab"
             android:layout_centerHorizontal="true"

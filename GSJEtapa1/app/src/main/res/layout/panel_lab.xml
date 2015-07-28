@@ -137,7 +137,7 @@
             android:layout_height="150dp"
             android:id="@+id/btnPT"
             android:text=""
-            android:background="@drawable/ic_PT"
+            android:background="@drawable/ic_pt"
             android:layout_below="@+id/textView223"
             android:layout_alignLeft="@+id/textView223"
             android:layout_alignStart="@+id/textView223" />
