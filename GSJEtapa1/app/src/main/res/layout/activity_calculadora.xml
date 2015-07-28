@@ -97,62 +97,63 @@
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnOne"
         android:background="@drawable/one"
-        android:layout_below="@+id/imageView24"
+        android:layout_above="@+id/btnFour"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnTwo"
         android:background="@drawable/two"
-        android:layout_alignTop="@+id/btnOne"
-        android:layout_toRightOf="@+id/btnOne"
-        android:layout_toEndOf="@+id/btnOne" />
+        android:layout_above="@+id/btnFive"
+        android:layout_alignLeft="@+id/btnFive"
+        android:layout_alignStart="@+id/btnFive" />
 
     <ImageButton
         android:layout_width="201dp"
         android:layout_height="190dp"
         android:id="@+id/btnPlus"
         android:background="@drawable/plus"
-        android:layout_alignTop="@+id/btnNine"
-        android:layout_alignBottom="@+id/btnEqual"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/btnEqual"
+        android:layout_below="@+id/btnSix"
         android:layout_alignRight="@+id/btnMinus"
         android:layout_alignEnd="@+id/btnMinus" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnThree"
         android:background="@drawable/three"
-        android:layout_alignTop="@+id/btnTwo"
-        android:layout_alignLeft="@+id/tvcentro"
-        android:layout_alignStart="@+id/tvcentro" />
+        android:layout_above="@+id/btnSix"
+        android:layout_toRightOf="@+id/btnTwo"
+        android:layout_toEndOf="@+id/btnTwo" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnFour"
         android:background="@drawable/four"
-        android:layout_below="@+id/btnOne"
+        android:layout_above="@+id/btnSeven"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnFive"
         android:background="@drawable/five"
-        android:layout_alignTop="@+id/btnFour"
-        android:layout_alignLeft="@+id/btnTwo"
-        android:layout_alignStart="@+id/btnTwo" />
+        android:layout_above="@+id/btnEight"
+        android:layout_alignLeft="@+id/btnPeriod"
+        android:layout_alignStart="@+id/btnPeriod" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnSix"
         android:background="@drawable/six"
         android:layout_above="@+id/btnSeven"
@@ -161,7 +162,7 @@
 
     <ImageButton
         android:layout_width="201dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnMinus"
         android:background="@drawable/minus"
         android:layout_above="@+id/btnNine"
@@ -170,63 +171,59 @@
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnSeven"
         android:background="@drawable/seven"
-        android:layout_below="@+id/btnFour"
+        android:layout_above="@+id/btnPeriod"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnEight"
         android:background="@drawable/eight"
-        android:layout_alignTop="@+id/btnSeven"
-        android:layout_alignLeft="@+id/btnFive"
-        android:layout_alignStart="@+id/btnFive" />
+        android:layout_above="@+id/btnPeriod"
+        android:layout_toLeftOf="@+id/tvcentro"
+        android:layout_toStartOf="@+id/tvcentro" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="220dp"
         android:id="@+id/btnNine"
         android:background="@drawable/nine"
-        android:layout_alignTop="@+id/btnEight"
-        android:layout_alignLeft="@+id/btnSix"
-        android:layout_alignStart="@+id/btnSix" />
+        android:layout_above="@+id/btnEqual"
+        android:layout_toLeftOf="@+id/btnMinus"
+        android:layout_toStartOf="@+id/btnMinus" />
 
     <Button
         android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_height="223dp"
         android:id="@+id/btnPeriod"
         android:background="@drawable/point"
         android:layout_alignTop="@+id/btnZero"
         android:layout_toRightOf="@+id/btnZero"
         android:layout_alignBottom="@+id/btnZero"
-        android:layout_alignRight="@+id/tvcentro"
-        android:layout_alignEnd="@+id/tvcentro" />
+        android:layout_alignRight="@+id/btnEight"
+        android:layout_alignEnd="@+id/btnEight" />
 
     <Button
-        android:layout_width="380dp"
-        android:layout_height="190dp"
+        android:layout_width="190dp"
+        android:layout_height="223dp"
         android:id="@+id/btnZero"
         android:background="@drawable/zero"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/btnSeven"
-        android:layout_toLeftOf="@+id/textView19"
-        android:layout_toStartOf="@+id/textView19" />
+        android:layout_alignParentStart="true" />
 
     <Button
-        android:layout_width="201dp"
-        android:layout_height="380dp"
+        android:layout_width="190dp"
+        android:layout_height="223dp"
         android:id="@+id/btnEqual"
         android:background="@drawable/equal"
+        android:layout_alignParentBottom="true"
         android:layout_toRightOf="@+id/btnPeriod"
-        android:layout_alignBottom="@+id/btnPeriod"
-        android:layout_alignRight="@+id/btnThree"
-        android:layout_alignEnd="@+id/btnThree"
-        android:layout_below="@+id/btnNine" />
+        android:layout_toEndOf="@+id/btnPeriod" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -250,19 +247,28 @@
         android:maxLength="13"
         android:ellipsize="end"
         android:singleLine="true"
-        android:layout_alignBottom="@+id/imageView24"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_above="@+id/btnAC"
+        android:layout_toLeftOf="@+id/btnBackSpace"
+        android:layout_toStartOf="@+id/btnBackSpace" />
 
     <Button
-        android:layout_width="190dp"
-        android:layout_height="190dp"
+        android:layout_width="201dp"
+        android:layout_height="220dp"
         android:id="@+id/btnAC"
         android:background="@drawable/ac"
-        android:layout_marginBottom="84dp"
-        android:layout_above="@+id/tvcentro"
+        android:layout_above="@+id/btnSix"
+        android:layout_alignLeft="@+id/btnMinus"
+        android:layout_alignStart="@+id/btnMinus" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnBackSpace"
+        android:background="@drawable/backspace"
+        android:layout_alignTop="@+id/dispView"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/dispView" />
 
 
 </RelativeLayout>
