@@ -175,6 +175,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                     grasCuaj.setText("");
                 }
                 if (var.isFromCuajadas()) {
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Cuajadas Laboratorio", "", "", FechaH.Hoy_hora());
                     boolean exitoso = con.DAOActualizaCuajadasLab(var.getLoteCuajadas(), Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(), switchTexter(checkBox.isChecked()), tinaCuajadas, checkTexters(), Lote.getText().toString());
                     if (exitoso) {

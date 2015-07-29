@@ -409,6 +409,7 @@ public class Cuajado extends ActionBarActivity implements View.OnClickListener, 
                 }
                 if(var.isFromCuajado()) {
 
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Cuajado", "", "", FechaH.Hoy_hora());
 
                     boolean exitoso = con.DAOActualizarCuajado(Lote.getText().toString(),
                             silo_select,

@@ -302,6 +302,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                 // TODO Auto-generated method stub
 
                 if (var.isFromEmpaque()) {
+
                     boolean exitoso = con.DAOActualizarEmpaque(lote_origen.getText().toString(), Fecha.getText().toString(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
                             , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
                             , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()

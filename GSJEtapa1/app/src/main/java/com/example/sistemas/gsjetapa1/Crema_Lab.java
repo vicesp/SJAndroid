@@ -127,6 +127,7 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 if(var.isFromCrema()){
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Crema Laboratorio", "", "", FechaH.Hoy_hora());
                     boolean exitoso = con.DAOActualizaCremaLab(var.getLoteCrema(),Fecha.getText().toString(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
                             switchTexter(aroma.isChecked()),obsAro.getText().toString(),switchTexter(escurrimiento.isChecked()), obsEsc.getText().toString(), switchTexter(fluidez.isChecked()), obsFlu.getText().toString(),ph.getText().toString(),
                             solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Lote.getText().toString(),btnProd.getText().toString(), codigo_prod.getText().toString());
