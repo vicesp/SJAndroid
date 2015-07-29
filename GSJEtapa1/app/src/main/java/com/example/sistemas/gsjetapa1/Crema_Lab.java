@@ -371,7 +371,8 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
         }
         return listaProductos;
     }
-    public class GuardaLaboratorio extends AsyncTask<String, Void, Boolean>
+
+    public class GuardaCremaLaboratorio extends AsyncTask<String, Void, Boolean>
     {
         private final ProgressDialog dialog = new ProgressDialog(Crema_Lab.this);
 
@@ -400,17 +401,17 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
             request.addProperty("color", switchTexter(color.isChecked()));
             request.addProperty("aroma", switchTexter(aroma.isChecked()));
             request.addProperty("observaciones_sabor", obsSa.getText().toString());
-           /* request.addProperty("observaciones_color", obsCo(swHeb.isChecked()));
+            request.addProperty("observaciones_color", obsCo.getText().toString());
             request.addProperty("observaciones_aroma", obsAro.getText().toString());
-            request.addProperty("escurrimiento", escurrimiento.getText().toString());
-            request.addProperty("fluidez", fluidez.getText().toString());
-            request.addProperty("observaciones_escurrimiento", ph.getText().toString());
-            request.addProperty("observaciones_fluidez", grasa_total.getText().toString());
-            request.addProperty("ph", humRem.getText().toString());
-            request.addProperty("acidez", phRem.getText().toString());
-            request.addProperty("solidos_totales", grasRem.getText().toString());
-            request.addProperty("acidez", switchTexter(swRem.isChecked()));
-            request.addProperty("grasa", switchTexter(swRallQR.isChecked()));*/
+            request.addProperty("escurrimiento", switchTexter(escurrimiento.isChecked()));
+            request.addProperty("fluidez", switchTexter(fluidez.isChecked()));
+            request.addProperty("observaciones_escurrimiento", obsEsc.getText().toString());
+            request.addProperty("observaciones_fluidez", obsFlu.getText().toString());
+            request.addProperty("ph", ph.getText().toString());
+            request.addProperty("acidez", acidez.getText().toString());
+            request.addProperty("solidos_totales", solidos.getText().toString());
+            request.addProperty("acidez", acidez.getText().toString());
+            request.addProperty("grasa", grasa.getText().toString());
 
 
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);

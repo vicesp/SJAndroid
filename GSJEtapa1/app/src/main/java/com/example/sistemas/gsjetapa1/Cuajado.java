@@ -931,144 +931,6 @@ public class Cuajado extends ActionBarActivity implements View.OnClickListener, 
 
     }
 
-    public class GuardaCuajadoSync extends AsyncTask<String, Void, Boolean>
-
-    {
-        private final ProgressDialog dialog = new ProgressDialog(Cuajado.this);
-
-        @Override
-        protected void onPreExecute()
-        {
-            this.dialog.setMessage("Enviando datos...");
-            this.dialog.show();
-        }
-
-        protected Boolean doInBackground(final String... args)
-
-        {
-
-            final String NAMESPACE = "http://serv_gsj.net/";
-            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
-            final String URL="http://"+Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertaCuajado";
-            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-            final int time=20000,time2=190000;
-
-            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
-
-            /*Para tabla cuajado*/
-            request.addProperty("lote", Lote.getText().toString());
-            request.addProperty("silo", ""+silo_select);
-            request.addProperty("num_tina", NumTina.getText().toString());
-            request.addProperty("familia", btnFamiliaCuaj.getText().toString());
-            request.addProperty("fecha", FechaH.Hoy_hora());
-            request.addProperty("leche_silo", lecheSilo.getText().toString());
-            request.addProperty("grasa_leche_silo", grasaLecheSilo.getText().toString());
-            request.addProperty("ph_leche", phLeche.getText().toString());
-            request.addProperty("proteina_leche", proteinaLecheSilo.getText().toString());
-            request.addProperty("leche_tina", lecheTina.getText().toString());
-            request.addProperty("grasa_leche_tina", grasaLecheTina.getText().toString());
-            request.addProperty("proteina_tina", proteinaTina.getText().toString());
-            request.addProperty("temp_coagulacion", tempCoagulacion.getText().toString());
-            request.addProperty("ph_pasta", phPasta.getText().toString());
-            request.addProperty("hora_adi_cuajo", horaAdicionCuajo.getText().toString());
-            request.addProperty("temp_cocido", tempCocido.getText().toString());
-            request.addProperty("num_equipo", NumEquipo.getText().toString());
-            request.addProperty("estatus_pendiente", "0");
-
-            /*Para Cuajado Aditivos*/
-
-            request.addProperty("lote_aditivo", Lote.getText().toString());
-            request.addProperty("adi1", adi1.getText().toString());
-            request.addProperty("lote1", lote1.getText().toString());
-            request.addProperty("adi2", adi2.getText().toString());
-            request.addProperty("lote2", lote2.getText().toString());
-            request.addProperty("adi3", adi3.getText().toString());
-            request.addProperty("lote3", lote3.getText().toString());
-            request.addProperty("adi4", adi4.getText().toString());
-            request.addProperty("lote4", lote4.getText().toString());
-            request.addProperty("adi5", adi5.getText().toString());
-            request.addProperty("lote5", lote5.getText().toString());
-            request.addProperty("adi6", adi6.getText().toString());
-            request.addProperty("lote6", lote6.getText().toString());
-            request.addProperty("adi7", adi7.getText().toString());
-            request.addProperty("lote7", lote7.getText().toString());
-            request.addProperty("adi8", adi8.getText().toString());
-            request.addProperty("lote8", lote8.getText().toString());
-            request.addProperty("adi9", adi9.getText().toString());
-            request.addProperty("lote9", lote9.getText().toString());
-            request.addProperty("adi10", adi10.getText().toString());
-            request.addProperty("lote10", lote10.getText().toString());
-            request.addProperty("adi11", adi11.getText().toString());
-            request.addProperty("lote11", lote11.getText().toString());
-            request.addProperty("adi12", adi12.getText().toString());
-            request.addProperty("lote12", lote12.getText().toString());
-            request.addProperty("adi13", adi13.getText().toString());
-            request.addProperty("lote13", lote13.getText().toString());
-            request.addProperty("adi14", adi14.getText().toString());
-            request.addProperty("lote14", lote14.getText().toString());
-//47 elementos
-            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-            envelope.dotNet = true;
-            envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL,time);
-
-            try
-            {
-                transporte.call(SOAP_ACTION, envelope);
-
-                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
-                String mensaje = resultado_xml.toString();
-                if(mensaje.contentEquals("true")){
-                    //transporte.getConnection().disconnect();
-
-                    //transporte.getServiceConnection().disconnect();
-
-                    //transporte.reset();
-                    return true;
-                }
-                else{
-                    // transporte.getConnection().disconnect();
-                    //transporte.getServiceConnection().disconnect();
-                    //transporte.reset();
-                    Log.i("Mensaje","Mensaje SOAP:    "+mensaje);
-                    return false;
-                }
-
-
-
-
-            }
-            catch (Exception e)
-            {
-                Log.i("Error","Error de Sincronizacion:  "+e);
-
-                return false;
-
-            }
-
-
-        }
-
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
-                this.dialog.dismiss();
-            }
-
-            if (success)
-            {
-                Toast.makeText(Cuajado.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            else
-            {
-                Toast.makeText(Cuajado.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
-            }
-        }}
 
     public void llenarValoresBusquedaCuajado(String lote)
     {
@@ -1271,6 +1133,133 @@ public class Cuajado extends ActionBarActivity implements View.OnClickListener, 
 
     }
 
+
+    public class GuardaCuajadoSync extends AsyncTask<String, Void, Boolean>
+
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Cuajado.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Enviando datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+
+        {
+
+            final String NAMESPACE = "http://serv_gsj.net/";
+            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaCuajado";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            /*Para tabla cuajado*/
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("silo", "" + silo_select);
+            request.addProperty("num_tina", NumTina.getText().toString());
+            request.addProperty("familia", btnFamiliaCuaj.getText().toString());
+            request.addProperty("fecha", FechaH.Hoy_hora());
+            request.addProperty("leche_silo", lecheSilo.getText().toString());
+            request.addProperty("grasa_leche_silo", grasaLecheSilo.getText().toString());
+            request.addProperty("ph_leche", phLeche.getText().toString());
+            request.addProperty("proteina_leche", proteinaLecheSilo.getText().toString());
+            request.addProperty("leche_tina", lecheTina.getText().toString());
+            request.addProperty("grasa_leche_tina", grasaLecheTina.getText().toString());
+            request.addProperty("proteina_tina", proteinaTina.getText().toString());
+            request.addProperty("temp_coagulacion", tempCoagulacion.getText().toString());
+            request.addProperty("ph_pasta", phPasta.getText().toString());
+            request.addProperty("hora_adi_cuajo", horaAdicionCuajo.getText().toString());
+            request.addProperty("temp_cocido", tempCocido.getText().toString());
+            request.addProperty("num_equipo", NumEquipo.getText().toString());
+            request.addProperty("estatus_pendiente", "0");
+
+            /*Para Cuajado Aditivos*/
+
+            request.addProperty("lote_aditivo", Lote.getText().toString());
+            request.addProperty("adi1", adi1.getText().toString());
+            request.addProperty("lote1", lote1.getText().toString());
+            request.addProperty("adi2", adi2.getText().toString());
+            request.addProperty("lote2", lote2.getText().toString());
+            request.addProperty("adi3", adi3.getText().toString());
+            request.addProperty("lote3", lote3.getText().toString());
+            request.addProperty("adi4", adi4.getText().toString());
+            request.addProperty("lote4", lote4.getText().toString());
+            request.addProperty("adi5", adi5.getText().toString());
+            request.addProperty("lote5", lote5.getText().toString());
+            request.addProperty("adi6", adi6.getText().toString());
+            request.addProperty("lote6", lote6.getText().toString());
+            request.addProperty("adi7", adi7.getText().toString());
+            request.addProperty("lote7", lote7.getText().toString());
+            request.addProperty("adi8", adi8.getText().toString());
+            request.addProperty("lote8", lote8.getText().toString());
+            request.addProperty("adi9", adi9.getText().toString());
+            request.addProperty("lote9", lote9.getText().toString());
+            request.addProperty("adi10", adi10.getText().toString());
+            request.addProperty("lote10", lote10.getText().toString());
+            request.addProperty("adi11", adi11.getText().toString());
+            request.addProperty("lote11", lote11.getText().toString());
+            request.addProperty("adi12", adi12.getText().toString());
+            request.addProperty("lote12", lote12.getText().toString());
+            request.addProperty("adi13", adi13.getText().toString());
+            request.addProperty("lote13", lote13.getText().toString());
+            request.addProperty("adi14", adi14.getText().toString());
+            request.addProperty("lote14", lote14.getText().toString());
+//47 elementos
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
+                String mensaje = resultado_xml.toString();
+                if (mensaje.contentEquals("true")) {
+                    //transporte.getConnection().disconnect();
+
+                    //transporte.getServiceConnection().disconnect();
+
+                    //transporte.reset();
+                    return true;
+                } else {
+                    // transporte.getConnection().disconnect();
+                    //transporte.getServiceConnection().disconnect();
+                    //transporte.reset();
+                    Log.i("Mensaje", "Mensaje SOAP:    " + mensaje);
+                    return false;
+                }
+
+
+            } catch (Exception e) {
+                Log.i("Error", "Error de Sincronizacion:  " + e);
+
+                return false;
+
+            }
+
+
+        }
+
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
+            if (success) {
+                Toast.makeText(Cuajado.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                Toast.makeText(Cuajado.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
 
 
 }

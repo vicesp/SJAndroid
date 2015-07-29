@@ -1,15 +1,19 @@
 package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -18,6 +22,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import java.util.ArrayList;
 
@@ -430,4 +441,81 @@ public class Cuajadas_Lab extends ActionBarActivity {
             //posible impletacion de alguna alerta
         }
     }
+
+    public class GuardaCuajadasLaboratorio extends AsyncTask<String, Void, Boolean> {
+        private final ProgressDialog dialog = new ProgressDialog(Cuajadas_Lab.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Enviando Datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args) {
+            final String NAMESPACE = "http://serv_gsj.net/";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaCuajadasLab";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("fecha", Fecha.getText().toString());
+            request.addProperty("num_tina", tinaCuajadas);
+            request.addProperty("tipo_cuajada", checkTexters());
+            request.addProperty("humedad", humCuaj.getText().toString());
+            request.addProperty("ph_cuajada", phCuaj.getText().toString());
+            request.addProperty("grasa", grasCuaj.getText().toString());
+            request.addProperty("ph_suero", phSue.getText().toString());
+            request.addProperty("acidez", acSue.getText().toString());
+            request.addProperty("solidos", stSue.getText().toString());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_XML = (SoapPrimitive) envelope.getResponse();
+                String mensaje = resultado_XML.toString();
+
+                if (mensaje.contentEquals("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.i("Error", "Error de sincronizacion:  " + e);
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
+            if (success) {
+                Toast.makeText(Cuajadas_Lab.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Cuajadas_Lab.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void PaginaMonitor() {
+            WebView myWebView = (WebView) findViewById(R.id.webView);
+            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
 }
+
+}
+
+

@@ -501,7 +501,8 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         observaciones_untabilidad.setText(null);
 
     }
-    public class GuardaLaboratorio extends AsyncTask<String, Void, Boolean>
+
+    public class GuardaRequesonLab extends AsyncTask<String, Void, Boolean>
     {
         private final ProgressDialog dialog = new ProgressDialog(Requeson_Lab.this);
 
@@ -516,7 +517,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         {
             final String NAMESPACE = "http://serv_gsj.net/";
             final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
-            final String METHOD_NAME = "insertarequesonlab";
+            final String METHOD_NAME = "insertaRequesonLab";
             final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
             final int time = 20000, time2 = 190000;
 

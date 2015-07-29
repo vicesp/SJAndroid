@@ -1,10 +1,12 @@
 package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -22,7 +24,13 @@ import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 import org.w3c.dom.Text;
 
 import java.security.Guard;
@@ -1873,5 +1881,297 @@ public class Detector_Metales extends ActionBarActivity implements View.OnClickL
         mTimePicker.setTitle("Actualice el tiempo");
         mTimePicker.show();
     }
+
+
+    public class GuardaDetectorSync extends AsyncTask<String, Void, Boolean>
+
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Detector_Metales.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Enviando datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+
+        {
+
+            final String NAMESPACE = "http://serv_gsj.net/";
+            //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaDetector";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", etLote.getText().toString());
+            request.addProperty("usuario", Usuario.getText().toString());
+            request.addProperty("fecha", Fecha.getText().toString());
+            request.addProperty("hora1", btnHR1.getText().toString());
+            request.addProperty("hora2", btnHR2.getText().toString());
+            request.addProperty("hora3", btnHR3.getText().toString());
+            request.addProperty("hora4", btnHR4.getText().toString());
+            request.addProperty("hora5", btnHR5.getText().toString());
+            request.addProperty("hora6", btnHR6.getText().toString());
+            request.addProperty("hora7", btnHR7.getText().toString());
+            request.addProperty("hora8", btnHR8.getText().toString());
+            request.addProperty("hora9", btnHR9.getText().toString());
+            request.addProperty("hora10", btnHR10.getText().toString());
+            request.addProperty("hora11", btnHR11.getText().toString());
+            request.addProperty("hora12", btnHR12.getText().toString());
+            request.addProperty("hora13", btnHR13.getText().toString());
+            request.addProperty("hora14", btnHR14.getText().toString());
+            request.addProperty("hora15", btnHR15.getText().toString());
+            request.addProperty("producto1", btnProd1.getText().toString());
+            request.addProperty("producto2", btnProd2.getText().toString());
+            request.addProperty("producto3", btnProd3.getText().toString());
+            request.addProperty("producto4", btnProd4.getText().toString());
+            request.addProperty("producto5", btnProd5.getText().toString());
+            request.addProperty("producto6", btnProd6.getText().toString());
+            request.addProperty("producto7", btnProd7.getText().toString());
+            request.addProperty("producto8", btnProd8.getText().toString());
+            request.addProperty("producto9", btnProd9.getText().toString());
+            request.addProperty("producto10", btnProd10.getText().toString());
+            request.addProperty("producto11", btnProd11.getText().toString());
+            request.addProperty("producto12", btnProd12.getText().toString());
+            request.addProperty("producto13", btnProd13.getText().toString());
+            request.addProperty("producto14", btnProd14.getText().toString());
+            request.addProperty("producto15", btnProd15.getText().toString());
+            request.addProperty("accion_correctiva1", etAC1.getText().toString());
+            request.addProperty("accion_correctiva2", etAC2.getText().toString());
+            request.addProperty("accion_correctiva3", etAC3.getText().toString());
+            request.addProperty("accion_correctiva4", etAC4.getText().toString());
+            request.addProperty("accion_correctiva5", etAC5.getText().toString());
+            request.addProperty("accion_correctiva6", etAC6.getText().toString());
+            request.addProperty("accion_correctiva7", etAC7.getText().toString());
+            request.addProperty("accion_correctiva8", etAC8.getText().toString());
+            request.addProperty("accion_correctiva9", etAC9.getText().toString());
+            request.addProperty("accion_correctiva10", etAC10.getText().toString());
+            request.addProperty("accion_correctiva11", etAC11.getText().toString());
+            request.addProperty("accion_correctiva12", etAC12.getText().toString());
+            request.addProperty("accion_correctiva13", etAC13.getText().toString());
+            request.addProperty("accion_correctiva14", etAC14.getText().toString());
+            request.addProperty("accion_correctiva15", etAC15.getText().toString());
+            request.addProperty("paquete_a1", switchTexter(swPacA1.isChecked()));
+            request.addProperty("paquete_a2", switchTexter(swPacA2.isChecked()));
+            request.addProperty("paquete_a3", switchTexter(swPacA3.isChecked()));
+            request.addProperty("paquete_a4", switchTexter(swPacA4.isChecked()));
+            request.addProperty("paquete_a5", switchTexter(swPacA5.isChecked()));
+            request.addProperty("paquete_a6", switchTexter(swPacA6.isChecked()));
+            request.addProperty("paquete_a7", switchTexter(swPacA7.isChecked()));
+            request.addProperty("paquete_a8", switchTexter(swPacA8.isChecked()));
+            request.addProperty("paquete_a9", switchTexter(swPacA9.isChecked()));
+            request.addProperty("paquete_a10", switchTexter(swPacA10.isChecked()));
+            request.addProperty("paquete_a11", switchTexter(swPacA11.isChecked()));
+            request.addProperty("paquete_a12", switchTexter(swPacA12.isChecked()));
+            request.addProperty("paquete_a13", switchTexter(swPacA13.isChecked()));
+            request.addProperty("paquete_a14", switchTexter(swPacA14.isChecked()));
+            request.addProperty("paquete_a15", switchTexter(swPacA15.isChecked()));
+            request.addProperty("paquete_b1", switchTexter(swPacB1.isChecked()));
+            request.addProperty("paquete_b2", switchTexter(swPacB2.isChecked()));
+            request.addProperty("paquete_b3", switchTexter(swPacB3.isChecked()));
+            request.addProperty("paquete_b4", switchTexter(swPacB4.isChecked()));
+            request.addProperty("paquete_b5", switchTexter(swPacB5.isChecked()));
+            request.addProperty("paquete_b6", switchTexter(swPacB6.isChecked()));
+            request.addProperty("paquete_b7", switchTexter(swPacB7.isChecked()));
+            request.addProperty("paquete_b8", switchTexter(swPacB8.isChecked()));
+            request.addProperty("paquete_b9", switchTexter(swPacB9.isChecked()));
+            request.addProperty("paquete_b10", switchTexter(swPacB10.isChecked()));
+            request.addProperty("paquete_b11", switchTexter(swPacB11.isChecked()));
+            request.addProperty("paquete_b12", switchTexter(swPacB12.isChecked()));
+            request.addProperty("paquete_b13", switchTexter(swPacB13.isChecked()));
+            request.addProperty("paquete_b14", switchTexter(swPacB14.isChecked()));
+            request.addProperty("paquete_b15", switchTexter(swPacB15.isChecked()));
+            request.addProperty("acer_inox1", switchTexter(swAI1.isChecked()));
+            request.addProperty("acer_inox2", switchTexter(swAI2.isChecked()));
+            request.addProperty("acer_inox3", switchTexter(swAI3.isChecked()));
+            request.addProperty("acer_inox4", switchTexter(swAI4.isChecked()));
+            request.addProperty("acer_inox5", switchTexter(swAI5.isChecked()));
+            request.addProperty("acer_inox6", switchTexter(swAI6.isChecked()));
+            request.addProperty("acer_inox7", switchTexter(swAI7.isChecked()));
+            request.addProperty("acer_inox8", switchTexter(swAI8.isChecked()));
+            request.addProperty("acer_inox9", switchTexter(swAI9.isChecked()));
+            request.addProperty("acer_inox10", switchTexter(swAI10.isChecked()));
+            request.addProperty("acer_inox11", switchTexter(swAI11.isChecked()));
+            request.addProperty("acer_inox12", switchTexter(swAI12.isChecked()));
+            request.addProperty("acer_inox13", switchTexter(swAI13.isChecked()));
+            request.addProperty("acer_inox14", switchTexter(swAI14.isChecked()));
+            request.addProperty("acer_inox15", switchTexter(swAI15.isChecked()));
+            request.addProperty("acer_inox16", switchTexter(swAI16.isChecked()));
+            request.addProperty("acer_inox17", switchTexter(swAI17.isChecked()));
+            request.addProperty("acer_inox18", switchTexter(swAI18.isChecked()));
+            request.addProperty("acer_inox19", switchTexter(swAI19.isChecked()));
+            request.addProperty("acer_inox20", switchTexter(swAI20.isChecked()));
+            request.addProperty("acer_inox21", switchTexter(swAI21.isChecked()));
+            request.addProperty("acer_inox22", switchTexter(swAI22.isChecked()));
+            request.addProperty("acer_inox23", switchTexter(swAI23.isChecked()));
+            request.addProperty("acer_inox24", switchTexter(swAI24.isChecked()));
+            request.addProperty("acer_inox25", switchTexter(swAI25.isChecked()));
+            request.addProperty("acer_inox26", switchTexter(swAI26.isChecked()));
+            request.addProperty("acer_inox27", switchTexter(swAI27.isChecked()));
+            request.addProperty("acer_inox28", switchTexter(swAI28.isChecked()));
+            request.addProperty("acer_inox29", switchTexter(swAI29.isChecked()));
+            request.addProperty("acer_inox30", switchTexter(swAI30.isChecked()));
+            request.addProperty("acer_inox31", switchTexter(swAI31.isChecked()));
+            request.addProperty("acer_inox32", switchTexter(swAI32.isChecked()));
+            request.addProperty("acer_inox33", switchTexter(swAI33.isChecked()));
+            request.addProperty("acer_inox34", switchTexter(swAI34.isChecked()));
+            request.addProperty("acer_inox35", switchTexter(swAI35.isChecked()));
+            request.addProperty("acer_inox36", switchTexter(swAI36.isChecked()));
+            request.addProperty("acer_inox37", switchTexter(swAI37.isChecked()));
+            request.addProperty("acer_inox38", switchTexter(swAI38.isChecked()));
+            request.addProperty("acer_inox39", switchTexter(swAI39.isChecked()));
+            request.addProperty("acer_inox40", switchTexter(swAI40.isChecked()));
+            request.addProperty("acer_inox41", switchTexter(swAI41.isChecked()));
+            request.addProperty("acer_inox42", switchTexter(swAI42.isChecked()));
+            request.addProperty("acer_inox43", switchTexter(swAI43.isChecked()));
+            request.addProperty("acer_inox44", switchTexter(swAI44.isChecked()));
+            request.addProperty("acer_inox45", switchTexter(swAI45.isChecked()));
+            request.addProperty("ferroso1", switchTexter(swF1.isChecked()));
+            request.addProperty("ferroso2", switchTexter(swF2.isChecked()));
+            request.addProperty("ferroso3", switchTexter(swF3.isChecked()));
+            request.addProperty("ferroso4", switchTexter(swF4.isChecked()));
+            request.addProperty("ferroso5", switchTexter(swF5.isChecked()));
+            request.addProperty("ferroso6", switchTexter(swF6.isChecked()));
+            request.addProperty("ferroso7", switchTexter(swF7.isChecked()));
+            request.addProperty("ferroso8", switchTexter(swF8.isChecked()));
+            request.addProperty("ferroso9", switchTexter(swF9.isChecked()));
+            request.addProperty("ferroso10", switchTexter(swF10.isChecked()));
+            request.addProperty("ferroso11", switchTexter(swF11.isChecked()));
+            request.addProperty("ferroso12", switchTexter(swF12.isChecked()));
+            request.addProperty("ferroso13", switchTexter(swF13.isChecked()));
+            request.addProperty("ferroso14", switchTexter(swF14.isChecked()));
+            request.addProperty("ferroso15", switchTexter(swF15.isChecked()));
+            request.addProperty("ferroso16", switchTexter(swF16.isChecked()));
+            request.addProperty("ferroso17", switchTexter(swF17.isChecked()));
+            request.addProperty("ferroso18", switchTexter(swF18.isChecked()));
+            request.addProperty("ferroso19", switchTexter(swF19.isChecked()));
+            request.addProperty("ferroso20", switchTexter(swF20.isChecked()));
+            request.addProperty("ferroso21", switchTexter(swF21.isChecked()));
+            request.addProperty("ferroso22", switchTexter(swF22.isChecked()));
+            request.addProperty("ferroso23", switchTexter(swF23.isChecked()));
+            request.addProperty("ferroso24", switchTexter(swF24.isChecked()));
+            request.addProperty("ferroso25", switchTexter(swF25.isChecked()));
+            request.addProperty("ferroso26", switchTexter(swF26.isChecked()));
+            request.addProperty("ferroso27", switchTexter(swF27.isChecked()));
+            request.addProperty("ferroso28", switchTexter(swF28.isChecked()));
+            request.addProperty("ferroso29", switchTexter(swF29.isChecked()));
+            request.addProperty("ferroso30", switchTexter(swF30.isChecked()));
+            request.addProperty("ferroso31", switchTexter(swF31.isChecked()));
+            request.addProperty("ferroso32", switchTexter(swF32.isChecked()));
+            request.addProperty("ferroso33", switchTexter(swF33.isChecked()));
+            request.addProperty("ferroso34", switchTexter(swF34.isChecked()));
+            request.addProperty("ferroso35", switchTexter(swF35.isChecked()));
+            request.addProperty("ferroso36", switchTexter(swF36.isChecked()));
+            request.addProperty("ferroso37", switchTexter(swF37.isChecked()));
+            request.addProperty("ferroso38", switchTexter(swF38.isChecked()));
+            request.addProperty("ferroso39", switchTexter(swF39.isChecked()));
+            request.addProperty("ferroso40", switchTexter(swF40.isChecked()));
+            request.addProperty("ferroso41", switchTexter(swF41.isChecked()));
+            request.addProperty("ferroso42", switchTexter(swF42.isChecked()));
+            request.addProperty("ferroso43", switchTexter(swF43.isChecked()));
+            request.addProperty("ferroso44", switchTexter(swF44.isChecked()));
+            request.addProperty("ferroso45", switchTexter(swF45.isChecked()));
+            request.addProperty("no_ferroso1", switchTexter(swNF1.isChecked()));
+            request.addProperty("no_ferroso2", switchTexter(swNF2.isChecked()));
+            request.addProperty("no_ferroso3", switchTexter(swNF3.isChecked()));
+            request.addProperty("no_ferroso4", switchTexter(swNF4.isChecked()));
+            request.addProperty("no_ferroso5", switchTexter(swNF5.isChecked()));
+            request.addProperty("no_ferroso6", switchTexter(swNF6.isChecked()));
+            request.addProperty("no_ferroso7", switchTexter(swNF7.isChecked()));
+            request.addProperty("no_ferroso8", switchTexter(swNF8.isChecked()));
+            request.addProperty("no_ferroso9", switchTexter(swNF9.isChecked()));
+            request.addProperty("no_ferroso10", switchTexter(swNF10.isChecked()));
+            request.addProperty("no_ferroso11", switchTexter(swNF11.isChecked()));
+            request.addProperty("no_ferroso12", switchTexter(swNF12.isChecked()));
+            request.addProperty("no_ferroso13", switchTexter(swNF13.isChecked()));
+            request.addProperty("no_ferroso14", switchTexter(swNF14.isChecked()));
+            request.addProperty("no_ferroso15", switchTexter(swNF15.isChecked()));
+            request.addProperty("no_ferroso16", switchTexter(swNF16.isChecked()));
+            request.addProperty("no_ferroso17", switchTexter(swNF17.isChecked()));
+            request.addProperty("no_ferroso18", switchTexter(swNF18.isChecked()));
+            request.addProperty("no_ferroso19", switchTexter(swNF19.isChecked()));
+            request.addProperty("no_ferroso20", switchTexter(swNF20.isChecked()));
+            request.addProperty("no_ferroso21", switchTexter(swNF21.isChecked()));
+            request.addProperty("no_ferroso22", switchTexter(swNF22.isChecked()));
+            request.addProperty("no_ferroso23", switchTexter(swNF23.isChecked()));
+            request.addProperty("no_ferroso24", switchTexter(swNF24.isChecked()));
+            request.addProperty("no_ferroso25", switchTexter(swNF25.isChecked()));
+            request.addProperty("no_ferroso26", switchTexter(swNF26.isChecked()));
+            request.addProperty("no_ferroso27", switchTexter(swNF27.isChecked()));
+            request.addProperty("no_ferroso28", switchTexter(swNF28.isChecked()));
+            request.addProperty("no_ferroso29", switchTexter(swNF29.isChecked()));
+            request.addProperty("no_ferroso30", switchTexter(swNF30.isChecked()));
+            request.addProperty("no_ferroso31", switchTexter(swNF31.isChecked()));
+            request.addProperty("no_ferroso32", switchTexter(swNF32.isChecked()));
+            request.addProperty("no_ferroso33", switchTexter(swNF33.isChecked()));
+            request.addProperty("no_ferroso34", switchTexter(swNF34.isChecked()));
+            request.addProperty("no_ferroso35", switchTexter(swNF35.isChecked()));
+            request.addProperty("no_ferroso36", switchTexter(swNF36.isChecked()));
+            request.addProperty("no_ferroso37", switchTexter(swNF37.isChecked()));
+            request.addProperty("no_ferroso38", switchTexter(swNF38.isChecked()));
+            request.addProperty("no_ferroso39", switchTexter(swNF39.isChecked()));
+            request.addProperty("no_ferroso40", switchTexter(swNF40.isChecked()));
+            request.addProperty("no_ferroso41", switchTexter(swNF41.isChecked()));
+            request.addProperty("no_ferroso42", switchTexter(swNF42.isChecked()));
+            request.addProperty("no_ferroso43", switchTexter(swNF43.isChecked()));
+            request.addProperty("no_ferroso44", switchTexter(swNF44.isChecked()));
+            request.addProperty("no_ferroso45", switchTexter(swNF45.isChecked()));
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
+                String mensaje = resultado_xml.toString();
+                if (mensaje.contentEquals("true")) {
+                    //transporte.getConnection().disconnect();
+
+                    //transporte.getServiceConnection().disconnect();
+
+                    //transporte.reset();
+                    return true;
+                } else {
+                    // transporte.getConnection().disconnect();
+                    //transporte.getServiceConnection().disconnect();
+                    //transporte.reset();
+                    Log.i("Mensaje", "Mensaje SOAP:    " + mensaje);
+                    return false;
+                }
+
+
+            } catch (Exception e) {
+                Log.i("Error", "Error de Sincronizacion:  " + e);
+
+                return false;
+
+            }
+
+
+        }
+
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
+            if (success) {
+                Toast.makeText(Detector_Metales.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
+
+
+            } else {
+                Toast.makeText(Detector_Metales.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 }
 
