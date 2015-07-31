@@ -12,6 +12,19 @@
     style="@style/Base.TextAppearance.AppCompat.Headline">
 
 
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView24"
+        android:background="@drawable/disp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/btnAC"
+        android:layout_alignTop="@+id/imageView2"
+        android:baselineAlignBottom="false" />
+
     <TextView
         android:text="cc"
         android:layout_width="wrap_content"
@@ -46,19 +59,6 @@
         android:layout_alignParentStart="true" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="190dp"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/madera"
-        android:scaleType="centerCrop"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="false"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@+id/editText" />
-
-    <ImageView
         android:layout_width="150dp"
         android:layout_height="190dp"
         android:id="@+id/imageView2"
@@ -68,19 +68,7 @@
         android:src="@drawable/log_primero"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
-        android:layout_alignBottom="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="CALCULADORA"
-        android:textColor="@android:color/white"
-        android:typeface="monospace"
-        android:textSize="50dp"
-        android:layout_marginTop="15dp"
-        android:id="@+id/textView19"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignBottom="@+id/editText" />
 
 
     <Button
@@ -227,31 +215,19 @@
         android:layout_toRightOf="@+id/btnNine"
         android:layout_toEndOf="@+id/btnNine" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView24"
-        android:background="@drawable/disp"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/btnAC" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="0"
         android:id="@+id/dispView"
-        android:textSize="200dp"
+        android:textSize="150dp"
         android:maxLength="13"
         android:ellipsize="end"
         android:singleLine="true"
-        android:layout_alignBottom="@+id/imageView24"
-        android:layout_alignRight="@+id/btnThree"
-        android:layout_alignEnd="@+id/btnThree" />
+        android:layout_above="@+id/btnAC"
+        android:layout_alignRight="@+id/imageView24"
+        android:layout_alignEnd="@+id/imageView24" />
 
     <ImageButton
         android:layout_width="192dp"
@@ -267,7 +243,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnBackSpace"
         android:background="@drawable/backspace"
-        android:layout_below="@+id/textView"
+        android:layout_alignTop="@+id/imageView24"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
