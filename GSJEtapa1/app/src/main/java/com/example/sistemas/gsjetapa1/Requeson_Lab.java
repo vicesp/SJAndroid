@@ -63,6 +63,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
     private ArrayList<String> array_sort;
     int textlength=0;
     private AlertDialog myalertDialog=null;
+    private String datos_cambiados;
     protected Cursor cursor;
 
     @Override
@@ -129,7 +130,7 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
 
                                            if (var.isFromRequeson()) {
 
-                                               //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
+                                               con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), "", FechaH.Hoy_hora());
 
 
                                                boolean exitoso = con.DAOActualizarRequesonLab(Fecha.getText().toString(), var.getLoteRequeson(), btn_listviewdialog.getText().toString(), familia.getText().toString(),
@@ -475,6 +476,56 @@ public class Requeson_Lab extends ActionBarActivity implements View.OnClickListe
         swRem.setChecked(textSwithcer(cursor.getString(cursor.getColumnIndex("necesidad_remuestreo"))));
         setUntabilidad(cursor.getString(cursor.getColumnIndex("untabilidad")));
     }
+
+    public String generarDatosCambiados() {
+        datos_cambiados = null;
+        if (!(cursor.getString(cursor.getColumnIndex("producto")).equals(btn_listviewdialog.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Producto Valor Previo: " + cursor.getString(cursor.getColumnIndex("producto")) + ", Valor Nuevo:" + btn_listviewdialog.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("codigo_fam")).equals(codigo_fam.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Codigo Familia Valor Previo: " + cursor.getString(cursor.getColumnIndex("codigo_fam")) + ", Valor Nuevo:" + codigo_fam.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_color")).equals(observaciones_color.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Color Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_color")) + ", Valor Nuevo:" + observaciones_color.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasa_total")).equals(grasa_total.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Grasa Total Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasa_total")) + ", Valor Nuevo:" + grasa_total.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("phRem")).equals(phRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "PH rem Valor Previo: " + cursor.getString(cursor.getColumnIndex("phRem")) + ", Valor Nuevo:" + phRem.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("codigo_prod")).equals(codigo_prod.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Codigo Producto Valor Previo: " + cursor.getString(cursor.getColumnIndex("codigo_prod")) + ", Valor Nuevo:" + codigo_prod.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_sabor")).equals(observaciones_sabor.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Sabor Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_sabor")) + ", Valor Nuevo:" + observaciones_sabor.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_untabilidad")).equals(observaciones_untabilidad.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Untabilidad Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_untabilidad")) + ", Valor Nuevo:" + observaciones_untabilidad.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph")).equals(ph.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "PH Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph")) + ", Valor Nuevo:" + ph.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasRem")).equals(grasRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Gras rem Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasRem")) + ", Valor Nuevo:" + grasRem.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("familia")).equals(familia.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "familia Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia")) + ", Valor Nuevo:" + familia.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")).equals(observaciones_apariencia.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "observaciones_apariencia Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_apariencia")) + ", Valor Nuevo:" + observaciones_apariencia.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("humedad")).equals(humedad.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "humedad Valor Previo: " + cursor.getString(cursor.getColumnIndex("humedad")) + ", Valor Nuevo:" + humedad.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("humRem")).equals(humRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "humRem Valor Previo: " + cursor.getString(cursor.getColumnIndex("humRem")) + ", Valor Nuevo:" + humRem.getText().toString() + ";";
+        }
+
+
+        return datos_cambiados;
+    }
+
     public void vaciarTodo(){
         Lote.setText("");
         codigo_prod.setText("");

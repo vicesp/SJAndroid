@@ -62,7 +62,7 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
     private ArrayList<String> array_sort, filtroProductos;
     int textlength=0;
     private AlertDialog myalertDialog=null;
-
+    private String datos_cambiados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -127,7 +127,7 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
             @Override
             public void onClick(View view) {
                 if(var.isFromCrema()){
-                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Crema Laboratorio", "", "", FechaH.Hoy_hora());
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Crema Laboratorio", generarDatosCambiados(), "", FechaH.Hoy_hora());
                     boolean exitoso = con.DAOActualizaCremaLab(var.getLoteCrema(),Fecha.getText().toString(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
                             switchTexter(aroma.isChecked()),obsAro.getText().toString(),switchTexter(escurrimiento.isChecked()), obsEsc.getText().toString(), switchTexter(fluidez.isChecked()), obsFlu.getText().toString(),ph.getText().toString(),
                             solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Lote.getText().toString(),btnProd.getText().toString(), codigo_prod.getText().toString());
@@ -254,6 +254,47 @@ public class Crema_Lab extends ActionBarActivity implements View.OnClickListener
         grasa.setText(cursor.getString(cursor.getColumnIndex("grasa")));
         btnProd.setText(cursor.getString(cursor.getColumnIndex("producto")));
         codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_producto")));
+    }
+
+    public String generarDatosCambiados() {
+        datos_cambiados = null;
+
+        if (!(cursor.getString(cursor.getColumnIndex("lote")).equals(Lote.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote")) + ", Valor Nuevo:" + Lote.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("aroma_observaciones")).equals(obsAro.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "aroma_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("aroma_observaciones")) + ", Valor Nuevo:" + obsAro.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph")).equals(ph.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph")) + ", Valor Nuevo:" + ph.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasa")).equals(grasa.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "grasa Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasa")) + ", Valor Nuevo:" + grasa.getText().toString() + ";";
+        }
+
+        if (!(cursor.getString(cursor.getColumnIndex("sabor_observaciones")).equals(obsSa.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "sabor_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("sabor_observaciones")) + ", Valor Nuevo:" + obsSa.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("escurrimiento_observaciones")).equals(obsEsc.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "escurrimiento_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("escurrimiento_observaciones")) + ", Valor Nuevo:" + obsEsc.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("solidos")).equals(solidos.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "solidos Valor Previo: " + cursor.getString(cursor.getColumnIndex("solidos")) + ", Valor Nuevo:" + solidos.getText().toString() + ";";
+        }
+
+
+        if (!(cursor.getString(cursor.getColumnIndex("color_observaciones")).equals(obsCo.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "color_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("color_observaciones")) + ", Valor Nuevo:" + obsCo.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("fluidez_observaciones")).equals(obsFlu.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "fluidez_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("fluidez_observaciones")) + ", Valor Nuevo:" + obsFlu.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("acidez")).equals(acidez.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "acidez Valor Previo: " + cursor.getString(cursor.getColumnIndex("acidez")) + ", Valor Nuevo:" + acidez.getText().toString() + ";";
+        }
+
+
+        return datos_cambiados;
     }
     public void vaciarTodo(){
         Lote.setText(null);

@@ -1332,6 +1332,7 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
 
     public String generarDatosCambiados(){
 
+
         if (!(cursor.getString(cursor.getColumnIndex("familia")).equals(btnFamiliaFun.getText().toString()))) {
             datos_cambiados = datos_cambiados + "Familia Fundido Valor Previo: " + cursor.getString(cursor.getColumnIndex("familia")) + ", Valor Nuevo: " + btnFamiliaFun.getText().toString() + "; ";
         }
@@ -1422,9 +1423,9 @@ public class Fundido extends ActionBarActivity implements View.OnClickListener, 
         if (!(cursor.getString(cursor.getColumnIndex("peso_total")).equals(Peso_tot.getText().toString()))) {
             datos_cambiados = datos_cambiados + "peso_total Valor Previo: " + cursor.getString(cursor.getColumnIndex("peso_total")) + ", Valor Nuevo: " + Peso_tot.getText().toString() + "; ";
         }
-        if (!(cursor.getString(cursor.getColumnIndex("texturizador")).equals(texturizador[spTexturizador.getSelectedItemPosition()]))) {
+       /* if (!(cursor.getString(cursor.getColumnIndex("texturizador")).equals(texturizador[spTexturizador.getSelectedItemPosition()]))) {
             datos_cambiados = datos_cambiados + "texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("texturizador")) + ", Valor Nuevo: " +texturizador[spTexturizador.getSelectedItemPosition()] + "; ";
-        }
+        }*/
         if (!(cursor.getString(cursor.getColumnIndex("lote_texturizador")).equals(lote_textu.getText().toString()))) {
             datos_cambiados = datos_cambiados + "lote_texturizador Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_texturizador")) + ", Valor Nuevo: " + lote_textu.getText().toString() + "; ";
         }

@@ -62,6 +62,7 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
     private static consultas con;
     private static Variables var;
     private static Cursor cursor;
+    private String datosCambiados;
 
 
     @Override
@@ -242,6 +243,7 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
                 }
                 else {
                     if(var.isFromProducto()){
+                        con.DAOConsultaBitacora(var.getNombre_usuario(), "Producto Terminado", "", "", FechaH.Hoy_hora());
                         boolean exitoso = con.DAOActualizarPT(LotePT.getText().toString(),
                                 fecha.getText().toString(),
                                 codigo_pt.getText().toString(),
@@ -364,7 +366,25 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
         num_fundida.setText(cursor.getString(cursor.getColumnIndex("numero_fundida")));
 
 
+    }
 
+    public String generarDatosCambiados() {
+        if (!(cursor.getString(cursor.getColumnIndex("codigo_pt")).equals(codigo_pt.getText()))) {
+            datosCambiados = datosCambiados + " Codigo Producto Valor Previo:" + cursor.getString(cursor.getColumnIndex("codigo_pt")) + ", Valor Nuevo: " + codigo_pt.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("num_viaje")).equals(numero_viaje.getText()))) {
+            datosCambiados = datosCambiados + " Numero de Viaje Valor Previo:" + cursor.getString(cursor.getColumnIndex("num_viaje")) + ", Valor Nuevo: " + numero_viaje.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("kilos")).equals(tot_kil_obt.getText()))) {
+            datosCambiados = datosCambiados + " kilos Valor Previo:" + cursor.getString(cursor.getColumnIndex("kilos")) + ", Valor Nuevo: " + tot_kil_obt.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("num_piezas")).equals(NumPiezas.getText()))) {
+            datosCambiados = datosCambiados + " Numero Piezas Valor Previo:" + cursor.getString(cursor.getColumnIndex("num_piezas")) + ", Valor Nuevo: " + NumPiezas.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("numero_fundida")).equals(num_fundida.getText()))) {
+            datosCambiados = datosCambiados + " Numero Fundida Valor Previo:" + cursor.getString(cursor.getColumnIndex("numero_fundida")) + ", Valor Nuevo: " + codigo_pt.getText() + ";";
+        }
+        return datosCambiados;
     }
     public void launchView()
     {

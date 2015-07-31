@@ -69,6 +69,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
     int textlength=0;
     private AlertDialog myalertDialog=null;
     protected Cursor cursor;
+    private String datos_cambiados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,7 +125,7 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
 
                                            if (var.isFromLaboratorio()) {
 
-                                               //con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), etObservaciones.getText().toString(), FechaH.Hoy_hora());
+                                               con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Laboratorio Calidad", generarDatosCambiados(), "", FechaH.Hoy_hora());
 
 
                                                boolean exitoso = con.DAOActualizarLaboratorioCalidad(Fecha.getText().toString(), var.getLoteLaboratorio(), btn_listviewdialog.getText().toString(), btn_listviewdialog1.getText().toString(),
@@ -560,6 +561,55 @@ public class Laboratorio_Calidad extends ActionBarActivity implements View.OnCli
         }
         catch (Exception e){}
 
+    }
+
+    public String generarDatosCambiados() {
+
+        datos_cambiados = null;
+
+        if (!(cursor.getString(cursor.getColumnIndex("producto")).equals(btn_listviewdialog1.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Producto Valor Previo: " + cursor.getString(cursor.getColumnIndex("producto")) + ", Valor Nuevo:" + btn_listviewdialog1.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_apariencia")).equals(observaciones_apariencia.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Apariencia Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_apariencia")) + ", Valor Nuevo:" + observaciones_apariencia.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_fundido")).equals(observaciones_fundido.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Fundido Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_fundido")) + ", Valor Nuevo:" + observaciones_fundido.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("humedad_remuestreo")).equals(humRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Humedad rem Valor Previo: " + cursor.getString(cursor.getColumnIndex("humedad_remuestreo")) + ", Valor Nuevo:" + humRem.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("humedad")).equals(humedad.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Humedad Valor Previo: " + cursor.getString(cursor.getColumnIndex("humedad")) + ", Valor Nuevo:" + humedad.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("codigo_prod")).equals(codigo_prod.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Codigo Producto Valor Previo: " + cursor.getString(cursor.getColumnIndex("codigo_prod")) + ", Valor Nuevo:" + codigo_prod.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_color")).equals(observaciones_color.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Color Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_color")) + ", Valor Nuevo:" + observaciones_color.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_hebrado")).equals(observaciones_hebrado.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Observaciones Hebrado Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_hebrado")) + ", Valor Nuevo:" + observaciones_hebrado.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph_remuestreo")).equals(phRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "PH rem Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_remuestreo")) + ", Valor Nuevo:" + phRem.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasa_total")).equals(grasa_total.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Grasa Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasa_total")) + ", Valor Nuevo:" + grasa_total.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_sabor")).equals(observaciones_sabor.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "observaciones_sabor Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_sabor")) + ", Valor Nuevo:" + observaciones_sabor.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones_rallado")).equals(observaciones_rallado.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "observaciones_rallado Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones_rallado")) + ", Valor Nuevo:" + observaciones_rallado.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph")).equals(ph.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph")) + ", Valor Nuevo:" + ph.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasa_remuestreo")).equals(grasRem.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "grasa_remuestreo Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasa_remuestreo")) + ", Valor Nuevo:" + grasRem.getText().toString() + ";";
+        }
+        return datos_cambiados;
     }
 
     public void launchView(int from)

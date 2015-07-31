@@ -805,7 +805,8 @@ try {
                      "ph_cj01_3='"+ph_cj01_3+"',"+
                      "fecha_hoy='"+fecha_hoy+"',"+
                      "tina='"+tina+"',"+
-                            "bandera='"+bandera+"'"
+                            "bandera='" + bandera + "'" +
+                            " WHERE lote = " + lote + ";"
             );
             return true;
         }
@@ -2313,7 +2314,7 @@ try {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT  sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, "+
+            cursor = db.rawQuery("SELECT lote, sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, " +
                     "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy," +
                     "producto, codigo_producto " +
                     "FROM crema_lab WHERE lote ='" + lote +"';", null);

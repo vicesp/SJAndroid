@@ -112,6 +112,7 @@ public class Login extends Activity {
                     Variables.setFromCrema(false);
                     Variables.setFromCuajadas(false);
                     Variables.setFromRequeson(false);
+                    Variables.setFromAdminLaboratorio(false);
                     Variables.setNombre_usuario(Usuario.getText().toString());
                     finish();startActivity(new Intent(Login.this, Panel_Lab.class));
                 } else if (tipoUsuario == 15 || tipoUsuario == 16 || tipoUsuario == 18)

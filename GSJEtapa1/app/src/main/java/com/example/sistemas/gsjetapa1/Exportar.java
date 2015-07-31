@@ -38,7 +38,7 @@ import config.DataBaseHelper;
  */
 public class Exportar extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT, btnELab;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT, btnELab, btnEDM;
     private TextView fecha;
     String nom_tabla;
     String nom_excel;
@@ -132,7 +132,18 @@ if(Variables.isFromExportador()){
 
             }
         });
+        btnEDM = (Button) findViewById(R.id.btnEpt);
+        btnEDM.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                Variables.setNombre_excel("Detector de Metales");
+                Variables.setNombre_tabla("detector_metales");
+                Variables.setTipo_consulta(1);
+                AC.dialogee.show();
+
+            }
+        });
 
         btnELab=(Button)findViewById(R.id.btnELab);
         btnELab.setOnClickListener(new View.OnClickListener() {

@@ -53,6 +53,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
     private CheckBox checkBox, manCheck, chedCheck, stiCheck;
     private Spinner spinCuajadas;
     private EditText Lote, humCuaj, grasCuaj, phCuaj, phSue, acSue, stSue;
+    private String datos_cambiados;
 
 
     @Override
@@ -175,7 +176,7 @@ public class Cuajadas_Lab extends ActionBarActivity {
                     grasCuaj.setText("");
                 }
                 if (var.isFromCuajadas()) {
-                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Cuajadas Laboratorio", "", "", FechaH.Hoy_hora());
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Cuajadas Laboratorio", generarDatosCambiados(), "", FechaH.Hoy_hora());
                     boolean exitoso = con.DAOActualizaCuajadasLab(var.getLoteCuajadas(), Fecha.getText().toString(), humCuaj.getText().toString(), grasCuaj.getText().toString(),
                             phCuaj.getText().toString(), phSue.getText().toString(), acSue.getText().toString(), stSue.getText().toString(), switchTexter(checkBox.isChecked()), tinaCuajadas, checkTexters(), Lote.getText().toString());
                     if (exitoso) {
@@ -341,6 +342,32 @@ public class Cuajadas_Lab extends ActionBarActivity {
         spinCuajadas.setSelection(getPosition(cursor.getString(cursor.getColumnIndex("tina_cuajada"))));
         textCheckers(cursor.getString(cursor.getColumnIndex("tipo_cuajada")));
 
+    }
+
+    public String generarDatosCambiados() {
+        datos_cambiados = null;
+        if (!(cursor.getString(cursor.getColumnIndex("st_sue")).equals(stSue.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Solidos Totales Suero Valor Previo: " + cursor.getString(cursor.getColumnIndex("st_sue")) + ", Valor Nuevo:" + stSue.getText().toString() + ";";
+        }
+
+        if (!(cursor.getString(cursor.getColumnIndex("ac_sue")).equals(acSue.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Acido Suero Valor Previo: " + cursor.getString(cursor.getColumnIndex("ac_sue")) + ", Valor Nuevo:" + acSue.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph_sue")).equals(phSue.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "PH Suero Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_sue")) + ", Valor Nuevo:" + phSue.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("hum_cuaj")).equals(humCuaj.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Humedad Cuajada Valor Previo: " + cursor.getString(cursor.getColumnIndex("hum_cuaj")) + ", Valor Nuevo:" + humCuaj.getText().toString() + ";";
+        }
+
+        if (!(cursor.getString(cursor.getColumnIndex("gras_cuaj")).equals(grasCuaj.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "Grasa Cuajada Valor Previo: " + cursor.getString(cursor.getColumnIndex("gras_cuaj")) + ", Valor Nuevo:" + grasCuaj.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph_cuaj")).equals(phCuaj.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "PH Cuajada Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph_cuaj")) + ", Valor Nuevo:" + phCuaj.getText().toString() + ";";
+        }
+
+        return datos_cambiados;
     }
     public int getPosition(String value){
       switch (value){

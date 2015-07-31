@@ -2,11 +2,13 @@ package com.example.sistemas.gsjetapa1;
 
 import android.content.Intent;
 import android.media.Image;
+import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -16,9 +18,10 @@ import java.util.ArrayList;
 
 
 public class Calculadora extends ActionBarActivity {
-private Button btnZero, btnOne, btnTwo, btnThree, btnFour,
+    private ImageButton btnZero, btnOne, btnTwo, btnThree, btnFour,
         btnFive, btnSix, btnSeven, btnEight, btnNine,
-        btnAC, btnEqual, btnPeriod, btnBackSpace, btnBack;
+            btnAC, btnEqual, btnPeriod, btnBackSpace;
+    private Button btnBack;
     private ImageButton btnMinus, btnPlus;
     private Double number=0.0;
     private boolean summing=false;
@@ -33,32 +36,36 @@ private Button btnZero, btnOne, btnTwo, btnThree, btnFour,
         setContentView(R.layout.activity_calculadora);
 
 
-
-        btnZero=(Button)findViewById(R.id.btnZero);
-        btnOne=(Button)findViewById(R.id.btnOne);
-        btnTwo=(Button)findViewById(R.id.btnTwo);
-        btnThree=(Button)findViewById(R.id.btnThree);
-        btnFour=(Button)findViewById(R.id.btnFour);
-        btnFive=(Button)findViewById(R.id.btnFive);
-        btnSix=(Button)findViewById(R.id.btnSix);
-        btnSeven=(Button)findViewById(R.id.btnSeven);
-        btnEight=(Button)findViewById(R.id.btnEight);
-        btnNine=(Button)findViewById(R.id.btnNine);
-        btnAC=(Button)findViewById(R.id.btnAC);
+        btnZero = (ImageButton) findViewById(R.id.btnZero);
+        btnOne = (ImageButton) findViewById(R.id.btnOne);
+        btnTwo = (ImageButton) findViewById(R.id.btnTwo);
+        btnThree = (ImageButton) findViewById(R.id.btnThree);
+        btnFour = (ImageButton) findViewById(R.id.btnFour);
+        btnFive = (ImageButton) findViewById(R.id.btnFive);
+        btnSix = (ImageButton) findViewById(R.id.btnSix);
+        btnSeven = (ImageButton) findViewById(R.id.btnSeven);
+        btnEight = (ImageButton) findViewById(R.id.btnEight);
+        btnNine = (ImageButton) findViewById(R.id.btnNine);
+        btnAC = (ImageButton) findViewById(R.id.btnAC);
         btnPlus=(ImageButton)findViewById(R.id.btnPlus);
         btnMinus=(ImageButton)findViewById(R.id.btnMinus);
-        btnEqual=(Button)findViewById(R.id.btnEqual);
-        btnPeriod=(Button)findViewById(R.id.btnPeriod);
-        btnBackSpace=(Button)findViewById(R.id.btnBackSpace);
+        btnEqual = (ImageButton) findViewById(R.id.btnEqual);
+        btnPeriod = (ImageButton) findViewById(R.id.btnPeriod);
+        btnBackSpace = (ImageButton) findViewById(R.id.btnBackSpace);
         btnBack=(Button)findViewById(R.id.btnBack);
 
         dispView=(TextView)findViewById(R.id.dispView);
+        //btnZero.setImageResource(R.drawable.whatever);
 
-        btnZero.setOnClickListener(new View.OnClickListener(){
+
+        btnZero.setOnClickListener(new View.OnClickListener() {
             @Override
-        public void onClick(View v){
-            addNumber("0");
-        }});
+            public void onClick(View v) {
+                addNumber("0");
+            }
+        });
+
+
 
         btnOne.setOnClickListener(new View.OnClickListener(){
                 @Override
