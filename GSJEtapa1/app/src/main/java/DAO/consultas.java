@@ -550,32 +550,28 @@ public class consultas {
     }
 
     /*********** Actualizar Familias **************/
-    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar) {
-        boolean check = false;
-        cursor=null;
+    public boolean DAOActualizarFamilia(String codigo, String nombre, int eliminar, int cuajado, int fundido, String codigoNuevo) {
         db = myDbHelper.getWritableDatabase();
-        try{
-
-
-            db.execSQL("UPDATE cat_familias SET codigo_familia = '"+codigo+"', nombre_familia = '"+nombre+"', eliminado = "+eliminar+" WHERE codigo_familia ='"+codigo+"';");
-
-
-            check= true;
+        cursor=null;
+try {
+            db.execSQL("UPDATE cat_familias SET codigo_familia = '" + codigoNuevo + "', nombre_familia = '" + nombre + "', eliminado = " + eliminar + ", cuajado = " + cuajado + ", fundido = " + fundido + " WHERE codigo_familia ='" + codigo + "';");
+            return true;
         }
         catch(Exception e)
         {
-            check = false;
+            return false;
         }
-        return check;
+
     }
     /*********** Guardar Nueva Familia **************/
 
-    public boolean DAOGuardarFamilia(String codigo, String nombre)
+    public boolean DAOGuardarFamilia(String codigo, String nombre, int cuajado, int fundido)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
         try {
-            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia) VALUES ('" + codigo + "','" + nombre + "' );" );
+
+            db.execSQL("INSERT INTO cat_familias (codigo_familia, nombre_familia, cuajado, fundido) VALUES ('" + codigo + "','" + nombre + "','"+cuajado+"','"+fundido+"' );" );
             return true;
         }
         catch(Exception e){
@@ -809,7 +805,8 @@ public class consultas {
                      "ph_cj01_3='"+ph_cj01_3+"',"+
                      "fecha_hoy='"+fecha_hoy+"',"+
                      "tina='"+tina+"',"+
-                            "bandera='"+bandera+"'"
+                            "bandera='" + bandera + "'" +
+                            " WHERE lote = " + lote + ";"
             );
             return true;
         }
@@ -2093,13 +2090,37 @@ public class consultas {
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, tajo FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
+        cursor = db.rawQuery("SELECT codigo_familia, tajo  FROM cat_productos WHERE codigo_producto =  '" + codigo+"';", null);
         if (cursor.moveToPosition(0)) {
 
             //cursor.close();
             myDbHelper.close();
             db.close();
             Log.i("Cursor", cursor.getString(cursor.getColumnIndex("tajo")));
+            return cursor;
+
+
+
+
+        }else{
+            cursor.close();
+            myDbHelper.close();
+            db.close();
+            return null;
+
+        }
+    }
+    /****************    Consulta para Obtener Familias     *************/
+    public Cursor DAOGetCursorFamilia(String codigo)
+    {
+        db = myDbHelper.getWritableDatabase();
+        cursor=null;
+        cursor = db.rawQuery("SELECT cuajado, fundido  FROM cat_familias WHERE codigo_familia =  '" + codigo+"';", null);
+        if (cursor.moveToPosition(0)) {
+
+            //cursor.close();
+            myDbHelper.close();
+            db.close();
             return cursor;
 
 
@@ -2140,11 +2161,19 @@ public class consultas {
     }
 
     /****************    Consulta para Obtener Familias     *************/
-    public ArrayList<consultas> DAOGetTodosFamilias()
+    public ArrayList<consultas> DAOGetTodosFamilias(boolean forFundido, boolean forCuajado)
     {
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
+        if(forFundido){
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 AND fundido =1 " + "", null);
+        }
+        else if(forCuajado){
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 AND cuajado = 1 " + "", null);
+        }
+        else {
+            cursor = db.rawQuery("SELECT codigo_familia, nombre_familia FROM cat_familias WHERE eliminado = 0 " + "", null);
+        }
         ArrayList<consultas> productosArray = new ArrayList<consultas>();
 
         if (cursor != null ) {
@@ -2174,14 +2203,15 @@ public class consultas {
 
     public Boolean DAOCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
                                String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
-                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy){
+                                String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String fecha_hoy,
+                               String producto, String codigo_producto){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
             db.execSQL("INSERT INTO crema_lab (lote, fecha, sabor, sabor_observaciones, color, color_observaciones, aroma,aroma_observaciones," +
-                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy" +
+                    " escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy, producto, codigo_producto" +
                     ") " +
                     "VALUES ('"+
                     lote+"','"+
@@ -2200,7 +2230,11 @@ public class consultas {
                     solidos+"','"+
                     acidez+"','"+
                     grasa+"','"+
-                            fecha_hoy+"')");
+                    fecha_hoy+"','"+
+                    producto+"','"+
+                    codigo_producto+
+
+                    "')");
             return true;
         }
         catch(SQLException e)
@@ -2212,7 +2246,8 @@ public class consultas {
 
     public Boolean DAOActualizaCremaLab(String lote, String fecha, String sabor, String sabor_observaciones, String color, String color_observaciones,
                                         String aroma, String aroma_observaciones, String escurrimiento, String escurrimiento_observaciones,
-                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo){
+                                        String fluidez, String fluidez_observaciones, String ph, String solidos, String acidez, String grasa, String loteNuevo,
+                                        String producto, String codigo_producto){
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2232,7 +2267,10 @@ public class consultas {
                     " ph='"+ph+"'," +
                     " solidos='"+solidos+"'," +
                     " acidez='"+acidez+"'," +
-                    " grasa='"+grasa+"' " +
+                    " grasa='"+grasa +"'," +
+                    " producto='"+producto+"'," +
+                    " codigo_producto='"+codigo_producto+
+                    "' " +
                     " WHERE lote = '"+lote+"';" +
 
             "");
@@ -2247,7 +2285,7 @@ public class consultas {
     public ArrayList<consultas> DAOListaCremaLabRealizado(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, codigo_producto, producto " +
                 "FROM crema_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2260,7 +2298,7 @@ public class consultas {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_producto"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
@@ -2276,8 +2314,9 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT  sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, "+
-                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy " +
+            cursor = db.rawQuery("SELECT lote, sabor, sabor_observaciones, color, color_observaciones, aroma ,aroma_observaciones, " +
+                    "escurrimiento, escurrimiento_observaciones, fluidez, fluidez_observaciones, ph, solidos, acidez, grasa, fecha_hoy," +
+                    "producto, codigo_producto " +
                     "FROM crema_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 
@@ -2306,13 +2345,13 @@ public class consultas {
     /****************    Consulta para Cuajadas lab      *************/
 
     public Boolean DAOCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tina_suero){
+                                  String ac_sue, String st_sue, String fecha_hoy, String grasa_check, String tina_cuajada, String tipo_cuajada) {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
         try {
 
-            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tina_suero) " +
+            db.execSQL("INSERT INTO cuajadas_lab (lote, fecha, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue,st_sue, fecha_hoy, grasa_check, tina_cuajada, tipo_cuajada) " +
                     "VALUES ('"+
                     lote+"','"+
                     fecha+"','"+
@@ -2325,7 +2364,7 @@ public class consultas {
                     fecha_hoy+"','"+
                     grasa_check+"','"+
                     tina_cuajada+"','"+
-                    tina_suero+
+                    tipo_cuajada +
                     "')");
             return true;
         }
@@ -2337,7 +2376,7 @@ public class consultas {
     /****************    Consulta para ActualizarCuajadas lab      *************/
 
     public Boolean DAOActualizaCuajadasLab(String lote, String fecha, String hum_cuaj, String gras_cuaj, String ph_cuaj, String ph_sue,
-                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tina_suero,String loteNuevo){
+                                           String ac_sue, String st_sue, String grasa_check, String tina_cuajada, String tipo_cuajada, String loteNuevo) {
         cursor=null;
         db = myDbHelper.getWritableDatabase();
 
@@ -2352,7 +2391,7 @@ public class consultas {
                     " st_sue='"+st_sue+"'," +
                     " grasa_check='"+grasa_check+"',"+
                     " tina_cuajada='"+tina_cuajada+"',"+
-                    " tina_suero='"+tina_suero+"' "+
+                    " tipo_cuajada='" + tipo_cuajada + "' " +
                     "WHERE lote = '"+lote+"';" +
 
                     "");
@@ -2367,7 +2406,7 @@ public class consultas {
     public ArrayList<consultas> DAOListaCuajadasLabRealizado(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, tina_cuajada " +
                 "FROM cuajadas_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2380,7 +2419,7 @@ public class consultas {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x] = cursor.getString(cursor.getColumnIndex("lote")) + "-Tina No. " + cursor.getString(cursor.getColumnIndex("tina_cuajada"));
                     cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
@@ -2396,7 +2435,7 @@ public class consultas {
         cursor = null;
         db = myDbHelper.getWritableDatabase();
         try {
-            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tina_suero, lote " +
+            cursor = db.rawQuery("SELECT fecha_hoy, hum_cuaj, gras_cuaj, ph_cuaj, ph_sue, ac_sue, st_sue, grasa_check, tina_cuajada, tipo_cuajada, lote " +
                     "FROM cuajadas_lab WHERE lote ='" + lote +"';", null);
             if (cursor.moveToPosition(0)) {
 
@@ -2438,6 +2477,7 @@ public class consultas {
                             "color, aroma, observaciones_sabor,humedad, ph, grasa_total, humedad_remuestreo,ph_remuestreo," +
                             " grasa_remuestreo,necesidad_remuestreo, observaciones_apariencia,fecha_hoy, observaciones_color, untabilidad, observaciones_untabilidad) " +
                             "VALUES ('" +
+
 
                             fecha + "','" +
                             lote + "','" +
@@ -2519,7 +2559,7 @@ public class consultas {
     public ArrayList<consultas> DAOListaRequesonLab(String fecha){
         db = myDbHelper.getWritableDatabase();
         cursor=null;
-        cursor = db.rawQuery("SELECT lote " +
+        cursor = db.rawQuery("SELECT lote, codigo_prod, producto " +
                 "FROM requeson_lab WHERE fecha_hoy ='" +
                 fecha + "'", null);
         ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
@@ -2532,7 +2572,8 @@ public class consultas {
 
                 for(int x=0;x< cursor.getCount();x++)
                 {
-                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"));
+                    lista.empaque[x]=cursor.getString(cursor.getColumnIndex("lote"))+"-"+cursor.getString(cursor.getColumnIndex("codigo_prod"))+"/" + cursor.getString(cursor.getColumnIndex("producto"));
+                    cursor.moveToNext();
                 }
                 empaqueArray.add(lista);
             }
@@ -2554,6 +2595,520 @@ public class consultas {
                                     "untabilidad, observaciones_untabilidad " +
 
                     "FROM requeson_lab WHERE lote ='" + lote + "';", null);
+            if (cursor.moveToPosition(0)) {
+
+                //cursor.close();
+                myDbHelper.close();
+                db.close();
+                return cursor;
+
+
+
+
+            }else{
+                cursor.close();
+                myDbHelper.close();
+                db.close();
+                return null;
+
+            }
+        }
+
+        catch (Exception e){
+            return null;
+
+        }
+    }
+    /****************    Consulta para Detector de Metales    *************/
+
+    public boolean DAODetectorMetales(String lote, String usuario,	String fecha_hoy,	String fecha,	String hr_campo1,	String hr_campo2,	String hr_campo3,	String hr_campo4,
+                                      String hr_campo5,	String hr_campo6,	String hr_campo7,	String hr_campo8,	String hr_campo9,	String hr_campo10,	String hr_campo11,
+                                      String hr_campo12,	String hr_campo13,	String hr_campo14,	String hr_campo15,	String prod_campo1,	String prod_campo2,	String prod_campo3,
+                                      String prod_campo4,	String prod_campo5,	String prod_campo6,	String prod_campo7,	String prod_campo8,	String prod_campo9,	String prod_campo10,
+                                      String prod_campo11,	String prod_campo12,	String prod_campo13,	String prod_campo14,	String prod_campo15,	String paquete_a_campo1,
+                                      String paquete_b_campo1,	String paquete_a_campo2,	String paquete_b_campo2,	String paquete_a_campo3,	String paquete_b_campo3,	String paquete_a_campo4,
+                                      String paquete_b_campo4,	String paquete_a_campo5,	String paquete_b_campo5,	String paquete_a_campo6,	String paquete_b_campo6,	String paquete_a_campo7,	
+                                      String paquete_b_campo7,	String paquete_a_campo8,	String paquete_b_campo8,	String paquete_a_campo9,	String paquete_b_campo9,	String paquete_a_campo10,	
+                                      String paquete_b_campo10,	String paquete_a_campo11,	String paquete_b_campo11,	String paquete_a_campo12,	String paquete_b_campo12,	String paquete_a_campo13,	
+                                      String paquete_b_campo13,	String paquete_a_campo14,	String paquete_b_campo14,	String paquete_a_campo15,	String paquete_b_campo15,	String ac_inox_campo1,	
+                                      String ac_inox_campo2,	String ac_inox_campo3,	String ac_inox_campo4,	String ac_inox_campo5,	String ac_inox_campo6,	String ac_inox_campo7,	String ac_inox_campo8,	
+                                      String ac_inox_campo9,	String ac_inox_campo10,	String ac_inox_campo11,	String ac_inox_campo12,	String ac_inox_campo13,	String ac_inox_campo14,	String ac_inox_campo15,	
+                                      String ac_inox_campo16,	String ac_inox_campo17,	String ac_inox_campo18,	String ac_inox_campo19,	String ac_inox_campo20,	String ac_inox_campo21,	String ac_inox_campo22,	
+                                      String ac_inox_campo23,	String ac_inox_campo24,	String ac_inox_campo25,	String ac_inox_campo26,	String ac_inox_campo27,	String ac_inox_campo28,	String ac_inox_campo29,	
+                                      String ac_inox_campo30,	String ac_inox_campo31,	String ac_inox_campo32,	String ac_inox_campo33,	String ac_inox_campo34,	String ac_inox_campo35,	String ac_inox_campo36,	
+                                      String ac_inox_campo37,	String ac_inox_campo38,	String ac_inox_campo39,	String ac_inox_campo40,	String ac_inox_campo41,	String ac_inox_campo42,	String ac_inox_campo43,	
+                                      String ac_inox_campo44,	String ac_inox_campo45,	String ferroso_campo1,	String ferroso_campo2,	String ferroso_campo3,	String ferroso_campo4,	String ferroso_campo5,	
+                                      String ferroso_campo6,	String ferroso_campo7,	String ferroso_campo8,	String ferroso_campo9,	String ferroso_campo10,	String ferroso_campo11,	String ferroso_campo12,	
+                                      String ferroso_campo13,	String ferroso_campo14,	String ferroso_campo15,	String ferroso_campo16,	String ferroso_campo17,	String ferroso_campo18,	String ferroso_campo19,	
+                                      String ferroso_campo20,	String ferroso_campo21,	String ferroso_campo22,	String ferroso_campo23,	String ferroso_campo24,	String ferroso_campo25,	String ferroso_campo26,	
+                                      String ferroso_campo27,	String ferroso_campo28,	String ferroso_campo29,	String ferroso_campo30,	String ferroso_campo31,	String ferroso_campo32,	String ferroso_campo33,	
+                                      String ferroso_campo34,	String ferroso_campo35,	String ferroso_campo36,	String ferroso_campo37,	String ferroso_campo38,	String ferroso_campo39,	String ferroso_campo40,	
+                                      String ferroso_campo41,	String ferroso_campo42,	String ferroso_campo43,	String ferroso_campo44,	String ferroso_campo45,	String no_ferroso_campo1,	String no_ferroso_campo2,	
+                                      String no_ferroso_campo3,	String no_ferroso_campo4,	String no_ferroso_campo5,	String no_ferroso_campo6,	String no_ferroso_campo7,	String no_ferroso_campo8,	
+                                      String no_ferroso_campo9,	String no_ferroso_campo10,	String no_ferroso_campo11,	String no_ferroso_campo12,	String no_ferroso_campo13,	String no_ferroso_campo14,	
+                                      String no_ferroso_campo15,	String no_ferroso_campo16,	String no_ferroso_campo17,	String no_ferroso_campo18,	String no_ferroso_campo19,	String no_ferroso_campo20,	
+                                      String no_ferroso_campo21,	String no_ferroso_campo22,	String no_ferroso_campo23,	String no_ferroso_campo24,	String no_ferroso_campo25,	String no_ferroso_campo26,	
+                                      String no_ferroso_campo27,	String no_ferroso_campo28,	String no_ferroso_campo29,	String no_ferroso_campo30,	String no_ferroso_campo31,	String no_ferroso_campo32,	
+                                      String no_ferroso_campo33,	String no_ferroso_campo34,	String no_ferroso_campo35,	String no_ferroso_campo36,	String no_ferroso_campo37,	String no_ferroso_campo38,	
+                                      String no_ferroso_campo39,	String no_ferroso_campo40,	String no_ferroso_campo41,	String no_ferroso_campo42,	String no_ferroso_campo43,	String no_ferroso_campo44,	
+                                      String no_ferroso_campo45,	String accion_correctiva_campo1,	String accion_correctiva_campo2,	String accion_correctiva_campo3,	String accion_correctiva_campo4,	
+                                      String accion_correctiva_campo5,	String accion_correctiva_campo6,	String accion_correctiva_campo7,	String accion_correctiva_campo8,	String accion_correctiva_campo9,	
+                                      String accion_correctiva_campo10,	String accion_correctiva_campo11,	String accion_correctiva_campo12,	String accion_correctiva_campo13,	String accion_correctiva_campo14,	
+                                      String accion_correctiva_campo15,	String codigo,	String actualizacion,	String vigencia){
+        cursor=null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("INSERT INTO detector_metales (lote, usuario, fecha_hoy, fecha, hr_campo1, hr_campo2, hr_campo3, hr_campo4, " +
+                    "hr_campo5, hr_campo6, hr_campo7, hr_campo8, hr_campo9, hr_campo10, hr_campo11, " +
+                    "hr_campo12, hr_campo13, hr_campo14, hr_campo15, prod_campo1, prod_campo2, " +
+                    "prod_campo3, prod_campo4, prod_campo5, prod_campo6, prod_campo7, " +
+                    "prod_campo8, prod_campo9, prod_campo10, prod_campo11, prod_campo12, " +
+                    "prod_campo13, prod_campo14, prod_campo15, paquete_a_campo1, paquete_b_campo1, " +
+                    "paquete_a_campo2, paquete_b_campo2, paquete_a_campo3, paquete_b_campo3, " +
+                    "paquete_a_campo4, paquete_b_campo4, paquete_a_campo5, paquete_b_campo5, " +
+                    "paquete_a_campo6, paquete_b_campo6, paquete_a_campo7, paquete_b_campo7, " +
+                    "paquete_a_campo8, paquete_b_campo8, paquete_a_campo9, paquete_b_campo9, " +
+                    "paquete_a_campo10, paquete_b_campo10, paquete_a_campo11, paquete_b_campo11, " +
+                    "paquete_a_campo12, paquete_b_campo12, paquete_a_campo13, paquete_b_campo13, " +
+                    "paquete_a_campo14, paquete_b_campo14, paquete_a_campo15, paquete_b_campo15, " +
+                    "ac_inox_campo1, ac_inox_campo2, ac_inox_campo3, ac_inox_campo4, ac_inox_campo5, " +
+                    "ac_inox_campo6, ac_inox_campo7, ac_inox_campo8, ac_inox_campo9, ac_inox_campo10, " +
+                    "ac_inox_campo11, ac_inox_campo12, ac_inox_campo13, ac_inox_campo14, " +
+                    "ac_inox_campo15, ac_inox_campo16, ac_inox_campo17, ac_inox_campo18, " +
+                    "ac_inox_campo19, ac_inox_campo20, ac_inox_campo21, ac_inox_campo22, " +
+                    "ac_inox_campo23, ac_inox_campo24, ac_inox_campo25, ac_inox_campo26, " +
+                    "ac_inox_campo27, ac_inox_campo28, ac_inox_campo29, ac_inox_campo30, " +
+                    "ac_inox_campo31, ac_inox_campo32, ac_inox_campo33, ac_inox_campo34, " +
+                    "ac_inox_campo35, ac_inox_campo36, ac_inox_campo37, ac_inox_campo38, " +
+                    "ac_inox_campo39, ac_inox_campo40, ac_inox_campo41, ac_inox_campo42, " +
+                    "ac_inox_campo43, ac_inox_campo44, ac_inox_campo45, ferroso_campo1, " +
+                    "ferroso_campo2, ferroso_campo3, ferroso_campo4, ferroso_campo5, ferroso_campo6, " +
+                    "ferroso_campo7, ferroso_campo8, ferroso_campo9, ferroso_campo10, ferroso_campo11, " +
+                    "ferroso_campo12, ferroso_campo13, ferroso_campo14, ferroso_campo15, " +
+                    "ferroso_campo16, ferroso_campo17, ferroso_campo18, ferroso_campo19, " +
+                    "ferroso_campo20, ferroso_campo21, ferroso_campo22, ferroso_campo23, " +
+                    "ferroso_campo24, ferroso_campo25, ferroso_campo26, ferroso_campo27, " +
+                    "ferroso_campo28, ferroso_campo29, ferroso_campo30, ferroso_campo31, " +
+                    "ferroso_campo32, ferroso_campo33, ferroso_campo34, ferroso_campo35, " +
+                    "ferroso_campo36, ferroso_campo37, ferroso_campo38, ferroso_campo39, " +
+                    "ferroso_campo40, ferroso_campo41, ferroso_campo42, ferroso_campo43, " +
+                    "ferroso_campo44, ferroso_campo45, no_ferroso_campo1, no_ferroso_campo2, " +
+                    "no_ferroso_campo3, no_ferroso_campo4, no_ferroso_campo5, no_ferroso_campo6, " +
+                    "no_ferroso_campo7, no_ferroso_campo8, no_ferroso_campo9, no_ferroso_campo10, " +
+                    "no_ferroso_campo11, no_ferroso_campo12, no_ferroso_campo13, no_ferroso_campo14, " +
+                    "no_ferroso_campo15, no_ferroso_campo16, no_ferroso_campo17, no_ferroso_campo18, " +
+                    "no_ferroso_campo19, no_ferroso_campo20, no_ferroso_campo21, no_ferroso_campo22, " +
+                    "no_ferroso_campo23, no_ferroso_campo24, no_ferroso_campo25, no_ferroso_campo26, " +
+                    "no_ferroso_campo27, no_ferroso_campo28, no_ferroso_campo29, no_ferroso_campo30, " +
+                    "no_ferroso_campo31, no_ferroso_campo32, no_ferroso_campo33, no_ferroso_campo34, " +
+                    "no_ferroso_campo35, no_ferroso_campo36, no_ferroso_campo37, no_ferroso_campo38, " +
+                    "no_ferroso_campo39, no_ferroso_campo40, no_ferroso_campo41, no_ferroso_campo42, " +
+                    "no_ferroso_campo43, no_ferroso_campo44, no_ferroso_campo45, accion_correctiva_campo1, " +
+                    "accion_correctiva_campo2, accion_correctiva_campo3, accion_correctiva_campo4, " +
+                    "accion_correctiva_campo5, accion_correctiva_campo6, accion_correctiva_campo7, " +
+                    "accion_correctiva_campo8, accion_correctiva_campo9, accion_correctiva_campo10, " +
+                    "accion_correctiva_campo11, accion_correctiva_campo12, accion_correctiva_campo13, " +
+                    "accion_correctiva_campo14, accion_correctiva_campo15, codigo, actualizacion, vigencia)" +
+                    " VALUES ('"+lote+"','"+usuario+"','"+fecha_hoy+"','"+fecha+"','"+hr_campo1+"','"+hr_campo2+"','"+hr_campo3+"','"+
+                    hr_campo4+"','"+hr_campo5+"','"+hr_campo6+"','"+hr_campo7+"','"+hr_campo8+"','"+hr_campo9+"','"+
+                    hr_campo10+"','"+hr_campo11+"','"+hr_campo12+"','"+hr_campo13+"','"+hr_campo14+"','"+hr_campo15+"','"+
+                    prod_campo1+"','"+prod_campo2+"','"+prod_campo3+"','"+prod_campo4+"','"+prod_campo5+"','"+prod_campo6+"','"+
+                    prod_campo7+"','"+prod_campo8+"','"+prod_campo9+"','"+prod_campo10+"','"+prod_campo11+"','"+prod_campo12+"','"+
+                    prod_campo13+"','"+prod_campo14+"','"+prod_campo15+"','"+paquete_a_campo1+"','"+paquete_b_campo1+"','"+
+                    paquete_a_campo2+"','"+paquete_b_campo2+"','"+paquete_a_campo3+"','"+paquete_b_campo3+"','"+paquete_a_campo4+"','"+
+                    paquete_b_campo4+"','"+paquete_a_campo5+"','"+paquete_b_campo5+"','"+paquete_a_campo6+"','"+paquete_b_campo6+"','"+
+                    paquete_a_campo7+"','"+paquete_b_campo7+"','"+paquete_a_campo8+"','"+paquete_b_campo8+"','"+paquete_a_campo9+"','"+
+                    paquete_b_campo9+"','"+paquete_a_campo10+"','"+paquete_b_campo10+"','"+paquete_a_campo11+"','"+paquete_b_campo11+"','"+
+                    paquete_a_campo12+"','"+paquete_b_campo12+"','"+paquete_a_campo13+"','"+paquete_b_campo13+"','"+paquete_a_campo14+"','"+
+                    paquete_b_campo14+"','"+paquete_a_campo15+"','"+paquete_b_campo15+"','"+ac_inox_campo1+"','"+ac_inox_campo2+"','"+
+                    ac_inox_campo3+"','"+ac_inox_campo4+"','"+ac_inox_campo5+"','"+ac_inox_campo6+"','"+ac_inox_campo7+"','"+ac_inox_campo8+"','"+
+                    ac_inox_campo9+"','"+ac_inox_campo10+"','"+ac_inox_campo11+"','"+ac_inox_campo12+"','"+ac_inox_campo13+"','"+
+                    ac_inox_campo14+"','"+ac_inox_campo15+"','"+ac_inox_campo16+"','"+ac_inox_campo17+"','"+ac_inox_campo18+"','"+
+                    ac_inox_campo19+"','"+ac_inox_campo20+"','"+ac_inox_campo21+"','"+ac_inox_campo22+"','"+ac_inox_campo23+"','"+
+                    ac_inox_campo24+"','"+ac_inox_campo25+"','"+ac_inox_campo26+"','"+ac_inox_campo27+"','"+ac_inox_campo28+"','"+
+                    ac_inox_campo29+"','"+ac_inox_campo30+"','"+ac_inox_campo31+"','"+ac_inox_campo32+"','"+ac_inox_campo33+"','"+
+                    ac_inox_campo34+"','"+ac_inox_campo35+"','"+ac_inox_campo36+"','"+ac_inox_campo37+"','"+ac_inox_campo38+"','"+
+                    ac_inox_campo39+"','"+ac_inox_campo40+"','"+ac_inox_campo41+"','"+ac_inox_campo42+"','"+ac_inox_campo43+"','"+
+                    ac_inox_campo44+"','"+ac_inox_campo45+"','"+ferroso_campo1+"','"+ferroso_campo2+"','"+ferroso_campo3+"','"+
+                    ferroso_campo4+"','"+ferroso_campo5+"','"+ferroso_campo6+"','"+ferroso_campo7+"','"+ferroso_campo8+"','"+
+                    ferroso_campo9+"','"+ferroso_campo10+"','"+ferroso_campo11+"','"+ferroso_campo12+"','"+ferroso_campo13+"','"+
+                    ferroso_campo14+"','"+ferroso_campo15+"','"+ferroso_campo16+"','"+ferroso_campo17+"','"+ferroso_campo18+"','"+
+                    ferroso_campo19+"','"+ferroso_campo20+"','"+ferroso_campo21+"','"+ferroso_campo22+"','"+ferroso_campo23+"','"+
+                    ferroso_campo24+"','"+ferroso_campo25+"','"+ferroso_campo26+"','"+ferroso_campo27+"','"+ferroso_campo28+"','"+
+                    ferroso_campo29+"','"+ferroso_campo30+"','"+ferroso_campo31+"','"+ferroso_campo32+"','"+ferroso_campo33+"','"+
+                    ferroso_campo34+"','"+ferroso_campo35+"','"+ferroso_campo36+"','"+ferroso_campo37+"','"+ferroso_campo38+"','"+
+                    ferroso_campo39+"','"+ferroso_campo40+"','"+ferroso_campo41+"','"+ferroso_campo42+"','"+ferroso_campo43+"','"+
+                    ferroso_campo44+"','"+ferroso_campo45+"','"+no_ferroso_campo1+"','"+no_ferroso_campo2+"','"+no_ferroso_campo3+"','"+
+                    no_ferroso_campo4+"','"+no_ferroso_campo5+"','"+no_ferroso_campo6+"','"+no_ferroso_campo7+"','"+no_ferroso_campo8+"','"+
+                    no_ferroso_campo9+"','"+no_ferroso_campo10+"','"+no_ferroso_campo11+"','"+no_ferroso_campo12+"','"+no_ferroso_campo13+"','"+
+                    no_ferroso_campo14+"','"+no_ferroso_campo15+"','"+no_ferroso_campo16+"','"+no_ferroso_campo17+"','"+no_ferroso_campo18+"','"+
+                    no_ferroso_campo19+"','"+no_ferroso_campo20+"','"+no_ferroso_campo21+"','"+no_ferroso_campo22+"','"+no_ferroso_campo23+"','"+
+                    no_ferroso_campo24+"','"+no_ferroso_campo25+"','"+no_ferroso_campo26+"','"+no_ferroso_campo27+"','"+no_ferroso_campo28+"','"+
+                    no_ferroso_campo29+"','"+no_ferroso_campo30+"','"+no_ferroso_campo31+"','"+no_ferroso_campo32+"','"+no_ferroso_campo33+"','"+
+                    no_ferroso_campo34+"','"+no_ferroso_campo35+"','"+no_ferroso_campo36+"','"+no_ferroso_campo37+"','"+no_ferroso_campo38+"','"+
+                    no_ferroso_campo39+"','"+no_ferroso_campo40+"','"+no_ferroso_campo41+"','"+no_ferroso_campo42+"','"+no_ferroso_campo43+"','"+
+                    no_ferroso_campo44+"','"+no_ferroso_campo45+"','"+accion_correctiva_campo1+"','"+accion_correctiva_campo2+"','"+
+                    accion_correctiva_campo3+"','"+accion_correctiva_campo4+"','"+accion_correctiva_campo5+"','"+accion_correctiva_campo6+"','"+
+                    accion_correctiva_campo7+"','"+accion_correctiva_campo8+"','"+accion_correctiva_campo9+"','"+accion_correctiva_campo10+"','"+
+                    accion_correctiva_campo11+"','"+accion_correctiva_campo12+"','"+accion_correctiva_campo13+"','"+accion_correctiva_campo14+"','"+
+                    accion_correctiva_campo15+"','"+codigo+"','"+actualizacion+"','"+vigencia+"');");
+                    return true;
+        }
+        catch (Exception e){
+            return false;
+        }
+    }
+
+    /**
+     * *************    Consulta para Actualizar Detector de Metales    ************
+     */
+
+    public boolean DAOActualizarDetectorMetales(String lote, String usuario, String fecha_hoy, String fecha, String hr_campo1, String hr_campo2, String hr_campo3, String hr_campo4,
+                                                String hr_campo5, String hr_campo6, String hr_campo7, String hr_campo8, String hr_campo9, String hr_campo10, String hr_campo11,
+                                                String hr_campo12, String hr_campo13, String hr_campo14, String hr_campo15, String prod_campo1, String prod_campo2, String prod_campo3,
+                                                String prod_campo4, String prod_campo5, String prod_campo6, String prod_campo7, String prod_campo8, String prod_campo9, String prod_campo10,
+                                                String prod_campo11, String prod_campo12, String prod_campo13, String prod_campo14, String prod_campo15, String paquete_a_campo1,
+                                                String paquete_b_campo1, String paquete_a_campo2, String paquete_b_campo2, String paquete_a_campo3, String paquete_b_campo3, String paquete_a_campo4,
+                                                String paquete_b_campo4, String paquete_a_campo5, String paquete_b_campo5, String paquete_a_campo6, String paquete_b_campo6, String paquete_a_campo7,
+                                                String paquete_b_campo7, String paquete_a_campo8, String paquete_b_campo8, String paquete_a_campo9, String paquete_b_campo9, String paquete_a_campo10,
+                                                String paquete_b_campo10, String paquete_a_campo11, String paquete_b_campo11, String paquete_a_campo12, String paquete_b_campo12, String paquete_a_campo13,
+                                                String paquete_b_campo13, String paquete_a_campo14, String paquete_b_campo14, String paquete_a_campo15, String paquete_b_campo15, String ac_inox_campo1,
+                                                String ac_inox_campo2, String ac_inox_campo3, String ac_inox_campo4, String ac_inox_campo5, String ac_inox_campo6, String ac_inox_campo7, String ac_inox_campo8,
+                                                String ac_inox_campo9, String ac_inox_campo10, String ac_inox_campo11, String ac_inox_campo12, String ac_inox_campo13, String ac_inox_campo14, String ac_inox_campo15,
+                                                String ac_inox_campo16, String ac_inox_campo17, String ac_inox_campo18, String ac_inox_campo19, String ac_inox_campo20, String ac_inox_campo21, String ac_inox_campo22,
+                                                String ac_inox_campo23, String ac_inox_campo24, String ac_inox_campo25, String ac_inox_campo26, String ac_inox_campo27, String ac_inox_campo28, String ac_inox_campo29,
+                                                String ac_inox_campo30, String ac_inox_campo31, String ac_inox_campo32, String ac_inox_campo33, String ac_inox_campo34, String ac_inox_campo35, String ac_inox_campo36,
+                                                String ac_inox_campo37, String ac_inox_campo38, String ac_inox_campo39, String ac_inox_campo40, String ac_inox_campo41, String ac_inox_campo42, String ac_inox_campo43,
+                                                String ac_inox_campo44, String ac_inox_campo45, String ferroso_campo1, String ferroso_campo2, String ferroso_campo3, String ferroso_campo4, String ferroso_campo5,
+                                                String ferroso_campo6, String ferroso_campo7, String ferroso_campo8, String ferroso_campo9, String ferroso_campo10, String ferroso_campo11, String ferroso_campo12,
+                                                String ferroso_campo13, String ferroso_campo14, String ferroso_campo15, String ferroso_campo16, String ferroso_campo17, String ferroso_campo18, String ferroso_campo19,
+                                                String ferroso_campo20, String ferroso_campo21, String ferroso_campo22, String ferroso_campo23, String ferroso_campo24, String ferroso_campo25, String ferroso_campo26,
+                                                String ferroso_campo27, String ferroso_campo28, String ferroso_campo29, String ferroso_campo30, String ferroso_campo31, String ferroso_campo32, String ferroso_campo33,
+                                                String ferroso_campo34, String ferroso_campo35, String ferroso_campo36, String ferroso_campo37, String ferroso_campo38, String ferroso_campo39, String ferroso_campo40,
+                                                String ferroso_campo41, String ferroso_campo42, String ferroso_campo43, String ferroso_campo44, String ferroso_campo45, String no_ferroso_campo1, String no_ferroso_campo2,
+                                                String no_ferroso_campo3, String no_ferroso_campo4, String no_ferroso_campo5, String no_ferroso_campo6, String no_ferroso_campo7, String no_ferroso_campo8,
+                                                String no_ferroso_campo9, String no_ferroso_campo10, String no_ferroso_campo11, String no_ferroso_campo12, String no_ferroso_campo13, String no_ferroso_campo14,
+                                                String no_ferroso_campo15, String no_ferroso_campo16, String no_ferroso_campo17, String no_ferroso_campo18, String no_ferroso_campo19, String no_ferroso_campo20,
+                                                String no_ferroso_campo21, String no_ferroso_campo22, String no_ferroso_campo23, String no_ferroso_campo24, String no_ferroso_campo25, String no_ferroso_campo26,
+                                                String no_ferroso_campo27, String no_ferroso_campo28, String no_ferroso_campo29, String no_ferroso_campo30, String no_ferroso_campo31, String no_ferroso_campo32,
+                                                String no_ferroso_campo33, String no_ferroso_campo34, String no_ferroso_campo35, String no_ferroso_campo36, String no_ferroso_campo37, String no_ferroso_campo38,
+                                                String no_ferroso_campo39, String no_ferroso_campo40, String no_ferroso_campo41, String no_ferroso_campo42, String no_ferroso_campo43, String no_ferroso_campo44,
+                                                String no_ferroso_campo45, String accion_correctiva_campo1, String accion_correctiva_campo2, String accion_correctiva_campo3, String accion_correctiva_campo4,
+                                                String accion_correctiva_campo5, String accion_correctiva_campo6, String accion_correctiva_campo7, String accion_correctiva_campo8, String accion_correctiva_campo9,
+                                                String accion_correctiva_campo10, String accion_correctiva_campo11, String accion_correctiva_campo12, String accion_correctiva_campo13, String accion_correctiva_campo14,
+                                                String accion_correctiva_campo15, String codigo, String actualizacion, String vigencia) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+
+        try {
+            db.execSQL("UPDATE detector_metales SET " +
+                    "usuario='" + usuario + "'," +
+                    "fecha_hoy='" + fecha_hoy + "'," +
+                    "fecha='" + fecha + "'," +
+                    "hr_campo1='" + hr_campo1 + "'," +
+                    "hr_campo2='" + hr_campo2 + "'," +
+                    "hr_campo3='" + hr_campo3 + "'," +
+                    "hr_campo4='" + hr_campo4 + "'," +
+                    "hr_campo5='" + hr_campo5 + "'," +
+                    "hr_campo6='" + hr_campo6 + "'," +
+                    "hr_campo7='" + hr_campo7 + "'," +
+                    "hr_campo8='" + hr_campo8 + "'," +
+                    "hr_campo9='" + hr_campo9 + "'," +
+                    "hr_campo10='" + hr_campo10 + "'," +
+                    "hr_campo11='" + hr_campo11 + "'," +
+                    "hr_campo12='" + hr_campo12 + "'," +
+                    "hr_campo13='" + hr_campo13 + "'," +
+                    "hr_campo14='" + hr_campo14 + "'," +
+                    "hr_campo15='" + hr_campo15 + "'," +
+                    "prod_campo1='" + prod_campo1 + "'," +
+                    "prod_campo2='" + prod_campo2 + "'," +
+                    "prod_campo3='" + prod_campo3 + "'," +
+                    "prod_campo4='" + prod_campo4 + "'," +
+                    "prod_campo5='" + prod_campo5 + "'," +
+                    "prod_campo6='" + prod_campo6 + "'," +
+                    "prod_campo7='" + prod_campo7 + "'," +
+                    "prod_campo8='" + prod_campo8 + "'," +
+                    "prod_campo9='" + prod_campo9 + "'," +
+                    "prod_campo10='" + prod_campo10 + "'," +
+                    "prod_campo11='" + prod_campo11 + "'," +
+                    "prod_campo12='" + prod_campo12 + "'," +
+                    "prod_campo13='" + prod_campo13 + "'," +
+                    "prod_campo14='" + prod_campo14 + "'," +
+                    "prod_campo15='" + prod_campo15 + "'," +
+                    "paquete_a_campo1='" + paquete_a_campo1 + "'," +
+                    "paquete_b_campo1='" + paquete_b_campo1 + "'," +
+                    "paquete_a_campo2='" + paquete_a_campo2 + "'," +
+                    "paquete_b_campo2='" + paquete_b_campo2 + "'," +
+                    "paquete_a_campo3='" + paquete_a_campo3 + "'," +
+                    "paquete_b_campo3='" + paquete_b_campo3 + "'," +
+                    "paquete_a_campo4='" + paquete_a_campo4 + "'," +
+                    "paquete_b_campo4='" + paquete_b_campo4 + "'," +
+                    "paquete_a_campo5='" + paquete_a_campo5 + "'," +
+                    "paquete_b_campo5='" + paquete_b_campo5 + "'," +
+                    "paquete_a_campo6='" + paquete_a_campo6 + "'," +
+                    "paquete_b_campo6='" + paquete_b_campo6 + "'," +
+                    "paquete_a_campo7='" + paquete_a_campo7 + "'," +
+                    "paquete_b_campo7='" + paquete_b_campo7 + "'," +
+                    "paquete_a_campo8='" + paquete_a_campo8 + "'," +
+                    "paquete_b_campo8='" + paquete_b_campo8 + "'," +
+                    "paquete_a_campo9='" + paquete_a_campo9 + "'," +
+                    "paquete_b_campo9='" + paquete_b_campo9 + "'," +
+                    "paquete_a_campo10='" + paquete_a_campo10 + "'," +
+                    "paquete_b_campo10='" + paquete_b_campo10 + "'," +
+                    "paquete_a_campo11='" + paquete_a_campo11 + "'," +
+                    "paquete_b_campo11='" + paquete_b_campo11 + "'," +
+                    "paquete_a_campo12='" + paquete_a_campo12 + "'," +
+                    "paquete_b_campo12='" + paquete_b_campo12 + "'," +
+                    "paquete_a_campo13='" + paquete_a_campo13 + "'," +
+                    "paquete_b_campo13='" + paquete_b_campo13 + "'," +
+                    "paquete_a_campo14='" + paquete_a_campo14 + "'," +
+                    "paquete_b_campo14='" + paquete_b_campo14 + "'," +
+                    "paquete_a_campo15='" + paquete_a_campo15 + "'," +
+                    "paquete_b_campo15='" + paquete_b_campo15 + "'," +
+                    "ac_inox_campo1='" + ac_inox_campo1 + "'," +
+                    "ac_inox_campo2='" + ac_inox_campo2 + "'," +
+                    "ac_inox_campo3='" + ac_inox_campo3 + "'," +
+                    "ac_inox_campo4='" + ac_inox_campo4 + "'," +
+                    "ac_inox_campo5='" + ac_inox_campo5 + "'," +
+                    "ac_inox_campo6='" + ac_inox_campo6 + "'," +
+                    "ac_inox_campo7='" + ac_inox_campo7 + "'," +
+                    "ac_inox_campo8='" + ac_inox_campo8 + "'," +
+                    "ac_inox_campo9='" + ac_inox_campo9 + "'," +
+                    "ac_inox_campo10='" + ac_inox_campo10 + "'," +
+                    "ac_inox_campo11='" + ac_inox_campo11 + "'," +
+                    "ac_inox_campo12='" + ac_inox_campo12 + "'," +
+                    "ac_inox_campo13='" + ac_inox_campo13 + "'," +
+                    "ac_inox_campo14='" + ac_inox_campo14 + "'," +
+                    "ac_inox_campo15='" + ac_inox_campo15 + "'," +
+                    "ac_inox_campo16='" + ac_inox_campo16 + "'," +
+                    "ac_inox_campo17='" + ac_inox_campo17 + "'," +
+                    "ac_inox_campo18='" + ac_inox_campo18 + "'," +
+                    "ac_inox_campo19='" + ac_inox_campo19 + "'," +
+                    "ac_inox_campo20='" + ac_inox_campo20 + "'," +
+                    "ac_inox_campo21='" + ac_inox_campo21 + "'," +
+                    "ac_inox_campo22='" + ac_inox_campo22 + "'," +
+                    "ac_inox_campo23='" + ac_inox_campo23 + "'," +
+                    "ac_inox_campo24='" + ac_inox_campo24 + "'," +
+                    "ac_inox_campo25='" + ac_inox_campo25 + "'," +
+                    "ac_inox_campo26='" + ac_inox_campo26 + "'," +
+                    "ac_inox_campo27='" + ac_inox_campo27 + "'," +
+                    "ac_inox_campo28='" + ac_inox_campo28 + "'," +
+                    "ac_inox_campo29='" + ac_inox_campo29 + "'," +
+                    "ac_inox_campo30='" + ac_inox_campo30 + "'," +
+                    "ac_inox_campo31='" + ac_inox_campo31 + "'," +
+                    "ac_inox_campo32='" + ac_inox_campo32 + "'," +
+                    "ac_inox_campo33='" + ac_inox_campo33 + "'," +
+                    "ac_inox_campo34='" + ac_inox_campo34 + "'," +
+                    "ac_inox_campo35='" + ac_inox_campo35 + "'," +
+                    "ac_inox_campo36='" + ac_inox_campo36 + "'," +
+                    "ac_inox_campo37='" + ac_inox_campo37 + "'," +
+                    "ac_inox_campo38='" + ac_inox_campo38 + "'," +
+                    "ac_inox_campo39='" + ac_inox_campo39 + "'," +
+                    "ac_inox_campo40='" + ac_inox_campo40 + "'," +
+                    "ac_inox_campo41='" + ac_inox_campo41 + "'," +
+                    "ac_inox_campo42='" + ac_inox_campo42 + "'," +
+                    "ac_inox_campo43='" + ac_inox_campo43 + "'," +
+                    "ac_inox_campo44='" + ac_inox_campo44 + "'," +
+                    "ac_inox_campo45='" + ac_inox_campo45 + "'," +
+                    "ferroso_campo1='" + ferroso_campo1 + "'," +
+                    "ferroso_campo2='" + ferroso_campo2 + "'," +
+                    "ferroso_campo3='" + ferroso_campo3 + "'," +
+                    "ferroso_campo4='" + ferroso_campo4 + "'," +
+                    "ferroso_campo5='" + ferroso_campo5 + "'," +
+                    "ferroso_campo6='" + ferroso_campo6 + "'," +
+                    "ferroso_campo7='" + ferroso_campo7 + "'," +
+                    "ferroso_campo8='" + ferroso_campo8 + "'," +
+                    "ferroso_campo9='" + ferroso_campo9 + "'," +
+                    "ferroso_campo10='" + ferroso_campo10 + "'," +
+                    "ferroso_campo11='" + ferroso_campo11 + "'," +
+                    "ferroso_campo12='" + ferroso_campo12 + "'," +
+                    "ferroso_campo13='" + ferroso_campo13 + "'," +
+                    "ferroso_campo14='" + ferroso_campo14 + "'," +
+                    "ferroso_campo15='" + ferroso_campo15 + "'," +
+                    "ferroso_campo16='" + ferroso_campo16 + "'," +
+                    "ferroso_campo17='" + ferroso_campo17 + "'," +
+                    "ferroso_campo18='" + ferroso_campo18 + "'," +
+                    "ferroso_campo19='" + ferroso_campo19 + "'," +
+                    "ferroso_campo20='" + ferroso_campo20 + "'," +
+                    "ferroso_campo21='" + ferroso_campo21 + "'," +
+                    "ferroso_campo22='" + ferroso_campo22 + "'," +
+                    "ferroso_campo23='" + ferroso_campo23 + "'," +
+                    "ferroso_campo24='" + ferroso_campo24 + "'," +
+                    "ferroso_campo25='" + ferroso_campo25 + "'," +
+                    "ferroso_campo26='" + ferroso_campo26 + "'," +
+                    "ferroso_campo27='" + ferroso_campo27 + "'," +
+                    "ferroso_campo28='" + ferroso_campo28 + "'," +
+                    "ferroso_campo29='" + ferroso_campo29 + "'," +
+                    "ferroso_campo30='" + ferroso_campo30 + "'," +
+                    "ferroso_campo31='" + ferroso_campo31 + "'," +
+                    "ferroso_campo32='" + ferroso_campo32 + "'," +
+                    "ferroso_campo33='" + ferroso_campo33 + "'," +
+                    "ferroso_campo34='" + ferroso_campo34 + "'," +
+                    "ferroso_campo35='" + ferroso_campo35 + "'," +
+                    "ferroso_campo36='" + ferroso_campo36 + "'," +
+                    "ferroso_campo37='" + ferroso_campo37 + "'," +
+                    "ferroso_campo38='" + ferroso_campo38 + "'," +
+                    "ferroso_campo39='" + ferroso_campo39 + "'," +
+                    "ferroso_campo40='" + ferroso_campo40 + "'," +
+                    "ferroso_campo41='" + ferroso_campo41 + "'," +
+                    "ferroso_campo42='" + ferroso_campo42 + "'," +
+                    "ferroso_campo43='" + ferroso_campo43 + "'," +
+                    "ferroso_campo44='" + ferroso_campo44 + "'," +
+                    "ferroso_campo45='" + ferroso_campo45 + "'," +
+                    "no_ferroso_campo1='" + no_ferroso_campo1 + "'," +
+                    "no_ferroso_campo2='" + no_ferroso_campo2 + "'," +
+                    "no_ferroso_campo3='" + no_ferroso_campo3 + "'," +
+                    "no_ferroso_campo4='" + no_ferroso_campo4 + "'," +
+                    "no_ferroso_campo5='" + no_ferroso_campo5 + "'," +
+                    "no_ferroso_campo6='" + no_ferroso_campo6 + "'," +
+                    "no_ferroso_campo7='" + no_ferroso_campo7 + "'," +
+                    "no_ferroso_campo8='" + no_ferroso_campo8 + "'," +
+                    "no_ferroso_campo9='" + no_ferroso_campo9 + "'," +
+                    "no_ferroso_campo10='" + no_ferroso_campo10 + "'," +
+                    "no_ferroso_campo11='" + no_ferroso_campo11 + "'," +
+                    "no_ferroso_campo12='" + no_ferroso_campo12 + "'," +
+                    "no_ferroso_campo13='" + no_ferroso_campo13 + "'," +
+                    "no_ferroso_campo14='" + no_ferroso_campo14 + "'," +
+                    "no_ferroso_campo15='" + no_ferroso_campo15 + "'," +
+                    "no_ferroso_campo16='" + no_ferroso_campo16 + "'," +
+                    "no_ferroso_campo17='" + no_ferroso_campo17 + "'," +
+                    "no_ferroso_campo18='" + no_ferroso_campo18 + "'," +
+                    "no_ferroso_campo19='" + no_ferroso_campo19 + "'," +
+                    "no_ferroso_campo20='" + no_ferroso_campo20 + "'," +
+                    "no_ferroso_campo21='" + no_ferroso_campo21 + "'," +
+                    "no_ferroso_campo22='" + no_ferroso_campo22 + "'," +
+                    "no_ferroso_campo23='" + no_ferroso_campo23 + "'," +
+                    "no_ferroso_campo24='" + no_ferroso_campo24 + "'," +
+                    "no_ferroso_campo25='" + no_ferroso_campo25 + "'," +
+                    "no_ferroso_campo26='" + no_ferroso_campo26 + "'," +
+                    "no_ferroso_campo27='" + no_ferroso_campo27 + "'," +
+                    "no_ferroso_campo28='" + no_ferroso_campo28 + "'," +
+                    "no_ferroso_campo29='" + no_ferroso_campo29 + "'," +
+                    "no_ferroso_campo30='" + no_ferroso_campo30 + "'," +
+                    "no_ferroso_campo31='" + no_ferroso_campo31 + "'," +
+                    "no_ferroso_campo32='" + no_ferroso_campo32 + "'," +
+                    "no_ferroso_campo33='" + no_ferroso_campo33 + "'," +
+                    "no_ferroso_campo34='" + no_ferroso_campo34 + "'," +
+                    "no_ferroso_campo35='" + no_ferroso_campo35 + "'," +
+                    "no_ferroso_campo36='" + no_ferroso_campo36 + "'," +
+                    "no_ferroso_campo37='" + no_ferroso_campo37 + "'," +
+                    "no_ferroso_campo38='" + no_ferroso_campo38 + "'," +
+                    "no_ferroso_campo39='" + no_ferroso_campo39 + "'," +
+                    "no_ferroso_campo40='" + no_ferroso_campo40 + "'," +
+                    "no_ferroso_campo41='" + no_ferroso_campo41 + "'," +
+                    "no_ferroso_campo42='" + no_ferroso_campo42 + "'," +
+                    "no_ferroso_campo43='" + no_ferroso_campo43 + "'," +
+                    "no_ferroso_campo44='" + no_ferroso_campo44 + "'," +
+                    "no_ferroso_campo45='" + no_ferroso_campo45 + "'," +
+                    "accion_correctiva_campo1='" + accion_correctiva_campo1 + "'," +
+                    "accion_correctiva_campo2='" + accion_correctiva_campo2 + "'," +
+                    "accion_correctiva_campo3='" + accion_correctiva_campo3 + "'," +
+                    "accion_correctiva_campo4='" + accion_correctiva_campo4 + "'," +
+                    "accion_correctiva_campo5='" + accion_correctiva_campo5 + "'," +
+                    "accion_correctiva_campo6='" + accion_correctiva_campo6 + "'," +
+                    "accion_correctiva_campo7='" + accion_correctiva_campo7 + "'," +
+                    "accion_correctiva_campo8='" + accion_correctiva_campo8 + "'," +
+                    "accion_correctiva_campo9='" + accion_correctiva_campo9 + "'," +
+                    "accion_correctiva_campo10='" + accion_correctiva_campo10 + "'," +
+                    "accion_correctiva_campo11='" + accion_correctiva_campo11 + "'," +
+                    "accion_correctiva_campo12='" + accion_correctiva_campo12 + "'," +
+                    "accion_correctiva_campo13='" + accion_correctiva_campo13 + "'," +
+                    "accion_correctiva_campo14='" + accion_correctiva_campo14 + "'," +
+                    "accion_correctiva_campo15='" + accion_correctiva_campo15 + "'," +
+                    "codigo='" + codigo + "'," +
+                    "actualizacion='" + actualizacion + "'," +
+                    "vigencia='" + vigencia + "' WHERE lote = " + lote);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    /****************    Consulta para Llenar la lista de lotes Detector de Metales *************/
+    public ArrayList<consultas> DAOListaDetectorRealizado(String fecha) {
+        db = myDbHelper.getWritableDatabase();
+        cursor = null;
+        cursor = db.rawQuery("SELECT lote " +
+                "FROM detector_metales WHERE fecha_hoy ='" +
+                fecha + "'", null);
+        ArrayList<consultas> empaqueArray = new ArrayList<consultas>();
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                consultas lista = new consultas();
+
+                lista.empaque = new String[cursor.getCount()];
+
+                for (int x = 0; x < cursor.getCount(); x++) {
+                    lista.empaque[x] = cursor.getString(cursor.getColumnIndex("lote"));
+                    cursor.moveToNext();
+                }
+                empaqueArray.add(lista);
+            }
+        }
+        cursor.close();
+        myDbHelper.close();
+        db.close();
+        return empaqueArray;
+    }
+    /****************    Consulta para LLenar Detector    *************/
+    public Cursor DAOLLenarDetector(String lote) {
+        cursor = null;
+        db = myDbHelper.getWritableDatabase();
+        try {
+            cursor = db.rawQuery("SELECT lote, usuario, fecha_hoy, fecha, hr_campo1, hr_campo2, hr_campo3, hr_campo4, " +
+                    "hr_campo5, hr_campo6, hr_campo7, hr_campo8, hr_campo9, hr_campo10, hr_campo11, " +
+                    "hr_campo12, hr_campo13, hr_campo14, hr_campo15, prod_campo1, prod_campo2, " +
+                    "prod_campo3, prod_campo4, prod_campo5, prod_campo6, prod_campo7, " +
+                    "prod_campo8, prod_campo9, prod_campo10, prod_campo11, prod_campo12, " +
+                    "prod_campo13, prod_campo14, prod_campo15, paquete_a_campo1, paquete_b_campo1, " +
+                    "paquete_a_campo2, paquete_b_campo2, paquete_a_campo3, paquete_b_campo3, " +
+                    "paquete_a_campo4, paquete_b_campo4, paquete_a_campo5, paquete_b_campo5, " +
+                    "paquete_a_campo6, paquete_b_campo6, paquete_a_campo7, paquete_b_campo7, " +
+                    "paquete_a_campo8, paquete_b_campo8, paquete_a_campo9, paquete_b_campo9, " +
+                    "paquete_a_campo10, paquete_b_campo10, paquete_a_campo11, paquete_b_campo11, " +
+                    "paquete_a_campo12, paquete_b_campo12, paquete_a_campo13, paquete_b_campo13, " +
+                    "paquete_a_campo14, paquete_b_campo14, paquete_a_campo15, paquete_b_campo15, " +
+                    "ac_inox_campo1, ac_inox_campo2, ac_inox_campo3, ac_inox_campo4, ac_inox_campo5, " +
+                    "ac_inox_campo6, ac_inox_campo7, ac_inox_campo8, ac_inox_campo9, ac_inox_campo10, " +
+                    "ac_inox_campo11, ac_inox_campo12, ac_inox_campo13, ac_inox_campo14, " +
+                    "ac_inox_campo15, ac_inox_campo16, ac_inox_campo17, ac_inox_campo18, " +
+                    "ac_inox_campo19, ac_inox_campo20, ac_inox_campo21, ac_inox_campo22, " +
+                    "ac_inox_campo23, ac_inox_campo24, ac_inox_campo25, ac_inox_campo26, " +
+                    "ac_inox_campo27, ac_inox_campo28, ac_inox_campo29, ac_inox_campo30, " +
+                    "ac_inox_campo31, ac_inox_campo32, ac_inox_campo33, ac_inox_campo34, " +
+                    "ac_inox_campo35, ac_inox_campo36, ac_inox_campo37, ac_inox_campo38, " +
+                    "ac_inox_campo39, ac_inox_campo40, ac_inox_campo41, ac_inox_campo42, " +
+                    "ac_inox_campo43, ac_inox_campo44, ac_inox_campo45, ferroso_campo1, " +
+                    "ferroso_campo2, ferroso_campo3, ferroso_campo4, ferroso_campo5, ferroso_campo6, " +
+                    "ferroso_campo7, ferroso_campo8, ferroso_campo9, ferroso_campo10, ferroso_campo11, " +
+                    "ferroso_campo12, ferroso_campo13, ferroso_campo14, ferroso_campo15, " +
+                    "ferroso_campo16, ferroso_campo17, ferroso_campo18, ferroso_campo19, " +
+                    "ferroso_campo20, ferroso_campo21, ferroso_campo22, ferroso_campo23, " +
+                    "ferroso_campo24, ferroso_campo25, ferroso_campo26, ferroso_campo27, " +
+                    "ferroso_campo28, ferroso_campo29, ferroso_campo30, ferroso_campo31, " +
+                    "ferroso_campo32, ferroso_campo33, ferroso_campo34, ferroso_campo35, " +
+                    "ferroso_campo36, ferroso_campo37, ferroso_campo38, ferroso_campo39, " +
+                    "ferroso_campo40, ferroso_campo41, ferroso_campo42, ferroso_campo43, " +
+                    "ferroso_campo44, ferroso_campo45, no_ferroso_campo1, no_ferroso_campo2, " +
+                    "no_ferroso_campo3, no_ferroso_campo4, no_ferroso_campo5, no_ferroso_campo6, " +
+                    "no_ferroso_campo7, no_ferroso_campo8, no_ferroso_campo9, no_ferroso_campo10, " +
+                    "no_ferroso_campo11, no_ferroso_campo12, no_ferroso_campo13, no_ferroso_campo14, " +
+                    "no_ferroso_campo15, no_ferroso_campo16, no_ferroso_campo17, no_ferroso_campo18, " +
+                    "no_ferroso_campo19, no_ferroso_campo20, no_ferroso_campo21, no_ferroso_campo22, " +
+                    "no_ferroso_campo23, no_ferroso_campo24, no_ferroso_campo25, no_ferroso_campo26, " +
+                    "no_ferroso_campo27, no_ferroso_campo28, no_ferroso_campo29, no_ferroso_campo30, " +
+                    "no_ferroso_campo31, no_ferroso_campo32, no_ferroso_campo33, no_ferroso_campo34, " +
+                    "no_ferroso_campo35, no_ferroso_campo36, no_ferroso_campo37, no_ferroso_campo38, " +
+                    "no_ferroso_campo39, no_ferroso_campo40, no_ferroso_campo41, no_ferroso_campo42, " +
+                    "no_ferroso_campo43, no_ferroso_campo44, no_ferroso_campo45, accion_correctiva_campo1, " +
+                    "accion_correctiva_campo2, accion_correctiva_campo3, accion_correctiva_campo4, " +
+                    "accion_correctiva_campo5, accion_correctiva_campo6, accion_correctiva_campo7, " +
+                    "accion_correctiva_campo8, accion_correctiva_campo9, accion_correctiva_campo10, " +
+                    "accion_correctiva_campo11, accion_correctiva_campo12, accion_correctiva_campo13, " +
+                    "accion_correctiva_campo14, accion_correctiva_campo15, codigo, actualizacion, vigencia "+
+                    "FROM detector_metales WHERE lote ='" + lote + "';", null);
             if (cursor.moveToPosition(0)) {
 
                 //cursor.close();

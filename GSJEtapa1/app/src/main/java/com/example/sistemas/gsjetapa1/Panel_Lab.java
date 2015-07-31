@@ -82,6 +82,7 @@ public class Panel_Lab extends ActionBarActivity {
 
                             Variables.setNombre_excel("Cuajadas Lab");
                             Variables.setNombre_tabla("cuajadas_lab");
+                            var.setTipo_consulta(1);
                             finish();startActivity(new Intent(Panel_Lab.this, Exportar.class));
                             //AC.dialogee.show();
                         }
@@ -150,6 +151,7 @@ public class Panel_Lab extends ActionBarActivity {
                             var.setFromAdminLaboratorio(false);
                             var.setFromAdminCrema(false);
                             var.setFromAdminRequeson(false);
+
                             finish();startActivity(new Intent(Panel_Lab.this, Administrador.class));
                         }
                         if(var.isFromExportador()){

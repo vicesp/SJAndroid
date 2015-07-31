@@ -1,5 +1,8 @@
 
-
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
@@ -124,7 +127,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="550dp"
+        android:layout_height="750dp"
         android:background="@drawable/plantilla_marco"
         android:id="@+id/relativeLayout2"
         android:layout_marginTop="40dp"
@@ -296,6 +299,17 @@
             android:layout_below="@+id/textView180"
             android:layout_centerHorizontal="true" />
 
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:id="@+id/btnDet"
+            android:textSize="30dp"
+            android:text=""
+            android:background="@drawable/ic_dm"
+            android:layout_below="@+id/btnLab"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="72dp" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -312,8 +326,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/btnProd"
-            android:text="Productos"
-            android:background="@drawable/red_button"
+            android:text=""
+            android:background="@drawable/ic_pro"
             android:layout_below="@+id/textView223"
             android:layout_alignLeft="@+id/textView223"
             android:layout_alignStart="@+id/textView223" />
@@ -322,8 +336,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/btnFam"
-            android:background="@drawable/red_button"
-            android:text="Familias"
+            android:background="@drawable/ic_fam"
+            android:text=""
             android:layout_below="@+id/textView224"
             android:layout_alignRight="@+id/textView224"
             android:layout_alignEnd="@+id/textView224"
@@ -428,8 +442,8 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/btnIngredientes"
-            android:background="@drawable/red_button"
-            android:text="Ingredientes Texturizador"
+            android:background="@drawable/ic_itx"
+            android:text=""
             android:layout_below="@+id/textView225"
             android:layout_alignRight="@+id/textView225"
             android:layout_alignEnd="@+id/textView225" />
@@ -438,4 +452,4 @@
 
 
 </RelativeLayout>
-
+</ScrollView>

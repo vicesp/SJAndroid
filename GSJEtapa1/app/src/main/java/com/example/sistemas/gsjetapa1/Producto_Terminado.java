@@ -10,14 +10,19 @@ import java.util.Arrays;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
@@ -26,6 +31,13 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
@@ -50,6 +62,7 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
     private static consultas con;
     private static Variables var;
     private static Cursor cursor;
+    private String datosCambiados;
 
 
     @Override
@@ -230,6 +243,7 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
                 }
                 else {
                     if(var.isFromProducto()){
+                        con.DAOConsultaBitacora(var.getNombre_usuario(), "Producto Terminado", "", "", FechaH.Hoy_hora());
                         boolean exitoso = con.DAOActualizarPT(LotePT.getText().toString(),
                                 fecha.getText().toString(),
                                 codigo_pt.getText().toString(),
@@ -352,7 +366,25 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
         num_fundida.setText(cursor.getString(cursor.getColumnIndex("numero_fundida")));
 
 
+    }
 
+    public String generarDatosCambiados() {
+        if (!(cursor.getString(cursor.getColumnIndex("codigo_pt")).equals(codigo_pt.getText()))) {
+            datosCambiados = datosCambiados + " Codigo Producto Valor Previo:" + cursor.getString(cursor.getColumnIndex("codigo_pt")) + ", Valor Nuevo: " + codigo_pt.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("num_viaje")).equals(numero_viaje.getText()))) {
+            datosCambiados = datosCambiados + " Numero de Viaje Valor Previo:" + cursor.getString(cursor.getColumnIndex("num_viaje")) + ", Valor Nuevo: " + numero_viaje.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("kilos")).equals(tot_kil_obt.getText()))) {
+            datosCambiados = datosCambiados + " kilos Valor Previo:" + cursor.getString(cursor.getColumnIndex("kilos")) + ", Valor Nuevo: " + tot_kil_obt.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("num_piezas")).equals(NumPiezas.getText()))) {
+            datosCambiados = datosCambiados + " Numero Piezas Valor Previo:" + cursor.getString(cursor.getColumnIndex("num_piezas")) + ", Valor Nuevo: " + NumPiezas.getText() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("numero_fundida")).equals(num_fundida.getText()))) {
+            datosCambiados = datosCambiados + " Numero Fundida Valor Previo:" + cursor.getString(cursor.getColumnIndex("numero_fundida")) + ", Valor Nuevo: " + codigo_pt.getText() + ";";
+        }
+        return datosCambiados;
     }
     public void launchView()
     {
@@ -422,6 +454,77 @@ public class Producto_Terminado extends Activity implements OnClickListener, OnI
             listaProductos = con.producto;
         }
         return listaProductos;
+    }
+
+    public class GuardaProductoTerminado extends AsyncTask<String, Void, Boolean> {
+        private final ProgressDialog dialog = new ProgressDialog(Producto_Terminado.this);
+
+        @Override
+        protected void onPreExecute() {
+            this.dialog.setMessage("Enviando Datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args) {
+            final String NAMESPACE = "http://serv_gsj.net/";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertaProductoTerminado";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", LotePT.getText().toString());
+            request.addProperty("fecha", fecha.getText().toString());
+            request.addProperty("numero_fundida", num_fundida.getText().toString());
+            request.addProperty("codigo_pp", codigo_pt.getText().toString().substring(0, 4));
+            request.addProperty("numero_viaje", numero_viaje.getText().toString());
+            request.addProperty("numero_piezas", NumPiezas.getText().toString());
+            request.addProperty("kilos_obtenidos", tot_kil_obt.getText().toString());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_XML = (SoapPrimitive) envelope.getResponse();
+                String mensaje = resultado_XML.toString();
+
+                if (mensaje.contentEquals("true")) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.i("Error", "Error de sincronizacion:  " + e);
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
+                this.dialog.dismiss();
+            }
+
+            if (success) {
+                Toast.makeText(Producto_Terminado.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(Producto_Terminado.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void PaginaMonitor() {
+            WebView myWebView = (WebView) findViewById(R.id.webView);
+            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
     }
 
 

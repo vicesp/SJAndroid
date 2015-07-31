@@ -302,6 +302,9 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                 // TODO Auto-generated method stub
 
                 if (var.isFromEmpaque()) {
+
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "empaque", generarDatosCambiados(), observaciones.getText().toString(), Fecha.getText().toString());
+                    datos_cambiados = null;
                     boolean exitoso = con.DAOActualizarEmpaque(lote_origen.getText().toString(), Fecha.getText().toString(), codigo_prod.getText().toString(), nombre_pt.getText().toString()
                             , lote_empaque.getText().toString(), tvP_entregadas.getText().toString(), p_reproceso.getText().toString(), temp.getText().toString(), hora_inicioPT.getText().toString()
                             , cod_restos.getText().toString(), lote_restos.getText().toString(), cantidad_restos.getText().toString(), maquina_usar_select, vacio_ulma.getText().toString()
@@ -309,8 +312,7 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
                             , vacio_ultravac.getText().toString(), temp_ultravac.getText().toString(), hora_fin_ultravac.getText().toString(), lote_fondo.getText().toString(), lote_tapa.getText().toString()
                             , lote_funda.getText().toString(), observaciones.getText().toString(), piezas_emp.getText().toString(), piezas_calidad.getText().toString());
 
-                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "empaque", datos_cambiados, observaciones.getText().toString(), Fecha.getText().toString());
-                    datos_cambiados=null;
+
 
                     if(exitoso){
                         limpia_campos();
@@ -676,8 +678,73 @@ public class Empaque extends ActionBarActivity implements View.OnClickListener, 
         piezas_calidad.setText(cursor.getString(cursor.getColumnIndex("piezas_calidad")));
 
 
+    }
 
-
+    public String generarDatosCambiados() {
+        if (!(cursor.getString(cursor.getColumnIndex("lote_origen")).equals(lote_origen.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_origen Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_origen")) + ", Valor Nuevo:" + lote_origen.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("piezas_reproceso")).equals(p_reproceso.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "p_reproceso Valor Previo: " + cursor.getString(cursor.getColumnIndex("piezas_reproceso")) + ", Valor Nuevo:" + p_reproceso.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temp_pt")).equals(temp.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temp Valor Previo: " + cursor.getString(cursor.getColumnIndex("temp_pt")) + ", Valor Nuevo:" + temp.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("hora_inicio_pt")).equals(hora_inicioPT.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "hora_inicioPT Valor Previo: " + cursor.getString(cursor.getColumnIndex("hora_inicio_pt")) + ", Valor Nuevo:" + hora_inicioPT.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cod_prod_restos")).equals(cod_restos.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cod_restos Valor Previo: " + cursor.getString(cursor.getColumnIndex("cod_prod_restos")) + ", Valor Nuevo:" + cod_restos.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_restos")).equals(lote_restos.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_restos Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_restos")) + ", Valor Nuevo:" + lote_restos.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("cantidad_restos")).equals(cantidad_restos.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "cantidad_restos Valor Previo: " + cursor.getString(cursor.getColumnIndex("cantidad_restos")) + ", Valor Nuevo:" + cantidad_restos.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("vacio_ulma")).equals(vacio_ulma.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "vacio_ulma Valor Previo: " + cursor.getString(cursor.getColumnIndex("vacio_ulma")) + ", Valor Nuevo:" + vacio_ulma.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("gas_ulma")).equals(gas_ulma.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "gas_ulma Valor Previo: " + cursor.getString(cursor.getColumnIndex("gas_ulma")) + ", Valor Nuevo:" + gas_ulma.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("piezas_empacadas")).equals(piezas_emp.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "piezas_emp Valor Previo: " + cursor.getString(cursor.getColumnIndex("piezas_empacadas")) + ", Valor Nuevo:" + piezas_emp.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("piezas_calidad")).equals(piezas_calidad.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "piezas_calidad Valor Previo: " + cursor.getString(cursor.getColumnIndex("piezas_calidad")) + ", Valor Nuevo:" + piezas_calidad.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temp_ulma")).equals(temp_formado_ulma.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temp_formado_ulma Valor Previo: " + cursor.getString(cursor.getColumnIndex("temp_ulma")) + ", Valor Nuevo:" + temp_formado_ulma.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")).equals(temp_sellado_ulma.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temp_sellado_ulma Valor Previo: " + cursor.getString(cursor.getColumnIndex("temp_sellado_ulma")) + ", Valor Nuevo:" + temp_sellado_ulma.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("oxigeno_ulma")).equals(oxigeno_ulma.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "oxigeno_ulma Valor Previo: " + cursor.getString(cursor.getColumnIndex("oxigeno_ulma")) + ", Valor Nuevo:" + oxigeno_ulma.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("vacio_ultra")).equals(vacio_ultravac.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "vacio_ultravac Valor Previo: " + cursor.getString(cursor.getColumnIndex("vacio_ultra")) + ", Valor Nuevo:" + vacio_ultravac.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("temp_ultra")).equals(temp_ultravac.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "temp_ultravac Valor Previo: " + cursor.getString(cursor.getColumnIndex("temp_ultra")) + ", Valor Nuevo:" + temp_ultravac.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("hora_fin_ultra")).equals(hora_fin_ultravac.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "hora_fin_ultravac Valor Previo: " + cursor.getString(cursor.getColumnIndex("hora_fin_ultra")) + ", Valor Nuevo:" + hora_fin_ultravac.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_fondo")).equals(lote_fondo.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_fondo Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_fondo")) + ", Valor Nuevo:" + lote_fondo.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_tapa")).equals(lote_tapa.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_tapa Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_tapa")) + ", Valor Nuevo:" + lote_tapa.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("lote_funda")).equals(lote_funda.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote_funda Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote_funda")) + ", Valor Nuevo:" + lote_funda.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("observaciones")).equals(observaciones.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("observaciones")) + ", Valor Nuevo:" + observaciones.getText().toString() + ";";
+        }
+        return datos_cambiados;
     }
     public class GuardaEmpaqueSync extends AsyncTask<String, Void, Boolean>
 

@@ -645,13 +645,14 @@ public class Texturizador extends ActionBarActivity {
                     {
                         datos_cambiados="no se hicieron cambios";
                     }
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "texturizador", datos_cambiados, etObservaciones.getText().toString(), Fecha.getText().toString());
+
                     exitosoActualizado = con.DAOActualizarTexturizador(Lote.getText().toString(), Fecha.getText().toString(), texturizador_select, tvtm1.getText().toString(), lote1.getText().toString(),
                             tvtm2.getText().toString(), lote2.getText().toString(), tvtm3.getText().toString(), lote3.getText().toString(), tvtm4.getText().toString(), lote4.getText().toString(), tvtm5.getText().toString(), lote5.getText().toString(), tvtm6.getText().toString(), lote6.getText().toString(),
                             tvtm7.getText().toString(), lote7.getText().toString(), tvtm8.getText().toString(), lote8.getText().toString(), tvtm9.getText().toString(), lote9.getText().toString(), tvtm11.getText().toString(), lote11.getText().toString(),
                             tvtm12.getText().toString(), lote12.getText().toString(), tvtm13.getText().toString(), lote13.getText().toString(), tvtm14.getText().toString(), lote14.getText().toString(), tvtm15.getText().toString(), lote15.getText().toString(), tvtm16.getText().toString(), lote16.getText().toString(),
                             tvtm17.getText().toString(), lote17.getText().toString(), tvtm18.getText().toString(), lote18.getText().toString(), kilos_tot.getText().toString(), numero_conse);
 
-                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "texturizador", datos_cambiados, etObservaciones.getText().toString(), Fecha.getText().toString());
                     datos_cambiados="";
 
                 }

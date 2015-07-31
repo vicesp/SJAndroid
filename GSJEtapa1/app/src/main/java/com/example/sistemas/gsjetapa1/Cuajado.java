@@ -21,6 +21,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -42,6 +44,8 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Locale;
 
 
@@ -53,25 +57,26 @@ import au.com.bytecode.opencsv.CSVWriter;
 import config.DataBaseHelper;
 
 
-public class Cuajado extends ActionBarActivity {
+public class Cuajado extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
-    private String [] silo, familia_cuajado;
-    private String silo_select,familia_select;
-    private Spinner spSilo, spFamiliaCuaj;
+    private String [] silo, familia_cuajado, Nombre_PT, listaProductos;
+    private String silo_select;
+    private Spinner spSilo;
     private TextView Fecha,Lote,NumTina,NumEquipo;
-    private Button  Guarda2,Regresar;
+    private Button  Guarda2,Regresar, btnFamiliaCuaj;
     private ImageButton Guarda1;
     private int num_tina_consec;
     private EditText lecheSilo,phLeche,grasaLecheSilo,grasaLecheTina,proteinaLecheSilo,lecheTina,proteinaTina;
     private EditText adi1,lote1,adi2,lote2,adi3,lote3,adi4,lote4,adi5,lote5,adi6,lote6,adi7,lote7,adi8,lote8,adi9,lote9,adi10,lote10,adi11,lote11,adi12,lote12,adi13,lote13,adi14,lote14;
     private EditText tempCoagulacion,phPasta,horaAdicionCuajo,tempCocido;
     private double num_phleche;
-
+    private ArrayList<String> array_sort;
+    int textlength=0;
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
     private static consultas con;
     private static Variables var;
-
+    private AlertDialog myalertDialog=null;
     DataBaseHelper myDbHelper = new DataBaseHelper(Variables.getContextoGral());
     protected SQLiteDatabase db;
     protected Cursor cursor;
@@ -358,12 +363,8 @@ public class Cuajado extends ActionBarActivity {
         spSilo.setAdapter(siloAdapter);
 
 
-        spFamiliaCuaj = (Spinner) findViewById(R.id.spFamilia);
-        familia_cuajado=getResources().getStringArray(R.array.nombre_familia_cuajado);
-        ArrayAdapter<String> familiaAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, familia_cuajado);
-        familiaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spFamiliaCuaj.setAdapter(familiaAdapter);
+        
+        
 
         spSilo.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -383,24 +384,8 @@ public class Cuajado extends ActionBarActivity {
             }
         });
 
-        spFamiliaCuaj.setOnItemSelectedListener(new OnItemSelectedListener() {
 
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                // TODO Auto-generated method stub
 
-                ((TextView) parent.getChildAt(0)).setTextSize(22);
-                familia_select=familia_cuajado[position];
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
 
         //******************    Inicio Buttons    ****************//
         Guarda1=(ImageButton)findViewById(R.id.btnGuardaCuajo1);
@@ -424,11 +409,12 @@ public class Cuajado extends ActionBarActivity {
                 }
                 if(var.isFromCuajado()) {
 
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Cuajado", "", "", FechaH.Hoy_hora());
 
                     boolean exitoso = con.DAOActualizarCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
-                            familia_select,
+                            btnFamiliaCuaj.getText().toString(),
                             Fecha.getText().toString(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -567,7 +553,7 @@ public class Cuajado extends ActionBarActivity {
                     boolean exitoso = con.DAOCuajado(Lote.getText().toString(),
                             silo_select,
                             NumTina.getText().toString(),
-                            familia_select,
+                            btnFamiliaCuaj.getText().toString(),
                             FechaH.Hoy_hora(),
                             lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                             lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -708,7 +694,7 @@ public class Cuajado extends ActionBarActivity {
                 boolean exitoso=con.DAOCuajado(Lote.getText().toString(),
                         silo_select,
                         NumTina.getText().toString(),
-                        familia_select,
+                        btnFamiliaCuaj.getText().toString(),
                         FechaH.Hoy_hora(),
                         lecheSilo.getText().toString(), grasaLecheSilo.getText().toString(), phLeche.getText().toString(), proteinaLecheSilo.getText().toString(),
                         lecheTina.getText().toString(), grasaLecheTina.getText().toString(),
@@ -750,6 +736,16 @@ public class Cuajado extends ActionBarActivity {
                 finish();
             }
         });
+        btnFamiliaCuaj = (Button) findViewById(R.id.spFamilia);
+        btnFamiliaCuaj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                launchView();
+            }
+        });
+
+        
+        
 
         //******************    Fin Buttons   ****************//
 
@@ -789,6 +785,19 @@ public class Cuajado extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+    @Override
+    public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
+
+        String strName=array_sort.get(position);
+        btnFamiliaCuaj.setText(strName);
+
+
+        myalertDialog.dismiss();
+    }
+    @Override
+    public void onClick(View v) {
+
     }
 
     class CurrencyTextWatcher implements TextWatcher {
@@ -923,14 +932,216 @@ public class Cuajado extends ActionBarActivity {
 
     }
 
+
+    public void llenarValoresBusquedaCuajado(String lote)
+    {
+
+        //ote_origen.setEnabled(false);
+        //btn_listviewdialog.setVisibility(View.INVISIBLE);
+
+        cursor = con.DAOLLenarCuajado(lote);
+        btnFamiliaCuaj.setText(cursor.getString(cursor.getColumnIndex("familia")));
+        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
+        lecheSilo.setText(cursor.getString(cursor.getColumnIndex("leche_silo")));
+        phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
+        grasaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porcen_grasa_leche")));
+        proteinaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porce_proteina")));
+        lecheTina.setText(cursor.getString(cursor.getColumnIndex("leche_tina")));
+        grasaLecheTina.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_leche_tina")));
+        proteinaTina.setText(cursor.getString(cursor.getColumnIndex("porce_prot_tina")));
+        tempCoagulacion.setText(cursor.getString(cursor.getColumnIndex("temp_adi_cuajo")));
+        horaAdicionCuajo.setText(cursor.getString(cursor.getColumnIndex("hora_adi_cuajo")));
+        tempCocido.setText(cursor.getString(cursor.getColumnIndex("temp_cocido")));
+        phPasta.setText(cursor.getString(cursor.getColumnIndex("ph_pasta_coag")));
+
+        NumEquipo.setText(cursor.getString(cursor.getColumnIndex("num_equipo")));
+        NumTina.setText(cursor.getString(cursor.getColumnIndex("num_tina")));
+        Lote.setText(lote);
+
+        if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
+        {
+            spSilo.setSelection(0);
+        }
+
+        else if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
+        {
+            spSilo.setSelection(1);
+        }
+
+        else
+        {
+            spSilo.setSelection(2);
+        }
+
+
+    }
+
+    public void llenarValoresBusquedaCuajadoAditivos(String lote)
+    {
+
+        cursor = con.DAOLLenarCuajadoAditivos(lote);
+        adi1.setText(cursor.getString(cursor.getColumnIndex("mp001")));
+        adi2.setText(cursor.getString(cursor.getColumnIndex("mp003")));
+        adi3.setText(cursor.getString(cursor.getColumnIndex("mp002")));
+        adi4.setText(cursor.getString(cursor.getColumnIndex("mp006")));
+        adi5.setText(cursor.getString(cursor.getColumnIndex("mp011")));
+        adi6.setText(cursor.getString(cursor.getColumnIndex("mp021")));
+        adi7.setText(cursor.getString(cursor.getColumnIndex("cr01")));
+        adi8.setText(cursor.getString(cursor.getColumnIndex("mp025")));
+        adi9.setText(cursor.getString(cursor.getColumnIndex("mp062")));
+        adi10.setText(cursor.getString(cursor.getColumnIndex("mp070")));
+        adi11.setText(cursor.getString(cursor.getColumnIndex("mp071")));
+        adi12.setText(cursor.getString(cursor.getColumnIndex("mp072")));
+        adi13.setText(cursor.getString(cursor.getColumnIndex("le04")));
+        adi14.setText(cursor.getString(cursor.getColumnIndex("le03")));
+
+        lote1.setText(cursor.getString(cursor.getColumnIndex("lote_mp001")));
+        lote2.setText(cursor.getString(cursor.getColumnIndex("lote_mp003")));
+        lote3.setText(cursor.getString(cursor.getColumnIndex("lote_mp002")));
+        lote4.setText(cursor.getString(cursor.getColumnIndex("lote_mp006")));
+        lote5.setText(cursor.getString(cursor.getColumnIndex("lote_mp011")));
+        lote6.setText(cursor.getString(cursor.getColumnIndex("lote_mp021")));
+        lote7.setText(cursor.getString(cursor.getColumnIndex("lote_cr01")));
+        lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
+        lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp062")));
+        lote10.setText(cursor.getString(cursor.getColumnIndex("lote_mp070")));
+        lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp071")));
+        lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp072")));
+        lote13.setText(cursor.getString(cursor.getColumnIndex("lote_le04")));
+        lote14.setText(cursor.getString(cursor.getColumnIndex("lote_le03")));
+
+
+
+
+    }
+    public void limpia_campos()
+    {
+        //Fecha.setText("");
+        lecheSilo.setText("");
+        phLeche.setText("");
+        grasaLecheSilo.setText("");
+        proteinaLecheSilo.setText("");
+        lecheTina.setText("");
+        grasaLecheTina.setText("");
+        proteinaTina.setText("");
+        tempCoagulacion.setText("");
+        horaAdicionCuajo.setText("");
+        tempCocido.setText("");
+        phPasta.setText("");
+        btnFamiliaCuaj.setText("Seleccione Familia");
+
+        NumEquipo.setText("");
+        NumTina.setText("");
+        //Lote.setText("");
+
+        adi1.setText("");
+        adi2.setText("");
+        adi3.setText("");
+        adi4.setText("");
+        adi5.setText("");
+        adi6.setText("");
+        adi7.setText("");
+        adi8.setText("");
+        adi9.setText("");
+        adi10.setText("");
+        adi11.setText("");
+        adi12.setText("");
+        adi13.setText("");
+        adi14.setText("");
+
+        lote1.setText("");
+        lote2.setText("");
+        lote3.setText("");
+        lote4.setText("");
+        lote5.setText("");
+        lote6.setText("");
+        lote7.setText("");
+        lote8.setText("");
+        lote9.setText("");
+        lote10.setText("");
+        lote11.setText("");
+        lote12.setText("");
+        lote13.setText("");
+        lote14.setText("");
+    }
+    public void launchView()
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Cuajado.this);
+
+
+        Nombre_PT = getProductosArray(con.DAOGetTodosFamilias(false, true));
+
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Cuajado.this);
+        final ListView listview = new ListView(Cuajado.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Nombre_PT));
+        LinearLayout layout = new LinearLayout(Cuajado.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Cuajado.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+        listview.setOnItemClickListener(Cuajado.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Nombre_PT.length; i++) {
+                    if (textlength <= Nombre_PT[i].length()) {
+
+                        if (Nombre_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                            array_sort.add(Nombre_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Cuajado.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        myalertDialog = myDialog.show();
+
+    }
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
+
+    }
+
+
     public class GuardaCuajadoSync extends AsyncTask<String, Void, Boolean>
 
     {
         private final ProgressDialog dialog = new ProgressDialog(Cuajado.this);
 
         @Override
-        protected void onPreExecute()
-        {
+        protected void onPreExecute() {
             this.dialog.setMessage("Enviando datos...");
             this.dialog.show();
         }
@@ -941,18 +1152,18 @@ public class Cuajado extends ActionBarActivity {
 
             final String NAMESPACE = "http://serv_gsj.net/";
             //final String URL="http://"+Variables.getIp_servidor()+"/ServicioClientes.asmx";
-            final String URL="http://"+Variables.getIp_servidor()+"/ServicioWebSoap/ServicioClientes.asmx";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
             final String METHOD_NAME = "insertaCuajado";
-            final String SOAP_ACTION = NAMESPACE+METHOD_NAME;
-            final int time=20000,time2=190000;
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
 
             SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
 
             /*Para tabla cuajado*/
             request.addProperty("lote", Lote.getText().toString());
-            request.addProperty("silo", ""+silo_select);
+            request.addProperty("silo", "" + silo_select);
             request.addProperty("num_tina", NumTina.getText().toString());
-            request.addProperty("familia", familia_select);
+            request.addProperty("familia", btnFamiliaCuaj.getText().toString());
             request.addProperty("fecha", FechaH.Hoy_hora());
             request.addProperty("leche_silo", lecheSilo.getText().toString());
             request.addProperty("grasa_leche_silo", grasaLecheSilo.getText().toString());
@@ -1003,37 +1214,31 @@ public class Cuajado extends ActionBarActivity {
             SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             envelope.dotNet = true;
             envelope.setOutputSoapObject(request);
-            HttpTransportSE transporte = new HttpTransportSE(URL,time);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
 
-            try
-            {
+            try {
                 transporte.call(SOAP_ACTION, envelope);
 
-                SoapPrimitive resultado_xml =(SoapPrimitive)envelope.getResponse();
+                SoapPrimitive resultado_xml = (SoapPrimitive) envelope.getResponse();
                 String mensaje = resultado_xml.toString();
-                if(mensaje.contentEquals("true")){
+                if (mensaje.contentEquals("true")) {
                     //transporte.getConnection().disconnect();
 
                     //transporte.getServiceConnection().disconnect();
 
                     //transporte.reset();
                     return true;
-                }
-                else{
+                } else {
                     // transporte.getConnection().disconnect();
                     //transporte.getServiceConnection().disconnect();
                     //transporte.reset();
-                    Log.i("Mensaje","Mensaje SOAP:    "+mensaje);
+                    Log.i("Mensaje", "Mensaje SOAP:    " + mensaje);
                     return false;
                 }
 
 
-
-
-            }
-            catch (Exception e)
-            {
-                Log.i("Error","Error de Sincronizacion:  "+e);
+            } catch (Exception e) {
+                Log.i("Error", "Error de Sincronizacion:  " + e);
 
                 return false;
 
@@ -1042,194 +1247,19 @@ public class Cuajado extends ActionBarActivity {
 
         }
 
-        protected void onPostExecute(final Boolean success)
-        {
-            if (this.dialog.isShowing())
-            {
+        protected void onPostExecute(final Boolean success) {
+            if (this.dialog.isShowing()) {
                 this.dialog.dismiss();
             }
 
-            if (success)
-            {
+            if (success) {
                 Toast.makeText(Cuajado.this, "Sincronización Exitosa", Toast.LENGTH_SHORT).show();
 
 
-            }
-
-            else
-            {
+            } else {
                 Toast.makeText(Cuajado.this, "Error de Sincronización", Toast.LENGTH_SHORT).show();
             }
-        }}
-
-    public void llenarValoresBusquedaCuajado(String lote)
-    {
-
-        //ote_origen.setEnabled(false);
-        //btn_listviewdialog.setVisibility(View.INVISIBLE);
-
-        cursor = con.DAOLLenarCuajado(lote);
-        Fecha.setText(cursor.getString(cursor.getColumnIndex("fecha_hoy")));
-        lecheSilo.setText(cursor.getString(cursor.getColumnIndex("leche_silo")));
-        phLeche.setText(cursor.getString(cursor.getColumnIndex("ph_leche")));
-        grasaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porcen_grasa_leche")));
-        proteinaLecheSilo.setText(cursor.getString(cursor.getColumnIndex("porce_proteina")));
-        lecheTina.setText(cursor.getString(cursor.getColumnIndex("leche_tina")));
-        grasaLecheTina.setText(cursor.getString(cursor.getColumnIndex("porce_grasa_leche_tina")));
-        proteinaTina.setText(cursor.getString(cursor.getColumnIndex("porce_prot_tina")));
-        tempCoagulacion.setText(cursor.getString(cursor.getColumnIndex("temp_adi_cuajo")));
-        horaAdicionCuajo.setText(cursor.getString(cursor.getColumnIndex("hora_adi_cuajo")));
-        tempCocido.setText(cursor.getString(cursor.getColumnIndex("temp_cocido")));
-        phPasta.setText(cursor.getString(cursor.getColumnIndex("ph_pasta_coag")));
-
-        NumEquipo.setText(cursor.getString(cursor.getColumnIndex("num_equipo")));
-        NumTina.setText(cursor.getString(cursor.getColumnIndex("num_tina")));
-        Lote.setText(lote);
-
-        if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
-        {
-            spSilo.setSelection(0);
         }
-
-        else if(silo[0].equals(cursor.getString(cursor.getColumnIndex("silo"))))
-        {
-            spSilo.setSelection(1);
-        }
-
-        else
-        {
-            spSilo.setSelection(2);
-        }
-
-
-        if(familia_cuajado[0].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(0);
-        }
-        else if(familia_cuajado[1].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(1);
-        }
-        else if(familia_cuajado[2].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(2);
-        }
-        else if(familia_cuajado[3].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(3);
-        }
-        else if(familia_cuajado[4].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(4);
-        }
-        else if(familia_cuajado[5].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(5);
-        }
-        else if(familia_cuajado[6].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(6);
-        }
-        else if(familia_cuajado[7].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(7);
-        }
-        else if(familia_cuajado[8].equals(cursor.getColumnIndex("familia")))
-        {
-            spFamiliaCuaj.setSelection(8);
-        }
-        else
-        {
-            spFamiliaCuaj.setSelection(9);
-        }
-
-    }
-
-    public void llenarValoresBusquedaCuajadoAditivos(String lote)
-    {
-
-        cursor = con.DAOLLenarCuajadoAditivos(lote);
-        adi1.setText(cursor.getString(cursor.getColumnIndex("mp001")));
-        adi2.setText(cursor.getString(cursor.getColumnIndex("mp003")));
-        adi3.setText(cursor.getString(cursor.getColumnIndex("mp002")));
-        adi4.setText(cursor.getString(cursor.getColumnIndex("mp006")));
-        adi5.setText(cursor.getString(cursor.getColumnIndex("mp011")));
-        adi6.setText(cursor.getString(cursor.getColumnIndex("mp021")));
-        adi7.setText(cursor.getString(cursor.getColumnIndex("cr01")));
-        adi8.setText(cursor.getString(cursor.getColumnIndex("mp025")));
-        adi9.setText(cursor.getString(cursor.getColumnIndex("mp062")));
-        adi10.setText(cursor.getString(cursor.getColumnIndex("mp070")));
-        adi11.setText(cursor.getString(cursor.getColumnIndex("mp071")));
-        adi12.setText(cursor.getString(cursor.getColumnIndex("mp072")));
-        adi13.setText(cursor.getString(cursor.getColumnIndex("le04")));
-        adi14.setText(cursor.getString(cursor.getColumnIndex("le03")));
-
-        lote1.setText(cursor.getString(cursor.getColumnIndex("lote_mp001")));
-        lote2.setText(cursor.getString(cursor.getColumnIndex("lote_mp003")));
-        lote3.setText(cursor.getString(cursor.getColumnIndex("lote_mp002")));
-        lote4.setText(cursor.getString(cursor.getColumnIndex("lote_mp006")));
-        lote5.setText(cursor.getString(cursor.getColumnIndex("lote_mp011")));
-        lote6.setText(cursor.getString(cursor.getColumnIndex("lote_mp021")));
-        lote7.setText(cursor.getString(cursor.getColumnIndex("lote_cr01")));
-        lote8.setText(cursor.getString(cursor.getColumnIndex("lote_mp025")));
-        lote9.setText(cursor.getString(cursor.getColumnIndex("lote_mp062")));
-        lote10.setText(cursor.getString(cursor.getColumnIndex("lote_mp070")));
-        lote11.setText(cursor.getString(cursor.getColumnIndex("lote_mp071")));
-        lote12.setText(cursor.getString(cursor.getColumnIndex("lote_mp072")));
-        lote13.setText(cursor.getString(cursor.getColumnIndex("lote_le04")));
-        lote14.setText(cursor.getString(cursor.getColumnIndex("lote_le03")));
-
-
-
-    }
-    public void limpia_campos()
-    {
-        //Fecha.setText("");
-        lecheSilo.setText("");
-        phLeche.setText("");
-        grasaLecheSilo.setText("");
-        proteinaLecheSilo.setText("");
-        lecheTina.setText("");
-        grasaLecheTina.setText("");
-        proteinaTina.setText("");
-        tempCoagulacion.setText("");
-        horaAdicionCuajo.setText("");
-        tempCocido.setText("");
-        phPasta.setText("");
-
-        NumEquipo.setText("");
-        NumTina.setText("");
-        //Lote.setText("");
-
-        adi1.setText("");
-        adi2.setText("");
-        adi3.setText("");
-        adi4.setText("");
-        adi5.setText("");
-        adi6.setText("");
-        adi7.setText("");
-        adi8.setText("");
-        adi9.setText("");
-        adi10.setText("");
-        adi11.setText("");
-        adi12.setText("");
-        adi13.setText("");
-        adi14.setText("");
-
-        lote1.setText("");
-        lote2.setText("");
-        lote3.setText("");
-        lote4.setText("");
-        lote5.setText("");
-        lote6.setText("");
-        lote7.setText("");
-        lote8.setText("");
-        lote9.setText("");
-        lote10.setText("");
-        lote11.setText("");
-        lote12.setText("");
-        lote13.setText("");
-        lote14.setText("");
     }
 
 

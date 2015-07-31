@@ -150,7 +150,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="230dp"
+        android:layout_height="275dp"
         android:background="@drawable/plantilla_pt"
         android:id="@+id/relativeLayout2"
         android:layout_below="@+id/btntBuscar"
@@ -221,6 +221,29 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:layout_marginRight="10dp"/>
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cuajado"
+            android:layout_marginTop="25dp"
+            android:id="@+id/checkCuajado"
+            android:textSize="25dp"
+            android:layout_below="@+id/textView206"
+            android:layout_alignLeft="@+id/textView206"
+            android:layout_alignStart="@+id/textView206"
+            android:checked="false" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fundido"
+            android:id="@+id/checkFundido"
+            android:textSize="25dp"
+            android:checked="false"
+            android:layout_alignTop="@+id/checkCuajado"
+            android:layout_alignLeft="@+id/editText5"
+            android:layout_alignStart="@+id/editText5" />
 
 
     </RelativeLayout>

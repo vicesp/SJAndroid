@@ -17,7 +17,7 @@ import DTO.Variables;
 
 public class Administrador extends ActionBarActivity {
 
-    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab, btnProductos, btnFamilias;
+    private Button btnCuajado, btnFundido, btnEmpaque, btnTextu, btnPT,btnLab, btnProductos, btnFamilias, btnDetector;
     private TextView fecha;
     private static Fecha_Hoy FechaH;
     private static Variables var;
@@ -119,9 +119,18 @@ public class Administrador extends ActionBarActivity {
 
             }
         });
+        btnDetector=(Button)findViewById(R.id.btnDet);
+        btnDetector.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                var.setFromAdminDetector(true);
+                finish();startActivity(new Intent(Administrador.this, Realizados.class));
+
+            }
+        });
 
 
-        if(var.getNombre_usuario().equals("EL"))
+        if(var.getNombre_usuario().equals("EL")||var.getNombre_usuario().equals("Esthela"))
         {
 
             btnFamilias.setEnabled(false);
@@ -131,6 +140,7 @@ public class Administrador extends ActionBarActivity {
             btnFundido.setEnabled(false);
             btnPT.setEnabled(false);
             btnTextu.setEnabled(false);
+            btnDetector.setEnabled(false);
         }
 
 

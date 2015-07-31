@@ -33,7 +33,7 @@
             android:textSize="25dp"
             android:textColor="@android:color/black"
             android:text="Fecha    "
-            android:layout_above="@+id/imageView14"
+            android:layout_above="@+id/textView267"
             android:layout_alignLeft="@+id/editText17"
             android:layout_alignStart="@+id/editText17" />
 
@@ -64,7 +64,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="CREMA LABORATORIO"
+            android:text="CREMA HILL COUNTRY"
             android:textColor="@android:color/white"
             android:typeface="monospace"
             android:textSize="32dp"
@@ -99,24 +99,23 @@
             android:textColor="#98002E"
             android:textSize="20dp"
             android:id="@+id/tvLCLotePendiente"
-            android:layout_below="@+id/imageView"
-            android:layout_alignRight="@+id/switchSabor"
-            android:layout_alignEnd="@+id/switchSabor"
-            android:layout_toRightOf="@+id/tvLCLote"
-            android:layout_toEndOf="@+id/tvLCLote" />
+            android:layout_below="@+id/editText"
+            android:layout_toLeftOf="@+id/editText"
+            android:layout_alignLeft="@+id/editText24"
+            android:layout_alignStart="@+id/editText24" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:id="@+id/imageView14"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="25dp"
             android:src="@drawable/madera"
             android:scaleType="centerCrop"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignRight="@+id/imageView"
             android:layout_alignEnd="@+id/imageView"
-            android:layout_below="@+id/tvLCLote" />
+            android:layout_below="@+id/textView267" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -379,10 +378,9 @@
             android:id="@+id/fechaText1"
             android:textColor="#98002E"
             android:textSize="25dp"
-            android:layout_alignBaseline="@+id/fechaText"
-            android:layout_alignBottom="@+id/fechaText"
-            android:layout_toRightOf="@+id/fechaText"
-            android:layout_toEndOf="@+id/fechaText" />
+            android:layout_alignTop="@+id/fechaText"
+            android:layout_toRightOf="@+id/textView268"
+            android:layout_toEndOf="@+id/textView268" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -478,6 +476,49 @@
             android:layout_alignRight="@+id/editText26"
             android:layout_alignEnd="@+id/editText26"
             android:numeric="decimal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Producto"
+            android:id="@+id/textView267"
+            android:textSize="25dp"
+            android:layout_marginTop="25dp"
+            android:textColor="@android:color/black"
+            android:layout_below="@+id/tvLCLote"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar Prodcuto"
+            android:id="@+id/btnProd"
+            android:layout_toRightOf="@+id/imageView2"
+            android:layout_alignBottom="@+id/textView267"
+            android:layout_alignRight="@+id/tvLCLotePendiente"
+            android:layout_alignEnd="@+id/tvLCLotePendiente" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cod Prod    "
+            android:id="@+id/textView268"
+            android:textSize="25dp"
+            android:textColor="@android:color/black"
+            android:layout_above="@+id/imageView14"
+            android:layout_alignLeft="@+id/fechaText"
+            android:layout_alignStart="@+id/fechaText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:id="@+id/codigoProducto"
+            android:textColor="#98002E"
+            android:layout_alignTop="@+id/textView268"
+            android:layout_toRightOf="@+id/textView268"
+            android:layout_toEndOf="@+id/textView268" />
 
 
     </RelativeLayout>

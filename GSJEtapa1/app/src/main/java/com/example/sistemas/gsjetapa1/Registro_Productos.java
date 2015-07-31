@@ -242,6 +242,7 @@ AlertaInicial("Que desea hacer?");
         buttonFamilia.setText("Seleccione Familia");
 
 
+
     }
 
     public void AlertaInicial(String mensaje){
@@ -300,7 +301,7 @@ AlertaInicial("Que desea hacer?");
             deCual=true;
         }
         else if(from==0){
-            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias());
+            Nombre_PT = getProductosArray(con.DAOGetTodosFamilias(false, false));
             deCual =false;
         }
 

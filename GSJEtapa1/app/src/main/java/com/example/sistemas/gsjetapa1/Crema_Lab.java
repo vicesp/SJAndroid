@@ -1,21 +1,41 @@
 package com.example.sistemas.gsjetapa1;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.SweepGradient;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapPrimitive;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import DAO.consultas;
 import DTO.Dia_Juliano;
@@ -23,7 +43,7 @@ import DTO.Fecha_Hoy;
 import DTO.Variables;
 
 
-public class Crema_Lab extends ActionBarActivity {
+public class Crema_Lab extends ActionBarActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static Fecha_Hoy FechaH;
     private static Dia_Juliano DiaJ;
@@ -31,12 +51,18 @@ public class Crema_Lab extends ActionBarActivity {
     private static Variables var;
     private Cursor cursor;
 
-    private TextView Fecha;
-    private Button btnBack;
+    private TextView Fecha,codigo_prod;
+    private Button btnBack,btnProd;
     private ImageButton guarda;
-    private EditText Lote, obsSa, obsCo, obsAro, obsEsc, obsFlu, ph, solidos, acidez, grasa;
+    private EditText Lote, obsSa, obsCo, obsAro, obsEsc, obsFlu, ph, solidos, acidez, grasa ;
     private Switch sabor, color, aroma, escurrimiento, fluidez;
 
+    private String Nombre_PT[], Crema_PT[];
+    private String [] listaProductos;
+    private ArrayList<String> array_sort, filtroProductos;
+    int textlength=0;
+    private AlertDialog myalertDialog=null;
+    private String datos_cambiados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +86,7 @@ public class Crema_Lab extends ActionBarActivity {
         solidos=(EditText)findViewById(R.id.editText26);
         acidez=(EditText)findViewById(R.id.editText25);
         grasa=(EditText)findViewById(R.id.editText27);
+        codigo_prod=(TextView)findViewById(R.id.codigoProducto);
 
 
         /*********** Text Views **************/
@@ -70,6 +97,14 @@ public class Crema_Lab extends ActionBarActivity {
 
         /*********** Buttons **************/
 
+        btnProd=(Button)findViewById(R.id.btnProd);
+        btnProd.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                launchView();
+            }});
+        
         btnBack = (Button)findViewById(R.id.btnBack);
         btnBack.setOnClickListener(new View.OnClickListener() {
 
@@ -92,9 +127,10 @@ public class Crema_Lab extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 if(var.isFromCrema()){
+                    con.DAOConsultaBitacora(Variables.getNombre_usuario(), "Crema Laboratorio", generarDatosCambiados(), "", FechaH.Hoy_hora());
                     boolean exitoso = con.DAOActualizaCremaLab(var.getLoteCrema(),Fecha.getText().toString(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
                             switchTexter(aroma.isChecked()),obsAro.getText().toString(),switchTexter(escurrimiento.isChecked()), obsEsc.getText().toString(), switchTexter(fluidez.isChecked()), obsFlu.getText().toString(),ph.getText().toString(),
-                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Lote.getText().toString());
+                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Lote.getText().toString(),btnProd.getText().toString(), codigo_prod.getText().toString());
 
                     if(exitoso){
                         Alerta(getResources().getString(R.string.Alerta_Actualizado));
@@ -105,7 +141,7 @@ public class Crema_Lab extends ActionBarActivity {
                 } else{
                     boolean exitoso = con.DAOCremaLab(Lote.getText().toString(), FechaH.Hoy_hora(),switchTexter(sabor.isChecked()),obsSa.getText().toString(), switchTexter(color.isChecked()), obsCo.getText().toString(),
                             switchTexter(aroma.isChecked()),obsAro.getText().toString(),switchTexter(escurrimiento.isChecked()), obsEsc.getText().toString(), switchTexter(fluidez.isChecked()), obsFlu.getText().toString(),ph.getText().toString(),
-                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Fecha.getText().toString());
+                            solidos.getText().toString(), acidez.getText().toString(), grasa.getText().toString(),Fecha.getText().toString(),btnProd.getText().toString(), codigo_prod.getText().toString());
                 if(exitoso){
                     Alerta(getResources().getString(R.string.Alerta_Guardado));
                     vaciarTodo();
@@ -216,6 +252,49 @@ public class Crema_Lab extends ActionBarActivity {
         solidos.setText(cursor.getString(cursor.getColumnIndex("solidos")));
         acidez.setText(cursor.getString(cursor.getColumnIndex("acidez")));
         grasa.setText(cursor.getString(cursor.getColumnIndex("grasa")));
+        btnProd.setText(cursor.getString(cursor.getColumnIndex("producto")));
+        codigo_prod.setText(cursor.getString(cursor.getColumnIndex("codigo_producto")));
+    }
+
+    public String generarDatosCambiados() {
+        datos_cambiados = null;
+
+        if (!(cursor.getString(cursor.getColumnIndex("lote")).equals(Lote.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "lote Valor Previo: " + cursor.getString(cursor.getColumnIndex("lote")) + ", Valor Nuevo:" + Lote.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("aroma_observaciones")).equals(obsAro.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "aroma_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("aroma_observaciones")) + ", Valor Nuevo:" + obsAro.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("ph")).equals(ph.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "ph Valor Previo: " + cursor.getString(cursor.getColumnIndex("ph")) + ", Valor Nuevo:" + ph.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("grasa")).equals(grasa.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "grasa Valor Previo: " + cursor.getString(cursor.getColumnIndex("grasa")) + ", Valor Nuevo:" + grasa.getText().toString() + ";";
+        }
+
+        if (!(cursor.getString(cursor.getColumnIndex("sabor_observaciones")).equals(obsSa.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "sabor_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("sabor_observaciones")) + ", Valor Nuevo:" + obsSa.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("escurrimiento_observaciones")).equals(obsEsc.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "escurrimiento_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("escurrimiento_observaciones")) + ", Valor Nuevo:" + obsEsc.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("solidos")).equals(solidos.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "solidos Valor Previo: " + cursor.getString(cursor.getColumnIndex("solidos")) + ", Valor Nuevo:" + solidos.getText().toString() + ";";
+        }
+
+
+        if (!(cursor.getString(cursor.getColumnIndex("color_observaciones")).equals(obsCo.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "color_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("color_observaciones")) + ", Valor Nuevo:" + obsCo.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("fluidez_observaciones")).equals(obsFlu.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "fluidez_observaciones Valor Previo: " + cursor.getString(cursor.getColumnIndex("fluidez_observaciones")) + ", Valor Nuevo:" + obsFlu.getText().toString() + ";";
+        }
+        if (!(cursor.getString(cursor.getColumnIndex("acidez")).equals(acidez.getText().toString()))) {
+            datos_cambiados = datos_cambiados + "acidez Valor Previo: " + cursor.getString(cursor.getColumnIndex("acidez")) + ", Valor Nuevo:" + acidez.getText().toString() + ";";
+        }
+
+
+        return datos_cambiados;
     }
     public void vaciarTodo(){
         Lote.setText(null);
@@ -233,6 +312,203 @@ public class Crema_Lab extends ActionBarActivity {
         solidos.setText(null);
         acidez.setText(null);
         grasa.setText(null);
+        btnProd.setText("Seleccionar Producto");
+        codigo_prod.setText(null);
 
     }
+    @Override
+    public void onItemClick(AdapterView arg0, View arg1, int position, long arg3) {
+
+        myalertDialog.dismiss();
+        String strName = array_sort.get(position);
+        codigo_prod.setText(strName.substring(0, strName.indexOf('-')));
+        cursor = con.DAOGetCursorTodosFamilias(codigo_prod.getText().toString());
+        btnProd.setText(strName.substring(strName.indexOf('-') + 1, strName.length()));
+
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
+    public void launchView()
+    {
+        AlertDialog.Builder myDialog = new AlertDialog.Builder(Crema_Lab.this);
+
+        Nombre_PT = getProductosArray(con.DAOGetTodosProductos(null,0));
+        int x = 0;
+        for(int i =0; i<Nombre_PT.length; i++){
+            if(Nombre_PT[i].substring(0,2).equals("CF")){
+                x++;
+            }
+        }
+        Crema_PT = new String[x];
+        x=0;
+        for(int i =0; i<Nombre_PT.length; i++){
+            if(Nombre_PT[i].substring(0,2).equals("CF")){
+                Crema_PT[x]=Nombre_PT[i];
+                x++;
+            }
+        }
+
+
+
+        //Log.i(con.DAOGetProductos().,getResources().getStringArray(R.array.nombre_PT)[0]);
+        final EditText editText = new EditText(Crema_Lab.this);
+        final ListView listview = new ListView(Crema_Lab.this);
+        editText.setCompoundDrawablesWithIntrinsicBounds(R.drawable.abc_ic_search_api_mtrl_alpha, 0, 0, 0);
+        array_sort = new ArrayList<String>(Arrays.asList(Crema_PT));
+        LinearLayout layout = new LinearLayout(Crema_Lab.this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.addView(editText);
+        layout.addView(listview);
+        myDialog.setView(layout);
+        CustomAlertAdapter arrayAdapter = new CustomAlertAdapter(Crema_Lab.this, array_sort);
+        listview.setAdapter(arrayAdapter);
+
+        listview.setOnItemClickListener(Crema_Lab.this);
+        editText.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            public void beforeTextChanged(CharSequence s,
+                                          int start, int count, int after) {
+
+            }
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                editText.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                textlength = editText.getText().length();
+                array_sort.clear();
+                for (int i = 0; i < Crema_PT.length; i++) {
+                    if (textlength <= Crema_PT[i].length()) {
+
+                        if (Crema_PT[i].toLowerCase().contains(editText.getText().toString().toLowerCase().trim())) {
+                                array_sort.add(Crema_PT[i]);
+                        }
+                    }
+                }
+                listview.setAdapter(new CustomAlertAdapter(Crema_Lab.this, array_sort));
+            }
+        });
+        myDialog.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+
+        myalertDialog = myDialog.show();
+
+    }
+    public String[] getProductosArray(final ArrayList<consultas> genArray)
+    {
+        for(final consultas con: genArray)
+        {
+
+            listaProductos = con.producto;
+        }
+        return listaProductos;
+    }
+
+    public class GuardaCremaLaboratorio extends AsyncTask<String, Void, Boolean>
+    {
+        private final ProgressDialog dialog = new ProgressDialog(Crema_Lab.this);
+
+        @Override
+        protected void onPreExecute()
+        {
+            this.dialog.setMessage("Enviando Datos...");
+            this.dialog.show();
+        }
+
+        protected Boolean doInBackground(final String... args)
+        {
+            final String NAMESPACE = "http://serv_gsj.net/";
+            final String URL = "http://" + Variables.getIp_servidor() + "/ServicioWebSoap/ServicioClientes.asmx";
+            final String METHOD_NAME = "insertacremalab";
+            final String SOAP_ACTION = NAMESPACE + METHOD_NAME;
+            final int time = 20000, time2 = 190000;
+
+            SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            request.addProperty("lote", Lote.getText().toString());
+            request.addProperty("fecha", Fecha.getText().toString());
+            request.addProperty("producto", btnProd.getText().toString());
+            request.addProperty("codigo_prod",codigo_prod.getText().toString());
+            request.addProperty("sabor", switchTexter(sabor.isChecked()));
+            request.addProperty("color", switchTexter(color.isChecked()));
+            request.addProperty("aroma", switchTexter(aroma.isChecked()));
+            request.addProperty("observaciones_sabor", obsSa.getText().toString());
+            request.addProperty("observaciones_color", obsCo.getText().toString());
+            request.addProperty("observaciones_aroma", obsAro.getText().toString());
+            request.addProperty("escurrimiento", switchTexter(escurrimiento.isChecked()));
+            request.addProperty("fluidez", switchTexter(fluidez.isChecked()));
+            request.addProperty("observaciones_escurrimiento", obsEsc.getText().toString());
+            request.addProperty("observaciones_fluidez", obsFlu.getText().toString());
+            request.addProperty("ph", ph.getText().toString());
+            request.addProperty("acidez", acidez.getText().toString());
+            request.addProperty("solidos_totales", solidos.getText().toString());
+            request.addProperty("acidez", acidez.getText().toString());
+            request.addProperty("grasa", grasa.getText().toString());
+
+
+            SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            envelope.dotNet = true;
+
+            envelope.setOutputSoapObject(request);
+            HttpTransportSE transporte = new HttpTransportSE(URL, time);
+
+            try
+            {
+                transporte.call(SOAP_ACTION, envelope);
+
+                SoapPrimitive resultado_XML = (SoapPrimitive)envelope.getResponse();
+                String mensaje = resultado_XML.toString();
+
+                if(mensaje.contentEquals("true")){
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception e)
+            {
+                Log.i("Error", "Error de sincronizacion:  " + e);
+                return false;
+            }
+        }
+
+        protected void onPostExecute(final Boolean success)
+        {
+            if (this.dialog.isShowing())
+            {
+                this.dialog.dismiss();
+            }
+
+            if (success)
+            {
+                Toast.makeText(Crema_Lab.this, "Sincronizacion Exitosa", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
+                Toast.makeText(Crema_Lab.this, "Error de Sincronizacion", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        public void PaginaMonitor()
+        {
+            WebView myWebView = (WebView) findViewById(R.id.webView);
+            myWebView.loadUrl("http://" + Variables.getIp_servidor() + "SignalRTest/simplechat.aspx?val=123");
+
+            WebSettings webSettings = myWebView.getSettings();
+            webSettings.setJavaScriptEnabled(true);
+        }
+    }
+
 }

@@ -124,7 +124,7 @@
 
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="460dp"
+        android:layout_height="600dp"
         android:background="@drawable/plantilla_marco"
         android:id="@+id/relativeLayout2"
         android:layout_marginTop="40dp"
@@ -308,6 +308,27 @@
             android:layout_above="@+id/textView181"
             android:layout_alignRight="@+id/textView179"
             android:layout_alignEnd="@+id/textView179" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnEDM"
+            android:background="@drawable/d3"
+            android:layout_below="@id/btnELab"
+            android:layout_marginTop="55dp"
+            android:layout_alignLeft="@+id/btnELab"
+            android:layout_alignStart="@+id/btnELab" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DETECTOR DE METALES"
+            android:textColor="@android:color/black"
+            android:textSize="25dp"
+            android:id="@+id/textView285"
+            android:layout_below="@+id/btnELab"
+            android:layout_marginBottom="10dp"
+            android:layout_centerHorizontal="true" />
 
     </RelativeLayout>
 
